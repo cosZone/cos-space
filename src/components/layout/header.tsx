@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
-import { useRouter } from 'next/router';
 import { BsFillBookmarksFill } from 'react-icons/bs';
 import { Navigator } from '../navigator';
+import { useRouter } from 'next/navigation';
 
 export function Header() {
   const router = useRouter();

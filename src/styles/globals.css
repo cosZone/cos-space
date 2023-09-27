@@ -1,40 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import './theme/index.css';
 
 @layer base {
-  body {
-    font-family: 'Poppins', sans-serif;
-    margin: 0;
-    display: block;
-  }
-  blockquote,
-  dl,
-  dd,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  hr,
-  figure,
-  p,
-  pre {
-    margin: 0;
-  }
-  ol,
-  ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  *,
-  ::before,
-  ::after {
-    border-width: 0;
-    border-style: solid;
-  }
   *::-webkit-scrollbar {
     display: none;
     width: 0;
@@ -63,6 +32,7 @@
   .font-nagoda {
     font-family: 'Nagoda';
   }
+
   .project-logo {
     @apply relative h-[2.25rem] w-[6rem] text-3xl text-transparent;
   }

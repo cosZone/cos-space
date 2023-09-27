@@ -1,6 +1,6 @@
 module.exports = {
   darkMode: 'class', // https://tailwindcss.com/docs/dark-mode
-  content: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
+  content: ['./src/pages/**/*.{js,ts,jsx,tsx}', './src/components/**/*.{js,ts,jsx,tsx}', './src/hooks/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       container: {
@@ -14,12 +14,27 @@ module.exports = {
         '2xl': '1366px',
       },
       colors: {
-        primary: '#e91e63',
+        primary: 'var(--primary)',
+        accent: {
+          default: 'var(--accent-100)',
+          200: 'var(--accent-200)',
+        },
+        danger: 'var(--danger)',
+        header: 'var(--bg-header)',
+        text: {
+          100: 'var(--text-100)',
+          200: 'var(--text-200)',
+        },
+        bg: {
+          100: 'var(--bg-100)',
+          200: 'var(--bg-200)',
+          300: 'var(--bg-300)',
+          900: 'var(--bg-900)',
+        },
       },
       backgroundImage: {
-        gradient: 'linear-gradient( 135deg, #fdfbfb 10%, #ebedee 100%)',
-        'gradient-dark': 'linear-gradient(160deg, rgba(28,28,28,1) 0%, rgba(55,60,56,1) 100%)',
-        'gradient-pink': 'linear-gradient(279deg, rgba(249,102,118,1) 0%, rgba(233,30,99,1) 100%)',
+        gradient: 'var(--gradient-bg)',
+        'gradient-pink': 'var(--gradient-pink)',
       },
       fontFamily: {
         poppins: 'var(--font-poppins)',

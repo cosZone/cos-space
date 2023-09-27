@@ -1,5 +1,6 @@
 import clsx, { ClassValue } from 'clsx';
 import { Variants, motion } from 'framer-motion';
+import { twMerge } from 'tailwind-merge';
 
 const itemVariants: Variants = {
   open: {
@@ -10,7 +11,7 @@ const itemVariants: Variants = {
   closed: { opacity: 0, y: 20, transition: { duration: 0.3 } },
 };
 
-type NavItemProps = {
+export type NavItemProps = {
   selected?: boolean;
   name?: string;
   icon?: JSX.Element;
@@ -23,7 +24,7 @@ function NavItem({ selected, icon, name, onClick, className, indicatorClass }: N
     <motion.div
       variants={itemVariants}
       className={clsx(
-        'relative flex cursor-pointer justify-center text-xl hover:opacity-70',
+        'relative flex cursor-pointer items-center justify-center text-xl',
         {
           'text-primary': selected,
         },
@@ -35,7 +36,7 @@ function NavItem({ selected, icon, name, onClick, className, indicatorClass }: N
       {name}
       {selected && (
         <motion.div
-          className={clsx('absolute inset-x-0 -bottom-1 border-t-2 border-primary', indicatorClass)}
+          className={twMerge('absolute inset-x-0 -bottom-1 border-t-2 border-primary', indicatorClass)}
           layoutId="header_tab_selected"
         />
       )}
