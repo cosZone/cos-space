@@ -26,6 +26,7 @@
     "react-icons": "^4.9.0",
     "react-responsive": "^9.0.2",
     "react-use": "^17.4.0",
+    "tailwind-clip-path": "^1.0.0",
     "tailwind-merge": "^1.14.0",
     "tailwindcss-animate": "^1.0.7",
     "typescript": "5.0.2"

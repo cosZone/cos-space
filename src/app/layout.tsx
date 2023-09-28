@@ -18,7 +18,7 @@ export default async function RootLayout(props: Props) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </head>
-      <body className={clsx(` m-0 h-full p-0 font-sans`, ...fontVariants)}>
+      <body className={clsx('m-0 h-full p-0 font-sans', ...fontVariants)}>
         <Root>{children}</Root>
       </body>
     </html>

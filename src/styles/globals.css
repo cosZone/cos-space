@@ -125,3 +125,17 @@
     z-index: 0;
   }
 }
+/* utils */
+@layer components {
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
+
+  .flex-center-x {
+    @apply flex flex-row items-center justify-center;
+  }
+
+  .flex-center-y {
+    @apply flex flex-col items-center justify-center;
+  }
+}

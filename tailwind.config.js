@@ -88,7 +88,11 @@ module.exports = {
       fontFamily: {
         poppins: 'var(--font-poppins)',
       },
+      clipPath: {
+        'post-img-left': 'polygon(0 0,92% 0%,100% 100%,0% 100%)',
+        'post-img-right': 'polygon(0 0%,100% 0%,100% 100%,8% 100%)',
+      },
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [require('tailwindcss-animate'), require('tailwind-clip-path')],
 };
