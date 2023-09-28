@@ -1,7 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import './theme/index.css';
 
 /* shadCN theme - https://ui.shadcn.com/themes */
 @layer base {
@@ -77,6 +76,8 @@
     @apply bg-background text-foreground;
   }
 }
+
+@import './theme/index.css';
 
 @layer base {
   *::-webkit-scrollbar {

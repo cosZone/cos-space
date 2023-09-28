@@ -23,7 +23,7 @@ export function Header() {
         <FaEarthAsia className="-mt-0.5 h-8 w-8 text-logo" />
         <p className="project-logo" />
       </motion.div>
-      <Navigator className="h-full flex-grow" />
+      <Navigator className="h-full flex-grow justify-end" />
     </header>
   );
 }

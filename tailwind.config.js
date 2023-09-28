@@ -92,6 +92,9 @@ module.exports = {
         'post-img-left': 'polygon(0 0,92% 0%,100% 100%,0% 100%)',
         'post-img-right': 'polygon(0 0%,100% 0%,100% 100%,8% 100%)',
       },
+      boxShadow: {
+        card: '0 0 2rem var(--box-bg-shadow)',
+      },
     },
   },
   plugins: [require('tailwindcss-animate'), require('tailwind-clip-path')],
