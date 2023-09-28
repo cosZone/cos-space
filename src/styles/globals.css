@@ -139,4 +139,8 @@
   .flex-center-y {
     @apply flex flex-col items-center justify-center;
   }
+
+  .shadow-card {
+    box-shadow: 0 0 2rem var(--box-bg-shadow);
+  }
 }
