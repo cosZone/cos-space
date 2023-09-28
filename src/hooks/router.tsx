@@ -11,7 +11,7 @@ export const useNavItems = () => {
       {
         key: 'Github',
         icon: <AiFillGithub className="h-9 w-9 cursor-pointer" />,
-        onClick: () => window?.open('https://github.com/yusixian/tabby-nav', '_blank'),
+        onClick: () => window?.open('https://github.com/cosZone/cos-space', '_blank'),
       },
       {
         key: 'CgDarkMode',

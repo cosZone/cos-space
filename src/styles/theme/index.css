@@ -4,5 +4,5 @@
 }
 html.dark {
   --gradient-bg: linear-gradient(160deg, rgba(28, 28, 28, 1) 0%, rgba(55, 60, 56, 1) 100%);
-  --gradient-pink: linear-gradient(279deg, #ff4081 0%, #e91e63 100%);
+  --gradient-pink: linear-gradient(279deg, rgba(249, 102, 118, 1) 0%, rgba(233, 30, 99, 1) 100%);
 }

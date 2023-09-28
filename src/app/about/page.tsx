@@ -1,11 +1,14 @@
 'use client';
 
-import Card from '@/components/card';
+import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
 export default function About() {
   return (
-    <Card clickable className="p-20 text-xl">
-      About
+    <Card>
+      <CardHeader>
+        <CardTitle>About</CardTitle>
+        <CardDescription>About Page</CardDescription>
+      </CardHeader>
     </Card>
   );
 }

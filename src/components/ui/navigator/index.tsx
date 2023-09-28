@@ -1,35 +1,20 @@
+'use client';
+
 import { MD_SCREEN_QUERY } from '@/constants';
-import { useNavItems } from '@/hooks/app';
+import { useNavItems } from '@/hooks/router';
 import { useIsMounted } from '@/hooks/useIsMounted';
 import clsx, { ClassValue } from 'clsx';
 import { motion } from 'framer-motion';
 import { useEffect } from 'react';
 import { CgClose, CgMenu } from 'react-icons/cg';
 import { useMediaQuery } from 'react-responsive';
-import Sider from '../layout/sider';
+import Sider from '../../layout/sider';
 import NavItem from './NavItem';
 import { useAtom } from 'jotai';
 import { oneLevelMenuExpandAtom, oneLevelTabSelectIdxAtom } from '@/store/app';
 import { usePathname, useRouter } from 'next/navigation';
+import { childDelayOpenAnimVariants } from '@/lib/anim';
 
-const itemVariants = {
-  open: {
-    clipPath: 'inset(0% 0% 0% 0% round 10px)',
-    transition: {
-      ease: 'easeInOut',
-      duration: 0.4,
-      delayChildren: 0.3,
-      staggerChildren: 0.05,
-    },
-  },
-  closed: {
-    clipPath: 'inset(10% 50% 90% 50% round 10px)',
-    transition: {
-      ease: 'easeInOut',
-      duration: 0.2,
-    },
-  },
-};
 type NavigatorProps = {
   className?: ClassValue;
 };
@@ -98,7 +83,12 @@ export const Navigator = ({ className }: NavigatorProps) => {
           <Sider bottomItems={buttons} />
         </>
       ) : (
-        <motion.div initial="closed" animate="open" variants={itemVariants} className="ml-4 flex h-full w-full flex-grow gap-4">
+        <motion.div
+          initial="closed"
+          animate="open"
+          variants={childDelayOpenAnimVariants}
+          className="ml-4 flex h-full w-full flex-grow gap-4"
+        >
           {routers.map(({ name, path, key }, idx) => (
             <NavItem
               selected={selectIdx === idx}

@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { FaEarthAsia } from 'react-icons/fa6';
-import { Navigator } from '../navigator';
+import { Navigator } from '../ui/navigator';
 import { useRouter } from 'next/navigation';
 
 export function Header() {
