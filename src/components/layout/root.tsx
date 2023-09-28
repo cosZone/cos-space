@@ -11,8 +11,10 @@ export default function Root({ children }: React.PropsWithChildren<{}>) {
     <ThemeProvider attribute="class">
       <div className={clsx('dark:bg-gradient-dark flex h-screen min-h-screen flex-col bg-gradient text-black dark:text-white')}>
         <Header />
-        <main className="relative flex-grow overflow-hidden">{children}</main>
-        <Footer />
+        <main className="vertical-scrollbar relative flex flex-grow flex-col overflow-auto">
+          {children}
+          <Footer className="mt-auto" />
+        </main>
       </div>
     </ThemeProvider>
   );

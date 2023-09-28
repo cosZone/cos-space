@@ -85,15 +85,15 @@
     width: 0;
     background: transparent;
   }
-  *::-webkit-scrollbar {
+  .vertical-scrollbar::-webkit-scrollbar {
     display: block;
-    width: 0.75rem;
-    background-color: rgba(0, 0, 0, 0.1);
+    width: 0.5rem;
+    @apply bg-border;
     border-radius: 0.5rem;
   }
 
-  *::-webkit-scrollbar-thumb {
-    @apply bg-primary;
+  .vertical-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-background;
     border-radius: 0.5rem;
   }
 
