@@ -90,7 +90,7 @@ function Drawer({
                 <motion.div
                   className={twMerge(
                     clsx(
-                      `bg-header text-text-100 absolute flex min-w-[10rem] flex-col p-0 md:min-w-[5rem]`,
+                      'absolute flex min-w-[10rem] flex-col bg-background p-0 md:min-w-[5rem]',
                       posClass[position || 'left'],
                       fontVariants,
                     ),

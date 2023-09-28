@@ -1,0 +1,12 @@
+{
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "prettier.configPath": ".prettierrc.js",
+    "css.lint.unknownAtRules": "ignore",
+    "editor.formatOnSave": true
+  }
+}
