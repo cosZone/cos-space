@@ -96,33 +96,35 @@
     @apply bg-background;
     border-radius: 0.5rem;
   }
-
   @font-face {
     font-display: block;
     font-family: 'Nagoda';
     font-style: normal;
     src: local('Nagoda'), url('/fonts/Nagoda.ttf');
   }
+
+  @font-face {
+    font-family: 'Candyshop';
+    src: url('https://ipfs.xlog.app/ipfs/bafkreiaztv4ex5zlllmz5jqkrc3uouggdwfy6rrenemtdf3erlbd6bmfwm');
+    font-display: swap;
+  }
 }
 
 @layer components {
-  .font-nagoda {
-    font-family: 'Nagoda';
-  }
-
   .project-logo {
-    @apply relative h-[2.25rem] w-[7rem] text-3xl text-transparent;
+    @apply relative h-[2.25rem] w-[7rem] text-transparent;
+    font-size: 2.25rem /* 36px */;
+    line-height: 2.375rem /* 40px */;
   }
   .project-logo::before {
-    @apply font-nagoda absolute inset-0 text-clip bg-gradient-pink;
+    @apply absolute inset-0 text-clip bg-gradient-pink bg-clip-text font-candy;
     content: 'Cosine';
-    background-clip: text;
     z-index: 1;
   }
   .project-logo::after {
-    @apply font-nagoda absolute inset-0 text-transparent;
+    @apply absolute inset-0 font-candy text-transparent;
     content: 'Cosine';
-    text-shadow: 0.1875rem 0.1875rem 0 rgba(249, 99, 117, 0.6);
+    text-shadow: 0.1875rem 0.1875rem 0 rgba(249, 99, 117, 0.3);
     z-index: 0;
   }
 }

@@ -10,17 +10,21 @@ export type NavItemProps = {
   onClick: () => void;
   className?: ClassValue;
   indicatorClass?: string;
+  type?: 'header' | 'sider';
 };
-function NavItem({ selected, icon, name, onClick, className, indicatorClass }: NavItemProps) {
+function NavItem({ selected, icon, name, onClick, className, indicatorClass, type = 'header' }: NavItemProps) {
   return (
     <motion.div variants={delayOpenAnimVariants}>
       <div
-        className={clsx(
-          'relative flex h-full w-full cursor-pointer items-center justify-center text-xl hover:opacity-70',
-          {
-            'text-primary': selected,
-          },
-          className,
+        className={twMerge(
+          clsx(
+            'relative flex h-full w-full cursor-pointer items-center justify-center text-xl hover:opacity-70',
+            {
+              'text-primary': selected && type === 'header',
+              'z-0': type === 'sider',
+            },
+            className,
+          ),
         )}
         onClick={onClick}
       >
@@ -28,7 +32,12 @@ function NavItem({ selected, icon, name, onClick, className, indicatorClass }: N
         {name}
         {selected && (
           <motion.div
-            className={twMerge('absolute inset-x-0 -bottom-0.5 border-t-2 border-primary', indicatorClass)}
+            className={twMerge(
+              clsx('absolute inset-x-0 -bottom-0.5 border-t-2 border-primary', {
+                'inset-0 -z-10 rounded-lg border-none bg-gradient-pink': type === 'sider',
+              }),
+              indicatorClass,
+            )}
             layoutId="header_tab_selected"
           />
         )}

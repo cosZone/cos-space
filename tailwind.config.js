@@ -7,10 +7,16 @@ module.exports = {
       center: true,
       padding: '2rem',
       screens: {
-        xs: { max: '475px' },
-        md: { max: '768px' },
         '2xl': '1400px',
       },
+    },
+    screens: {
+      xs: { max: '480px' },
+      md: { max: '768px' },
+      lg: { max: '1024px' },
+      xl: { max: '1265px' },
+      '2xl': '1440px',
+      desktop: '1480px',
     },
     extend: {
       colors: {
@@ -84,13 +90,18 @@ module.exports = {
       backgroundImage: {
         gradient: 'var(--gradient-bg)',
         'gradient-pink': 'var(--gradient-pink)',
+        'gradient-header': 'var(--gradient-header)',
       },
       fontFamily: {
         poppins: 'var(--font-poppins)',
+        candy: 'Candyshop',
       },
       clipPath: {
         'post-img-left': 'polygon(0 0,92% 0%,100% 100%,0% 100%)',
         'post-img-right': 'polygon(0 0%,100% 0%,100% 100%,8% 100%)',
+      },
+      spacing: {
+        15: '3.75rem',
       },
     },
   },
