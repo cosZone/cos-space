@@ -12,10 +12,9 @@ export const MParagraph: FC<DetailedHTMLProps<HTMLAttributes<HTMLParagraphElemen
     // isImage
     const child = React.Children.toArray(children)[0];
     if (isImage(child)) {
-      return children;
+      return <>{children}</>;
     }
-
-    // isLink;
+     // isLink;
     // if (isLink(child)) {
     // return <LinkRenderer href={(child as any)?.props?.href} />;
     // }
