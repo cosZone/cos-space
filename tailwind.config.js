@@ -14,9 +14,9 @@ module.exports = {
       xs: { max: '480px' },
       md: { max: '768px' },
       lg: { max: '1024px' },
-      xl: { max: '1265px' },
       '2xl': '1440px',
-      desktop: '1480px',
+      tablet: { min: '1025px' },
+      desktop: { min: '1480px' },
     },
     extend: {
       colors: {

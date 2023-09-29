@@ -85,6 +85,9 @@
     width: 0;
     background: transparent;
   }
+  .vertical-scrollbar {
+    overflow: auto;
+  }
   .vertical-scrollbar::-webkit-scrollbar {
     display: block;
     width: 0.5rem;
