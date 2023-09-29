@@ -112,24 +112,6 @@ NPM 包：https://www.npmjs.com/package/@dance-ui/ui
 
 开发文档：[开发流程](https://dance.cosine.ren/docs/develop/develop-intro)
 
-## P12 airdrop 页开发
-
-加入 P12 团队后，主要使用 `React` + `Typescript` + `Recoil` + `Next.js` + `Tailwind CSS` 开发公司 Web3 项目，这期间呢也是
-
-- 封装 axios 设置通用请求拦截器携带 token 等，并使用 react-query 封装中间请求状态
-- 更换状态管理库为 Recoil，封装了各种通用自定义 hook 及业务用 hook，更换 web3-react 为 wagmi，大大降低业务复杂度
-- 负责 [airdrop-interface](https://github.com/ProjectTwelve/airdrop-interface) 最新 collab 开发，完成了从静态页面开发到后端联调提测全流程，最终顺利上线
-
-这个项目，可以说让我学到了很多东西，因为用到的技术都蛮新的，而且因为是开源所以做的也比较用心，最关键的是设计设计的也很好看~做起来非常开心
-
-### 在线地址
-
-在线地址：[airdrop.p12.games](https://airdrop.p12.games/)
-P12 官网：[p12.network](https://p12.network/)
-Github 地址：[airdrop-interface](https://github.com/ProjectTwelve/airdrop-interface)、[P12 Team](https://github.com/ProjectTwelve)
-
-![airdrop-1](./index/airdrop-1.png)
-
 ## 仿 antd 日期选择器~
 
 也算是第一次用 React 写自己的小组件，封装性还不行，bug 也还有不少，写的代码自己复盘的时候也很想吐槽 2333
