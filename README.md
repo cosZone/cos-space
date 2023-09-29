@@ -1,38 +1,106 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🚀 cosSpace
 
-## Getting Started
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/cosZone/cos-space/blob/master/LICENSE) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/cosZone/cos-space/pulls)
 
-First, run the development server:
+🚀 cosSpace 是基于 Next.js（App Router Mode）、Typescript、React 和 Tailwind 开发的项目，它是 [cos_blogs](https://github.com/yusixian/cos_blogs) 的重构版，旨在为用户提供同时拥有博客和个人空间的平台。
+
+## 🎉 功能
+
+✏️ 发布、编辑和删除博客文章 ing...
+
+📁 按照分类和标签组织文章 ing...
+
+🔍 通过搜索框查找文章 ing...
+
+🎨 个人空间定制，展示个人信息和作品 ing...
+
+## 🛠 技术栈
+
+- 🎨 UI: 部分 [ShadCn/ui](https://ui.shadcn.com/)
+- 🎥 动画: Framer Motion
+- 🎀 CSS 框架: Tailwind CSS, PostCSS
+- 🖥 前端框架: React
+- 📦 包管理器: Pnpm
+- 🌐 SSR 框架: Next.js
+
+## 📦 部署 | 安装
+
+### Vercel 一键部署
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FcosZone%2Fcos-space&project-name=my-cos-space&repository-name=my-cos-space)
+
+### 本地开发
+
+1. 克隆项目到本地
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+git clone https://github.com/cosZone/cos-space
+```
+
+2. 进入项目目录并安装依赖
+
+```bash
+cd cos-space
+pnpm i
+```
+
+3. 启动项目
+
+```bash
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📧 联系我
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+如果你有任何问题或建议，请通过以下方式联系我们：
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+- 在我们的 [GitHub Issue](https://github.com/cosZone/cos-space/issues) 上提出问题或建议
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## 🙏 鸣谢
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+感谢以下项目对 cosSpace 的开发提供的灵感及参考：
 
-## Learn More
+- [mx-space](https://github.com/mx-space)
+- [Shiro](https://github.com/Innei/Shiro)
+- [hexo-theme-shoka](https://github.com/amehime/hexo-theme-shoka)
+- ...
 
-To learn more about Next.js, take a look at the following resources:
+## 📝 TODO
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [x] 一个能看的导航栏菜单是一个好的开始
+- [ ] 文章系统
+  - [ ] 首页 post 列表
+  - [ ] 单个博文页面
+  - [ ] 文章分类与标签系统
+  - [ ] 文章搜索功能
+- [ ] 用户系统
+  - [ ] 用户注册 & 登录功能
+  - [ ] 评论与回复功能
+  - [ ] 个人信息页与个人空间定制
+  - [ ] 通知与消息系统
+- [ ] 文章编辑与删除功能
+  - [ ] 文章草稿保存与发布
+  - [ ] 图片与媒体上传管理
+  - [ ] 数据备份与恢复功能
+  - [ ] 社交媒体分享功能
+  - [ ] Markdown 语法拓展
+- [ ] 优化 & 统计
+  - [ ] 文章统计与分析（例如访问量、点赞数等）计划用 GA
+  - [ ] RSS 订阅功能 & 邮件订阅
+  - [ ] 首页与博文页的优化加载速度
+  - [ ] 响应式设计以适配多种设备
+  - [ ] SEO 优化
+  - [ ] 优化代码结构与性能
+  - [ ] 更新日志与文档编写
+  - [ ] 进一步的安全性检查与优化
+- [ ] 拓展
+  - [ ] 小彩蛋
+  - [ ] 扩展插件与主题系统
+  - [ ] API 设计与开放
+  - [ ] 增加多语言支持
+  - [ ] 自动化测试与持续集成
+  - [ ] 其他用户反馈与建议的功能完善
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## 📝 许可证
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+cosSpace 使用 [MIT 许可证](./LICENSE)。
