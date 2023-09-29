@@ -9,9 +9,13 @@ import { ThemeProvider } from 'next-themes';
 export default function Root({ children }: React.PropsWithChildren<{}>) {
   return (
     <ThemeProvider attribute="class">
-      <div className={clsx('dark:bg-gradient-dark flex h-screen min-h-screen flex-col bg-gradient text-black dark:text-white')}>
+      <div
+        className={clsx(
+          'dark:bg-gradient-dark vertical-scrollbar flex min-h-screen flex-col bg-gradient text-black dark:text-white',
+        )}
+      >
         <Header />
-        <main className="vertical-scrollbar relative flex flex-grow flex-col overflow-auto">
+        <main className="relative flex flex-col">
           {children}
           <Footer className="mt-auto" />
         </main>

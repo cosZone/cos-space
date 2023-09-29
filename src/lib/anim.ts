@@ -1,3 +1,4 @@
+import { microReboundPreset } from '@/constants/spring';
 import { Variants } from 'framer-motion';
 
 export const childDelayOpenAnimVariants: Variants = {
@@ -23,45 +24,14 @@ export const delayOpenAnimVariants: Variants = {
   open: {
     opacity: 1,
     y: 0,
-    transition: { type: 'spring', stiffness: 300, damping: 24 },
+    transition: microReboundPreset,
   },
   closed: { opacity: 0, y: 20, transition: { duration: 0.3 } },
 };
 
-export type AnimType = 'scale' | 'translateY' | 'indicate' | 'topLeftAnim';
+export type AnimType = 'scale';
 export const clickableProps = (type: AnimType = 'scale', props?: { scale?: number }) => {
   switch (type) {
-    case 'indicate': {
-      return {
-        animate: {
-          x: ['-24px', '24px', '-24px'], // 移动的路径
-        },
-        transition: {
-          duration: 2,
-          repeat: Infinity,
-        },
-      };
-    }
-    case 'topLeftAnim': {
-      return {
-        animate: {
-          x: ['0%', '-10%', '0%', '-10%', '0%'],
-          y: ['0%', '-10%', '0%', '-10%', '0%'],
-        },
-        transition: {
-          duration: 1,
-          repeat: Infinity,
-          repeatDelay: 1,
-        },
-      };
-    }
-    case 'translateY': {
-      return {
-        transition: { type: 'linear', stiffness: 100 },
-        whileTap: { translateY: -5 },
-        whileHover: { translateY: -5 },
-      };
-    }
     case 'scale':
     default: {
       const { scale } = props ?? {};

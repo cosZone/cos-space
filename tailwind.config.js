@@ -105,5 +105,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require('tailwindcss-animate'), require('tailwind-clip-path')],
+  plugins: [require('tailwindcss-animate'), require('tailwind-clip-path'), require('@tailwindcss/typography')],
 };

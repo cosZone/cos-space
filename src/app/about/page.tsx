@@ -1,11 +1,12 @@
 'use client';
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import Markdown from 'markdown-to-jsx';
 import matter from 'gray-matter';
 
 // @ts-expect-error
 import aboutMdRaw from '@/lib/source/about/index.md?raw';
+import { Markdown } from '@/components/ui/markdown/Markdown';
+import PostRightSider from '@/components/post/PostRightSider';
 
 export default function About() {
   const parsedData = matter(aboutMdRaw);
@@ -21,7 +22,10 @@ export default function About() {
           <CardDescription>{metaData?.['description']}</CardDescription>
         </CardContent>
       </Card>
-      <Markdown>{parsedData.content}</Markdown>
+      <div className="relative flex items-start gap-4">
+        <Markdown className="prose" value={parsedData.content} />
+        <PostRightSider />
+      </div>
     </>
   );
 }
