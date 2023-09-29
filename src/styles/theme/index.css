@@ -1,12 +1,18 @@
 :root {
   --gradient-bg: linear-gradient(135deg, #fdfbfb 10%, #ebedee 100%);
-  --gradient-pink: linear-gradient(279deg, rgba(249, 102, 118, 1) 0%, rgba(233, 30, 99, 1) 100%);
+  --gradient-pink: linear-gradient(279deg, #f96676 0%, #e91e63 100%);
+  --gradient-header: linear-gradient(-225deg, #e3fdfb 0, #ffe6fa 100%);
+
+  /* shoka migrate */
   --box-bg-shadow: rgba(0, 0, 0, 0.1);
   --grey-1-a5: rgba(253, 253, 253, 0.5);
 }
-html.dark {
-  --gradient-bg: linear-gradient(160deg, rgba(28, 28, 28, 1) 0%, rgba(55, 60, 56, 1) 100%);
-  --gradient-pink: linear-gradient(279deg, rgba(249, 102, 118, 1) 0%, rgba(233, 30, 99, 1) 100%);
+.dark {
+  --gradient-bg: linear-gradient(160deg, #1c1c1c 0%, #373c38 100%);
+  --gradient-pink: linear-gradient(279deg, #f96676 0%, #e91e63 100%);
+  --gradient-header: linear-gradient(-225deg, #1c1c1c 0, #2d3230 100%);
+
+  /* shoka migrate */
   --box-bg-shadow: rgba(0, 0, 0, 1);
   --grey-1-a5: rgba(253, 253, 253, 0.5);
 }
