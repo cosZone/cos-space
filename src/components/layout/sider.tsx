@@ -34,20 +34,20 @@ const Sider = ({ bottomItems }: SiderProps) => {
                 <AvatarFallback>C</AvatarFallback>
               </Avatar>
               <h1 className="font-candy text-3xl text-primary">Cos</h1>
-              <CardDescription className="line-clamp-3 max-h-15 overflow-hidden whitespace-pre-wrap">
+              <CardDescription className="line-clamp-3 max-h-15 overflow-hidden whitespace-pre-wrap text-center">
                 {`图片迁移完毕，博客待重构～xxxxxx xxxxxxxxxx xxxxxxxxxxxxxxxx\n换行测试xxxxx xxxxxxxxxx xxxxxxxxxxxxxxxx xxxxxxxxxx xxxxxxxxxx`}
               </CardDescription>
             </div>
             <div className="w-full">
               {routers.map(({ name, path, key }, idx) => (
                 <NavItem
+                  type="sider"
                   key={key ?? name}
                   selected={selectIdx1 === idx}
                   className="w-full px-1 py-2"
                   onClick={() => {
                     router.push(path);
                     setSelectIdx1(idx);
-                    setMobileExpand(false);
                   }}
                   name={name}
                   indicatorClass="inset-x-4"
