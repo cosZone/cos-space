@@ -1,6 +1,7 @@
 import { springScrollToElement } from '@/lib/scroller';
 import { createElement } from 'react';
 import type { DOMAttributes } from 'react';
+import { FaHashtag } from 'react-icons/fa6';
 
 interface HeadingProps {
   id: string;
@@ -21,19 +22,16 @@ export const MHeader = (props: HeadingProps) => {
     null,
     <>
       <span>{children}</span>
-      <span
-        className="center ml-2 inline-flex cursor-pointer select-none opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+      <FaHashtag
+        className='center ml-2 inline-flex cursor-pointer select-none opacity-0 outline-none transition-opacity duration-200 content-["#"] group-hover:opacity-100'
         role="button"
         tabIndex={0}
-        aria-hidden
         onClick={() => {
           const state = history.state;
           history.replaceState(state, '', `#${id}`);
           springScrollToElement(document.getElementById(id)!, -100);
         }}
-      >
-        #
-      </span>
+      />
     </>,
   );
 };
