@@ -11,7 +11,7 @@ export default function Root({ children }: React.PropsWithChildren<{}>) {
     <ThemeProvider attribute="class">
       <div className={clsx('dark:bg-gradient-dark flex min-h-screen flex-col bg-gradient text-black dark:text-white')}>
         <Header />
-        <main className="relative flex flex-col">
+        <main className="relative flex flex-grow flex-col">
           {children}
           <Footer className="mt-auto" />
         </main>

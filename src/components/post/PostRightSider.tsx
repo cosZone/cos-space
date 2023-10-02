@@ -3,6 +3,9 @@ import { useMediaQuery } from 'react-responsive';
 
 const PostRightSider = () => {
   const isMdScreen = useMediaQuery({ query: MD_SCREEN_QUERY });
+  // const headings = useMemo(() => {
+  // 	content.
+  // }, [])
   if (isMdScreen) return null;
   return <div className="sticky top-20 w-40">Right</div>;
 };

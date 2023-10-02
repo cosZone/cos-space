@@ -7,6 +7,7 @@ import { useMemo } from 'react';
 
 // @ts-expect-error
 import aboutMdRaw from '@/lib/source/about/index.md?raw';
+import { useIsMounted } from '@/hooks/useIsMounted';
 
 export default function About() {
   const parsedData = matter(aboutMdRaw);
@@ -18,6 +19,8 @@ export default function About() {
     }),
     [metaData, parsedData],
   );
+  const isMounted = useIsMounted();
+
   return (
     <>
       <Card>
@@ -28,7 +31,7 @@ export default function About() {
           <CardDescription>{metaData?.['description']}</CardDescription>
         </CardContent>
       </Card>
-      <PostDetail data={postData} />
+      {isMounted && <PostDetail data={postData} />}
     </>
   );
 }
