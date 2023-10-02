@@ -31,10 +31,14 @@ export default async function RootLayout(props: Props) {
           content="cosSpace 是基于 Next.js (App Router)、Typescript、React 和 Tailwind 开发的个人空间，是 cos_blogs 的重构版，为用户提供同时拥有博客和个人空间的平台。"
           key="description"
         />
-        <meta property="og:url" content="https://github.com/cosZone/cos-space" key="url" />
+        <meta property="og:url" content="https://space.cosine.ren/" key="url" />
         {/* <meta property="og:image" content={shareImage} /> */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Cos Space" />
+        <meta
+          name="twitter:description"
+          content="cosSpace 是基于 Next.js (App Router)、Typescript、React 和 Tailwind 开发的个人空间，是 cos_blogs 的重构版，为用户提供同时拥有博客和个人空间的平台。"
+        />
         {/* <meta name="twitter:image" content={shareImage} /> */}
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
