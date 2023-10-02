@@ -23,7 +23,7 @@ export const MHeader = (props: HeadingProps) => {
     <>
       <span>{children}</span>
       <FaHashtag
-        className='center ml-2 inline-flex cursor-pointer select-none opacity-0 outline-none transition-opacity duration-200 content-["#"] group-hover:opacity-100'
+        className="ml-2 cursor-pointer select-none opacity-0 outline-none transition-opacity duration-200 group-hover:opacity-100"
         role="button"
         tabIndex={0}
         onClick={() => {
