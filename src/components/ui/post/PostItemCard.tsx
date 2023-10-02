@@ -1,11 +1,11 @@
 import React from 'react';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '../ui/card';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '../card';
 import { motion } from 'framer-motion';
 import { clickableProps } from '@/lib/anim';
 import { twMerge } from 'tailwind-merge';
 import { FaCalendarDays, FaPenNib, FaTags } from 'react-icons/fa6';
 import { BiSolidTimeFive } from 'react-icons/bi';
-import { Badge } from '../ui/badge';
+import { Badge } from '../badge';
 
 export type PostItemCardProps = {
   className?: string;
@@ -41,7 +41,7 @@ export default function PostItemCard({ className, data }: PostItemCardProps) {
           </p>
         </div>
         <CardHeader className="p-0">
-          <CardTitle className="truncate font-noto-sc text-primary">NestJS 学习之优秀项目分析与最佳实践</CardTitle>
+          <CardTitle className="font-noto-sc truncate text-primary">NestJS 学习之优秀项目分析与最佳实践</CardTitle>
         </CardHeader>
         <CardDescription className="line-clamp-2 max-h-10 overflow-hidden">
           # 前言 进入 NestJS 的世界可能会让你感到不知所措，尤其是当你面对众多的模块和概念时。本文不仅会深入分析优秀的 NestJS

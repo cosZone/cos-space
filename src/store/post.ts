@@ -1,0 +1,3 @@
+import { atom } from 'jotai';
+
+export const postActiveTocIdAtom = atom<string | null>(null);

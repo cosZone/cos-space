@@ -1,4 +1,5 @@
 import { delayOpenAnimVariants } from '@/lib/anim';
+import { cn } from '@/lib/utils';
 import clsx, { ClassValue } from 'clsx';
 import { motion } from 'framer-motion';
 import { twMerge } from 'tailwind-merge';
@@ -16,15 +17,13 @@ function NavItem({ selected, icon, name, onClick, className, indicatorClass, typ
   return (
     <motion.div variants={delayOpenAnimVariants}>
       <div
-        className={twMerge(
-          clsx(
-            'relative flex h-full w-full cursor-pointer items-center justify-center text-xl hover:opacity-70',
-            {
-              'text-primary': selected && type === 'header',
-              'z-0': type === 'sider',
-            },
-            className,
-          ),
+        className={cn(
+          'relative flex h-full w-full cursor-pointer items-center justify-center text-xl hover:opacity-70',
+          {
+            'text-primary': selected && type === 'header',
+            'z-0': type === 'sider',
+          },
+          className,
         )}
         onClick={onClick}
       >

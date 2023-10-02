@@ -2,7 +2,7 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import matter from 'gray-matter';
-import PostDetail from '@/components/post/PostDetail';
+import PostDetail from '@/components/ui/post/PostDetail';
 import { useMemo } from 'react';
 
 // @ts-expect-error

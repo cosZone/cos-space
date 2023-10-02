@@ -1,5 +1,5 @@
 'use client';
-import PostItemCard from '@/components/post/PostItemCard';
+import PostItemCard from '@/components/ui/post/PostItemCard';
 import _ from 'lodash-es';
 
 const posts = _.range(0, 10);
