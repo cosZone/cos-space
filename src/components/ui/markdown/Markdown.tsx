@@ -1,10 +1,10 @@
-import clsx from 'clsx';
-import { FC, PropsWithChildren, Suspense, memo, useMemo, useRef } from 'react';
-import _ from 'lodash-es';
-import mdStyles from './markdown.module.css';
 import { MAIN_MARKDOWN_ID } from '@/constants/dom-id';
-import Script from 'next/script';
+import clsx from 'clsx';
+import _ from 'lodash-es';
 import { MarkdownToJSX, compiler } from 'markdown-to-jsx';
+import Script from 'next/script';
+import { FC, PropsWithChildren, Suspense, memo, useMemo, useRef } from 'react';
+import mdStyles from './markdown.module.css';
 import { MHeader } from './renderers/heading';
 import { MParagraph } from './renderers/paragraph';
 

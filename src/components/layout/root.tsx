@@ -1,11 +1,10 @@
 'use client';
 
-import { fontVariants } from '@/constants/font';
 import clsx from 'clsx';
-import { Footer } from './footer';
-import { Header } from './header';
 import { ThemeProvider } from 'next-themes';
 import FloatGroup from '../widgets/global/FloatGroup';
+import { Footer } from './footer';
+import { Header } from './header';
 
 export default function Root({ children }: React.PropsWithChildren<{}>) {
   return (

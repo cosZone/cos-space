@@ -6,19 +6,24 @@ import { twMerge } from 'tailwind-merge';
 import { FaCalendarDays, FaPenNib, FaTags } from 'react-icons/fa6';
 import { BiSolidTimeFive } from 'react-icons/bi';
 import { Badge } from '../badge';
+import { useRouter } from 'next/navigation';
 
 export type PostItemCardProps = {
   className?: string;
   data?: {
+    title?: string;
     cover?: string;
-    title: string;
-    description: string;
+    description?: string;
   };
 };
 
 export default function PostItemCard({ className, data }: PostItemCardProps) {
+  const router = useRouter();
   return (
-    <Card className={twMerge('flex gap-2 transition-shadow hover:shadow-card xs:flex-col', className)}>
+    <Card
+      className={twMerge('flex cursor-pointer gap-2 transition-shadow hover:shadow-card xs:flex-col', className)}
+      onClick={() => router.push('/about')}
+    >
       <div className="max-h-40 w-[calc(50%-2rem)] overflow-hidden rounded-lg clip-path-post-img-left xs:w-full xs:clip-path-none">
         <motion.img
           src="https://fastly.jsdelivr.net/gh/yusixian/imgBed@1.2.1/img/cos_blog/97394501_p0.webp"
