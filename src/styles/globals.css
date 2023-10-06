@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import './components/clerk.css';
 
 /* shadCN theme - https://ui.shadcn.com/themes */
 @layer base {
