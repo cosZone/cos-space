@@ -4,3 +4,86 @@
 .cl-internal-b3fm6y {
   @apply hidden;
 }
+
+.cl-formButtonPrimary {
+  @apply bg-primary hover:bg-primary/90;
+}
+
+:is(.dark) {
+  .cl-card {
+    @apply bg-zinc-900;
+  }
+  .cl-modalCloseButton,
+  .cl-headerTitle,
+  .cl-formFieldLabel,
+  .cl-formFieldInputShowPasswordIcon,
+  .cl-userButtonPopoverRootBox,
+  .cl-navbarButton,
+  .cl-profileSectionTitleText,
+  .cl-profilePage,
+  .cl-breadcrumbsItem,
+  .cl-breadcrumbsItemDivider,
+  .cl-internal-l1ab9q,
+  .cl-internal-fqx4fd,
+  .cl-internal-3vf5mz,
+  .cl-internal-1b63r8w,
+  .cl-accordionTriggerButton .cl-internal-16pk7q8,
+  .cl-internal-f7yy9s,
+  .cl-internal-of57g,
+  .cl-internal-1ho4xv,
+  .cl-internal-1i0alb8 .cl-internal-xkj3jj {
+    @apply text-foreground;
+  }
+
+  .cl-headerSubtitle,
+  .cl-userPreviewSecondaryIdentifier,
+  .cl-userButtonPopoverActionButtonIcon,
+  .cl-userButtonPopoverActionButtonText,
+  .cl-formFieldWarningText,
+  .cl-internal-a81ky,
+  .cl-formFieldHintText {
+    @apply text-accent-foreground;
+  }
+
+  .cl-footerActionText {
+    @apply text-muted-foreground;
+  }
+
+  .cl-dividerLine {
+    @apply bg-muted;
+  }
+
+  .cl-dividerText {
+    @apply text-muted;
+  }
+
+  .cl-formFieldInput {
+    @apply border-muted bg-transparent text-card-foreground;
+  }
+
+  .cl-socialButtonsIconButton {
+    @apply border-muted-foreground bg-neutral-800 hover:bg-neutral-700;
+  }
+  .cl-socialButtonsProviderIcon__github,
+  .cl-providerIcon__github {
+    @apply rounded-full bg-white;
+  }
+
+  .cl-userButtonPopoverActionButton,
+  .cl-internal-1i0alb8,
+  .cl-internal-33s53r > button {
+    @apply hover:bg-zinc-700;
+  }
+
+  .cl-formFieldSuccessText__password,
+  .cl-formFieldDirectionsText__password,
+  .cl-formFieldHintText__password,
+  .cl-formFieldInfoText__password,
+  .cl-identityPreviewText {
+    @apply text-zinc-400;
+  }
+
+  .cl-identityPreviewEditButton {
+    @apply text-zinc-200;
+  }
+}
