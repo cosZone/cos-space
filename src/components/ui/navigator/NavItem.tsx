@@ -8,7 +8,7 @@ export type NavItemProps = {
   selected?: boolean;
   name?: string;
   icon?: JSX.Element;
-  onClick: () => void;
+  onClick?: () => void;
   className?: ClassValue;
   indicatorClass?: string;
   type?: 'header' | 'sider';
