@@ -1,6 +1,6 @@
 import { useThrottle } from '@/hooks/useThrottle';
 import { cn } from '@/lib/utils';
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { DetailedHTMLProps, HTMLAttributes, useEffect, useMemo, useRef, useState } from 'react';
 import styled from 'styled-components';
 import CarouselNextArrow from './CarouselNextArrow';
 import CarouselPrevArrow from './CarouselPrevArrow';
@@ -33,8 +33,9 @@ type CarouselStyledProps = {
   enableTransitionAnim?: boolean;
   transitionTime?: number;
 };
-const CarouselWrapper = styled.div`
-  transform: ${({ offset }: CarouselStyledProps) => `translateX(${offset}px)`};
+type CarouselWrapperProps = CarouselStyledProps & DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
+const CarouselWrapper = styled.div<CarouselWrapperProps>`
+  transform: ${({ offset }) => `translateX(${offset}px)`};
   transition: ${({ enableTransitionAnim, transitionTime }: CarouselStyledProps) =>
     enableTransitionAnim ? `all ${transitionTime ?? 0.5}s` : 'none'};
 `;
