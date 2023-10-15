@@ -6,4 +6,5 @@ type Router = {
 export const routers: Router[] = [
   { name: '首页', path: '/' },
   { name: '关于', path: '/about' },
+  { name: '展示柜', path: '/gallery' },
 ];

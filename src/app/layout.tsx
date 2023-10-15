@@ -2,7 +2,7 @@ import Root from '@/components/layout/root';
 import { seoConfig } from '@/constants';
 import { fontVariants } from '@/constants/font';
 import clsx from 'clsx';
-import '../styles/globals.css';
+import '@/styles/globals.css';
 import { ClerkProvider } from '@clerk/nextjs';
 
 type Props = {

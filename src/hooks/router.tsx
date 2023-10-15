@@ -1,6 +1,5 @@
 import { Button } from '@/components/ui/button';
 import { routers } from '@/constants/router';
-import { AnimatePresence } from 'framer-motion';
 import dynamic from 'next/dynamic';
 import { useMemo } from 'react';
 import { AiFillGithub } from 'react-icons/ai';

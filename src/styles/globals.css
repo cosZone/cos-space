@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 @import './components/clerk.css';
+@import './components/card3d.css';
 
 /* shadCN theme - https://ui.shadcn.com/themes */
 @layer base {
