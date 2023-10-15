@@ -11,6 +11,7 @@ dayjs.locale('zh-cn');
 
 export enum DateFormat {
   'YYYY-MM-DD',
+  'HH:mm',
 }
 
 export const parseDate = (time: string | number | Date, format: keyof typeof DateFormat) => dayjs(time).format(format);

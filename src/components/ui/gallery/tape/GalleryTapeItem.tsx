@@ -6,6 +6,9 @@ import { Tape } from '@/constants/temp';
 import useImageLoadState, { ImageStatus } from '@/hooks/util';
 import { parseDate } from '@/lib/datetime';
 import { cn } from '@/lib/utils';
+import { galleryTapeDetailAtom, galleryTapeDetailDialogOpenAtom } from '@/store/gallery';
+import { useSetAtom } from 'jotai';
+import { useCallback } from 'react';
 import { FaCalendarDays } from 'react-icons/fa6';
 import { IoHome } from 'react-icons/io5';
 
@@ -15,11 +18,17 @@ type GalleryItemProps = {
   data: Tape;
   width: number;
 };
-export default function GalleryItem({ className, index, data, width }: GalleryItemProps) {
+export default function GalleryTapeItem({ className, index, data, width }: GalleryItemProps) {
   const { status, onImageLoaded } = useImageLoadState();
   const { tapeName, cover, org, createAt } = data;
+  const setOpen = useSetAtom(galleryTapeDetailDialogOpenAtom);
+  const setData = useSetAtom(galleryTapeDetailAtom);
+  const onClick = useCallback(() => {
+    setOpen(true);
+    setData(data);
+  }, [data, setData, setOpen]);
   return (
-    <Card className={cn('flex flex-col gap-2', className)} style={{ width }} key={tapeName}>
+    <Card onClick={onClick} className={cn('flex cursor-pointer flex-col gap-2', className)} style={{ width }} key={tapeName}>
       <CardHeader className="p-4 pb-0">{tapeName}</CardHeader>
       <CardDescription className="flex gap-2 px-4 text-xs text-muted-foreground">
         <Badge>
