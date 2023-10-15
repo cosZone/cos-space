@@ -24,7 +24,7 @@ export default function GalleryItem({ className, index, data, width }: GalleryIt
       <CardDescription className="flex gap-2 px-4 text-xs text-muted-foreground">
         <Badge>
           <Tooltip placement="bottom" title="社团">
-            <div className="flex gap-0.5">
+            <div className="flex-center gap-0.5">
               <IoHome /> {org}
             </div>
           </Tooltip>
