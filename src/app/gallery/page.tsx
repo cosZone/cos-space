@@ -1,6 +1,7 @@
 'use client';
 
-import GalleryItem from '@/components/ui/gallery/GalleryItem';
+import GalleryTapeDetailDialog from '@/components/ui/gallery/tape/GalleryTapeDetailDialog';
+import GalleryTapeItem from '@/components/ui/gallery/tape/GalleryTapeItem';
 import { tempPetTapeName } from '@/constants/temp';
 import { useIsMounted } from '@/hooks/useIsMounted';
 import { Masonry } from 'masonic';
@@ -18,7 +19,7 @@ export default function Gallery() {
       </h1>
       <Masonry
         items={tempPetTapeName}
-        render={GalleryItem}
+        render={GalleryTapeItem}
         // Adds 8px of space between the grid cells
         columnGutter={8}
         // Sets the minimum column width to 172px
@@ -27,6 +28,7 @@ export default function Gallery() {
         overscanBy={5}
         // This is the grid item component
       />
+      <GalleryTapeDetailDialog />
     </div>
   );
 }
