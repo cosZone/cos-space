@@ -1,12 +1,11 @@
-import React from 'react';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '../card';
-import { motion } from 'framer-motion';
 import { clickableProps } from '@/lib/anim';
-import { twMerge } from 'tailwind-merge';
-import { FaCalendarDays, FaPenNib, FaTags } from 'react-icons/fa6';
-import { BiSolidTimeFive } from 'react-icons/bi';
-import { Badge } from '../badge';
+import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
+import { BiSolidTimeFive } from 'react-icons/bi';
+import { FaCalendarDays, FaPenNib, FaTags } from 'react-icons/fa6';
+import { twMerge } from 'tailwind-merge';
+import { Badge } from '../badge';
+import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from '../card';
 
 export type PostItemCardProps = {
   className?: string;
