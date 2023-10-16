@@ -2,7 +2,7 @@ import Dialog from '@/components/ui/dialog';
 import { parseDate } from '@/lib/datetime';
 import { galleryTapeDetailAtom, galleryTapeDetailDialogOpenAtom } from '@/store/gallery';
 import { useAtom, useAtomValue } from 'jotai';
-import { useMemo } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import { FaCalendarDays } from 'react-icons/fa6';
 import { IoHome } from 'react-icons/io5';
 import { Badge } from '../../badge';
@@ -11,11 +11,18 @@ import Carousel from '../../carousel';
 import Tooltip from '../../tooltip';
 import { useMediaQuery } from 'react-responsive';
 import { MD_SCREEN_QUERY, XS_SCREEN_QUERY } from '@/constants';
+import { Swiper, SwiperClass, SwiperSlide } from 'swiper/react';
+import CarouselNextArrow from '../../carousel/CarouselNextArrow';
+import CarouselPrevArrow from '../../carousel/CarouselPrevArrow';
+import ImageView from '../../imageView';
+import { useIsMounted } from '@/hooks/useIsMounted';
 
 type GalleryTapeDetailDialogProps = {
   className?: string;
 };
 export default function GalleryTapeDetailDialog({ className }: GalleryTapeDetailDialogProps) {
+  const [swiper, setSwiper] = useState<SwiperClass | null>(null);
+
   const [isOpen, setIsOpen] = useAtom(galleryTapeDetailDialogOpenAtom);
   const data = useAtomValue(galleryTapeDetailAtom);
   const isXsScreen = useMediaQuery({ query: XS_SCREEN_QUERY });
@@ -26,6 +33,10 @@ export default function GalleryTapeDetailDialog({ className }: GalleryTapeDetail
     return { width: 700, height: 650 };
   }, [isMdScreen, isXsScreen]);
   const { tapeName, org, images, createAt } = data ?? {};
+  const slideRef = useRef(null);
+
+  const isMounted = useIsMounted();
+  if (!isMounted) return null;
   return (
     <Dialog
       isDismiss
@@ -35,7 +46,7 @@ export default function GalleryTapeDetailDialog({ className }: GalleryTapeDetail
       render={() => (
         <div className="flex w-full flex-col">
           <h2 className="text-xl font-semibold">{tapeName}</h2>
-          <CardDescription className="flex gap-2 px-4 py-2 text-xs text-muted-foreground">
+          <div className="flex gap-2 px-4 py-2 text-xs text-muted-foreground">
             <Badge>
               <Tooltip placement="bottom" title="社团">
                 <div className="flex-center gap-0.5">
@@ -45,24 +56,47 @@ export default function GalleryTapeDetailDialog({ className }: GalleryTapeDetail
             </Badge>
             {createAt && (
               <Tooltip placement="bottom" title="购入日期">
-                <p className="flex-center gap-1">
+                <div className="flex-center gap-1">
                   <FaCalendarDays />
-                  {parseDate(createAt, 'YYYY-MM-DD')}
-                  {parseDate(createAt, 'HH:mm')}
-                </p>
+                  {parseDate(createAt, 'YYYY-MM-DD')} {parseDate(createAt, 'HH:mm')}
+                </div>
               </Tooltip>
             )}
-          </CardDescription>
-          <div className="flex-center w-full">
+          </div>
+          <div className="flex-center h-[70vh] w-full overflow-auto">
             {images?.length ? (
-              <Carousel interval={3000} width={width} height={height}>
+              <Swiper
+                className="h-[70vh] w-full overflow-auto"
+                onSwiper={setSwiper}
+                spaceBetween={30}
+                centeredSlides={true}
+                initialSlide={0}
+                slidesPerView={1}
+                loop
+              >
                 {images.map((src) => (
-                  <div key={src} className="flex-center h-full">
-                    <img src={src} alt={src} className="h-full object-cover" />
-                  </div>
+                  <SwiperSlide key={src} className="flex-center-y h-full w-full cursor-grab overflow-auto">
+                    <ImageView
+                      arrowClick={{
+                        onNextClick: () => swiper?.slideNext(),
+                        onPrevClick: () => swiper?.slidePrev(),
+                      }}
+                      src={src}
+                      imageList={images}
+                      className="w-full object-contain"
+                    />
+                  </SwiperSlide>
                 ))}
-              </Carousel>
+              </Swiper>
             ) : null}
+            <CarouselPrevArrow
+              className="absolute left-0.5 top-1/2 z-10 -translate-y-1/2"
+              onClick={() => swiper?.slidePrev()}
+            />
+            <CarouselNextArrow
+              className="absolute right-0.5 top-1/2 z-10 -translate-y-1/2"
+              onClick={() => swiper?.slideNext()}
+            />
           </div>
         </div>
       )}
