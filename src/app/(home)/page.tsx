@@ -5,5 +5,7 @@ import _ from 'lodash-es';
 const posts = _.range(0, 10);
 
 export default function Home() {
-  return <>{posts?.length ? posts.map((v, i) => <PostItemCard key={i} />) : null}</>;
+  return (
+    <div className="flex flex-col gap-8 p-4 pb-20">{posts?.length ? posts.map((v, i) => <PostItemCard key={i} />) : null}</div>
+  );
 }
