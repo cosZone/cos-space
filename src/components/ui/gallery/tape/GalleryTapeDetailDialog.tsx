@@ -1,39 +1,24 @@
 import Dialog from '@/components/ui/dialog';
+import { useIsMounted } from '@/hooks/useIsMounted';
 import { parseDate } from '@/lib/datetime';
 import { galleryTapeDetailAtom, galleryTapeDetailDialogOpenAtom } from '@/store/gallery';
 import { useAtom, useAtomValue } from 'jotai';
-import { useMemo, useRef, useState } from 'react';
+import { useState } from 'react';
 import { FaCalendarDays } from 'react-icons/fa6';
 import { IoHome } from 'react-icons/io5';
-import { Badge } from '../../badge';
-import { CardDescription } from '../../card';
-import Carousel from '../../carousel';
-import Tooltip from '../../tooltip';
-import { useMediaQuery } from 'react-responsive';
-import { MD_SCREEN_QUERY, XS_SCREEN_QUERY } from '@/constants';
 import { Swiper, SwiperClass, SwiperSlide } from 'swiper/react';
+import { Badge } from '../../badge';
 import CarouselNextArrow from '../../carousel/CarouselNextArrow';
 import CarouselPrevArrow from '../../carousel/CarouselPrevArrow';
 import ImageView from '../../imageView';
-import { useIsMounted } from '@/hooks/useIsMounted';
+import Tooltip from '../../tooltip';
 
-type GalleryTapeDetailDialogProps = {
-  className?: string;
-};
-export default function GalleryTapeDetailDialog({ className }: GalleryTapeDetailDialogProps) {
+export default function GalleryTapeDetailDialog() {
   const [swiper, setSwiper] = useState<SwiperClass | null>(null);
 
   const [isOpen, setIsOpen] = useAtom(galleryTapeDetailDialogOpenAtom);
   const data = useAtomValue(galleryTapeDetailAtom);
-  const isXsScreen = useMediaQuery({ query: XS_SCREEN_QUERY });
-  const isMdScreen = useMediaQuery({ query: MD_SCREEN_QUERY });
-  const { width, height } = useMemo(() => {
-    if (isXsScreen) return { width: 280, height: 500 };
-    if (isMdScreen) return { width: 460, height: 600 };
-    return { width: 700, height: 650 };
-  }, [isMdScreen, isXsScreen]);
   const { tapeName, org, images, createAt } = data ?? {};
-  const slideRef = useRef(null);
 
   const isMounted = useIsMounted();
   if (!isMounted) return null;

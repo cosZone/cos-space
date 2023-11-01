@@ -6,6 +6,7 @@ import clsx from 'clsx';
 
 import 'swiper/css';
 import '@/styles/globals.css';
+import Providers from './providers';
 
 type Props = {
   children: React.ReactNode;
@@ -44,7 +45,9 @@ export default async function RootLayout(props: Props) {
           <link rel="icon" href="/favicon.ico" />
         </head>
         <body className={clsx('vertical-scrollbar m-0 h-full p-0', ...fontVariants)}>
-          <Root>{children}</Root>
+          <Providers>
+            <Root>{children}</Root>
+          </Providers>
         </body>
       </html>
     </ClerkProvider>
