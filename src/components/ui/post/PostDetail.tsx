@@ -1,11 +1,12 @@
-import React, { useMemo } from 'react';
-import PostRightSider from './PostRightSider';
+'use client';
+
+import { ClientOnly } from '@/components/common/ClientOnly';
 import { twMerge } from 'tailwind-merge';
-import { MainMarkdown, Markdown } from '../markdown/Markdown';
-import EmptySvg from '../../svg/EmptySvg';
-import { useIsMounted } from '@/hooks/useIsMounted';
 import { ErrorBoundary } from '../../common/ErrorBoundary';
-import { MAIN_MARKDOWN_ID } from '@/constants/dom-id';
+import EmptySvg from '../../svg/EmptySvg';
+import { MainMarkdown } from '../markdown/Markdown';
+import PostRightSider from './PostRightSider';
+
 type PostDetailProps = {
   className?: string;
   data?: {
@@ -14,8 +15,6 @@ type PostDetailProps = {
 };
 
 export default function PostDetail({ className, data }: PostDetailProps) {
-  const isMounted = useIsMounted();
-
   return (
     <div className={twMerge('relative flex w-full items-start justify-center gap-4', className)}>
       <ErrorBoundary>
@@ -25,7 +24,9 @@ export default function PostDetail({ className, data }: PostDetailProps) {
           <EmptySvg />
         )}
       </ErrorBoundary>
-      {isMounted && <PostRightSider />}
+      <ClientOnly>
+        <PostRightSider />
+      </ClientOnly>
     </div>
   );
 }

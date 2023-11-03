@@ -1,5 +1,3 @@
-'use client';
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import matter from 'gray-matter';
 import PostDetail from '@/components/ui/post/PostDetail';
@@ -8,6 +6,7 @@ import { useMemo } from 'react';
 // @ts-expect-error
 import aboutMdRaw from '@/lib/source/about/index.md?raw';
 import { useIsMounted } from '@/hooks/useIsMounted';
+import { ClientOnly } from '@/components/common/ClientOnly';
 
 export default function About() {
   const parsedData = matter(aboutMdRaw);
@@ -19,8 +18,6 @@ export default function About() {
     }),
     [metaData, parsedData],
   );
-  const isMounted = useIsMounted();
-
   return (
     <>
       <Card>
@@ -31,7 +28,7 @@ export default function About() {
           <CardDescription>{metaData?.['description']}</CardDescription>
         </CardContent>
       </Card>
-      {isMounted && <PostDetail data={postData} />}
+      <PostDetail data={postData} />
     </>
   );
 }
