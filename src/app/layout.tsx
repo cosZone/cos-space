@@ -3,10 +3,12 @@ import { seoConfig } from '@/constants';
 import { fontVariants } from '@/constants/font';
 import { ClerkProvider } from '@clerk/nextjs';
 import clsx from 'clsx';
-
-import 'swiper/css';
-import '@/styles/globals.css';
+import { ToastContainer } from 'react-toastify';
 import Providers from './providers';
+
+import '@/styles/globals.css';
+import 'react-toastify/dist/ReactToastify.css';
+import 'swiper/css';
 
 type Props = {
   children: React.ReactNode;
@@ -39,7 +41,7 @@ export default async function RootLayout(props: Props) {
   const { children } = props;
   return (
     <ClerkProvider>
-      <html lang="zh-CN">
+      <html lang="zh-CN" suppressHydrationWarning>
         <head>
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link rel="icon" href="/favicon.ico" />
@@ -48,6 +50,7 @@ export default async function RootLayout(props: Props) {
           <Providers>
             <Root>{children}</Root>
           </Providers>
+          <ToastContainer />
         </body>
       </html>
     </ClerkProvider>
