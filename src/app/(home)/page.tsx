@@ -1,14 +1,10 @@
 'use client';
 import { Button } from '@/components/ui/button';
-import PostItemCard from '@/components/ui/post/PostItemCard';
+import PostList from '@/components/ui/post/PostList';
 import { CLERK_JWT_TEMPLATE_ID } from '@/constants';
 import { useMutationCreatePost } from '@/hooks/post';
 import { useAuth, useUser } from '@clerk/nextjs';
-import _ from 'lodash-es';
 import { useEffect } from 'react';
-import { toast } from 'react-toastify';
-
-const posts = _.range(0, 10);
 
 export default function Home() {
   const { user } = useUser();
@@ -25,8 +21,10 @@ export default function Home() {
 
   return (
     <>
-      <Button onClick={() => mutate({ title: 'test', content: '# Hello\nTest Word' })}>Create Test</Button>
-      {posts?.length ? posts.map((v, i) => <PostItemCard key={i} />) : null}
+      <Button className="mb-12" onClick={() => mutate({ title: 'test', content: '# Hello\nTest Word' })}>
+        Create Test
+      </Button>
+      <PostList />
     </>
   );
 }

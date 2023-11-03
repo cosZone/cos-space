@@ -10,3 +10,5 @@ export const createPost = ({ token, ...rest }: CreatePostParam) =>
   request.post<any, Response<PostData>>('/post', rest, {
     headers: authHeader(token),
   });
+
+export const fetchPublicAllPost = () => request.get<any, Response<PostData[]>>('/post/public/all');

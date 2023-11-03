@@ -1,12 +1,10 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import matter from 'gray-matter';
 import PostDetail from '@/components/ui/post/PostDetail';
+import matter from 'gray-matter';
 import { useMemo } from 'react';
 
 // @ts-expect-error
 import aboutMdRaw from '@/lib/source/about/index.md?raw';
-import { useIsMounted } from '@/hooks/useIsMounted';
-import { ClientOnly } from '@/components/common/ClientOnly';
 
 export default function About() {
   const parsedData = matter(aboutMdRaw);

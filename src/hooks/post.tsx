@@ -1,7 +1,7 @@
-import { createPost } from '@/lib/api';
+import { createPost, fetchPublicAllPost } from '@/lib/api';
 import { CreatePostParam } from '@/lib/api/type';
 import { postActiveTocIdAtom } from '@/store/post';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { useAtom } from 'jotai';
 import { startTransition, useEffect } from 'react';
 import { useGetToken } from './user';
@@ -51,6 +51,17 @@ export const useMutationCreatePost = () => {
     onError: (e) => {
       console.log(e);
       toast.error(`发表测试文章失败！`);
+    },
+  });
+};
+
+export const useFetchPublicPostList = () => {
+  return useQuery(['fetch_public_post_list'], () => fetchPublicAllPost(), {
+    select: (res) => {
+      const { code, data } = res ?? {};
+      if (code === 200) {
+        return data;
+      }
     },
   });
 };
