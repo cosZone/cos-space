@@ -43,9 +43,12 @@ export const useMutationCreatePost = () => {
     },
     onSuccess: (res) => {
       const { code, data } = res ?? {};
-
+      if (code !== 200) {
+        toast.error(`发表测试文章失败！`);
+        return;
+      }
       console.log('success', { res, data });
-      toast.success(`发表测试文章成功！`);
+      toast.success(`发表测试文章成功！ title: ${data?.title} id: ${data?.id}`);
       return data;
     },
     onError: (e) => {

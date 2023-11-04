@@ -12,7 +12,7 @@ export default function PostList({ className }: PostListProps) {
   return (
     <div className={twMerge('flex flex-col gap-12', className)}>
       <ErrorBoundary>
-        {data?.length ? (
+        {!isLoading && data?.length ? (
           data.map((v, i) => <PostItemCard key={i} data={v} />)
         ) : (
           <div className="flex w-full flex-col items-center gap-2 text-foreground/30">

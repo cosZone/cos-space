@@ -1,9 +1,10 @@
+@import './components/clerk.css';
+@import './components/card3d.css';
+@import './theme/index.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import './components/clerk.css';
-@import './components/card3d.css';
-
 /* shadCN theme - https://ui.shadcn.com/themes */
 @layer base {
   :root {
@@ -78,8 +79,6 @@
     @apply bg-background text-foreground;
   }
 }
-
-@import './theme/index.css';
 
 @layer base {
   *::-webkit-scrollbar {

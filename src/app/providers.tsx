@@ -1,7 +1,11 @@
 'use client';
 
+import { ProviderComposer } from '@/components/common/ProviderComposer';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { PropsWithChildren, useState } from 'react';
+import { Provider as JotaiProvider } from 'jotai';
+import { ThemeProvider } from 'next-themes';
+import { PropsWithChildren, ReactElement, useState } from 'react';
+import { ToastContainer } from 'react-toastify';
 
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -14,8 +18,13 @@ export const queryClient = new QueryClient({
   },
 });
 
-export default function Providers({ children }: PropsWithChildren) {
+const contexts: JSX.Element[] = [
+  <ThemeProvider attribute="class" key="ThemeProvider" />,
+  <QueryClientProvider client={queryClient} key="QueryClientProvider" />,
+  <JotaiProvider key="JotaiProvider" />,
+];
+export default function Providers({ children }: { children: ReactElement }) {
   const [queryClient] = useState(() => new QueryClient());
 
-  return <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>;
+  return <ProviderComposer contexts={contexts}>{children}</ProviderComposer>;
 }
