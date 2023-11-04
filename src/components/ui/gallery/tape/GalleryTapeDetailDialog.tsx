@@ -18,7 +18,7 @@ export default function GalleryTapeDetailDialog() {
 
   const [isOpen, setIsOpen] = useAtom(galleryTapeDetailDialogOpenAtom);
   const data = useAtomValue(galleryTapeDetailAtom);
-  const { tapeName, org, images, createAt } = data ?? {};
+  const { name, org, images, createdAt } = data ?? {};
 
   const isMounted = useIsMounted();
   if (!isMounted) return null;
@@ -30,20 +30,22 @@ export default function GalleryTapeDetailDialog() {
       className="min-h-[50%] w-[732px] md:max-h-[80%] md:w-full md:overflow-auto"
       render={() => (
         <div className="flex w-full flex-col">
-          <h2 className="text-xl font-semibold">{tapeName}</h2>
+          <h2 className="text-xl font-semibold">{name}</h2>
           <div className="flex gap-2 px-4 py-2 text-xs text-muted-foreground">
-            <Badge>
-              <Tooltip placement="bottom" title="社团">
-                <div className="flex-center gap-0.5">
-                  <IoHome /> {org}
-                </div>
-              </Tooltip>
-            </Badge>
-            {createAt && (
+            {org ? (
+              <Badge>
+                <Tooltip placement="bottom" title="社团">
+                  <div className="flex-center gap-0.5">
+                    <IoHome /> {org?.name}
+                  </div>
+                </Tooltip>
+              </Badge>
+            ) : null}
+            {createdAt && (
               <Tooltip placement="bottom" title="购入日期">
                 <div className="flex-center gap-1">
                   <FaCalendarDays />
-                  {parseDate(createAt, 'YYYY-MM-DD')} {parseDate(createAt, 'HH:mm')}
+                  {parseDate(createdAt, 'YYYY-MM-DD')} {parseDate(createdAt, 'HH:mm')}
                 </div>
               </Tooltip>
             )}

@@ -8,6 +8,6 @@
     "prettier.configPath": ".prettierrc.js",
     "css.lint.unknownAtRules": "ignore",
     "editor.formatOnSave": true,
-    "cSpell.words": ["clsxm", "likey", "nextjs", "Shiro"]
+    "cSpell.words": ["clsxm", "likey", "nextjs", "overscan", "Shiro"]
   }
 }

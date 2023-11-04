@@ -27,3 +27,40 @@ export type PostData = {
   createdAt?: number;
   updatedAt?: number;
 };
+
+export enum GalleryType {
+  TAPE,
+}
+export type CreateGalleryItemParam = {
+  name: string;
+  cover?: string;
+  images: string[];
+  org?: string;
+  itemType?: GalleryType;
+  createdAt?: number;
+};
+
+export type GalleryItemData = {
+  id: number;
+  name: string;
+  itemType: string;
+  cover?: string;
+  images: string[];
+  orgId?: number;
+  org?: OrgType;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OrgType = {
+  id: number;
+  name: string;
+  description?: string;
+  avatar?: string;
+  createdAt?: number;
+  updatedAt?: number;
+};
+
+export type BatchPayload = {
+  count: number;
+};

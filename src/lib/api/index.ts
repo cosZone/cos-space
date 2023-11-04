@@ -1,5 +1,5 @@
 import request, { Response } from './request';
-import { CreatePostParam, PostData } from './type';
+import { AuthProps, BatchPayload, CreateGalleryItemParam, CreatePostParam, GalleryItemData, PostData } from './type';
 
 export const authHeader = (token?: string | null) => {
   if (!token) return {};
@@ -7,8 +7,19 @@ export const authHeader = (token?: string | null) => {
 };
 
 export const createPost = ({ token, ...rest }: CreatePostParam) =>
-  request.post<any, Response<PostData>>('/post', rest, {
+  request.post<any, Response<PostData>>('/post/add', rest, {
     headers: authHeader(token),
   });
 
 export const fetchPublicAllPost = () => request.get<any, Response<PostData[]>>('/post/public/all');
+
+export const createGalleryItem = ({ token, ...rest }: CreateGalleryItemParam & AuthProps) =>
+  request.post<any, Response<GalleryItemData>>('/gallery/add', rest, {
+    headers: authHeader(token),
+  });
+export const createManyGalleryItem = ({ token, data }: { data: CreateGalleryItemParam[] } & AuthProps) =>
+  request.post<any, Response<BatchPayload>>('/gallery/batch/add', data, {
+    headers: authHeader(token),
+  });
+
+export const fetchPublicAllGalleryItem = () => request.get<any, Response<GalleryItemData[]>>('/gallery/public/all');
