@@ -73,7 +73,7 @@ export default function ImageView({ className, src, arrowClick, imageList }: Ima
         {isOpen && (
           <FloatingOverlay lockScroll className="z-20 grid place-items-center text-card-foreground backdrop-blur-lg">
             <FloatingFocusManager context={context}>
-              <div className="flex-center relative w-full" ref={refs.setFloating} {...getFloatingProps()}>
+              <div className="flex-center relative w-full select-none" ref={refs.setFloating} {...getFloatingProps()}>
                 <div className="absolute inset-x-0 top-0 flex items-center justify-center gap-4 py-4">
                   {isArrow && <CarouselPrevArrow onClick={onPrevClick} />}
                   {isArrow && <CarouselNextArrow onClick={onNextClick} />}

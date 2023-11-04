@@ -1,4 +1,4 @@
-import { microDampingPreset } from '@/constants/spring';
+import { microDampingPreset } from '@/constants/anim/spring';
 import { animateValue } from 'framer-motion';
 
 const calculateElementTop = (el: HTMLElement) => {
@@ -18,16 +18,20 @@ export const springScrollToElement = (element: HTMLElement, delta = 40) => {
 };
 
 // https://github.com/Innei/Shiro/blob/main/src/lib/scroller.ts
-export const springScrollTo = (y: number) => {
+export const springScrollTo = (y: number | 'bottom') => {
   const scrollTop =
     // FIXME latest version framer will ignore keyframes value `0`
     document.documentElement.scrollTop || document.body.scrollTop;
+  const scrollHeight =
+    // FIXME latest version framer will ignore keyframes value `0`
+    document.documentElement.scrollHeight || document.body.scrollHeight;
   // console.log('=======scroll', { scrollTop, y });
   const stopSpringScrollHandler = () => {
     animation.stop();
   };
+  const toValue = y === 'bottom' ? scrollHeight : y;
   const animation = animateValue({
-    keyframes: [scrollTop + 1, y],
+    keyframes: [scrollTop + 1, toValue],
     autoplay: true,
     ...microDampingPreset,
     onPlay() {
