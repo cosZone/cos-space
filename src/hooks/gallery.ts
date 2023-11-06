@@ -14,16 +14,16 @@ export const useMutationCreateGalleryItem = () => {
     onSuccess: (res) => {
       const { code, data } = res ?? {};
       if (code !== 200) {
-        toast.error(`创建测试项失败！`);
+        toast.error('添加胶带大失败！(☍﹏⁰)');
         return;
       }
       console.log('success', { res, data });
-      toast.success(`创建测试项成功！ title: ${data?.name} id: ${data?.id}`);
+      toast.success(`添加胶带大成功！๐•ᴗ•๐`);
       return data;
     },
     onError: (e) => {
       console.log(e);
-      toast.error(`创建测试文章失败！`);
+      toast.error('添加胶带大失败！(☍﹏⁰)');
     },
   });
 };

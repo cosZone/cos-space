@@ -1,9 +1,14 @@
 import { ErrorBoundary } from '@/components/common/ErrorBoundary';
 import EmptySvg from '@/components/svg/EmptySvg';
 import { useFetchPublicAllGalleryItem } from '@/hooks/gallery';
+import { galleryTapeAddDialogOpenAtom } from '@/store/gallery';
+import { useSetAtom } from 'jotai';
 import { Masonry } from 'masonic';
 import { FcLike } from 'react-icons/fc';
+import { IoAdd } from 'react-icons/io5';
 import { twMerge } from 'tailwind-merge';
+import { Button } from '../../button';
+import GalleryTapeAddDialog from './GalleryTapeAddDialog';
 import GalleryTapeDetailDialog from './GalleryTapeDetailDialog';
 import GalleryTapeItem from './GalleryTapeItem';
 
@@ -12,12 +17,17 @@ type GalleryTapeListProps = {
 };
 export default function GalleryTapeList({ className }: GalleryTapeListProps) {
   const { data, isLoading } = useFetchPublicAllGalleryItem();
+  const setGalleryAddDialogOpen = useSetAtom(galleryTapeAddDialogOpenAtom);
   return (
     <div className={twMerge('flex flex-col gap-2', className)}>
-      <h1 className="flex items-center gap-2 text-2xl font-semibold">
-        <FcLike />
-        PET 胶带
-      </h1>
+      <div className="flex items-center justify-between gap-4">
+        <h1 className="flex items-center gap-2 text-2xl font-semibold">
+          <FcLike /> PET 胶带
+        </h1>
+        <Button className="flex-center gap-0.5" onClick={() => setGalleryAddDialogOpen(true)}>
+          <IoAdd className="text-xl" /> 添加胶带
+        </Button>
+      </div>
       <ErrorBoundary>
         {!isLoading && data?.length ? (
           <Masonry
@@ -39,6 +49,7 @@ export default function GalleryTapeList({ className }: GalleryTapeListProps) {
         )}
       </ErrorBoundary>
       <GalleryTapeDetailDialog />
+      <GalleryTapeAddDialog />
     </div>
   );
 }

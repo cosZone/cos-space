@@ -29,7 +29,7 @@ export type PostData = {
 };
 
 export enum GalleryType {
-  TAPE,
+  TAPE = 'TAPE',
 }
 export type CreateGalleryItemParam = {
   name: string;

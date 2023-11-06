@@ -11,7 +11,9 @@
   "dependencies": {
     "@clerk/nextjs": "^4.25.2",
     "@floating-ui/react": "^0.25.4",
+    "@hookform/resolvers": "^3.3.2",
     "@radix-ui/react-avatar": "^1.0.4",
+    "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-scroll-area": "^1.0.5",
     "@radix-ui/react-slot": "^1.0.2",
     "@tanstack/react-query": "^4.36.1",
@@ -33,6 +35,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-error-boundary": "^4.0.11",
+    "react-hook-form": "^7.48.2",
     "react-icons": "^4.9.0",
     "react-responsive": "^9.0.2",
     "react-toastify": "^9.1.3",
@@ -42,7 +45,8 @@
     "tailwind-clip-path": "^1.0.0",
     "tailwind-merge": "^1.14.0",
     "tailwindcss-animate": "^1.0.7",
-    "typescript": "5.0.2"
+    "typescript": "5.0.2",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.10",
