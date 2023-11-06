@@ -8,17 +8,17 @@ import _ from 'lodash-es';
 import { useEffect } from 'react';
 
 export default function Home() {
-  const { user } = useUser();
-  const { getToken, isLoaded, isSignedIn } = useAuth();
+  // const { user } = useUser();
+  // const { getToken, isLoaded, isSignedIn } = useAuth();
   const { mutate } = useMutationCreatePost();
 
-  useEffect(() => {
-    getToken({ template: CLERK_JWT_TEMPLATE_ID })
-      .then((data) => console.log('======getToken ', { data }))
-      .catch((e) => console.error(e));
-  }, [getToken]);
+  // useEffect(() => {
+  //   getToken({ template: CLERK_JWT_TEMPLATE_ID })
+  //     .then((data) => console.log('======getToken ', { data }))
+  //     .catch((e) => console.error(e));
+  // }, [getToken]);
 
-  console.log('============user', { user, isLoaded, isSignedIn });
+  // // console.log('============user', { user, isLoaded, isSignedIn });
 
   return (
     <>

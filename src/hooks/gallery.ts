@@ -17,7 +17,6 @@ export const useMutationCreateGalleryItem = () => {
         toast.error('添加胶带大失败！(☍﹏⁰)');
         return;
       }
-      console.log('success', { res, data });
       toast.success(`添加胶带大成功！๐•ᴗ•๐`);
       return data;
     },
@@ -52,7 +51,6 @@ export const useMutationCreateManyGalleryItem = () => {
         toast.error(`批量创建测试项失败！`);
         return;
       }
-      console.log('success', { res, data });
       toast.success(`批量测试项成功！`);
       return data;
     },

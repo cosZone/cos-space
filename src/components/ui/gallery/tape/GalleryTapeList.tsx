@@ -21,18 +21,18 @@ export default function GalleryTapeList({ className }: GalleryTapeListProps) {
   const { data, isLoading } = useFetchPublicAllGalleryItem();
   const { user } = useUser();
   const setGalleryAddDialogOpen = useSetAtom(galleryTapeAddDialogOpenAtom);
-  console.log({ user });
+
   return (
     <div className={twMerge('flex flex-col gap-2', className)}>
       <div className="flex items-center justify-between gap-4">
         <h1 className="flex items-center gap-2 text-2xl font-semibold">
           <FcLike /> PET 胶带
         </h1>
-        {user?.id === CLERK_OWNER_USER_ID && (
+        {user && user?.id === CLERK_OWNER_USER_ID ? (
           <Button className="flex-center gap-0.5" onClick={() => setGalleryAddDialogOpen(true)}>
             <IoAdd className="text-xl" /> 添加胶带
           </Button>
-        )}
+        ) : null}
       </div>
       <ErrorBoundary>
         {!isLoading && data?.length ? (
