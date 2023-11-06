@@ -5,7 +5,7 @@ import { useMemo } from 'react';
 import { AiFillGithub } from 'react-icons/ai';
 import { CgDarkMode } from 'react-icons/cg';
 import { FaUserAlt, FaUserCircle } from 'react-icons/fa';
-import { useToggleTheme } from './useToggleTheme';
+import { useToggleTheme } from './theme';
 
 const SignedIn = dynamic(() => import('@clerk/nextjs').then((mod) => mod.SignedIn));
 const SignedOut = dynamic(() => import('@clerk/nextjs').then((mod) => mod.SignedOut));

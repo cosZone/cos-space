@@ -17,13 +17,14 @@ import CarouselPrevArrow from './carousel/CarouselPrevArrow';
 type ImageViewProps = {
   src?: string;
   className?: string;
+  desc?: string;
   arrowClick?: {
     onNextClick?: () => void;
     onPrevClick?: () => void;
   };
   imageList?: string[];
 };
-export default function ImageView({ className, src, arrowClick, imageList }: ImageViewProps) {
+export default function ImageView({ className, desc, src, arrowClick, imageList }: ImageViewProps) {
   const [currentURL, setCurrentURL] = useState<string>('');
   const [isArrow, setIsArrow] = useState<boolean>(false);
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -62,18 +63,23 @@ export default function ImageView({ className, src, arrowClick, imageList }: Ima
 
   return (
     <>
-      <img
-        ref={refs.setReference}
-        className={cn('cursor-pointer', className)}
-        src={src}
-        alt="image_view"
-        {...getReferenceProps()}
-      />
+      <div className="group relative cursor-pointer">
+        <img ref={refs.setReference} className={cn(className)} src={src} alt="image_view" {...getReferenceProps()} />
+        {desc ? (
+          <div
+            className={cn(
+              'invisible absolute inset-x-0 bottom-0 bg-background/50 py-1.5 text-center text-xs text-card-foreground backdrop-blur-lg group-hover:visible',
+            )}
+          >
+            {desc}
+          </div>
+        ) : null}
+      </div>
       <FloatingPortal>
         {isOpen && (
           <FloatingOverlay lockScroll className="z-20 grid place-items-center text-card-foreground backdrop-blur-lg">
             <FloatingFocusManager context={context}>
-              <div className="flex-center relative w-full" ref={refs.setFloating} {...getFloatingProps()}>
+              <div className="flex-center relative w-full select-none" ref={refs.setFloating} {...getFloatingProps()}>
                 <div className="absolute inset-x-0 top-0 flex items-center justify-center gap-4 py-4">
                   {isArrow && <CarouselPrevArrow onClick={onPrevClick} />}
                   {isArrow && <CarouselNextArrow onClick={onNextClick} />}

@@ -11,3 +11,5 @@ export const seoConfig = {
   keywords: 'cos, cosine, cos_blogs, 博客, 个人空间, 技术, 前端, cos-space',
   url: 'https://space.cosine.ren/',
 };
+
+export const CLERK_JWT_TEMPLATE_ID = process.env.NEXT_PUBLIC_CLERK_JWT_TEMPLATE_ID;

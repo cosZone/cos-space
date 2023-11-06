@@ -1,4 +1,6 @@
+import { scrollCardMoveUpVariants } from '@/constants/anim/variants';
 import { clickableProps } from '@/lib/anim';
+import { PostData } from '@/lib/api/type';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import { BiSolidTimeFive } from 'react-icons/bi';
@@ -6,18 +8,14 @@ import { FaCalendarDays, FaPenNib, FaTags } from 'react-icons/fa6';
 import { twMerge } from 'tailwind-merge';
 import { Badge } from '../badge';
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from '../card';
-import { scrollCardMoveUpVariants } from '@/constants/anim/variants';
 
 export type PostItemCardProps = {
   className?: string;
-  data?: {
-    title?: string;
-    cover?: string;
-    description?: string;
-  };
+  data?: PostData;
 };
 
 export default function PostItemCard({ className, data }: PostItemCardProps) {
+  const { title, description, content } = data ?? {};
   const router = useRouter();
   return (
     <motion.div initial="offscreen" whileInView="onscreen" viewport={{ once: true, amount: 0.8 }}>
@@ -48,12 +46,9 @@ export default function PostItemCard({ className, data }: PostItemCardProps) {
               </p>
             </div>
             <CardHeader className="p-0">
-              <CardTitle className="font-noto-sc truncate text-primary">NestJS 学习之优秀项目分析与最佳实践</CardTitle>
+              <CardTitle className="font-noto-sc truncate text-primary">{title}</CardTitle>
             </CardHeader>
-            <CardDescription className="line-clamp-2 max-h-10 overflow-hidden">
-              # 前言 进入 NestJS 的世界可能会让你感到不知所措，尤其是当你面对众多的模块和概念时。本文不仅会深入分析优秀的 NestJS
-              项目，介绍常用的 Nest 内置模块，还
-            </CardDescription>
+            <CardDescription className="line-clamp-2 max-h-10 overflow-hidden">{description}</CardDescription>
             <CardFooter className="p-0">
               <Badge className="gap-0.5">
                 <FaTags /> 后端
