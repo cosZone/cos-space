@@ -11,22 +11,28 @@ import { Button } from '../../button';
 import GalleryTapeAddDialog from './GalleryTapeAddDialog';
 import GalleryTapeDetailDialog from './GalleryTapeDetailDialog';
 import GalleryTapeItem from './GalleryTapeItem';
+import { useUser } from '@clerk/nextjs';
+import { CLERK_OWNER_USER_ID } from '@/constants';
 
 type GalleryTapeListProps = {
   className?: string;
 };
 export default function GalleryTapeList({ className }: GalleryTapeListProps) {
   const { data, isLoading } = useFetchPublicAllGalleryItem();
+  const { user } = useUser();
   const setGalleryAddDialogOpen = useSetAtom(galleryTapeAddDialogOpenAtom);
+  console.log({ user });
   return (
     <div className={twMerge('flex flex-col gap-2', className)}>
       <div className="flex items-center justify-between gap-4">
         <h1 className="flex items-center gap-2 text-2xl font-semibold">
           <FcLike /> PET 胶带
         </h1>
-        <Button className="flex-center gap-0.5" onClick={() => setGalleryAddDialogOpen(true)}>
-          <IoAdd className="text-xl" /> 添加胶带
-        </Button>
+        {user?.id === CLERK_OWNER_USER_ID && (
+          <Button className="flex-center gap-0.5" onClick={() => setGalleryAddDialogOpen(true)}>
+            <IoAdd className="text-xl" /> 添加胶带
+          </Button>
+        )}
       </div>
       <ErrorBoundary>
         {!isLoading && data?.length ? (
