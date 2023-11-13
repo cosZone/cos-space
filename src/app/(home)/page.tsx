@@ -1,24 +1,54 @@
 'use client';
 import { Button } from '@/components/ui/button';
 import PostList from '@/components/ui/post/PostList';
-import { CLERK_JWT_TEMPLATE_ID } from '@/constants';
 import { useMutationCreatePost } from '@/hooks/post';
-import { useAuth, useUser } from '@clerk/nextjs';
+import matter from 'gray-matter';
 import _ from 'lodash-es';
-import { useEffect } from 'react';
+import { useCallback } from 'react';
+import { useDropzone } from 'react-dropzone';
+import { toast } from 'react-toastify';
 
 export default function Home() {
-  // const { user } = useUser();
-  // const { getToken, isLoaded, isSignedIn } = useAuth();
   const { mutate } = useMutationCreatePost();
 
-  // useEffect(() => {
-  //   getToken({ template: CLERK_JWT_TEMPLATE_ID })
-  //     .then((data) => console.log('======getToken ', { data }))
-  //     .catch((e) => console.error(e));
-  // }, [getToken]);
+  const processFile = useCallback((file: File) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onabort = () => reject(new Error('File reading was aborted'));
+      reader.onerror = () => reject(new Error('File reading has failed'));
+      reader.onload = () => {
+        const content = reader.result;
+        if (typeof content !== 'string') {
+          toast.error('文件内容不是字符串！');
+          return reject(new Error('文件内容不是字符串！'));
+        }
+        const parsedData = matter(content as string);
+        console.log('data:', { content, parsedData });
+        resolve(parsedData);
+      };
+      reader.readAsText(file);
+    });
+  }, []);
 
-  // // console.log('============user', { user, isLoaded, isSignedIn });
+  const onDrop = useCallback(
+    (acceptedFiles: File[]) => {
+      Promise.all(acceptedFiles.map((file) => processFile(file)))
+        .then((data) => {
+          console.log('result:', data);
+          console.table(data);
+          toast.success('所有文件上传成功');
+        })
+        .catch((error) => toast.error(`上传出错: ${error.message}`));
+    },
+    [processFile],
+  );
+
+  const { getRootProps, getInputProps } = useDropzone({
+    onDrop,
+    accept: {
+      'text/markdown': ['.md'],
+    },
+  });
 
   return (
     <>
@@ -34,6 +64,13 @@ export default function Home() {
       >
         Create Test
       </Button>
+      <div className="mb-12">
+        上传.md博客文件
+        <div className="flex-center w-full rounded-lg bg-card px-10 py-6" {...getRootProps()}>
+          <input {...getInputProps()} />
+          <p>拖拽.md文件到这里</p>
+        </div>
+      </div>
       <PostList />
     </>
   );
