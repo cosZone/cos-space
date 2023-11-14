@@ -1,18 +1,21 @@
 'use client';
 import { Button } from '@/components/ui/button';
 import PostList from '@/components/ui/post/PostList';
-import { useMutationCreatePost } from '@/hooks/post';
-import matter from 'gray-matter';
+import { useMutationCreatePost, useMutationCreatePosts } from '@/hooks/post';
+import { CreatePostParam } from '@/lib/api/type';
+import matter, { GrayMatterFile } from 'gray-matter';
 import _ from 'lodash-es';
 import { useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { toast } from 'react-toastify';
 
 export default function Home() {
-  const { mutate } = useMutationCreatePost();
-
+  const { mutate } = useMutationCreatePosts();
   const processFile = useCallback((file: File) => {
-    return new Promise((resolve, reject) => {
+    return new Promise<{
+      parsedData: GrayMatterFile<string>;
+      raw: string;
+    }>((resolve, reject) => {
       const reader = new FileReader();
       reader.onabort = () => reject(new Error('File reading was aborted'));
       reader.onerror = () => reject(new Error('File reading has failed'));
@@ -23,8 +26,8 @@ export default function Home() {
           return reject(new Error('文件内容不是字符串！'));
         }
         const parsedData = matter(content as string);
-        console.log('data:', { content, parsedData });
-        resolve(parsedData);
+        const data = { parsedData, raw: content };
+        resolve(data);
       };
       reader.readAsText(file);
     });
@@ -34,13 +37,24 @@ export default function Home() {
     (acceptedFiles: File[]) => {
       Promise.all(acceptedFiles.map((file) => processFile(file)))
         .then((data) => {
-          console.log('result:', data);
-          console.table(data);
           toast.success('所有文件上传成功');
+          const posts = data.map(({ raw, parsedData }) => {
+            console.log({ raw, parsedData });
+            const { categories, date, title, subtitle, tags, link, lang } = parsedData.data;
+            const post: CreatePostParam = {
+              title: title ?? '未命名',
+              description: subtitle,
+              content: raw,
+              createdAt: date,
+            };
+            return post;
+          });
+          console.log({ posts });
+          mutate(posts);
         })
         .catch((error) => toast.error(`上传出错: ${error.message}`));
     },
-    [processFile],
+    [mutate, processFile],
   );
 
   const { getRootProps, getInputProps } = useDropzone({
@@ -52,23 +66,11 @@ export default function Home() {
 
   return (
     <>
-      <Button
-        className="mb-12"
-        onClick={() =>
-          mutate({
-            title: 'test_' + _.random(1000),
-            description: '这是一条测试摘要' + _.random(1000),
-            content: '# Hello\nTest Word',
-          })
-        }
-      >
-        Create Test
-      </Button>
       <div className="mb-12">
         上传.md博客文件
-        <div className="flex-center w-full rounded-lg bg-card px-10 py-6" {...getRootProps()}>
+        <div className="flex-center w-full cursor-pointer rounded-lg bg-card px-10 py-6" {...getRootProps()}>
           <input {...getInputProps()} />
-          <p>拖拽.md文件到这里</p>
+          <p>拖拽.md文件到这里，可批量导入</p>
         </div>
       </div>
       <PostList />

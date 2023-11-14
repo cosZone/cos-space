@@ -2,12 +2,13 @@ export type AuthProps = {
   token?: string | null;
 };
 
-export type CreatePostParam = AuthProps & {
+export type CreatePostParam = {
   title: string;
   description?: string;
   content?: string;
   coverUrl?: string;
   status?: PostStatus;
+  createdAt?: Date;
 };
 
 export enum PostStatus {
@@ -25,7 +26,6 @@ export type PostData = {
   status?: PostStatus;
   authorId?: number;
   createdAt?: number;
-  updatedAt?: number;
 };
 
 export enum GalleryType {

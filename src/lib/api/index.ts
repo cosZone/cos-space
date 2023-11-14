@@ -6,10 +6,19 @@ export const authHeader = (token?: string | null) => {
   return { authorization: 'Bearer ' + token };
 };
 
-export const createPost = ({ token, ...rest }: CreatePostParam) =>
+export const createPost = ({ token, ...rest }: CreatePostParam & AuthProps) =>
   request.post<any, Response<PostData>>('/post/add', rest, {
     headers: authHeader(token),
   });
+
+export const createPosts = ({ token, posts }: { posts: CreatePostParam[] } & AuthProps) =>
+  request.post<any, Response<BatchPayload>>(
+    '/post/add/batch',
+    { posts },
+    {
+      headers: authHeader(token),
+    },
+  );
 
 export const fetchPublicAllPost = () => request.get<any, Response<PostData[]>>('/post/public/all');
 

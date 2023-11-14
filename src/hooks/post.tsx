@@ -1,4 +1,4 @@
-import { createPost, fetchPublicAllPost } from '@/lib/api';
+import { createPost, createPosts, fetchPublicAllPost } from '@/lib/api';
 import { CreatePostParam } from '@/lib/api/type';
 import { postActiveTocIdAtom } from '@/store/post';
 import { useMutation, useQuery } from '@tanstack/react-query';
@@ -53,6 +53,29 @@ export const useMutationCreatePost = () => {
     onError: (e) => {
       console.log(e);
       toast.error(`发表测试文章失败！`);
+    },
+  });
+};
+
+export const useMutationCreatePosts = () => {
+  const getToken = useGetToken();
+  return useMutation({
+    mutationFn: async (posts: CreatePostParam[]) => {
+      const token = await getToken();
+      return createPosts({ token, posts });
+    },
+    onSuccess: (res) => {
+      const { code, data } = res ?? {};
+      if (code !== 200) {
+        toast.error('批量发表测试文章失败！');
+        return;
+      }
+      toast.success(`批量发表测试文章成功！共发表${data?.count ?? 0}篇文章`);
+      return data;
+    },
+    onError: (e) => {
+      console.log(e);
+      toast.error('发表测试文章失败！');
     },
   });
 };
