@@ -11,7 +11,7 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function getPost(params: { id: string }) {
+async function getPost(params: { id: string }) {
   const res = await fetchPublicPost({ id: params.id });
   const { data } = res;
   return data;
