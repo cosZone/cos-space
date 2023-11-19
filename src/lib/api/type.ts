@@ -17,6 +17,12 @@ export enum PostStatus {
   SHELVE = 'SHELVE',
 }
 
+export type PostMetaData = {
+  title: string;
+  description?: string;
+  createdAt?: number;
+};
+
 export type PostData = {
   id: number;
   title: string;

@@ -1,4 +1,4 @@
-import { createPost, createPosts, fetchPublicAllPost } from '@/lib/api';
+import { createPost, createPosts, fetchPublicAllPost, fetchPublicPost } from '@/lib/api';
 import { CreatePostParam } from '@/lib/api/type';
 import { postActiveTocIdAtom } from '@/store/post';
 import { useMutation, useQuery } from '@tanstack/react-query';

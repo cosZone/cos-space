@@ -1,32 +1,20 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { ClientOnly } from '@/components/common/ClientOnly';
+import EmptySvg from '@/components/svg/EmptySvg';
 import PostDetail from '@/components/ui/post/PostDetail';
-import matter from 'gray-matter';
-import { useMemo } from 'react';
+import { fetchPublicPost } from '@/lib/api';
 
-// @ts-expect-error
-import aboutMdRaw from '@/lib/source/about/index.md?raw';
-
-export default function About() {
-  const parsedData = matter(aboutMdRaw);
-  const metaData = parsedData.data;
-  const postData = useMemo(
-    () => ({
-      content: parsedData?.content,
-      metaData,
-    }),
-    [metaData, parsedData],
-  );
-  return (
-    <>
-      <Card>
-        <CardHeader>
-          <CardTitle>{metaData?.['title']}</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <CardDescription>{metaData?.['description']}</CardDescription>
-        </CardContent>
-      </Card>
-      <PostDetail data={postData} />
-    </>
+async function getPost(params: { id: string }) {
+  const res = await fetchPublicPost({ id: params.id });
+  const { data } = res;
+  return data;
+}
+export default async function About() {
+  const data = await getPost({ id: '14' });
+  return data ? (
+    <ClientOnly>
+      <PostDetail data={data} />
+    </ClientOnly>
+  ) : (
+    <EmptySvg />
   );
 }

@@ -49,7 +49,6 @@ export default function Home() {
             };
             return post;
           });
-          console.log({ posts });
           mutate(posts);
         })
         .catch((error) => toast.error(`上传出错: ${error.message}`));
