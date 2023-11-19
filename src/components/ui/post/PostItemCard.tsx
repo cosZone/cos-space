@@ -1,6 +1,8 @@
 import { scrollCardMoveUpVariants } from '@/constants/anim/variants';
+import { Routes } from '@/constants/router';
 import { clickableProps } from '@/lib/anim';
-import { PostData } from '@/lib/api/type';
+import { PostData, PostMetaData } from '@/lib/api/type';
+import { routeBuilder } from '@/lib/route';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import { BiSolidTimeFive } from 'react-icons/bi';
@@ -8,6 +10,8 @@ import { FaCalendarDays, FaPenNib, FaTags } from 'react-icons/fa6';
 import { twMerge } from 'tailwind-merge';
 import { Badge } from '../badge';
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from '../card';
+import { useMemo } from 'react';
+import matter from 'gray-matter';
 
 export type PostItemCardProps = {
   className?: string;
@@ -15,14 +19,23 @@ export type PostItemCardProps = {
 };
 
 export default function PostItemCard({ className, data }: PostItemCardProps) {
-  const { title, description, content } = data ?? {};
+  const { id, title, description } = data ?? {};
+  const { metaData, content } = useMemo(() => {
+    if (!data?.content) return {};
+    const parsedData = matter(data?.content);
+    return {
+      metaData: parsedData.data as PostMetaData,
+      content: parsedData.content,
+    };
+  }, [data]);
+
   const router = useRouter();
   return (
     <motion.div initial="offscreen" whileInView="onscreen" viewport={{ once: true, amount: 0.8 }}>
       <motion.div variants={scrollCardMoveUpVariants}>
         <Card
           className={twMerge('flex cursor-pointer gap-2 transition-shadow hover:shadow-card xs:flex-col', className)}
-          onClick={() => router.push('/about')}
+          onClick={() => !!id && router.push(routeBuilder(Routes.Post, { id }))}
         >
           <div className="max-h-40 w-[calc(50%-2rem)] overflow-hidden rounded-lg clip-path-post-img-left xs:w-full xs:clip-path-none">
             <motion.img
@@ -48,7 +61,9 @@ export default function PostItemCard({ className, data }: PostItemCardProps) {
             <CardHeader className="p-0">
               <CardTitle className="font-noto-sc truncate text-primary">{title}</CardTitle>
             </CardHeader>
-            <CardDescription className="line-clamp-2 max-h-10 overflow-hidden">{description}</CardDescription>
+            <CardDescription className="line-clamp-2 max-h-10 overflow-hidden">
+              {description ?? content?.slice(0, 150)}
+            </CardDescription>
             <CardFooter className="p-0">
               <Badge className="gap-0.5">
                 <FaTags /> 后端

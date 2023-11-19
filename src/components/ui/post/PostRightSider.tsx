@@ -17,8 +17,8 @@ const PostRightSider = () => {
 
   if (isMdScreen) return null;
   return (
-    <div className="sticky top-20 w-60">
-      <TocTree $headings={$headings} />
+    <div className="sticky top-20 max-h-[70vh] w-60 overflow-auto">
+      <TocTree className="h-full" $headings={$headings} />
     </div>
   );
 };

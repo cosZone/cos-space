@@ -38,22 +38,21 @@ export default function TocTree({ $headings, className }: { $headings?: HTMLHead
         setActiveId?.(anchorId);
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
-    <ul className={cn('scrollbar-none flex flex-grow flex-col px-2', className)}>
-      <ul className={cn('scrollbar-none overflow-auto')}>
-        {toc?.map((heading) => {
-          return (
-            <MemoedItem
-              heading={heading}
-              isActive={heading.anchorId === activeId}
-              key={heading.title}
-              rootDepth={rootDepth}
-              onClick={handleScrollTo}
-            />
-          );
-        })}
-      </ul>
+    <ul className={cn('scrollbar-none flex flex-grow flex-col overflow-auto px-2', className)}>
+      {toc?.map((heading, idx) => {
+        return (
+          <MemoedItem
+            heading={heading}
+            isActive={heading.anchorId === activeId}
+            key={idx + heading.title}
+            rootDepth={rootDepth}
+            onClick={handleScrollTo}
+          />
+        );
+      })}
     </ul>
   );
 }
