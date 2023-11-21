@@ -1,6 +1,7 @@
 import { ErrorBoundary } from '@/components/common/ErrorBoundary';
 import EmptySvg from '@/components/svg/EmptySvg';
 import { useFetchPublicAllGalleryItem } from '@/hooks/gallery';
+import { useIsOwner } from '@/hooks/user';
 import { galleryTapeAddDialogOpenAtom } from '@/store/gallery';
 import { useSetAtom } from 'jotai';
 import { Masonry } from 'masonic';
@@ -11,16 +12,14 @@ import { Button } from '../../button';
 import GalleryTapeAddDialog from './GalleryTapeAddDialog';
 import GalleryTapeDetailDialog from './GalleryTapeDetailDialog';
 import GalleryTapeItem from './GalleryTapeItem';
-import { useUser } from '@clerk/nextjs';
-import { CLERK_OWNER_USER_ID } from '@/constants';
 
 type GalleryTapeListProps = {
   className?: string;
 };
 export default function GalleryTapeList({ className }: GalleryTapeListProps) {
   const { data, isLoading } = useFetchPublicAllGalleryItem();
-  const { user } = useUser();
   const setGalleryAddDialogOpen = useSetAtom(galleryTapeAddDialogOpenAtom);
+  const isOwner = useIsOwner();
 
   return (
     <div className={twMerge('flex flex-col gap-2', className)}>
@@ -28,7 +27,7 @@ export default function GalleryTapeList({ className }: GalleryTapeListProps) {
         <h1 className="flex items-center gap-2 text-2xl font-semibold">
           <FcLike /> PET 胶带
         </h1>
-        {user && user?.id === CLERK_OWNER_USER_ID ? (
+        {isOwner ? (
           <Button className="flex-center gap-0.5" onClick={() => setGalleryAddDialogOpen(true)}>
             <IoAdd className="text-xl" /> 添加胶带
           </Button>

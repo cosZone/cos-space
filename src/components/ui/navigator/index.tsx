@@ -14,6 +14,7 @@ import { useAtom } from 'jotai';
 import { oneLevelMenuExpandAtom, oneLevelTabSelectIdxAtom } from '@/store/app';
 import { usePathname, useRouter } from 'next/navigation';
 import { childDelayOpenAnimVariants } from '@/lib/anim';
+import { useIsOwner } from '@/hooks/user';
 
 type NavigatorProps = {
   className?: ClassValue;
@@ -27,6 +28,7 @@ export const Navigator = ({ className }: NavigatorProps) => {
   const isMounted = useIsMounted();
   const { routers, buttons } = useNavItems();
   const path = usePathname();
+  const isOwner = useIsOwner();
 
   /** Set SelectIdx When Change Route */
   useEffect(() => {
@@ -89,19 +91,24 @@ export const Navigator = ({ className }: NavigatorProps) => {
           variants={childDelayOpenAnimVariants}
           className="ml-4 flex h-full w-full flex-grow gap-4"
         >
-          {routers.map(({ name, path, key }, idx) => (
-            <NavItem
-              selected={selectIdx === idx}
-              indicatorClass="bottom-0.5"
-              className="px-2"
-              key={key ?? name}
-              onClick={() => {
-                router.push(path);
-                setSelectIdx(idx);
-              }}
-              name={name}
-            />
-          ))}
+          {routers.map(({ name, path, key, needOwner }, idx) => {
+            if (needOwner) {
+              if (!isOwner) return null;
+            }
+            return (
+              <NavItem
+                selected={selectIdx === idx}
+                indicatorClass="bottom-0.5"
+                className="px-2"
+                key={key ?? name}
+                onClick={() => {
+                  router.push(path);
+                  setSelectIdx(idx);
+                }}
+                name={name}
+              />
+            );
+          })}
           <div className="ml-auto flex items-center gap-1">
             {buttons.map(({ key, icon, onClick }, idx) => (
               <NavItem

@@ -1,17 +1,20 @@
 import { scrollCardMoveUpVariants } from '@/constants/anim/variants';
 import { Routes } from '@/constants/router';
+import { useReadTime } from '@/hooks/util';
 import { clickableProps } from '@/lib/anim';
 import { PostData, PostMetaData } from '@/lib/api/type';
+import { parseDate } from '@/lib/datetime';
 import { routeBuilder } from '@/lib/route';
 import { motion } from 'framer-motion';
+import matter from 'gray-matter';
 import { useRouter } from 'next/navigation';
+import { useMemo } from 'react';
 import { BiSolidTimeFive } from 'react-icons/bi';
 import { FaCalendarDays, FaPenNib, FaTags } from 'react-icons/fa6';
 import { twMerge } from 'tailwind-merge';
 import { Badge } from '../badge';
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from '../card';
-import { useMemo } from 'react';
-import matter from 'gray-matter';
+import Tooltip from '../tooltip';
 
 export type PostItemCardProps = {
   className?: string;
@@ -19,7 +22,7 @@ export type PostItemCardProps = {
 };
 
 export default function PostItemCard({ className, data }: PostItemCardProps) {
-  const { id, title, description } = data ?? {};
+  const { id, title, description, createdAt } = data ?? {};
   const { metaData, content } = useMemo(() => {
     if (!data?.content) return {};
     const parsedData = matter(data?.content);
@@ -28,6 +31,8 @@ export default function PostItemCard({ className, data }: PostItemCardProps) {
       content: parsedData.content,
     };
   }, [data]);
+  const readState = useReadTime(content);
+  console.log(title, content?.length, `( stats )===============>`, readState);
 
   const router = useRouter();
   return (
@@ -47,16 +52,20 @@ export default function PostItemCard({ className, data }: PostItemCardProps) {
           </div>
           <div className="flex w-1/2 flex-col gap-2 px-4 pb-2 pt-4 xs:w-full xs:pt-1">
             <div className="flex w-full justify-end gap-4 text-xs text-muted-foreground">
+              {createdAt ? (
+                <p className="flex-center gap-1">
+                  <FaCalendarDays />
+                  {parseDate(createdAt, 'YYYY-MM-DD')}
+                </p>
+              ) : null}
               <p className="flex-center gap-1">
-                <FaCalendarDays />
-                2023-09-23
+                <FaPenNib /> {readState?.words} 字
               </p>
-              <p className="flex-center gap-1">
-                <FaPenNib /> 21k 字
-              </p>
-              <p className="flex-center gap-1">
-                <BiSolidTimeFive /> 19 分钟
-              </p>
+              <Tooltip title={<div className="text-xs">预计阅读时长: {readState?.minutes} min</div>}>
+                <p className="flex-center gap-1">
+                  <BiSolidTimeFive /> {readState?.text}
+                </p>
+              </Tooltip>
             </div>
             <CardHeader className="p-0">
               <CardTitle className="font-noto-sc truncate text-primary">{title}</CardTitle>

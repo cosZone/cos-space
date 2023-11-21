@@ -10,6 +10,7 @@ import Drawer from '../ui/drawer';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import { CardDescription } from '../ui/card';
 import { useCallback } from 'react';
+import { useIsOwner } from '@/hooks/user';
 
 type SiderProps = {
   bottomItems: (NavItemProps & { key?: string })[];
@@ -21,6 +22,7 @@ const Sider = ({ bottomItems }: SiderProps) => {
   const [selectIdx1, setSelectIdx1] = useAtom(oneLevelTabSelectIdxAtom);
   const [mobileExpand, setMobileExpand] = useAtom(oneLevelMenuExpandAtom);
   const { routers } = useNavItems();
+  const isOwner = useIsOwner();
   const renderContent = useCallback(() => {
     return (
       <div className="flex h-full max-w-xs flex-col justify-between gap-2 p-2">
@@ -36,20 +38,23 @@ const Sider = ({ bottomItems }: SiderProps) => {
             </CardDescription>
           </div>
           <div className="w-full">
-            {routers.map(({ name, path, key }, idx) => (
-              <NavItem
-                type="sider"
-                key={key ?? name}
-                selected={selectIdx1 === idx}
-                className="w-full px-1 py-2"
-                onClick={() => {
-                  router.push(path);
-                  setSelectIdx1(idx);
-                }}
-                name={name}
-                indicatorClass="inset-x-4"
-              />
-            ))}
+            {routers.map(({ name, path, key, needOwner }, idx) => {
+              if (needOwner && !isOwner) return null;
+              return (
+                <NavItem
+                  type="sider"
+                  key={key ?? name}
+                  selected={selectIdx1 === idx}
+                  className="w-full px-1 py-2"
+                  onClick={() => {
+                    router.push(path);
+                    setSelectIdx1(idx);
+                  }}
+                  name={name}
+                  indicatorClass="inset-x-4"
+                />
+              );
+            })}
           </div>
         </div>
         <div className="flex flex-col gap-2">
@@ -65,7 +70,7 @@ const Sider = ({ bottomItems }: SiderProps) => {
         </div>
       </div>
     );
-  }, [bottomItems, router, routers, selectIdx1, setSelectIdx1]);
+  }, [bottomItems, isOwner, router, routers, selectIdx1, setSelectIdx1]);
   if (!isMounted) return null;
   return <Drawer open={mobileExpand} onOpenChange={(open) => setMobileExpand(open)} render={renderContent} />;
 };

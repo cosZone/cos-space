@@ -1,39 +1,11 @@
-import { useState, useCallback } from 'react';
+import { useMemo } from 'react';
+import readingTime, { ReadTimeResults } from 'reading-time';
 
-export enum ImageStatus {
-  Loading = 'LOADING',
-  Loaded = 'LOADED',
-  Error = 'ERROR',
-}
+export const useReadTime = (text?: string): ReadTimeResults | null => {
+  const stats = useMemo(() => {
+    if (!text) return null;
+    return readingTime(text ?? '');
+  }, [text]);
 
-export type ImageLoadState = {
-  status: ImageStatus;
-  onImageLoaded: () => void;
-  onImageError: () => void;
-  resetImageState: () => void;
+  return stats;
 };
-
-function useImageLoadState(): ImageLoadState {
-  const [status, setStatus] = useState<ImageStatus>(ImageStatus.Loading);
-
-  const onImageLoaded = useCallback(() => {
-    setStatus(ImageStatus.Loaded);
-  }, []);
-
-  const onImageError = useCallback(() => {
-    setStatus(ImageStatus.Error);
-  }, []);
-
-  const resetImageState = useCallback(() => {
-    setStatus(ImageStatus.Loading);
-  }, []);
-
-  return {
-    status,
-    onImageLoaded,
-    onImageError,
-    resetImageState,
-  };
-}
-
-export default useImageLoadState;

@@ -13,4 +13,4 @@ export const seoConfig = {
 };
 
 export const CLERK_JWT_TEMPLATE_ID = process.env.NEXT_PUBLIC_CLERK_JWT_TEMPLATE_ID;
-export const CLERK_OWNER_USER_ID = process.env.CLERK_OWNER_USER_ID;
+export const CLERK_OWNER_USER_ID = process.env.NEXT_PUBLIC_CLERK_OWNER_USER_ID;
