@@ -21,6 +21,7 @@ export type PostMetaData = {
   title: string;
   description?: string;
   createdAt?: number;
+  tags: string[];
 };
 
 export type PostData = {

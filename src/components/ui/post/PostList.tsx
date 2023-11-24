@@ -11,7 +11,7 @@ type PostListProps = {
 export default function PostList({ className }: PostListProps) {
   const { data, isLoading } = useFetchPublicPostList(); // TODO: Static Posts
   return (
-    <div className={twMerge('flex flex-col gap-12', className)}>
+    <div className={twMerge('flex flex-col gap-8 pt-8', className)}>
       <ErrorBoundary>
         {isLoading ? (
           <div className="flex flex-col items-center gap-2 text-foreground/30">

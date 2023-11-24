@@ -32,7 +32,7 @@ export default function PostItemCard({ className, data }: PostItemCardProps) {
     };
   }, [data]);
   const readState = useReadTime(content);
-  console.log(title, content?.length, `( stats )===============>`, readState);
+  console.log(title, { content, metaData });
 
   const router = useRouter();
   return (
@@ -73,10 +73,14 @@ export default function PostItemCard({ className, data }: PostItemCardProps) {
             <CardDescription className="line-clamp-2 max-h-10 overflow-hidden">
               {description ?? content?.slice(0, 150)}
             </CardDescription>
-            <CardFooter className="p-0">
-              <Badge className="gap-0.5">
-                <FaTags /> 后端
-              </Badge>
+            <CardFooter className="flex gap-2 p-0">
+              {metaData?.tags?.length
+                ? metaData.tags.map((tag) => (
+                    <Badge key={tag} className="gap-0.5">
+                      <FaTags /> {tag}
+                    </Badge>
+                  ))
+                : null}
             </CardFooter>
           </div>
         </Card>
