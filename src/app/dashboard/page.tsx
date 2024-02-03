@@ -36,7 +36,7 @@ export default function Home() {
         .then((data) => {
           toast.success('所有文件上传成功');
           const posts = data.map(({ raw, parsedData }) => {
-            console.log({ raw, parsedData });
+            // console.log({ raw, parsedData });
             const { categories, date, title, subtitle, tags, link, lang } = parsedData.data;
             const post: CreatePostParam = {
               title: title ?? '未命名',

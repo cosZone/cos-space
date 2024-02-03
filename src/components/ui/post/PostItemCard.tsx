@@ -32,7 +32,6 @@ export default function PostItemCard({ className, data }: PostItemCardProps) {
     };
   }, [data]);
   const readState = useReadTime(content);
-  console.log(title, { content, metaData });
 
   const router = useRouter();
   return (
