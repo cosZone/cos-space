@@ -8,6 +8,14 @@
     "prettier.configPath": ".prettierrc.js",
     "css.lint.unknownAtRules": "ignore",
     "editor.formatOnSave": true,
-    "cSpell.words": ["clsxm", "hookform", "likey", "nextjs", "overscan", "Shiro", "toastify"]
+    "cSpell.words": [
+      "hookform",
+      "likey",
+      "nextjs",
+      "overscan",
+      "Shiro",
+      "Sider",
+      "toastify"
+    ]
   }
 }

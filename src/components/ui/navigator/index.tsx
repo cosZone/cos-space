@@ -3,18 +3,19 @@
 import { MD_SCREEN_QUERY } from '@/constants';
 import { useNavItems } from '@/hooks/router';
 import { useIsMounted } from '@/hooks/useIsMounted';
-import clsx, { ClassValue } from 'clsx';
+import { useIsOwner } from '@/hooks/user';
+import { childDelayOpenAnimVariants } from '@/lib/anim';
+import { cn } from '@/lib/utils';
+import { oneLevelMenuExpandAtom, oneLevelTabSelectIdxAtom } from '@/store/app';
+import { ClassValue } from 'clsx';
 import { motion } from 'framer-motion';
+import { useAtom } from 'jotai';
+import { usePathname, useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { CgClose, CgMenu } from 'react-icons/cg';
 import { useMediaQuery } from 'react-responsive';
 import Sider from '../../layout/sider';
 import NavItem from './NavItem';
-import { useAtom } from 'jotai';
-import { oneLevelMenuExpandAtom, oneLevelTabSelectIdxAtom } from '@/store/app';
-import { usePathname, useRouter } from 'next/navigation';
-import { childDelayOpenAnimVariants } from '@/lib/anim';
-import { useIsOwner } from '@/hooks/user';
 
 type NavigatorProps = {
   className?: ClassValue;
@@ -42,7 +43,7 @@ export const Navigator = ({ className }: NavigatorProps) => {
 
   if (!isMounted) return null;
   return (
-    <div className={clsx('flex items-center', className)}>
+    <div className={cn('flex items-center', className)}>
       {isMdScreen ? (
         <>
           <motion.nav initial={false} animate={mobileExpand ? 'open' : 'closed'} className="flex w-full justify-end">

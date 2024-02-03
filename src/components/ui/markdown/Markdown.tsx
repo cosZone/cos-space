@@ -1,5 +1,5 @@
 import { MAIN_MARKDOWN_ID } from '@/constants/dom-id';
-import clsx from 'clsx';
+import { cn } from '@/lib/utils';
 import _ from 'lodash-es';
 import { MarkdownToJSX, compiler } from 'markdown-to-jsx';
 import Script from 'next/script';
@@ -99,7 +99,7 @@ export const Markdown: FC<MdProps & MarkdownToJSX.Options & PropsWithChildren> =
         style={style}
         {...wrapperProps}
         ref={ref}
-        className={clsx(mdStyles['md'], codeBlockFully ? mdStyles['code-fully'] : undefined, className)}
+        className={cn(mdStyles['md'], codeBlockFully ? mdStyles['code-fully'] : undefined, className)}
       >
         {node}
       </As>

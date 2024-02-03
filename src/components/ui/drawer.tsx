@@ -1,20 +1,19 @@
-import React, { PropsWithChildren, cloneElement, useEffect, useState } from 'react';
+import { fontVariants } from '@/constants/font';
+import { cn } from '@/lib/utils';
 import {
-  useClick,
-  useFloating,
-  useInteractions,
-  useRole,
-  FloatingPortal,
-  FloatingOverlay,
   FloatingFocusManager,
   FloatingNode,
-  useFloatingNodeId,
+  FloatingOverlay,
+  FloatingPortal,
+  useClick,
   useDismiss,
+  useFloating,
+  useFloatingNodeId,
+  useInteractions,
+  useRole,
 } from '@floating-ui/react';
-import { motion, AnimatePresence } from 'framer-motion';
-import clsx from 'clsx';
-import { twMerge } from 'tailwind-merge';
-import { fontVariants } from '@/constants/font';
+import { AnimatePresence, motion } from 'framer-motion';
+import React, { PropsWithChildren, cloneElement, useEffect, useState } from 'react';
 
 export type Position = 'top' | 'bottom' | 'left' | 'right';
 type DrawerProps = {
@@ -85,15 +84,13 @@ function Drawer({
       <FloatingPortal>
         <AnimatePresence onExitComplete={onExitComplete}>
           {open && (
-            <FloatingOverlay lockScroll className={clsx('relative bg-black/30 backdrop-blur-sm')} style={{ zIndex }}>
+            <FloatingOverlay lockScroll className="relative bg-black/30 backdrop-blur-sm" style={{ zIndex }}>
               <FloatingFocusManager context={context}>
                 <motion.div
-                  className={twMerge(
-                    clsx(
-                      'absolute flex min-w-[10rem] flex-col bg-background p-0 md:min-w-[5rem]',
-                      posClass[position || 'left'],
-                      fontVariants,
-                    ),
+                  className={cn(
+                    'absolute flex min-w-[10rem] flex-col bg-background p-0 md:min-w-[5rem]',
+                    posClass[position || 'left'],
+                    fontVariants,
                     className,
                   )}
                   initial={{ opacity: 0, translateX: -10 }}
@@ -111,7 +108,7 @@ function Drawer({
                     </header>
                   ) : null}
                   <main
-                    className={clsx('h-full', {
+                    className={cn('h-full', {
                       'overflow-auto': scroll,
                     })}
                   >

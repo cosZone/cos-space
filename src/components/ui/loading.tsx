@@ -1,4 +1,4 @@
-import clsx from 'clsx';
+import { cn } from '@/lib/utils';
 import React, { ReactNode } from 'react';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import { twMerge } from 'tailwind-merge';
@@ -21,7 +21,7 @@ export type LoadingProps = {
 const Loading = ({ show = true, renderIcon, className, style, iconClassName, iconStyle }: LoadingProps): JSX.Element => {
   const _renderIcon = (): ReactNode => {
     if (renderIcon) return renderIcon();
-    return <AiOutlineLoading3Quarters className={clsx('h-full w-full', iconClassName)} style={iconStyle} />;
+    return <AiOutlineLoading3Quarters className={cn('h-full w-full', iconClassName)} style={iconStyle} />;
   };
   return (
     <>

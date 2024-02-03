@@ -1,6 +1,6 @@
-import React from 'react';
-import clsx from 'clsx';
+import { cn } from '@/lib/utils';
 import type { DetailedHTMLProps, FC, HTMLAttributes } from 'react';
+import React from 'react';
 
 // import { LinkRenderer } from './LinkRenderer'
 
@@ -14,14 +14,14 @@ export const MParagraph: FC<DetailedHTMLProps<HTMLAttributes<HTMLParagraphElemen
     if (isImage(child)) {
       return <>{children}</>;
     }
-     // isLink;
+    // isLink;
     // if (isLink(child)) {
     // return <LinkRenderer href={(child as any)?.props?.href} />;
     // }
   }
   // console.log(children)
   return (
-    <p className={clsx('paragraph', className)} {...rest}>
+    <p className={cn('paragraph', className)} {...rest}>
       {children}
     </p>
   );

@@ -1,8 +1,7 @@
 import { delayOpenAnimVariants } from '@/lib/anim';
 import { cn } from '@/lib/utils';
-import clsx, { ClassValue } from 'clsx';
+import { ClassValue } from 'clsx';
 import { motion } from 'framer-motion';
-import { twMerge } from 'tailwind-merge';
 
 export type NavItemProps = {
   selected?: boolean;
@@ -31,10 +30,11 @@ function NavItem({ selected, icon, name, onClick, className, indicatorClass, typ
         {name}
         {selected && (
           <motion.div
-            className={twMerge(
-              clsx('absolute inset-x-0 -bottom-0.5 border-t-2 border-primary', {
+            className={cn(
+              'absolute inset-x-0 -bottom-0.5 border-t-2 border-primary',
+              {
                 'inset-0 -z-10 rounded-lg border-none bg-gradient-pink': type === 'sider',
-              }),
+              },
               indicatorClass,
             )}
             layoutId="header_tab_selected"
