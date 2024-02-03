@@ -1,15 +1,17 @@
 import { ErrorBoundary } from '@/components/common/ErrorBoundary';
-import { useFetchPublicPostList } from '@/hooks/post';
-import { twMerge } from 'tailwind-merge';
-import PostItemCard from './PostItemCard';
 import EmptySvg from '@/components/svg/EmptySvg';
+import { PostData } from '@/lib/api/type';
+import { twMerge } from 'tailwind-merge';
 import Loading from '../loading';
+import PostItemCard from './PostItemCard';
+
 type PostListProps = {
+  data?: PostData[];
+  isLoading?: boolean;
   className?: string;
 };
 
-export default function PostList({ className }: PostListProps) {
-  const { data, isLoading } = useFetchPublicPostList(); // TODO: Static Posts
+export default function PostList({ data, isLoading, className }: PostListProps) {
   return (
     <div className={twMerge('flex flex-col gap-8 pt-8', className)}>
       <ErrorBoundary>

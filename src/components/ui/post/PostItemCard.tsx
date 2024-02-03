@@ -38,6 +38,11 @@ export default function PostItemCard({ className, data }: PostItemCardProps) {
     return defaultCoverList[Math.floor(Math.random() * defaultCoverList.length)];
   }, [coverUrl]);
 
+  const href = useMemo(() => {
+    if (typeof window === 'undefined') return '';
+    return window?.origin + routeBuilder(Routes.Post, { id: id ?? '' });
+  }, [id]);
+
   const router = useRouter();
   return (
     <motion.div initial="offscreen" whileInView="onscreen" viewport={{ once: true, amount: 0.8 }}>
@@ -47,7 +52,7 @@ export default function PostItemCard({ className, data }: PostItemCardProps) {
           onClick={() => !!id && router.push(routeBuilder(Routes.Post, { id }))}
         >
           <a
-            href={window?.origin + routeBuilder(Routes.Post, { id: id ?? '' })}
+            href={href}
             className="relative max-h-48 w-[calc(50%-2rem)] overflow-hidden rounded-lg clip-path-post-img-left xs:w-full xs:clip-path-none"
           >
             <div className="absolute inset-0 z-10 bg-black/40" />

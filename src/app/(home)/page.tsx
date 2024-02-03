@@ -1,11 +1,18 @@
 'use client';
-import Cover from '@/components/ui/cover';
 import PostList from '@/components/ui/post/PostList';
+import { fetchPublicAllPost } from '@/lib/api';
 
-export default function Home() {
+async function getAllPost() {
+  const res = await fetchPublicAllPost();
+  const { data } = res;
+  return data;
+}
+
+export default async function Home() {
+  const data = await getAllPost();
   return (
     <>
-      <PostList />
+      <PostList data={data} />
     </>
   );
 }
