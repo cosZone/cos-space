@@ -1,5 +1,4 @@
 import Root from '@/components/layout/root';
-import { seoConfig } from '@/constants';
 import { fontVariants } from '@/constants/font';
 import { cn } from '@/lib/utils';
 import { ClerkProvider } from '@clerk/nextjs';
@@ -9,6 +8,7 @@ import Providers from './providers';
 import '@/styles/globals.css';
 import 'react-toastify/dist/ReactToastify.css';
 import 'swiper/css';
+import { seoConfig } from '@/constants/site-config';
 
 type Props = {
   children: React.ReactNode;
@@ -45,6 +45,9 @@ export default async function RootLayout(props: Props) {
         <head>
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link rel="icon" href="/favicon.ico" />
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+          <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet" />
         </head>
         <body className={cn('vertical-scrollbar m-0 h-full overscroll-none p-0', ...fontVariants)}>
           <Providers>

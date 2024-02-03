@@ -1,7 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ['class'],
-  content: ['./src/app/**/*.{js,ts,jsx,tsx}', './src/components/**/*.{js,ts,jsx,tsx}', './src/hooks/**/*.{js,ts,jsx,tsx}'],
+  content: [
+    './src/app/**/*.{js,ts,jsx,tsx}',
+    './src/components/**/*.{js,ts,jsx,tsx}',
+    './src/hooks/**/*.{js,ts,jsx,tsx}',
+    './src/constants/font.ts',
+  ],
   theme: {
     container: {
       center: true,
@@ -92,9 +97,14 @@ module.exports = {
         'gradient-pink': 'var(--gradient-pink)',
         'gradient-header': 'var(--gradient-header)',
       },
+      fontSize: {
+        '4.5xl': '2.5rem',
+      },
       fontFamily: {
+        noto: 'Noto Serif SC',
         poppins: 'var(--font-poppins)',
         candy: 'Candyshop',
+        fg: 'Fredericka the Great',
       },
       clipPath: {
         'post-img-left': 'polygon(0 0,92% 0%,100% 100%,0% 100%)',

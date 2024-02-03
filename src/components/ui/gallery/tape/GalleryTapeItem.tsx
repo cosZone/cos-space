@@ -9,6 +9,7 @@ import { cn } from '@/lib/utils';
 import { galleryTapeDetailAtom, galleryTapeDetailDialogOpenAtom } from '@/store/gallery';
 import { motion } from 'framer-motion';
 import { useSetAtom } from 'jotai';
+import Image from 'next/image';
 import { useCallback } from 'react';
 import { FaCalendarDays } from 'react-icons/fa6';
 import { IoHome } from 'react-icons/io5';
@@ -52,7 +53,14 @@ export default function GalleryTapeItem({ className, data, width }: GalleryItemP
           </div>
           <CardContent className="mt-2 overflow-hidden rounded-lg p-0">
             <Card3d scaleNum={1.1}>
-              <img src={cover} loading="lazy" alt={name} className="h-auto min-h-[15.625rem] w-full rounded-lg object-cover" />
+              <Image
+                src={cover ?? ''}
+                width={500}
+                height={300}
+                layout="responsive"
+                alt={name}
+                className="h-auto min-h-[15.625rem] w-full rounded-lg object-cover"
+              />
             </Card3d>
           </CardContent>
         </Card>

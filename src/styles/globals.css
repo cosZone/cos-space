@@ -2,6 +2,7 @@
 @import './components/card3d.css';
 @import './components/wave.css';
 @import './theme/index.css';
+@import './theme/font.css';
 
 @tailwind base;
 @tailwind components;
@@ -77,13 +78,21 @@
     @apply border-border;
   }
   body {
-    @apply text-foreground ;
+    @apply text-foreground;
   }
 }
 
 @layer base {
   body {
-    background: var(--gradient-bg);
+    background: var(--gradient-bg-start);
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-poppins), var(--font-notoSerifJp), 'Noto Serif SC';
   }
   *::-webkit-scrollbar {
     display: none;
@@ -104,22 +113,13 @@
     @apply bg-background;
     border-radius: 0.5rem;
   }
-  @font-face {
-    font-display: block;
-    font-family: 'Nagoda';
-    font-style: normal;
-    src: local('Nagoda'), url('/fonts/Nagoda.ttf');
-  }
-
-  @font-face {
-    font-family: 'Candyshop';
-    src: url('https://backblaze.cosine.ren/source/fonts/candy.otf');
-    font-display: swap;
-  }
 }
 
 /* utils */
 @layer components {
+  .font-default {
+    font-family: var(--font-poppins), -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  }
   .flex-center {
     @apply flex items-center justify-center;
   }
@@ -137,6 +137,6 @@
   }
 
   .shadow-text {
-    text-shadow: 0 0.2rem 0.3rem rgba(0,0,0,.5);
+    text-shadow: 0 0.2rem 0.3rem rgba(0, 0, 0, 0.5);
   }
 }

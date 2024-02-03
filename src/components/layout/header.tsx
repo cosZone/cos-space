@@ -14,8 +14,9 @@ export function Header() {
   const isBeyond = useScrollBeyond(500);
   return (
     <motion.header
-      className={cn('shadow-text fixed inset-x-0 top-0 z-10 select-none gap-4 px-4 py-1', {
-        'border-b border-border bg-gradient-header ': isBeyond,
+      className={cn('fixed inset-x-0 top-0 z-10 select-none gap-4 px-4 py-1 text-white ', {
+        'border-b border-border bg-gradient-header text-black dark:text-white': isBeyond,
+        'shadow-text': !isBeyond,
       })}
       initial={{ y: -100 }}
       animate={{ y: isVisible ? 0 : -100 }}

@@ -12,6 +12,7 @@ import { Button } from '../../button';
 import GalleryTapeAddDialog from './GalleryTapeAddDialog';
 import GalleryTapeDetailDialog from './GalleryTapeDetailDialog';
 import GalleryTapeItem from './GalleryTapeItem';
+import Loading from '../../loading';
 
 type GalleryTapeListProps = {
   className?: string;
@@ -34,7 +35,11 @@ export default function GalleryTapeList({ className }: GalleryTapeListProps) {
         ) : null}
       </div>
       <ErrorBoundary>
-        {!isLoading && data?.length ? (
+        {isLoading ? (
+          <div className="flex-center text-foreground/30">
+            <Loading className="h-10 w-10" />
+          </div>
+        ) : data?.length ? (
           <Masonry
             items={data}
             render={GalleryTapeItem}
