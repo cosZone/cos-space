@@ -15,7 +15,7 @@ export default async function Home() {
   return data ? (
     <ClientOnly>
       <Cover />
-      <PostList data={data} />
+      <PostList className="p-4 2xl:container" data={data} />
     </ClientOnly>
   ) : (
     <EmptySvg />

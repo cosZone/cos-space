@@ -1,13 +1,13 @@
 .wave-wrap {
   width: 100%;
-  height: 100px;
+  height: 120px;
   position: absolute;
   bottom: 0px;
   .wave {
     display: block;
     width: 100%;
     margin: 0;
-    height: 100px;
+    height: 100%;
     .parallax > use {
       -webkit-animation: move-forever 12s linear infinite;
       -moz-animation: move-forever 12s linear infinite;
@@ -15,13 +15,13 @@
       animation: move-forever 12s linear infinite;
       &:nth-child(1) {
         animation-delay: -2s;
-        transform: translate(-110px, 0%);
+        transform: translate(-160px, 0%);
         fill: var(--gradient-bg-start);
         opacity: 0.75;
         @apply brightness-110;
       }
       &:nth-child(2) {
-        animation-delay: -2s;
+        animation-delay: -3s;
         animation-duration: 7s;
         fill: var(--gradient-bg-start);
         opacity: 0.6;
@@ -30,7 +30,7 @@
       &:nth-child(3) {
         animation-delay: -4s;
         animation-duration: 4s;
-        transform: translate(-65px, 0%);
+        transform: translate(-75px, 0%);
         opacity: 0.9;
         fill: var(--gradient-bg-start);
       }
