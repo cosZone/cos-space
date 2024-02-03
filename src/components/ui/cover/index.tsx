@@ -1,16 +1,17 @@
 'use client';
 
 import { defaultCoverList, siteConfig } from '@/constants/site-config';
-import { useCallback, useEffect, useState } from 'react';
-import WaveSvg from './wave';
-import { AnimatePresence, motion } from 'framer-motion';
-import Image from 'next/image';
-import { PostData, PostMetaData } from '@/lib/api/type';
-import { FaCalendarDays, FaPenNib } from 'react-icons/fa6';
+import { PostData } from '@/lib/api/type';
 import { parseDate } from '@/lib/datetime';
-import readingTime from 'reading-time';
+import { AnimatePresence, motion } from 'framer-motion';
 import matter from 'gray-matter';
+import _ from 'lodash-es';
+import Image from 'next/image';
+import { useCallback, useEffect, useState } from 'react';
 import { BiSolidTimeFive } from 'react-icons/bi';
+import { FaCalendarDays, FaPenNib } from 'react-icons/fa6';
+import readingTime from 'reading-time';
+import WaveSvg from './wave';
 
 type CoverProps = {
   postData?: PostData;
@@ -23,7 +24,7 @@ const coverImageVariants = {
   exit: { scale: 1.3, opacity: 0, transition: { duration: 2 } },
 };
 3;
-export default function Cover({ postData, covers = defaultCoverList }: CoverProps) {
+export default function Cover({ postData, covers = _.shuffle(defaultCoverList) }: CoverProps) {
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
