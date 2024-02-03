@@ -2,7 +2,7 @@
 
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/cosZone/cos-space/blob/master/LICENSE) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/cosZone/cos-space/pulls)
 
-🚀 cosSpace 是基于 Next.js（App Router Mode）、Typescript、React 和 Tailwind 开发的项目，它是 [cos_blogs](https://github.com/yusixian/cos_blogs) 的重构版，旨在为用户提供同时拥有博客和个人空间的平台。
+cosSpace 是基于 Next.js（App Router Mode）、Typescript、React 和 Tailwind 开发的项目，它是 [cos_blogs](https://github.com/yusixian/cos_blogs) 的重构版，旨在为用户提供同时拥有博客和个人空间的平台。（从 hexo + shoka 主题迁移过来哒）
 
 ## 🎉 功能
 
@@ -69,11 +69,11 @@ pnpm dev
 
 - [x] 一个能看的导航栏菜单是一个好的开始
 - [ ] 展示柜系统 - 展示自己购入的一些胶带、自制流麻等等等
-  - [ ] 胶带展示 - 胶带所属社团、多少钱一循环购入、购入渠道、拥有几循环、缩略图 &详细图
+  - [x] 胶带展示 - 胶带所属社团、多少钱一循环购入、购入渠道、拥有几循环、缩略图 &详细图
   - [ ] 流麻展示 - b站视频链接 & 封面
 - [ ] 文章系统
-  - [ ] 首页 post 列表
-  - [ ] 单个博文页面
+  - [x] 首页 post 列表
+  - [x] 单个博文页面
   - [ ] 文章分类与标签系统
   - [ ] 文章搜索功能
 - [ ] 用户系统

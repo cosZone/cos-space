@@ -18,7 +18,7 @@ function NavItem({ selected, icon, name, onClick, className, indicatorClass, typ
     <motion.div variants={delayOpenAnimVariants}>
       <div
         className={cn(
-          'relative flex h-full w-full cursor-pointer items-center justify-center text-xl hover:opacity-70',
+          'relative flex h-full w-full cursor-pointer items-center justify-center text-base hover:opacity-70',
           {
             'text-primary': selected && type === 'header',
             'z-0': type === 'sider',

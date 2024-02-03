@@ -114,24 +114,6 @@
   }
 }
 
-@layer components {
-  .project-logo {
-    @apply relative h-[2.25rem] w-[7rem] text-transparent;
-    font-size: 2.25rem /* 36px */;
-    line-height: 2.375rem /* 40px */;
-  }
-  .project-logo::before {
-    @apply absolute inset-0 text-clip bg-gradient-pink bg-clip-text font-candy;
-    content: 'Cosine';
-    z-index: 1;
-  }
-  .project-logo::after {
-    @apply absolute inset-0 font-candy text-transparent;
-    content: 'Cosine';
-    text-shadow: 0.1875rem 0.1875rem 0 rgba(249, 99, 117, 0.3);
-    z-index: 0;
-  }
-}
 /* utils */
 @layer components {
   .flex-center {

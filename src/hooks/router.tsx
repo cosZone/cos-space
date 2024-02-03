@@ -18,12 +18,12 @@ export const useNavItems = () => {
     () => [
       {
         key: 'Github',
-        icon: <AiFillGithub className="h-9 w-9 cursor-pointer" />,
+        icon: <AiFillGithub className="h-8 w-8 cursor-pointer" />,
         onClick: () => window?.open('https://github.com/cosZone/cos-space', '_blank'),
       },
       {
         key: 'CgDarkMode',
-        icon: <CgDarkMode className="h-9 w-9 cursor-pointer" />,
+        icon: <CgDarkMode className="h-8 w-8 cursor-pointer" />,
         onClick: toggleTheme,
       },
       {
@@ -42,7 +42,7 @@ export const useNavItems = () => {
               <SignInButton mode="modal" redirectUrl={'/'}>
                 <Button className="gap-1">
                   登录
-                  <FaUserAlt className="h-5 w-5" />
+                  <FaUserAlt className="h-4 w-4" />
                 </Button>
               </SignInButton>
             </SignedOut>

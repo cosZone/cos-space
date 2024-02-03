@@ -46,7 +46,7 @@ export default async function RootLayout(props: Props) {
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link rel="icon" href="/favicon.ico" />
         </head>
-        <body className={clsx('vertical-scrollbar m-0 h-full p-0', ...fontVariants)}>
+        <body className={clsx('vertical-scrollbar m-0 h-full overscroll-none p-0', ...fontVariants)}>
           <Providers>
             <Root>{children}</Root>
           </Providers>
