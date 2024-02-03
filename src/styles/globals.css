@@ -1,5 +1,6 @@
 @import './components/clerk.css';
 @import './components/card3d.css';
+@import './components/wave.css';
 @import './theme/index.css';
 
 @tailwind base;
@@ -76,11 +77,14 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply text-foreground ;
   }
 }
 
 @layer base {
+  body {
+    background: var(--gradient-bg);
+  }
   *::-webkit-scrollbar {
     display: none;
     width: 0;
@@ -130,5 +134,9 @@
 
   .shadow-card {
     box-shadow: 0 0 2rem var(--box-bg-shadow);
+  }
+
+  .shadow-text {
+    text-shadow: 0 0.2rem 0.3rem rgba(0,0,0,.5);
   }
 }
