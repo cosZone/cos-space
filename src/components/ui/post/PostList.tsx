@@ -1,3 +1,5 @@
+'use client';
+
 import { ErrorBoundary } from '@/components/common/ErrorBoundary';
 import EmptySvg from '@/components/svg/EmptySvg';
 import { PostData } from '@/lib/api/type';
