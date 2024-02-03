@@ -9,10 +9,14 @@
     "css.lint.unknownAtRules": "ignore",
     "editor.formatOnSave": true,
     "cSpell.words": [
+      "backblaze",
+      "fastly",
       "hookform",
+      "jsdelivr",
       "likey",
       "nextjs",
       "overscan",
+      "shadcn",
       "Shiro",
       "Sider",
       "toastify"

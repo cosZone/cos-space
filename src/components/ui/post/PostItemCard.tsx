@@ -1,7 +1,7 @@
 import { scrollCardMoveUpVariants } from '@/constants/anim/variants';
 import { Routes } from '@/constants/router';
+import { defaultCoverList } from '@/constants/site-config';
 import { useReadTime } from '@/hooks/util';
-import { clickableProps } from '@/lib/anim';
 import { PostData, PostMetaData } from '@/lib/api/type';
 import { parseDate } from '@/lib/datetime';
 import { routeBuilder } from '@/lib/route';
@@ -22,7 +22,7 @@ export type PostItemCardProps = {
 };
 
 export default function PostItemCard({ className, data }: PostItemCardProps) {
-  const { id, title, description, createdAt } = data ?? {};
+  const { id, title, description, createdAt, coverUrl } = data ?? {};
   const { metaData, content } = useMemo(() => {
     if (!data?.content) return {};
     const parsedData = matter(data?.content);
@@ -31,24 +31,33 @@ export default function PostItemCard({ className, data }: PostItemCardProps) {
       content: parsedData.content,
     };
   }, [data]);
+
   const readState = useReadTime(content);
+  const cover = useMemo(() => {
+    if (coverUrl) return coverUrl;
+    return defaultCoverList[Math.floor(Math.random() * defaultCoverList.length)];
+  }, [coverUrl]);
 
   const router = useRouter();
   return (
     <motion.div initial="offscreen" whileInView="onscreen" viewport={{ once: true, amount: 0.8 }}>
       <motion.div variants={scrollCardMoveUpVariants}>
         <Card
-          className={twMerge('flex cursor-pointer gap-2 transition-shadow hover:shadow-card xs:flex-col', className)}
+          className={twMerge('group flex cursor-pointer gap-2 transition-shadow hover:shadow-card xs:flex-col', className)}
           onClick={() => !!id && router.push(routeBuilder(Routes.Post, { id }))}
         >
-          <div className="max-h-40 w-[calc(50%-2rem)] overflow-hidden rounded-lg clip-path-post-img-left xs:w-full xs:clip-path-none">
-            <motion.img
-              src="https://fastly.jsdelivr.net/gh/yusixian/imgBed@1.2.1/img/cos_blog/97394501_p0.webp"
+          <a
+            href={window?.origin + routeBuilder(Routes.Post, { id: id ?? '' })}
+            className="relative max-h-48 w-[calc(50%-2rem)] overflow-hidden rounded-lg clip-path-post-img-left xs:w-full xs:clip-path-none"
+          >
+            <div className="absolute inset-0 z-10 bg-black/40" />
+            <img
+              src={cover}
+              loading="lazy"
               alt="post"
-              {...clickableProps()}
-              className="h-full w-full cursor-pointer object-cover"
+              className="h-full w-full cursor-pointer object-cover transition duration-500 group-hover:scale-110"
             />
-          </div>
+          </a>
           <div className="flex w-1/2 flex-col gap-2 px-4 pb-2 pt-4 xs:w-full xs:pt-1">
             <div className="flex w-full justify-end gap-4 text-xs text-muted-foreground">
               {createdAt ? (
