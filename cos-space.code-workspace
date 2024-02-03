@@ -8,6 +8,18 @@
     "prettier.configPath": ".prettierrc.js",
     "css.lint.unknownAtRules": "ignore",
     "editor.formatOnSave": true,
-    "cSpell.words": ["backblaze", "fastly", "hookform", "jsdelivr", "likey", "nextjs", "overscan", "Shiro", "Sider", "toastify"]
+    "cSpell.words": [
+      "backblaze",
+      "fastly",
+      "hookform",
+      "jsdelivr",
+      "likey",
+      "nextjs",
+      "overscan",
+      "shadcn",
+      "Shiro",
+      "Sider",
+      "toastify"
+    ]
   }
 }

@@ -27,17 +27,13 @@ export default function PostDetail({ className, data }: PostDetailProps) {
   }, [data]);
   return (
     <>
-      <Card>
-        <CardHeader>
-          <CardTitle>{metaData?.['title']}</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <CardDescription>{metaData?.['description']}</CardDescription>
-        </CardContent>
-      </Card>
-      <div className={twMerge('relative flex w-full items-start justify-center gap-4', className)}>
+      <div className={twMerge('relative flex w-full items-start justify-center gap-4 2xl:container', className)}>
         <ErrorBoundary>
-          {content ? <MainMarkdown className="prose overflow-auto dark:prose-invert" value={content} /> : <EmptySvg />}
+          {content ? (
+            <MainMarkdown className="prose flex-grow overflow-auto dark:prose-invert" value={content} />
+          ) : (
+            <EmptySvg />
+          )}
         </ErrorBoundary>
         <ClientOnly>
           <PostRightSider />

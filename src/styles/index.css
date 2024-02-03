@@ -1,0 +1,7 @@
+@import './global/tailwind.css';
+@import './global/shadcn.css';
+@import './components/clerk.css';
+@import './components/card3d.css';
+@import './components/wave.css';
+@import './theme/index.css';
+@import './theme/font.css';

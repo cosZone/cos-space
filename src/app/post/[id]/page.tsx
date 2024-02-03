@@ -1,5 +1,6 @@
 import { ClientOnly } from '@/components/common/ClientOnly';
 import EmptySvg from '@/components/svg/EmptySvg';
+import Cover from '@/components/ui/cover';
 import PostDetail from '@/components/ui/post/PostDetail';
 import { fetchPublicAllPost, fetchPublicPost } from '@/lib/api';
 
@@ -22,6 +23,7 @@ export default async function Post({ params }: { params: { id: string } }) {
 
   return data ? (
     <ClientOnly>
+      <Cover postData={data} />
       <PostDetail data={data} />
     </ClientOnly>
   ) : (

@@ -5,7 +5,7 @@ import { ClerkProvider } from '@clerk/nextjs';
 import { ToastContainer } from 'react-toastify';
 import Providers from './providers';
 
-import '@/styles/globals.css';
+import '@/styles/index.css';
 import 'react-toastify/dist/ReactToastify.css';
 import 'swiper/css';
 import { seoConfig } from '@/constants/site-config';

@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background: var(--gradient-bg-start);
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-poppins), var(--font-notoSerifJp), 'Noto Serif SC';
+  }
+  *::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    background: transparent;
+  }
+  .vertical-scrollbar {
+    overflow: auto;
+  }
+  .vertical-scrollbar::-webkit-scrollbar {
+    display: block;
+    width: 0.5rem;
+    @apply bg-border;
+    border-radius: 0.5rem;
+  }
+
+  .vertical-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-background;
+    border-radius: 0.5rem;
+  }
+  #main-markdown-render.prose {
+    max-width: 100%;
+  }
+}
+
+/* utils */
+@layer components {
+  .font-default {
+    font-family: var(--font-poppins), -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  }
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
+
+  .flex-center-x {
+    @apply flex flex-row items-center justify-center;
+  }
+
+  .flex-center-y {
+    @apply flex flex-col items-center justify-center;
+  }
+
+  .shadow-card {
+    box-shadow: 0 0 2rem var(--box-bg-shadow);
+  }
+
+  .shadow-text {
+    text-shadow: 0 0.2rem 0.3rem rgba(0, 0, 0, 0.5);
+  }
+}
