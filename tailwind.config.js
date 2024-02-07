@@ -78,19 +78,8 @@ module.exports = {
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
       },
-      keyframes: {
-        'accordion-down': {
-          from: { height: 0 },
-          to: { height: 'var(--radix-accordion-content-height)' },
-        },
-        'accordion-up': {
-          from: { height: 'var(--radix-accordion-content-height)' },
-          to: { height: 0 },
-        },
-      },
       animation: {
-        'accordion-down': 'accordion-down 0.2s ease-out',
-        'accordion-up': 'accordion-up 0.2s ease-out',
+        shake: 'shake 2s ease',
       },
       backgroundImage: {
         gradient: 'var(--gradient-bg)',
@@ -99,6 +88,7 @@ module.exports = {
       },
       fontSize: {
         '4.5xl': '2.5rem',
+        '5.5xl': '3.5rem',
       },
       fontFamily: {
         noto: 'Noto Serif SC',

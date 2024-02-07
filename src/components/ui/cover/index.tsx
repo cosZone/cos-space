@@ -43,7 +43,7 @@ export default function Cover({ postData, covers = _.shuffle(defaultCoverList) }
       return (
         <>
           <h1 className="shadow-text text-4.5xl font-bold">{title}</h1>
-          <p className="flex items-center justify-center gap-4">
+          <p className="mt-3 flex items-center justify-center gap-4">
             <span className="flex items-center gap-1">
               <FaCalendarDays />
               发表于 {parseDate(createdAt, 'YYYY-MM-DD')}
@@ -60,20 +60,19 @@ export default function Cover({ postData, covers = _.shuffle(defaultCoverList) }
     }
     return (
       <>
-        <h2 className="shadow-text font-fg text-5xl">{siteConfig?.alternate}</h2>
-        <h1 className="shadow-text text-4.5xl font-bold">{siteConfig?.title}</h1>
-        <p className="shadow-text text-sm">= {siteConfig?.subtitle} =</p>
+        <h2 className="shadow-text font-fg text-5.5xl/[1.2]">{siteConfig?.alternate}</h2>
+        <h1 className="shadow-text mt-3 text-4.5xl/[1.2] font-bold">{siteConfig?.title}</h1>
+        <p className="shadow-text mt-5 text-sm">= {siteConfig?.subtitle} =</p>
       </>
     );
-  }, []);
+  }, [postData]);
 
   return (
     <div className="relative -z-10 flex h-[60vh] max-h-[35rem] overflow-hidden">
       <div className="absolute inset-0 h-full bg-black/40" />
-      <div className="absolute inset-0 z-10 -mt-10 flex flex-col items-center justify-center gap-3 text-white">
+      <div className="absolute inset-0 bottom-[8vh] z-10 flex flex-col items-center justify-center text-white">
         {renderContent()}
       </div>
-
       <AnimatePresence mode="popLayout">
         <motion.div
           key={covers[current]}

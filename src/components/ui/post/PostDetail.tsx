@@ -7,7 +7,6 @@ import { useMemo } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { ErrorBoundary } from '../../common/ErrorBoundary';
 import EmptySvg from '../../svg/EmptySvg';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../card';
 import { MainMarkdown } from '../markdown/Markdown';
 import PostRightSider from './PostRightSider';
 
@@ -17,7 +16,7 @@ type PostDetailProps = {
 };
 
 export default function PostDetail({ className, data }: PostDetailProps) {
-  const { metaData, content } = useMemo(() => {
+  const { content } = useMemo(() => {
     if (!data?.content) return {};
     const parsedData = matter(data?.content);
     return {
@@ -27,7 +26,7 @@ export default function PostDetail({ className, data }: PostDetailProps) {
   }, [data]);
   return (
     <>
-      <div className={twMerge('relative flex w-full items-start justify-center gap-4 2xl:container', className)}>
+      <div className={twMerge('relative flex w-full items-start justify-center gap-4', className)}>
         <ErrorBoundary>
           {content ? (
             <MainMarkdown className="prose flex-grow overflow-auto dark:prose-invert" value={content} />

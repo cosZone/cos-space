@@ -2,6 +2,7 @@ type SiteConfig = {
   title: string;
   alternate?: string;
   subtitle?: string;
+  name?: string;
   description?: string;
   avatar?: string;
 };
@@ -13,6 +14,7 @@ export const siteConfig: SiteConfig = {
   title: '余弦の博客', // 网站名称
   alternate: 'cosine', // 网站名称
   subtitle: 'WA的一声就哭了', // 副标题
+  name: 'cos',
   description: '图片迁移完毕，博客待重构~', // 站点简介（一段话）
   avatar: 'https://ysx.cosine.ren/img/avatar.jpg', // 站点头像 logo.png or url
 };

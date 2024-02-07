@@ -9,10 +9,8 @@ export default function Root({ children }: React.PropsWithChildren<{}>) {
     <div className="flex min-h-screen flex-col text-black dark:text-white">
       <Header />
       <FloatGroup />
-      <main className="relative flex flex-grow flex-col">
-        {children}
-        <Footer className="mt-auto" />
-      </main>
+      <main className="relative flex flex-grow flex-col">{children}</main>
+      <Footer className="mt-auto" />
     </div>
   );
 }

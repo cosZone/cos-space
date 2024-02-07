@@ -48,19 +48,22 @@ export default function PostItemCard({ className, data }: PostItemCardProps) {
     <motion.div initial="offscreen" whileInView="onscreen" viewport={{ once: true, amount: 0.8 }}>
       <motion.div variants={scrollCardMoveUpVariants}>
         <Card
-          className={twMerge('group flex cursor-pointer gap-2 transition-shadow hover:shadow-card xs:flex-col', className)}
+          className={twMerge(
+            'hover:shadow-card-darker group flex cursor-pointer gap-2 border-none bg-transparent shadow-card transition-shadow xs:flex-col',
+            className,
+          )}
           onClick={() => !!id && router.push(routeBuilder(Routes.Post, { id }))}
         >
           <a
             href={href}
             className="relative max-h-48 w-[calc(50%-2rem)] overflow-hidden rounded-lg clip-path-post-img-left xs:w-full xs:clip-path-none"
           >
-            <div className="absolute inset-0 z-10 bg-black/40" />
+            <div className="absolute inset-0 z-10" />
             <img
               src={cover}
               loading="lazy"
               alt="post"
-              className="h-full w-full cursor-pointer object-cover transition duration-500 group-hover:scale-110"
+              className="h-full w-full cursor-pointer object-cover opacity-75 transition duration-500 group-hover:scale-110 group-hover:opacity-100"
             />
           </a>
           <div className="flex w-1/2 flex-col gap-2 px-4 pb-2 pt-4 xs:w-full xs:pt-1">
@@ -81,7 +84,7 @@ export default function PostItemCard({ className, data }: PostItemCardProps) {
               </Tooltip>
             </div>
             <CardHeader className="p-0">
-              <CardTitle className="font-noto-sc truncate text-primary">{title}</CardTitle>
+              <CardTitle className="truncate text-primary">{title}</CardTitle>
             </CardHeader>
             <CardDescription className="line-clamp-2 max-h-10 overflow-hidden">
               {description ?? content?.slice(0, 150)}
