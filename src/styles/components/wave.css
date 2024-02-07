@@ -1,6 +1,8 @@
 .wave-wrap {
   width: 100%;
-  height: 120px;
+  height: 15vh;
+  min-height: 3.125rem;
+  max-height: 9.375rem;
   position: absolute;
   bottom: 0px;
   .wave {
@@ -31,7 +33,7 @@
         animation-delay: -4s;
         animation-duration: 4s;
         transform: translate(-75px, 0%);
-        opacity: 0.9;
+        opacity: 1;
         fill: var(--gradient-bg-start);
       }
     }

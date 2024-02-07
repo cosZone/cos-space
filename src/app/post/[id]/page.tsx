@@ -24,7 +24,7 @@ export default async function Post({ params }: { params: { id: string } }) {
   return data ? (
     <ClientOnly>
       <Cover postData={data} />
-      <PostDetail data={data} />
+      <PostDetail data={data} className="p-4 2xl:container" />
     </ClientOnly>
   ) : (
     <EmptySvg />

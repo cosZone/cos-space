@@ -11,8 +11,18 @@ export type NavItemProps = {
   className?: ClassValue;
   indicatorClass?: string;
   type?: 'header' | 'sider';
+  layoutIdPrefix?: string;
 };
-function NavItem({ selected, icon, name, onClick, className, indicatorClass, type = 'header' }: NavItemProps) {
+function NavItem({
+  selected,
+  icon,
+  name,
+  onClick,
+  className,
+  indicatorClass,
+  type = 'header',
+  layoutIdPrefix = 'header',
+}: NavItemProps) {
   return (
     <motion.div variants={delayOpenAnimVariants}>
       <div
@@ -37,7 +47,7 @@ function NavItem({ selected, icon, name, onClick, className, indicatorClass, typ
               },
               indicatorClass,
             )}
-            layoutId="header_tab_selected"
+            layoutId={`${layoutIdPrefix ?? 'header'}_tab_selected`}
           />
         )}
       </div>

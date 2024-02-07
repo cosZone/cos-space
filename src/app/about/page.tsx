@@ -1,4 +1,5 @@
 import { ClientOnly } from '@/components/common/ClientOnly';
+import HomeSider from '@/components/layout/HomeSider';
 import EmptySvg from '@/components/svg/EmptySvg';
 import PostDetail from '@/components/ui/post/PostDetail';
 import { fetchPublicPost } from '@/lib/api';

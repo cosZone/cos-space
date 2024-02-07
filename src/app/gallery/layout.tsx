@@ -5,7 +5,7 @@ export default function GalleryLayout({ children }: PropsWithChildren<{}>) {
   return (
     <>
       <Cover />
-      <div className="mx-auto flex w-full flex-col gap-12 p-4 2xl:container">{children}</div>
+      <div className="mx-auto flex w-full flex-col p-4 2xl:container">{children}</div>
     </>
   );
 }
