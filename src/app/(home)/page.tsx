@@ -3,7 +3,7 @@ import EmptySvg from '@/components/svg/EmptySvg';
 import Cover from '@/components/ui/cover';
 import PostList from '@/components/ui/post/PostList';
 import { fetchPublicAllPost } from '@/lib/api';
-import HomeSider from '../../components/layout/HomeSider';
+import HomeSider from '../../components/layout/homeSider/HomeSider';
 
 async function getAllPost() {
   const res = await fetchPublicAllPost();
@@ -15,10 +15,9 @@ export default async function Home() {
   const data = await getAllPost();
   return data ? (
     <ClientOnly>
-      <Cover />
-      <div className="flex items-start 2xl:container">
-        <PostList className="shadow-box flex-grow p-4" data={data} />
+      <div className="mx-auto flex items-start justify-center md:w-full">
         <HomeSider />
+        <PostList className="shadow-box w-full p-4 2xl:container md:px-1 md:py-2" data={data} />
       </div>
     </ClientOnly>
   ) : (

@@ -29,6 +29,7 @@ function NavItem({
         className={cn(
           'relative flex h-full w-full cursor-pointer items-center justify-center text-base hover:opacity-70',
           {
+            'text-white': selected && type !== 'header',
             'text-primary': selected && type === 'header',
             'z-0': type === 'sider',
           },
