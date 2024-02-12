@@ -1,5 +1,5 @@
 import { ClientOnly } from '@/components/common/ClientOnly';
-import HomeSider from '@/components/layout/HomeSider';
+import HomeSider from '@/components/layout/homeSider/HomeSider';
 import EmptySvg from '@/components/svg/EmptySvg';
 import PostDetail from '@/components/ui/post/PostDetail';
 import { fetchPublicPost } from '@/lib/api';
@@ -13,7 +13,10 @@ export default async function About() {
   const data = await getPost({ id: '14' });
   return data ? (
     <ClientOnly>
-      <PostDetail data={data} />
+      <div className="mx-auto flex items-start justify-center md:w-full">
+        <HomeSider type="post" />
+        <PostDetail data={data} />
+      </div>
     </ClientOnly>
   ) : (
     <EmptySvg />

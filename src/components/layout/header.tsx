@@ -22,7 +22,7 @@ export function Header() {
       animate={{ y: isVisible ? 0 : -100 }}
       transition={microDampingPreset}
     >
-      <div className="mx-auto flex items-center justify-between 2xl:container">
+      <div className="mx-auto flex max-w-[103.5rem] items-center justify-between">
         <motion.div
           initial={{ rotate: -180, scale: 0 }}
           animate={{ scale: 1, rotate: 0 }}

@@ -1,6 +1,7 @@
 'use client';
 
 import { defaultCoverList, siteConfig } from '@/constants/site-config';
+import { useIsMounted } from '@/hooks/useIsMounted';
 import { PostData } from '@/lib/api/type';
 import { parseDate } from '@/lib/datetime';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -26,7 +27,7 @@ const coverImageVariants = {
 3;
 export default function Cover({ postData, covers = _.shuffle(defaultCoverList) }: CoverProps) {
   const [current, setCurrent] = useState(0);
-
+  const isMounted = useIsMounted();
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrent((prev) => (prev + 1) % covers.length);
@@ -80,15 +81,19 @@ export default function Cover({ postData, covers = _.shuffle(defaultCoverList) }
           animate="visible"
           exit="exit"
           variants={coverImageVariants}
-          className="-z-10 h-full min-h-[15rem] w-full"
+          className="relative -z-10 h-full min-h-[15rem] w-full"
         >
-          <Image
-            className="-z-10 h-full min-h-[15rem] w-full select-none object-cover"
-            draggable={false}
-            src={covers[current]}
-            alt=""
-            fill
-          />
+          {isMounted && (
+            <Image
+              className="-z-10 h-full min-h-[15rem] w-full select-none object-cover"
+              draggable={false}
+              src={covers[current]}
+              alt=""
+              fill
+              objectPosition=""
+              priority
+            />
+          )}
         </motion.div>
       </AnimatePresence>
       <WaveSvg />

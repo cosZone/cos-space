@@ -1,6 +1,5 @@
 'use client';
 
-import { ClientOnly } from '@/components/common/ClientOnly';
 import { PostData, PostMetaData } from '@/lib/api/type';
 import matter from 'gray-matter';
 import { useMemo } from 'react';
@@ -8,7 +7,6 @@ import { twMerge } from 'tailwind-merge';
 import { ErrorBoundary } from '../../common/ErrorBoundary';
 import EmptySvg from '../../svg/EmptySvg';
 import { MainMarkdown } from '../markdown/Markdown';
-import PostRightSider from './PostRightSider';
 
 type PostDetailProps = {
   className?: string;
@@ -34,9 +32,6 @@ export default function PostDetail({ className, data }: PostDetailProps) {
             <EmptySvg />
           )}
         </ErrorBoundary>
-        <ClientOnly>
-          <PostRightSider />
-        </ClientOnly>
       </div>
     </>
   );

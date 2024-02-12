@@ -1,4 +1,5 @@
 import { ClientOnly } from '@/components/common/ClientOnly';
+import HomeSider from '@/components/layout/homeSider/HomeSider';
 import EmptySvg from '@/components/svg/EmptySvg';
 import Cover from '@/components/ui/cover';
 import PostDetail from '@/components/ui/post/PostDetail';
@@ -24,7 +25,10 @@ export default async function Post({ params }: { params: { id: string } }) {
   return data ? (
     <ClientOnly>
       <Cover postData={data} />
-      <PostDetail data={data} className="p-4 2xl:container" />
+      <div className="mx-auto flex items-start justify-center md:w-full">
+        <HomeSider type="post" />
+        <PostDetail data={data} className="p-4 2xl:container" />
+      </div>
     </ClientOnly>
   ) : (
     <EmptySvg />
