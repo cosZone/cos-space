@@ -3,6 +3,7 @@ import HomeSider from '@/components/layout/homeSider/HomeSider';
 import EmptySvg from '@/components/svg/EmptySvg';
 import Cover from '@/components/ui/cover';
 import PostDetail from '@/components/ui/post/PostDetail';
+import { HomeSiderType } from '@/constants/enum';
 import { fetchPublicAllPost, fetchPublicPost } from '@/lib/api';
 
 export async function generateStaticParams() {
@@ -26,7 +27,7 @@ export default async function Post({ params }: { params: { id: string } }) {
     <ClientOnly>
       <Cover postData={data} />
       <div className="mx-auto flex items-start justify-center md:w-full">
-        <HomeSider type="post" />
+        <HomeSider type={HomeSiderType.POST} />
         <PostDetail data={data} className="p-4 2xl:container" />
       </div>
     </ClientOnly>

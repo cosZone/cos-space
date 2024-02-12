@@ -5,7 +5,7 @@ export default function AboutLayout({ children }: PropsWithChildren<{}>) {
   return (
     <>
       <Cover />
-      <div className="mx-auto flex w-full flex-col gap-12 p-4 2xl:container">{children}</div>
+      <div className="mx-auto flex w-full flex-col gap-12 p-4">{children}</div>
     </>
   );
 }

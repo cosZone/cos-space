@@ -41,7 +41,7 @@ export const TocItem: FC<{
     if (active) {
       $ref.current?.scrollIntoView({ behavior: 'smooth' });
     }
-  }, []);
+  }, [active]);
 
   const renderDepth = useMemo(() => {
     const result = depth - rootDepth;

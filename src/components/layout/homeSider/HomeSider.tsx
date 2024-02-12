@@ -2,6 +2,8 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import NavItem from '@/components/ui/navigator/NavItem';
 import PostRightSider from '@/components/ui/post/PostRightSider';
+import Segmented from '@/components/ui/segmented';
+import { HomeSiderType } from '@/constants/enum';
 import { siteConfig } from '@/constants/site-config';
 import { useNavItems } from '@/hooks/router';
 import { useIsMounted } from '@/hooks/useIsMounted';
@@ -9,17 +11,24 @@ import { useIsOwner } from '@/hooks/user';
 import { oneLevelTabSelectIdxAtom } from '@/store/app';
 import { useAtom } from 'jotai';
 import { useRouter } from 'next/navigation';
+import { useCallback, useState } from 'react';
 
-export default function HomeSider({ type = 'home' }: { type?: 'home' | 'post' }) {
+const opts = [
+  { label: 'Home', value: HomeSiderType.HOME },
+  { label: 'Post', value: HomeSiderType.POST },
+];
+
+export default function HomeSider({ type = HomeSiderType.HOME }: { type?: HomeSiderType }) {
+  const [current, setCurrent] = useState<HomeSiderType>(type ?? HomeSiderType.HOME);
+
   const { routers } = useNavItems();
   const isOwner = useIsOwner();
   const [selectIdx1, setSelectIdx1] = useAtom(oneLevelTabSelectIdxAtom);
   const router = useRouter();
-  const isMounted = useIsMounted();
-  if (!isMounted) return null;
-  return (
-    <div className="sticky top-20 flex min-w-[16rem] flex-col items-center p-4 px-5 lg:hidden">
-      {type === 'home' ? (
+
+  const renderContent = useCallback(() => {
+    if (current === HomeSiderType.HOME)
+      return (
         <>
           <Avatar className="shadow-card-darker h-40 w-40 opacity-75 transition hover:animate-shake hover:opacity-100">
             <AvatarImage src="https://ysx.cosine.ren/img/avatar.jpg" />
@@ -27,7 +36,7 @@ export default function HomeSider({ type = 'home' }: { type?: 'home' | 'post' })
           </Avatar>
           <p className="mt-2">{siteConfig?.name}</p>
           <p className="mt-3 text-muted-foreground">{siteConfig?.description}</p>
-          <div className="mt-3 flex select-none justify-center text-center text-sm/4 text-white/80">
+          <div className="mt-3 flex select-none justify-center text-center text-sm/4 text-muted-foreground dark:text-white/80">
             <p className="flex cursor-pointer flex-col gap-2 p-1 transition hover:text-primary">
               <span className="text-lg/5 font-bold">159</span>
               文章
@@ -64,9 +73,27 @@ export default function HomeSider({ type = 'home' }: { type?: 'home' | 'post' })
             })}
           </div>
         </>
-      ) : (
-        <PostRightSider />
+      );
+    return <PostRightSider />;
+  }, [current, isOwner, router, routers, selectIdx1, setSelectIdx1]);
+
+  const isMounted = useIsMounted();
+  if (!isMounted) return null;
+
+  return (
+    <div className="sticky top-20 flex min-w-[16rem] flex-col items-center p-4 px-5 lg:hidden">
+      {type !== HomeSiderType.HOME && (
+        <Segmented
+          className="mb-4 flex w-full justify-between text-lg"
+          itemClass="flex-grow"
+          options={opts}
+          defaultValue={current}
+          onChange={(value) => {
+            setCurrent(value as HomeSiderType);
+          }}
+        />
       )}
+      {renderContent()}
     </div>
   );
 }

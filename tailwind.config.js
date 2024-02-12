@@ -72,6 +72,7 @@ module.exports = {
           900: '#801b38',
           950: '#470a1a',
         },
+        'gradient-start': 'var(--gradient-bg-end)',
       },
       borderRadius: {
         lg: 'var(--radius)',

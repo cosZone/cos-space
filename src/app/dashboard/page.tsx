@@ -16,11 +16,11 @@ export default async function Dashboard() {
   return (
     <div className="mx-auto flex items-start justify-center">
       <HomeSider />
-      <div className="shadow-box flex flex-col gap-8 p-4 2xl:container">
+      <div className="shadow-box flex flex-col gap-8 p-4">
         <UploadPost />
         {data ? (
           <ClientOnly>
-            <PostList data={data} />
+            <PostList className="2xl:container" data={data} />
           </ClientOnly>
         ) : null}
       </div>
