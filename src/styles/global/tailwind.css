@@ -64,7 +64,7 @@
   }
 
   .shadow-box {
-    box-shadow: 0 1.25rem 1rem 0.3125rem var(--box-bg-shadow);
+    box-shadow: 0 0.5rem 1rem 0.3125rem var(--box-bg-shadow);
   }
 
   .shadow-text {
