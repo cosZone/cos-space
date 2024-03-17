@@ -13,7 +13,7 @@ export const MLink = (props: LinkProps) => {
   const { children, className, href, ...rest } = props;
 
   return (
-    <Tooltip title={<p className="shadow-card-darker max-w-lg truncate">{href}</p>}>
+    <Tooltip className="shadow-card-darker" title={<p className="max-w-lg truncate px-1 py-0.5">{href}</p>}>
       <a
         href={href}
         target="_blank"
