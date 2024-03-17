@@ -43,7 +43,7 @@ export default function Cover({ postData, covers = _.shuffle(defaultCoverList) }
 
       return (
         <>
-          <h1 className="shadow-text text-4.5xl font-bold">{title}</h1>
+          <h1 className="shadow-text font-noto text-4.5xl font-bold">{title}</h1>
           <p className="mt-3 flex items-center justify-center gap-4">
             <span className="flex items-center gap-1">
               <FaCalendarDays />
@@ -62,7 +62,7 @@ export default function Cover({ postData, covers = _.shuffle(defaultCoverList) }
     return (
       <>
         <h2 className="shadow-text font-fg text-5.5xl/[1.2]">{siteConfig?.alternate}</h2>
-        <h1 className="shadow-text mt-3 text-4.5xl/[1.2] font-bold">{siteConfig?.title}</h1>
+        <h1 className="shadow-text mt-3 font-noto text-4.5xl/[1.2] font-bold tracking-widest">{siteConfig?.title}</h1>
         <p className="shadow-text mt-5 text-sm">= {siteConfig?.subtitle} =</p>
       </>
     );

@@ -22,9 +22,10 @@ type TooltipProps = {
   title: React.ReactNode;
   placement?: Placement;
   children: JSX.Element;
+  className?: string;
 };
 
-export default function Tooltip({ children, title, placement = 'top', offsetX }: TooltipProps) {
+export default function Tooltip({ children, title, placement = 'top', offsetX, className }: TooltipProps) {
   const arrowRef = useRef<HTMLImageElement>(null);
   const [open, setOpen] = useState(false);
   const { x, y, refs, strategy, context, middlewareData } = useFloating({
@@ -49,8 +50,9 @@ export default function Tooltip({ children, title, placement = 'top', offsetX }:
         {open && (
           <div
             className={cn(
-              'text-xs/3.5 z-10 rounded-lg border bg-background/50 px-3 py-1 text-card-foreground backdrop-blur-lg',
+              'text-xs/3.5 z-10 rounded-lg border bg-background/80 px-3 py-1 text-card-foreground backdrop-blur-lg',
               ...fontVariants,
+              className,
             )}
             ref={refs.setFloating}
             style={{

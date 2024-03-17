@@ -3,7 +3,7 @@ import { PropsWithChildren } from 'react';
 
 export default function HomeLayout({ children }: PropsWithChildren<{}>) {
   return (
-    <div className="flex flex-col">
+    <div className="mb-20 flex flex-col">
       <Cover />
       {children}
     </div>
