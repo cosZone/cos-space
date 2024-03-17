@@ -2,11 +2,11 @@
 
 import { ErrorBoundary } from '@/components/common/ErrorBoundary';
 import EmptySvg from '@/components/svg/EmptySvg';
+import Loading from '@/components/ui/loading';
 import { PostData } from '@/lib/api/type';
 import { twMerge } from 'tailwind-merge';
-import Loading from '../loading';
-import PostItemCard from './PostItemCard';
 import Divider from '../divider';
+import PostItemCard from './PostItemCard';
 
 type PostListProps = {
   data?: PostData[];

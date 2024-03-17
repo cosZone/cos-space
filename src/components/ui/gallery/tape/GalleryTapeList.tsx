@@ -1,5 +1,6 @@
 import { ErrorBoundary } from '@/components/common/ErrorBoundary';
 import EmptySvg from '@/components/svg/EmptySvg';
+import Loading from '@/components/ui/loading';
 import { useFetchPublicAllGalleryItem } from '@/hooks/gallery';
 import { useIsOwner } from '@/hooks/user';
 import { galleryTapeAddDialogOpenAtom } from '@/store/gallery';
@@ -12,7 +13,6 @@ import { Button } from '../../button';
 import GalleryTapeAddDialog from './GalleryTapeAddDialog';
 import GalleryTapeDetailDialog from './GalleryTapeDetailDialog';
 import GalleryTapeItem from './GalleryTapeItem';
-import Loading from '../../loading';
 
 type GalleryTapeListProps = {
   className?: string;
