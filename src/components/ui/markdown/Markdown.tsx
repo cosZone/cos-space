@@ -3,10 +3,12 @@ import { cn } from '@/lib/utils';
 import _ from 'lodash-es';
 import { MarkdownToJSX, compiler } from 'markdown-to-jsx';
 import Script from 'next/script';
-import { FC, PropsWithChildren, Suspense, memo, useMemo, useRef } from 'react';
+import { FC, PropsWithChildren, Suspense, createElement, memo, useMemo, useRef } from 'react';
 import mdStyles from './markdown.module.css';
 import { MHeader } from './renderers/heading';
 import { MParagraph } from './renderers/paragraph';
+import { MCodeBlock } from './renderers/codeblock';
+import { MLink } from './renderers/link';
 
 export interface MdProps {
   value?: string;
@@ -55,11 +57,15 @@ export const Markdown: FC<MdProps & MarkdownToJSX.Options & PropsWithChildren> =
 
     const mdElement = compiler(`${value || props.children}`, {
       wrapper: null,
+      createElement: (type, props, children) => {
+        if (type === 'pre') return createElement('div', props, children);
+        return createElement(type, props, children);
+      },
       // @ts-ignore
       overrides: {
         ...headsOverrideProps,
         p: MParagraph,
-
+        a: MLink,
         // thead: MTableHead,
         // tr: MTableRow,
         // tbody: MTableBody,
@@ -67,7 +73,7 @@ export const Markdown: FC<MdProps & MarkdownToJSX.Options & PropsWithChildren> =
         // details: MDetails,
         // img: MarkdownImage,
         // tag: MTag,
-
+        code: MCodeBlock,
         // custom react component
         // Tag: MTag,
 
@@ -75,17 +81,6 @@ export const Markdown: FC<MdProps & MarkdownToJSX.Options & PropsWithChildren> =
 
         ...overrides,
       },
-      // extendsRules: {
-      //   heading: {
-      //     react(node, output, state) {
-      //       return (
-      //         <MHeader id={node.id} level={node.level} key={state?.key}>
-      //           {output(node.content, state!)}
-      //         </MHeader>
-      //       );
-      //     },
-      //   },
-      // },
       slugify: (str) => str,
       ...rest,
     });
