@@ -56,7 +56,7 @@ export default function PostItemCard({ className, data }: PostItemCardProps) {
         >
           <a
             href={href}
-            className="relative max-h-48 w-[calc(50%-2rem)] overflow-hidden rounded-lg clip-path-post-img-left xs:w-full xs:clip-path-none"
+            className="relative h-48 max-h-48 w-[calc(50%-2rem)] overflow-hidden rounded-lg clip-path-post-img-left xs:w-full xs:clip-path-none"
           >
             <div className="absolute inset-0 z-10" />
             <img

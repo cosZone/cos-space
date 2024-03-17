@@ -17,3 +17,10 @@
   font-style: normal;
   src: local('Fredericka the Great'), url('/fonts/FrederickatheGreat.ttf');
 }
+
+@font-face {
+  font-display: block;
+  font-family: '方正悠宋 简 509R';
+  font-style: normal;
+  src: local('方正悠宋 简 509R'), url('/fonts/方正悠宋 简 509R.ttf');
+}

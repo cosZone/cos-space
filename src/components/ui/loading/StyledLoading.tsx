@@ -25,7 +25,10 @@ export default function StyledLoading() {
             <div className="cat-tail"></div>
           </div>
         </div>
-        <p className="text-center text-xl font-semibold tracking-widest">{'Ciallo～(∠・ω< )⌒★'}</p>
+        <p className="text-center text-xl font-semibold">
+          <span className="tracking-widest">Ciallo</span>
+          {'～(∠・ω< )⌒★'}
+        </p>
       </div>
     </div>
   );

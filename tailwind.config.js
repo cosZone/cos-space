@@ -92,6 +92,7 @@ module.exports = {
         '5.5xl': '3.5rem',
       },
       fontFamily: {
+        FZYS: '方正悠宋 简 509R',
         noto: 'Noto Serif SC',
         poppins: 'var(--font-poppins)',
         candy: 'Candyshop',

@@ -12,7 +12,7 @@
   h4,
   h5,
   h6 {
-    font-family: var(--font-poppins), var(--font-notoSerifJp), 'Noto Serif SC';
+    font-family: '方正悠宋 简 509R', var(--font-poppins), var(--font-notoSerifJp), 'Noto Serif SC';
   }
   *::-webkit-scrollbar {
     display: none;
