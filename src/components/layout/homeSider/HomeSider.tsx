@@ -1,7 +1,7 @@
 'use client';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import NavItem from '@/components/ui/navigator/NavItem';
-import PostRightSider from '@/components/ui/post/PostRightSider';
+import PostSider from '@/components/ui/post/PostSider';
 import Segmented from '@/components/ui/segmented';
 import { HomeSiderType } from '@/constants/enum';
 import { siteConfig } from '@/constants/site-config';
@@ -74,7 +74,7 @@ export default function HomeSider({ type = HomeSiderType.HOME }: { type?: HomeSi
           </div>
         </>
       );
-    return <PostRightSider />;
+    return <PostSider />;
   }, [current, isOwner, router, routers, selectIdx1, setSelectIdx1]);
 
   const isMounted = useIsMounted();

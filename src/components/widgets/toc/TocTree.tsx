@@ -66,7 +66,7 @@ const MemoedItem = memo<{
   const { heading, isActive, onClick, rootDepth } = props;
 
   return (
-    <li key={heading.title} className="relative">
+    <li key={heading.title} className="relative flex items-center">
       {isActive && (
         <m.span
           layoutId="active-toc-item"

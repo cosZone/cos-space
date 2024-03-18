@@ -12,6 +12,7 @@
     "@clerk/nextjs": "^4.25.2",
     "@floating-ui/react": "^0.25.4",
     "@hookform/resolvers": "^3.3.2",
+    "@monaco-editor/react": "^4.6.0",
     "@radix-ui/react-avatar": "^1.0.4",
     "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-scroll-area": "^1.0.5",

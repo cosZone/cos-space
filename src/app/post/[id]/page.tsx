@@ -22,7 +22,6 @@ async function getPost(params: { id: string }) {
 
 export default async function Post({ params }: { params: { id: string } }) {
   const data = await getPost(params);
-
   return data ? (
     <ClientOnly>
       <Cover postData={data} />
