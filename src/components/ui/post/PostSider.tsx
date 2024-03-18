@@ -24,11 +24,13 @@ const PostSider = () => {
   }, []);
 
   if (isMdScreen) return null;
-  return $headings?.length ? (
+  return (
     <div className="sticky top-20 flex w-60 flex-col">
-      <div className="max-h-[70vh] min-w-[15rem] overflow-auto">
-        <TocTree className="h-full" $headings={$headings} />
-      </div>
+      {$headings?.length ? (
+        <div className="max-h-[70vh] min-w-[15rem] overflow-auto">
+          <TocTree className="h-full" $headings={$headings} />
+        </div>
+      ) : null}
       <div className="flex-center mt-2 gap-1">
         <Button variant="ghost" className="p-2">
           <AiFillLike className="h-6 w-6" />
@@ -40,7 +42,7 @@ const PostSider = () => {
         )}
       </div>
     </div>
-  ) : null;
+  );
 };
 
 export default PostSider;

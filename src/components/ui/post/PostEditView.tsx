@@ -25,7 +25,7 @@ type PostEditViewProps = {
 export default function PostEditView({ className, data }: PostEditViewProps) {
   const [text, setText] = useState('');
   const [isFullScreen, setIsFullScreen] = useState(false);
-  const [showPreview, setShowPreview] = useState(false);
+  const [showPreview, setShowPreview] = useState(true);
   const [metaData, setMetaData] = useState<PostMetaData | undefined>(undefined);
   const { theme } = useTheme();
 
