@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    background: var(--gradient-bg-start);
+    background: linear-gradient(to top, var(--box-bg-shadow) 0, var(--gradient-bg-start) 30%) no-repeat bottom;
   }
   h1,
   h2,
@@ -64,7 +64,7 @@
   }
 
   .shadow-box {
-    box-shadow: 0 0.5rem 1rem 0.3125rem var(--box-bg-shadow);
+    box-shadow: 0 1.25rem 1rem 0.3125rem var(--box-bg-shadow);
   }
 
   .shadow-text {

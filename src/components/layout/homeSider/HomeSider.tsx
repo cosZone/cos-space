@@ -19,6 +19,7 @@ const opts = [
 ];
 
 export default function HomeSider({ type = HomeSiderType.HOME }: { type?: HomeSiderType }) {
+  const [vis, setVis] = useState<boolean>(false);
   const [current, setCurrent] = useState<HomeSiderType>(type ?? HomeSiderType.HOME);
 
   const { routers } = useNavItems();
@@ -81,7 +82,7 @@ export default function HomeSider({ type = HomeSiderType.HOME }: { type?: HomeSi
   if (!isMounted) return null;
 
   return (
-    <div className="sticky top-20 flex min-w-[16rem] flex-col items-center p-4 px-5 lg:hidden">
+    <div className="sticky top-20 flex min-w-[16rem] flex-col items-center p-4 px-5 md:hidden">
       {type !== HomeSiderType.HOME && (
         <Segmented
           className="mb-4 flex w-full justify-between text-lg"
@@ -91,6 +92,7 @@ export default function HomeSider({ type = HomeSiderType.HOME }: { type?: HomeSi
           onChange={(value) => {
             setCurrent(value as HomeSiderType);
           }}
+          id="inner-home-sider"
         />
       )}
       {renderContent()}

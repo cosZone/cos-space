@@ -24,10 +24,10 @@ function NavItem({
   layoutIdPrefix = 'header',
 }: NavItemProps) {
   return (
-    <motion.div variants={delayOpenAnimVariants}>
+    <motion.div variants={delayOpenAnimVariants} whileHover={{ scale: 1.1, opacity: 0.9 }}>
       <div
         className={cn(
-          'relative flex h-full w-full cursor-pointer items-center justify-center text-base hover:opacity-70',
+          'relative flex h-full w-full cursor-pointer items-center justify-center text-base',
           {
             'text-white': selected && type !== 'header',
             'text-primary': selected && type === 'header',
@@ -49,6 +49,8 @@ function NavItem({
               indicatorClass,
             )}
             layoutId={`${layoutIdPrefix ?? 'header'}_tab_selected`}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
           />
         )}
       </div>

@@ -1,19 +1,17 @@
 import TocTree from '@/components/widgets/toc/TocTree';
-import { MD_SCREEN_QUERY } from '@/constants';
 import { MAIN_MARKDOWN_ID } from '@/constants/dom-id';
 import { useIsOwner } from '@/hooks/user';
+import { cn } from '@/lib/utils';
 import { postIsEditAtom } from '@/store/post';
 import { useAtom } from 'jotai';
 import { useMemo } from 'react';
 import { AiFillEdit, AiFillLike } from 'react-icons/ai';
 import { IoExit } from 'react-icons/io5';
-import { useMediaQuery } from 'react-responsive';
 import { Button } from '../button';
 
-const PostSider = () => {
+const PostSider = ({ className }: { className?: string }) => {
   const isOwner = useIsOwner();
   const [isEdit, setIsEdit] = useAtom(postIsEditAtom);
-  const isMdScreen = useMediaQuery({ query: MD_SCREEN_QUERY });
   const $headings = useMemo(() => {
     const $mainMarkdownRender = document.getElementById(MAIN_MARKDOWN_ID);
     if (!$mainMarkdownRender) return;
@@ -23,14 +21,15 @@ const PostSider = () => {
     return $headings;
   }, []);
 
-  if (isMdScreen) return null;
   return (
-    <div className="sticky top-20 flex w-60 flex-col">
+    <div className={cn('sticky top-20 flex w-60 flex-col', className)}>
       {$headings?.length ? (
         <div className="max-h-[70vh] min-w-[15rem] overflow-auto">
-          <TocTree className="h-full" $headings={$headings} />
+          <TocTree className="h-full justify-start md:h-auto" $headings={$headings} />
         </div>
-      ) : null}
+      ) : (
+        <div className="text-center text-gray-500">没有目录可显示</div> // 添加空状态
+      )}
       <div className="flex-center mt-2 gap-1">
         <Button variant="ghost" className="p-2">
           <AiFillLike className="h-6 w-6" />
