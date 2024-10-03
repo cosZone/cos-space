@@ -4,7 +4,7 @@ import { ClientOnly } from '@/components/common/ClientOnly';
 import { ErrorBoundary } from '@/components/common/ErrorBoundary';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { MainMarkdown } from '@/components/ui/markdown/Markdown';
-import PostRightSider from '@/components/ui/post/PostRightSider';
+import PostSider from '@/components/ui/post/PostSider';
 import { PostMetaData } from '@/lib/api/type';
 import matter from 'gray-matter';
 import { useMemo } from 'react';
@@ -38,7 +38,7 @@ export default function TestPage() {
           <MainMarkdown className="prose overflow-auto dark:prose-invert" value={content} />
         </ErrorBoundary>
         <ClientOnly>
-          <PostRightSider />
+          <PostSider />
         </ClientOnly>
       </div>
     </>

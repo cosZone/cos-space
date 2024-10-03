@@ -71,7 +71,7 @@ export default function Cover({ postData, covers = _.shuffle(defaultCoverList) }
   return (
     <div className="relative -z-10 flex h-[60vh] max-h-[35rem] overflow-hidden">
       <div className="absolute inset-0 h-full bg-black/40" />
-      <div className="absolute inset-0 bottom-[8vh] z-10 flex flex-col items-center justify-center text-white">
+      <div className="absolute inset-0 bottom-[8vh] z-10 flex flex-col items-center justify-center px-5 text-white">
         {renderContent()}
       </div>
       <AnimatePresence mode="popLayout">

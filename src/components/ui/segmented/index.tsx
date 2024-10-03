@@ -1,5 +1,5 @@
 import { cn } from '@/lib/utils';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import React, { useCallback, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 
@@ -53,7 +53,7 @@ export const Segmented = ({ options, defaultValue, onChange, className, id, indi
             {isSelected(value) && (
               <motion.div
                 layoutId={`segmented_selected_${id ?? 'default'}`}
-                className={twMerge('absolute inset-0 -z-10 rounded-sm bg-primary/80', indicateClass)}
+                className={cn('absolute inset-0 -z-10 rounded-sm bg-primary/80', indicateClass)}
               />
             )}
           </div>

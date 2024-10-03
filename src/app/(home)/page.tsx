@@ -14,9 +14,9 @@ export default async function Home() {
   const data = await getAllPost();
   return data ? (
     <ClientOnly>
-      <div className="mx-auto flex items-start justify-center md:w-full">
+      <div className="mx-auto flex items-start justify-center pr-11 md:w-full md:pr-0">
         <HomeSider />
-        <PostList className="shadow-box w-full p-4 2xl:container md:px-1 md:py-2" data={data} />
+        <PostList className="shadow-box w-full bg-gradient-start p-4 2xl:container md:px-1 md:py-2" data={data} />
       </div>
     </ClientOnly>
   ) : (
