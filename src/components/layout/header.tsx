@@ -6,6 +6,7 @@ import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import { Navigator } from '../ui/navigator';
+import LogoSvg from '@/../public/svg/logo.svg?component';
 
 export function Header() {
   const router = useRouter();
@@ -32,10 +33,11 @@ export function Header() {
             damping: 20,
           }}
           whileHover={{ scale: 1.1 }}
-          className="flex cursor-pointer items-center justify-center gap-1 whitespace-nowrap text-2xl font-bold"
+          className="-my-4 flex cursor-pointer items-center justify-center gap-1 whitespace-nowrap text-sm font-bold"
           onClick={() => router.push('/')}
         >
-          <p className="font-candy text-2xl font-light capitalize tracking-widest text-primary">{alternate ?? title}</p>
+          <LogoSvg className="h-14" />
+          {/* <p className="logo-text text-2xl font-light capitalize tracking-widest text-primary">{alternate ?? title}</p> */}
         </motion.div>
         <Navigator className="h-full flex-grow justify-end" />
       </div>

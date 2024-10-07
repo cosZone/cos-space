@@ -4,12 +4,33 @@ const nextConfig = {
   images: {
     domains: ['fastly.jsdelivr.net', 'backblaze.cosine.ren'],
   },
-  webpack: (config) => {
-    config.module.rules.push({
-      test: /\.md$/,
-      use: 'raw-loader',
-    });
-
+  webpack(config) {
+    const fileLoaderRule = config.module.rules.find((rule) => rule.test?.test?.('.svg'));
+    config.module.rules = [
+      ...config.module.rules.filter((rule) => rule !== fileLoaderRule),
+      { ...fileLoaderRule, exclude: /\.svg$/i },
+      {
+        ...fileLoaderRule,
+        test: /\.svg$/i,
+        resourceQuery: {
+          ...fileLoaderRule.resourceQuery,
+          not: [
+            ...fileLoaderRule.resourceQuery.not,
+            /component/, // *.svg?component
+          ],
+        },
+      },
+      {
+        test: /\.svg$/i,
+        issuer: /\.[jt]sx?$/,
+        use: '@svgr/webpack',
+        resourceQuery: /component/, // *.svg?component
+      },
+      // {
+      //   test: /\.md$/,
+      //   use: 'raw-loader',
+      // },
+    ];
     return config;
   },
 };

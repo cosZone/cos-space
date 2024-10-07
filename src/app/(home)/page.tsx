@@ -20,6 +20,6 @@ export default async function Home() {
       </div>
     </ClientOnly>
   ) : (
-    <EmptySvg />
+    <EmptySvg className="fill-foreground" />
   );
 }
