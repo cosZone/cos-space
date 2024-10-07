@@ -7,7 +7,12 @@ const nextConfig = {
   webpack(config) {
     const fileLoaderRule = config.module.rules.find((rule) => rule.test?.test?.('.svg'));
     config.module.rules = [
+      {
+        test: /\.md$/,
+        use: 'raw-loader',
+      },
       ...config.module.rules.filter((rule) => rule !== fileLoaderRule),
+
       { ...fileLoaderRule, exclude: /\.svg$/i },
       {
         ...fileLoaderRule,
@@ -26,10 +31,6 @@ const nextConfig = {
         use: '@svgr/webpack',
         resourceQuery: /component/, // *.svg?component
       },
-      // {
-      //   test: /\.md$/,
-      //   use: 'raw-loader',
-      // },
     ];
     return config;
   },
