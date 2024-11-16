@@ -1,5 +1,5 @@
 import { microReboundPreset } from '@/constants/anim/spring';
-import { Variants } from 'framer-motion';
+import { Variants } from 'motion/react';
 
 export const childDelayOpenAnimVariants: Variants = {
   open: {

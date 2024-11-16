@@ -1,5 +1,5 @@
 import { cn } from '@/lib/utils';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'motion/react';
 import React, { useCallback, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 

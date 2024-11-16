@@ -5,7 +5,7 @@ import { useReadTime } from '@/hooks/util';
 import { PostData, PostMetaData } from '@/lib/api/type';
 import { parseDate } from '@/lib/datetime';
 import { routeBuilder } from '@/lib/route';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import matter from 'gray-matter';
 import { useRouter } from 'next/navigation';
 import { useMemo } from 'react';

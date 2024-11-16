@@ -1,7 +1,7 @@
 import { delayOpenAnimVariants } from '@/lib/anim';
 import { cn } from '@/lib/utils';
 import { ClassValue } from 'clsx';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 
 export type NavItemProps = {
   selected?: boolean;

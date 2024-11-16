@@ -10,7 +10,7 @@ import {
   useInteractions,
   useRole,
 } from '@floating-ui/react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'motion/react';
 import { ReactNode, cloneElement, memo, useEffect, useState } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 

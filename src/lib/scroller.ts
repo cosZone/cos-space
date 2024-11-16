@@ -1,5 +1,5 @@
 import { microDampingPreset } from '@/constants/anim/spring';
-import { animateValue } from 'framer-motion';
+import { animateValue } from 'motion/react';
 
 const calculateElementTop = (el: HTMLElement) => {
   let top = 0;

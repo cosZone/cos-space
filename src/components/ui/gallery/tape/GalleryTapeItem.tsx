@@ -7,7 +7,7 @@ import { GalleryItemData } from '@/lib/api/type';
 import { parseDate } from '@/lib/datetime';
 import { cn } from '@/lib/utils';
 import { galleryTapeDetailAtom, galleryTapeDetailDialogOpenAtom } from '@/store/gallery';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { useSetAtom } from 'jotai';
 import Image from 'next/image';
 import { useCallback } from 'react';

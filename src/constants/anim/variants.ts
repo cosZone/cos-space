@@ -1,4 +1,4 @@
-import { Variants } from 'framer-motion';
+import { Variants } from 'motion/react';
 import { microDampingPreset } from './spring';
 
 export const scrollCardMoveUpVariants: Variants = {

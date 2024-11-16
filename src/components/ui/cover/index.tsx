@@ -4,7 +4,7 @@ import { defaultCoverList, siteConfig } from '@/constants/site-config';
 import { useIsMounted } from '@/hooks/useIsMounted';
 import { PostData } from '@/lib/api/type';
 import { parseDate } from '@/lib/datetime';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'motion/react';
 import matter from 'gray-matter';
 import _ from 'lodash-es';
 import Image from 'next/image';

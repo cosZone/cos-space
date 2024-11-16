@@ -1,7 +1,7 @@
 'use client';
 
 import { cn } from '@/lib/utils';
-import { motion, useMotionValue, useTransform } from 'framer-motion';
+import { motion, useMotionValue, useTransform } from 'motion/react';
 import { CSSProperties, MouseEventHandler, ReactNode, useCallback, useRef, useState } from 'react';
 
 export type Card3dProps = {

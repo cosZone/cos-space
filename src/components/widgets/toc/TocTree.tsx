@@ -1,7 +1,7 @@
 import { useActiveTocId } from '@/hooks/post';
 import { springScrollToElement } from '@/lib/scroller';
 import { cn } from '@/lib/utils';
-import { m } from 'framer-motion';
+import { m } from 'motion/react';
 import { memo, useCallback, useMemo } from 'react';
 import { ITocItem, TocItem } from './TocItem';
 

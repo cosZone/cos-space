@@ -12,7 +12,7 @@ import {
   useInteractions,
   useRole,
 } from '@floating-ui/react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'motion/react';
 import React, { PropsWithChildren, cloneElement, useEffect, useState } from 'react';
 
 export type Position = 'top' | 'bottom' | 'left' | 'right';

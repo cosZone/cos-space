@@ -3,7 +3,7 @@ import { siteConfig } from '@/constants/site-config';
 import { useScrollBeyond } from '@/hooks/app/useScrollBeyond';
 import { useScrollHide } from '@/hooks/app/useScrollHide';
 import { cn } from '@/lib/utils';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { useRouter } from 'next/navigation';
 import { Navigator } from '../ui/navigator';
 import LogoSvg from '@/../public/svg/logo.svg?component';

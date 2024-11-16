@@ -13,7 +13,7 @@ import { useCallback, useState } from 'react';
 import { useIsOwner } from '@/hooks/user';
 import PostSider from '../ui/post/PostSider';
 import Segmented from '../ui/segmented'; // 添加导入
-import { AnimatePresence, LayoutGroup, motion } from 'framer-motion';
+import { AnimatePresence, LayoutGroup, motion } from 'motion/react';
 
 const opts = [
   { label: '导航', value: 'nav' },
