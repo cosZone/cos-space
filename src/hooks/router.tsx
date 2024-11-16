@@ -40,7 +40,7 @@ export const useNavItems = () => {
             </SignedIn>
             <SignedOut key="sign-in">
               <SignInButton mode="modal" redirectUrl={'/'}>
-                <Button className="gap-1">
+                <Button className="h-10 gap-1 px-4 py-2">
                   登录
                   <FaUserAlt className="h-4 w-4" />
                 </Button>

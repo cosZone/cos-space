@@ -1,6 +1,6 @@
+import { codeToHtml } from '@/lib/shiki';
 import { useTheme } from 'next-themes';
 import { useLayoutEffect, useState } from 'react';
-import { codeToHtml } from 'shiki';
 
 interface CodeBlockProps {
   id: string;
@@ -16,7 +16,8 @@ export const MCodeBlock = (props: CodeBlockProps) => {
   useLayoutEffect(() => {
     if (!className?.includes('lang-')) return;
     const lang = className.slice(5).toLocaleLowerCase();
-    codeToHtml(children?.toString() ?? '', {
+    codeToHtml({
+      code: children?.toString() ?? '',
       lang,
       theme: theme === 'light' ? 'github-light' : 'github-dark',
     }).then((html) => setRenderedHighLightHTML(html));
