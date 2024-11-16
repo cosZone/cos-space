@@ -2,7 +2,20 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['fastly.jsdelivr.net', 'backblaze.cosine.ren'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'fastly.jsdelivr.net' ,
+      },
+      {
+        protocol: 'https',
+        hostname: 'backblaze.cosine.ren',
+      },
+      {
+        protocol: 'https',
+        hostname: 'r2.cosine.ren',
+      },
+    ],
   },
   webpack(config) {
     const fileLoaderRule = config.module.rules.find((rule) => rule.test?.test?.('.svg'));

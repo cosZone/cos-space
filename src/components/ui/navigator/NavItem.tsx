@@ -24,10 +24,10 @@ function NavItem({
   layoutIdPrefix = 'header',
 }: NavItemProps) {
   return (
-    <motion.div variants={delayOpenAnimVariants} whileHover={{ scale: 1.1, opacity: 0.9 }}>
+    <motion.div variants={delayOpenAnimVariants} whileHover={{ scale: 1.1 }}>
       <div
         className={cn(
-          'relative flex h-full w-full cursor-pointer items-center justify-center text-base',
+          'relative flex w-full cursor-pointer items-center justify-center text-base',
           {
             'text-white': selected && type !== 'header',
             'text-primary': selected && type === 'header',
@@ -42,7 +42,7 @@ function NavItem({
         {selected && (
           <motion.div
             className={cn(
-              'absolute inset-x-0 -bottom-0.5 border-t-2 border-primary',
+              'absolute inset-x-0 -bottom-1.5 border-t-2 border-primary',
               {
                 'inset-0 -z-10 rounded-lg border-none bg-gradient-pink': type === 'sider',
               },

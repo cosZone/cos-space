@@ -5,6 +5,7 @@ type SiteConfig = {
   name?: string;
   description?: string;
   avatar?: string;
+  showLogo?: boolean;
 };
 
 // TODO: change to backend
@@ -17,6 +18,7 @@ export const siteConfig: SiteConfig = {
   name: 'cos',
   description: '图片迁移完毕，博客待重构~', // 站点简介（一段话）
   avatar: 'https://ysx.cosine.ren/img/avatar.jpg', // 站点头像 logo.png or url
+  showLogo: true, // 是否显示 logo 否则用 title
 };
 
 export const seoConfig = {

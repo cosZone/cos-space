@@ -12,6 +12,7 @@ async function getAllPost() {
 
 export default async function Home() {
   const data = await getAllPost();
+
   return data ? (
     <ClientOnly>
       <div className="mx-auto flex items-start justify-center pr-11 md:w-full md:pr-0">

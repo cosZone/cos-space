@@ -90,7 +90,7 @@ export const Navigator = ({ className }: NavigatorProps) => {
           initial="closed"
           animate="open"
           variants={childDelayOpenAnimVariants}
-          className="ml-4 flex h-full w-full flex-grow gap-4"
+          className="ml-4 flex w-full flex-grow items-center gap-4"
         >
           {routers.map(({ name, path, key, needOwner }, idx) => {
             if (needOwner) {
@@ -99,7 +99,6 @@ export const Navigator = ({ className }: NavigatorProps) => {
             return (
               <NavItem
                 selected={selectIdx === idx}
-                indicatorClass="bottom-0.5"
                 className="px-2"
                 key={key ?? name}
                 onClick={() => {

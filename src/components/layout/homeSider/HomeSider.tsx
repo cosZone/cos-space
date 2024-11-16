@@ -8,10 +8,11 @@ import { siteConfig } from '@/constants/site-config';
 import { useNavItems } from '@/hooks/router';
 import { useIsMounted } from '@/hooks/useIsMounted';
 import { useIsOwner } from '@/hooks/user';
-import { oneLevelTabSelectIdxAtom } from '@/store/app';
-import { useAtom } from 'jotai';
+import { currentMobileSiderNavAtom, oneLevelTabSelectIdxAtom } from '@/store/app';
+import { useAtom, useSetAtom } from 'jotai';
 import { useRouter } from 'next/navigation';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+import { MobileSiderNavType } from '../sider';
 
 const opts = [
   { label: 'Home', value: HomeSiderType.HOME },
@@ -26,6 +27,12 @@ export default function HomeSider({ type = HomeSiderType.HOME }: { type?: HomeSi
   const isOwner = useIsOwner();
   const [selectIdx1, setSelectIdx1] = useAtom(oneLevelTabSelectIdxAtom);
   const router = useRouter();
+
+  const setCurrentMobileSiderNav = useSetAtom(currentMobileSiderNavAtom);
+
+  useEffect(() => {
+    setCurrentMobileSiderNav(type === HomeSiderType.HOME ? MobileSiderNavType.NAV : MobileSiderNavType.POST);
+  }, [type]);
 
   const renderContent = useCallback(() => {
     if (current === HomeSiderType.HOME)

@@ -4,7 +4,7 @@ import { useIsMounted } from '@/hooks/useIsMounted';
 import NavItem, { NavItemProps } from '../ui/navigator/NavItem';
 import { useNavItems } from '@/hooks/router';
 import { useAtom } from 'jotai';
-import { oneLevelMenuExpandAtom, oneLevelTabSelectIdxAtom } from '@/store/app';
+import { currentMobileSiderNavAtom, oneLevelMenuExpandAtom, oneLevelTabSelectIdxAtom } from '@/store/app';
 import { useRouter } from 'next/navigation';
 import Drawer from '../ui/drawer';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
@@ -15,9 +15,13 @@ import PostSider from '../ui/post/PostSider';
 import Segmented from '../ui/segmented'; // 添加导入
 import { AnimatePresence, LayoutGroup, motion } from 'motion/react';
 
+export enum MobileSiderNavType {
+  NAV = 'nav',
+  POST = 'post',
+}
 const opts = [
-  { label: '导航', value: 'nav' },
-  { label: '目录', value: 'post' },
+  { label: '导航', value: MobileSiderNavType.NAV },
+  { label: '目录', value: MobileSiderNavType.POST },
 ];
 type SiderProps = {
   bottomItems: (NavItemProps & { key?: string })[];
@@ -30,7 +34,7 @@ const Sider = ({ bottomItems }: SiderProps) => {
   const [mobileExpand, setMobileExpand] = useAtom(oneLevelMenuExpandAtom);
   const { routers } = useNavItems();
   const isOwner = useIsOwner();
-  const [currentView, setCurrentView] = useState<'nav' | 'post'>('post');
+  const [currentView, setCurrentView] = useAtom(currentMobileSiderNavAtom);
 
   const renderContent = useCallback(() => {
     return (
@@ -42,11 +46,11 @@ const Sider = ({ bottomItems }: SiderProps) => {
             className="w-full"
             itemClass="flex-grow py-2"
             options={opts}
-            defaultValue={currentView}
-            onChange={(value) => setCurrentView(value as 'nav' | 'post')}
+            value={currentView}
+            onChange={(value) => setCurrentView(value as MobileSiderNavType)}
           />
           {/* </div> */}
-          {currentView === 'nav' ? (
+          {currentView === MobileSiderNavType.NAV ? (
             <motion.div
               key="mobile-nav"
               initial={{ x: -20 }}

@@ -1,6 +1,6 @@
 import { cn } from '@/lib/utils';
 import { AnimatePresence, motion } from 'motion/react';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 export type OptionType = {
@@ -16,10 +16,21 @@ type SegmentedProps = {
   indicateClass?: string;
   itemClass?: string;
   id?: string;
+  value?: string | number; // 受控
 };
 
-export const Segmented = ({ options, defaultValue, onChange, className, id, indicateClass, itemClass }: SegmentedProps) => {
-  const [value, setValue] = useState(() => defaultValue ?? options[0]?.value ?? '');
+export const Segmented = ({
+  options,
+  defaultValue,
+  onChange,
+  className,
+  id,
+  indicateClass,
+  itemClass,
+  value,
+}: SegmentedProps) => {
+  const [_value, setValue] = useState(() => value ?? defaultValue ?? options[0]?.value ?? '');
+
   const select = useCallback(
     (value: string | number) => {
       setValue(value);
@@ -27,7 +38,12 @@ export const Segmented = ({ options, defaultValue, onChange, className, id, indi
     },
     [setValue, onChange],
   );
-  const isSelected = useCallback((selectedValue: string | number) => value === selectedValue, [value]);
+  const isSelected = useCallback((selectedValue: string | number) => _value === selectedValue, [_value]);
+
+  useEffect(() => {
+    if (value) setValue(value);
+  }, [value]);
+
   return (
     <div
       className={cn(

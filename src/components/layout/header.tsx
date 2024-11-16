@@ -10,12 +10,13 @@ import LogoSvg from '@/../public/svg/logo.svg?component';
 
 export function Header() {
   const router = useRouter();
-  const { alternate, title } = siteConfig;
+  const { alternate, title, showLogo } = siteConfig;
   const isVisible = useScrollHide();
   const isBeyond = useScrollBeyond(500);
+
   return (
     <motion.header
-      className={cn('fixed inset-x-0 top-0 z-10 select-none gap-4 px-5 py-4 text-white ', {
+      className={cn('fixed inset-x-0 top-0 z-10 select-none gap-4 px-5 py-1 text-white md:py-2 ', {
         'border-b border-border bg-gradient-header text-black dark:text-white': isBeyond,
         'shadow-text': !isBeyond,
       })}
@@ -36,8 +37,11 @@ export function Header() {
           className="-my-4 flex cursor-pointer items-center justify-center gap-1 whitespace-nowrap text-sm font-bold"
           onClick={() => router.push('/')}
         >
-          <LogoSvg className="h-14" />
-          {/* <p className="logo-text text-2xl font-light capitalize tracking-widest text-primary">{alternate ?? title}</p> */}
+          {showLogo ? (
+            <LogoSvg className="h-8" />
+          ) : (
+            <p className="logo-text text-2xl font-light capitalize tracking-widest text-primary">{alternate ?? title}</p>
+          )}
         </motion.div>
         <Navigator className="h-full flex-grow justify-end" />
       </div>

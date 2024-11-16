@@ -4,13 +4,13 @@ import { ErrorBoundary } from '@/components/common/ErrorBoundary';
 import EmptySvg from '@/components/svg/EmptySvg';
 import Loading from '@/components/ui/loading';
 import { PostData } from '@/lib/api/type';
+import { springScrollTo } from '@/lib/scroller';
+import { useMemo, useState } from 'react';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { twMerge } from 'tailwind-merge';
+import { Button } from '../button';
 import Divider from '../divider';
 import PostItemCard from './PostItemCard';
-import { useCallback, useMemo, useState } from 'react';
-import { Button } from '../button';
-import { springScrollTo } from '@/lib/scroller';
-import { FaChevronRight, FaChevronLeft } from 'react-icons/fa';
 
 type PostListProps = {
   data?: PostData[];
