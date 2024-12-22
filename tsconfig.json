@@ -7,14 +7,14 @@
     "jsxImportSource": "react",
     "baseUrl": "src",
     "paths": {
+      "@": ["."],
       "@assets/*": ["assets/*"],
-      "@config": ["config.ts"],
       "@components/*": ["components/*"],
       "@content/*": ["content/*"],
       "@layouts/*": ["layouts/*"],
       "@pages/*": ["pages/*"],
       "@styles/*": ["styles/*"],
-      "@utils/*": ["utils/*"]
+      "@lib/*": ["lib/*"]
     }
   }
 }
