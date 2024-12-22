@@ -11,6 +11,7 @@ export default defineConfig({
     tailwind({
       // 允许在 Tailwind 的语法基础上编写嵌套的 CSS 声明
       nesting: true,
+      applyBaseStyles: false,
     }),
   ],
   devToolbar: {

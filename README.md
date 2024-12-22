@@ -46,3 +46,15 @@ All commands are run from the root of the project, from a terminal:
 ## 👀 Want to learn more?
 
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+
+## Thanks
+
+hexo 迁移
+
+- [4Ark - 再见 Hexo，你好 Astro！](https://github.com/gd4Ark/gd4Ark.github.io)
+
+theme inspiration
+
+- [Hexo 主题 Shoka](https://shoka.lostyu.me/computer-science/note/theme-shoka-doc/)
+
+- [astro - Yukina](https://github.com/WhitePaper233/yukina)
