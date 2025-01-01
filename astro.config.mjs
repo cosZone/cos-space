@@ -7,7 +7,9 @@ import tailwind from '@astrojs/tailwind';
 // https://astro.build/config
 export default defineConfig({
   integrations: [
-    react(),
+    react({
+      include: ['**/components/*'],
+    }),
     tailwind({
       // 允许在 Tailwind 的语法基础上编写嵌套的 CSS 声明
       nesting: true,

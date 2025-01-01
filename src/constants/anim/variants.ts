@@ -56,3 +56,19 @@ export const delayOpenAnimVariants: Variants = {
   },
   closed: { opacity: 0, y: 20, transition: { duration: 0.3 } },
 };
+
+export const fadeInVariants = {
+  offscreen: {
+    opacity: 0,
+    scale: 0.95,
+  },
+  onscreen: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      type: 'spring',
+      duration: 0.8,
+      bounce: 0.2,
+    },
+  },
+};

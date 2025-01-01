@@ -19,6 +19,7 @@ const coverImageVariants = {
 export default function Cover({ covers = defaultCoverList }: CoverProps) {
   const [current, setCurrent] = useState(0);
   const [shuffledCovers] = useState(() => _.shuffle(covers));
+  const [currentImage] = useState(defaultCoverList[0]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -68,7 +69,7 @@ export default function Cover({ covers = defaultCoverList }: CoverProps) {
       </div>
       <AnimatePresence mode="popLayout">
         <motion.div
-          key={shuffledCovers[current]}
+          key={currentImage}
           initial="hidden"
           animate="visible"
           exit="exit"
@@ -78,7 +79,7 @@ export default function Cover({ covers = defaultCoverList }: CoverProps) {
           <img
             className="-z-10 h-full min-h-[15rem] w-full select-none object-cover"
             draggable={false}
-            src={shuffledCovers[current]}
+            src={currentImage}
             alt=""
             loading="eager"
           />
