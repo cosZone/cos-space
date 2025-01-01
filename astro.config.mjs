@@ -1,6 +1,6 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
-
+import svgr from 'vite-plugin-svgr';
 import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
 
@@ -16,5 +16,8 @@ export default defineConfig({
   ],
   devToolbar: {
     enabled: true,
+  },
+  vite: {
+    plugins: [svgr()],
   },
 });
