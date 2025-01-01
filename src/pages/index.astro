@@ -2,72 +2,19 @@
 import Layout from '@layouts/Layout.astro';
 import '@styles/index.css';
 
-import { buttonVariants } from '@components/ui/button';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@components/ui/card';
-import { AvatarComponent } from '@components/Avatar.tsx';
+import { siteConfig } from '@constants/site-config';
+import HomeSider from '@components/layout/sider/HomeSider';
+import Cover from '@components/ui/cover';
 ---
 
-<Layout title="Welcome to Astro x Shadcn Starter">
-  <main class="container mx-auto px-4 py-16 max-w-4xl">
-    <h1 class="text-5xl font-extrabold text-center mb-8 text-black-50">
-      Astro x Shadcn <span class="text-3xl block mt-2 font-normal">Starter Template</span>
-    </h1>
+<Layout title={siteConfig.title}>
+  <div class="mb-20 flex flex-col">
+    <Cover client:load />
 
-    <Card className="mb-12 shadow-lg">
-      <CardHeader>
-        <CardTitle>Getting Started</CardTitle>
-        <CardDescription>Your new project is ready to go!</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <p class="mb-4">This starter template includes:</p>
-        <ul class="grid grid-cols-2 gap-4">
-          <li>🚀 Astro</li>
-          <li>🎨 Shadcn UI</li>
-          <li>📦 Tailwind CSS</li>
-          <li>🔥 React</li>
-        </ul>
-      </CardContent>
-      <CardFooter className="flex flex-col sm:flex-row justify-center sm:space-x-4 space-y-4 sm:space-y-0">
-        <a
-          href="https://ui.shadcn.com/"
-          class={`inline-block px-4 py-2 text-lg font-medium text-white bg-black-100 rounded-lg hover:bg-slate transition ${buttonVariants({ size: 'lg' })}`}
-        >
-          Explore Shadcn Documentation
-        </a>
-        <a
-          href="https://astro.build/docs"
-          class={`inline-block px-4 py-2 text-lg font-medium text-white bg-black-100 rounded-lg hover:bg-slate transition ${buttonVariants({ size: 'lg' })}`}
-        >
-          Explore Astro Documentation
-        </a>
-        <a
-          href="https://github.com/dansholds/astro-shadcn-starter"
-          class={`inline-block px-4 py-2 text-lg font-medium text-white bg-black-100 rounded-lg hover:bg-slate transition ${buttonVariants({ size: 'lg' })}`}
-        >
-          View GitHub Repository
-        </a>
-      </CardFooter>
-    </Card>
-
-    <div class="grid sm:grid-cols-2 gap-6">
-      <Card className="shadow-md hover:shadow-xl transition-shadow">
-        <CardHeader>
-          <CardTitle>
-            <AvatarComponent client:load src="https://github.com/withastro.png" alt="Astro" fallbackText="Astro" />
-            Astro
-          </CardTitle>
-        </CardHeader>
-        <CardContent> Build faster websites with less client-side JavaScript. </CardContent>
-      </Card>
-      <Card className="shadow-md hover:shadow-xl transition-shadow">
-        <CardHeader>
-          <CardTitle>
-            <AvatarComponent client:load src="https://github.com/shadcn.png" alt="Shadcn" fallbackText="Shadcn" />
-            Shadcn UI
-          </CardTitle>
-        </CardHeader>
-        <CardContent> Beautifully designed components built with Radix UI and Tailwind CSS. </CardContent>
-      </Card>
+    <div class="mx-auto flex items-start justify-center pr-11 md:w-full md:pr-0">
+      <HomeSider client:load />
+      <div class="shadow-box w-full bg-gradient-start p-4 2xl:container md:px-1 md:py-2"></div>
+      <!-- <PostList className="shadow-box w-full bg-gradient-start p-4 2xl:container md:px-1 md:py-2" data={data} /> -->
     </div>
-  </main>
+  </div>
 </Layout>
