@@ -33,7 +33,7 @@ const { posts, page } = Astro.props;
             <PostItemCard client:load data={post} />
           ))}
         </div>
-        <Paginator client:load page={page} />
+        <Paginator page={page} />
       </>
     )
   }
