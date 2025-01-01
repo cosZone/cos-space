@@ -22,7 +22,11 @@ const sortedPosts = posts.sort((a: BlogPost, b: BlogPost) => {
     <Cover client:load />
     <div class="mx-auto flex items-start justify-center pr-11 md:w-full md:pr-0">
       <HomeSider client:load />
-      <PostList client:load posts={sortedPosts} />
+      <PostList
+        client:load
+        className="shadow-box w-full bg-gradient-start p-4 2xl:container md:px-1 md:py-2"
+        posts={sortedPosts}
+      />
     </div>
   </div>
 </Layout>
