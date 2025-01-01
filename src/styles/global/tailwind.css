@@ -3,6 +3,9 @@
 @tailwind utilities;
 
 @layer base {
+  @view-transition {
+    navigation: auto; /* enabled! */
+  }
   body {
     background: linear-gradient(to top, var(--box-bg-shadow) 0, var(--gradient-bg-start) 30%) no-repeat bottom;
   }
@@ -41,7 +44,12 @@
 /* utils */
 @layer components {
   .font-default {
-    font-family: var(--font-poppins), -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    font-family:
+      var(--font-poppins),
+      -apple-system,
+      'PingFang SC',
+      'Microsoft YaHei',
+      sans-serif;
   }
   .flex-center {
     @apply flex items-center justify-center;

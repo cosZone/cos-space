@@ -1,0 +1,40 @@
+---
+import type { BlogPost } from 'types/blog';
+import Divider from '@components/ui/divider';
+import EmptySvg from '@components/svg/EmptySvg';
+import PostItemCard from './PostItemCard';
+import type { Page } from 'astro';
+import Paginator from './Paginator.astro';
+
+interface Props {
+  posts?: BlogPost[];
+  page: Page<BlogPost>;
+}
+
+const { posts, page } = Astro.props;
+---
+
+<div class="flex flex-col gap-8 pt-8 shadow-box w-full bg-gradient-start p-4 2xl:container md:px-1 md:py-2">
+  <Divider>文章列表</Divider>
+
+  {
+    !posts?.length && (
+      <div class="flex flex-col items-center gap-2 text-foreground/30">
+        <EmptySvg className="fill-foreground/20" />
+        <span>还没有发表文章哦～</span>
+      </div>
+    )
+  }
+  {
+    posts && posts?.length > 0 && (
+      <>
+        <div class="flex flex-col gap-8 px-5">
+          {posts.map((post) => (
+            <PostItemCard client:load data={post} />
+          ))}
+        </div>
+        <Paginator client:load page={page} />
+      </>
+    )
+  }
+</div>
