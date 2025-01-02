@@ -20,4 +20,8 @@ export default defineConfig({
   vite: {
     plugins: [svgr()],
   },
+
+  redirects: {
+    '/': '/posts',
+  },
 });

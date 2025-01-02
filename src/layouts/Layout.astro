@@ -11,7 +11,7 @@ const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html transition:name="root" transition:animate="none" lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content="Astro x Shadcn Starter Template" />
@@ -29,9 +29,9 @@ const { title } = Astro.props;
   </head>
   <body>
     <div class="flex min-h-screen flex-col text-black dark:text-white">
-      <Header transition:animate="fade" client:load pathname={Astro.url.pathname} />
+      <Header client:load pathname={Astro.url.pathname} />
       {/*  <FloatGroup /> */}
-      <main transition:animate="fade" class="relative flex flex-grow flex-col">{(<slot />)}</main>
+      <main class="relative flex flex-grow flex-col">{(<slot />)}</main>
       {/* <Footer className="mt-auto" /> */}
     </div>
   </body>
