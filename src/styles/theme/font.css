@@ -3,3 +3,10 @@
   src: url('https://backblaze.cosine.ren/source/fonts/candy.otf');
   font-display: swap;
 }
+
+@font-face {
+  font-display: block;
+  font-family: 'Fredericka the Great';
+  font-style: normal;
+  src: local('Fredericka the Great'), url('/fonts/FrederickatheGreat.ttf');
+}

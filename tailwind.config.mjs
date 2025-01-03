@@ -104,6 +104,7 @@ export default {
         noto: 'Noto Serif SC',
         poppins: 'Poppins',
         candy: 'Candyshop',
+        fg: 'Fredericka the Great',
       },
       clipPath: {
         'post-img-left': 'polygon(0 0,92% 0%,100% 100%,0% 100%)',
@@ -114,5 +115,5 @@ export default {
       },
     },
   },
-  plugins: [require('tailwindcss-animate'), require('@tailwindcss/typography')],
+  plugins: [require('tailwindcss-animate'), require('tailwind-clip-path'), require('@tailwindcss/typography')],
 };

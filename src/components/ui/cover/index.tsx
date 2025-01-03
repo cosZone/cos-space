@@ -1,7 +1,8 @@
-import { defaultCoverList, siteConfig } from '@constants/site-config';
-// import { PostData } from '@/lib/api/type';
-// import { parseDate } from '@/lib/datetime';
+'use client';
+
 import _ from 'lodash-es';
+
+import { defaultCoverList, siteConfig } from '@constants/site-config';
 import { AnimatePresence, motion } from 'motion/react';
 import { useCallback, useEffect, useState } from 'react';
 import WaveSvg from './wave';
@@ -16,17 +17,16 @@ const coverImageVariants = {
   visible: { scale: 1.2, opacity: 1, transition: { duration: 8 } },
   exit: { scale: 1.3, opacity: 0, transition: { duration: 2 } },
 };
-export default function Cover({ covers = defaultCoverList }: CoverProps) {
-  const [current, setCurrent] = useState(0);
-  const [shuffledCovers] = useState(() => _.shuffle(covers));
-  const [currentImage] = useState(defaultCoverList[0]);
 
+export default function Cover({ covers = _.shuffle(defaultCoverList) }: CoverProps) {
+  const [current, setCurrent] = useState(0);
+  // const isMounted = useIsMounted();
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % shuffledCovers.length);
+      setCurrent((prev) => (prev + 1) % covers.length);
     }, 10000);
     return () => clearInterval(interval);
-  }, [shuffledCovers, current]);
+  }, [covers, current]);
 
   const renderContent = useCallback(() => {
     // if (postData) {
@@ -69,7 +69,7 @@ export default function Cover({ covers = defaultCoverList }: CoverProps) {
       </div>
       <AnimatePresence mode="popLayout">
         <motion.div
-          key={currentImage}
+          key={covers[current]}
           initial="hidden"
           animate="visible"
           exit="exit"
@@ -79,9 +79,8 @@ export default function Cover({ covers = defaultCoverList }: CoverProps) {
           <img
             className="-z-10 h-full min-h-[15rem] w-full select-none object-cover"
             draggable={false}
-            src={currentImage}
+            src={covers[current]}
             alt=""
-            loading="eager"
           />
         </motion.div>
       </AnimatePresence>

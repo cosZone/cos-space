@@ -65,7 +65,7 @@ export default function PostItemCard({ className, data }: PostItemCardProps) {
           src={cover}
           loading="lazy"
           alt="post"
-          className="h-full w-full cursor-pointer object-cover opacity-75 transition duration-500 group-hover:scale-110 group-hover:opacity-100"
+          className="h-full w-full cursor-pointer object-cover transition duration-500 group-hover:rotate-3 group-hover:scale-110"
         />
       </a>
       <div className="flex w-1/2 flex-col gap-2 px-4 pb-2 pt-4 xs:w-full xs:pt-1">
@@ -86,7 +86,7 @@ export default function PostItemCard({ className, data }: PostItemCardProps) {
           </Tooltip>
         </div>
         <CardHeader className="p-0">
-          <CardTitle className="truncate text-primary">{title}</CardTitle>
+          <CardTitle className="truncate text-lg text-primary">{title}</CardTitle>
         </CardHeader>
         <CardDescription className="line-clamp-2 max-h-10 overflow-hidden">
           {description ?? body?.slice(0, 150)}
