@@ -1,6 +1,5 @@
 'use client';
 import { Avatar, AvatarFallback, AvatarImage } from '@components/ui/avatar';
-import NavItem from '@components/ui/navigator/NavItem';
 // import PostSider from '@components/ui/post/PostSider';
 import Segmented from '@components/ui/segmented';
 import { HomeSiderType } from '@constants/enum';
@@ -11,6 +10,7 @@ import { oneLevelTabSelectIdxAtom } from '@store/app';
 // import { currentMobileSiderNavAtom } from '@store/app';
 import { useCallback, useState } from 'react';
 // import { MobileSiderNavType } from '../sider';
+import NavItem from '@components/ui/navigator/NavItem';
 import { useStore } from '@nanostores/react';
 
 const opts = [
@@ -57,13 +57,13 @@ export default function HomeSider({ type = HomeSiderType.HOME }: { type?: HomeSi
           </p>
         </div>
         <div className="mt-6 flex w-full flex-col gap-2">
-          {routers.map(({ name, path, key, needOwner }, idx) => {
+          {routers.map(({ name, path }, idx) => {
             // if (needOwner && !isOwner) return null;
             return (
               <NavItem
                 layoutIdPrefix="home_sider"
                 type="sider"
-                key={key ?? name}
+                key={name}
                 selected={oneLevelTabSelectIdx === idx}
                 className="w-full px-1 py-2"
                 onClick={() => {

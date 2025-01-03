@@ -87,6 +87,7 @@ export default {
       },
       animation: {
         shake: 'shake 2s ease',
+        'slide-down': 'slide-down 0.2s ease-out',
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
       },

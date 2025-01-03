@@ -5,8 +5,10 @@ interface Props {
 import '@fontsource/poppins';
 import '@fontsource/noto-serif-sc';
 import { ClientRouter } from 'astro:transitions';
-import { Header } from '../components/layout/header';
+import LoadingIndicator from 'astro-loading-indicator/component';
+import Header from '@components/layout/Header.astro';
 import '@styles/index.css';
+
 const { title } = Astro.props;
 ---
 
@@ -20,6 +22,7 @@ const { title } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <ClientRouter />
+    <LoadingIndicator color="red" />
     <!-- OpenGraph meta tags -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content="Astro x Shadcn Starter Template" />
@@ -29,9 +32,9 @@ const { title } = Astro.props;
   </head>
   <body>
     <div class="flex min-h-screen flex-col text-black dark:text-white">
-      <Header client:load pathname={Astro.url.pathname} />
+      <Header />
       {/*  <FloatGroup /> */}
-      <main class="relative flex flex-grow flex-col">{(<slot />)}</main>
+      <main id="swup" class="relative flex flex-grow flex-col">{(<slot />)}</main>
       {/* <Footer className="mt-auto" /> */}
     </div>
   </body>

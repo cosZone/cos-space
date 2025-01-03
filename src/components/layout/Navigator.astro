@@ -1,0 +1,82 @@
+---
+import { routers } from '@constants/router';
+import { Icon } from 'astro-icon/components';
+---
+
+<div class="flex items-center flex-grow">
+  <div class="ml-4 flex flex-grow items-center gap-4">
+    {
+      routers.map(({ name, path }) => {
+        return <a href={path}>{name}</a>;
+      })
+    }
+  </div>
+  <div class="flex items-center gap-4 ml-auto">
+    <a href="https://github.com/cosZone/cos-space" target="_blank">
+      <Icon name="fa6-brands:github" class="h-8 w-8" onclick="backToTop()" />
+    </a>
+    <Icon name="gg:dark-mode" class="h-8 w-8" onclick="toggleDarkMode()" />
+  </div>
+</div>
+
+<script is:inline>
+  let firstScroll = true;
+  let triggerDistance = window.innerHeight * 0.45;
+  let lastScrollY = 0;
+  function toggleDarkMode() {
+    document.documentElement.classList.toggle('dark');
+  }
+
+  const handleScroll = () => {
+    const siteHeader = document.getElementById('site-header');
+    const currentScrollY = window.scrollY;
+    const isBeyond = currentScrollY > triggerDistance;
+    if (isBeyond) {
+      siteHeader.classList.add('with-background');
+    } else {
+      siteHeader.classList.remove('with-background');
+    }
+
+    if (firstScroll) {
+      firstScroll = false;
+      return;
+    }
+    if (currentScrollY > 0) {
+      if (currentScrollY > lastScrollY) {
+        // 向下滚动
+        siteHeader.classList.add('header-hidden');
+      } else {
+        // 向上滚动
+        siteHeader.classList.remove('header-hidden');
+      }
+    }
+    lastScrollY = currentScrollY;
+  };
+
+  // 节流函数
+  function throttle(func, limit) {
+    let lastFunc;
+    let lastRan;
+    return function () {
+      const context = this;
+      const args = arguments;
+      if (!lastRan) {
+        func.apply(context, args);
+        lastRan = Date.now();
+      } else {
+        clearTimeout(lastFunc);
+        lastFunc = setTimeout(
+          function () {
+            if (Date.now() - lastRan >= limit) {
+              func.apply(context, args);
+              lastRan = Date.now();
+            }
+          },
+          limit - (Date.now() - lastRan),
+        );
+      }
+    };
+  }
+
+  window.addEventListener('scroll', throttle(handleScroll, 200), { passive: true });
+</script>

@@ -78,4 +78,15 @@
   .shadow-text {
     text-shadow: 0 0.2rem 0.3rem rgba(0, 0, 0, 0.5);
   }
+
+  #site-header {
+    @apply translate-y-0 transition-all duration-300;
+  }
+  #site-header.with-background {
+    text-shadow: none;
+    @apply border-b border-border bg-gradient-header text-black dark:text-white;
+  }
+  #site-header.header-hidden {
+    @apply -translate-y-full;
+  }
 }

@@ -1,9 +1,6 @@
 type Router = {
   name?: string;
-  key?: string;
   path: string;
-
-  needOwner?: boolean;
 };
 export enum Routes {
   Home = '/',
