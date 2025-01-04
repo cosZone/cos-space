@@ -51,12 +51,11 @@ export default function PostItemCard({ className, data, leftClip = true }: PostI
         'hover:shadow-card-darker group relative flex cursor-pointer gap-2 border-none bg-transparent shadow-card transition-shadow xs:flex-col',
         className,
       )}
-      onClick={() => !!id && window.open(routeBuilder(Routes.Post, { id }))}
     >
       <a
         href={href}
         className={cn(
-          'relative h-44 max-h-[11rem] w-[calc(50%-2rem)] overflow-hidden rounded-lg xs:w-full xs:clip-path-none',
+          'relative h-[11.625rem] max-h-[11.625rem] w-[calc(50%-2rem)] overflow-hidden rounded-lg xs:w-full xs:clip-path-none',
           leftClip ? 'order-1 clip-path-post-img-left' : 'order-2 clip-path-post-img-right',
         )}
       >

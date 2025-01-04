@@ -1,0 +1,49 @@
+---
+import HomeSider from '@components/layout/sider/HomeSider';
+import Cover from '@components/ui/cover';
+import { siteConfig } from '@constants/site-config';
+import Layout from '@layouts/Layout.astro';
+import { getSortedPosts } from '@lib/content';
+import { parseDate } from '@lib/datetime';
+
+export async function getStaticPaths() {
+  const postCollections = await getSortedPosts();
+
+  return postCollections.map((post) => {
+    const link = post.data?.link ?? post.slug;
+    return {
+      params: { slug: link },
+      props: { post },
+    };
+  });
+}
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.data.title,
+  description: post.data.description || post.body?.slice(0, 100),
+  keywords: post.data.tags?.concat(post.data.categories[0]),
+  author: {
+    '@type': 'Person',
+    name: siteConfig.author ?? siteConfig.name,
+    url: Astro.site,
+  },
+  datePublished: parseDate(post.data.date, 'YYYY-MM-DD'),
+};
+---
+
+<Layout title={`${post.data.title} | ${siteConfig.title}`}>
+  <script is:inline slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <div class="mb-20 flex flex-col">
+    <Cover client:load />
+    <div class="mx-auto flex items-start justify-center pr-11 md:w-full md:pr-0">
+      <HomeSider client:load>
+        <div class="sticky top-20 flex min-w-[16rem] flex-col items-center p-4 px-5 md:hidden">Loading</div>
+      </HomeSider>
+      <div class="prose flex-grow max-w-none"><Content /></div>
+    </div>
+  </div>
+</Layout>
