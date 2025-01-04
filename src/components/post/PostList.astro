@@ -8,10 +8,11 @@ import Paginator from './Paginator.astro';
 
 interface Props {
   posts?: BlogPost[];
-  page: Page<BlogPost>;
+  page?: Page<BlogPost>;
+  showPaginator?: boolean;
 }
 
-const { posts, page } = Astro.props;
+const { posts, page, showPaginator = true } = Astro.props;
 ---
 
 <div class="flex flex-col gap-8 pt-8 shadow-box w-full bg-gradient-start p-4 2xl:container md:px-1 md:py-2">
@@ -29,11 +30,11 @@ const { posts, page } = Astro.props;
     posts && posts?.length > 0 && (
       <>
         <div class="flex flex-col gap-8 px-5">
-          {posts.map((post) => (
-            <PostItemCard client:load data={post} />
+          {posts.map((post, index) => (
+            <PostItemCard data={post} leftClip={index % 2 === 0} />
           ))}
         </div>
-        <Paginator page={page} />
+        {showPaginator && page && <Paginator page={page} />}
       </>
     )
   }

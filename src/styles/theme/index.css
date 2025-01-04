@@ -1,23 +1,37 @@
 :root {
   --gradient-bg-start: #fdfbfb;
   --gradient-bg-end: #ebedee;
+  --gradient-bg: linear-gradient(180deg, var(--gradient-bg-start) 10%, var(--gradient-bg-end) 100%);
   --gradient-pink: linear-gradient(279deg, #f96676 0%, #e91e63 100%);
   --gradient-header: linear-gradient(-225deg, #e3fdf5 0, #ffe6fa 100%);
 
   /* shoka migrate */
   --box-bg-shadow: rgba(0, 0, 0, 0.1);
   --grey-1-a5: rgba(253, 253, 253, 0.5);
-
-  /* compute */
-  --gradient-bg: linear-gradient(180deg, var(--gradient-bg-start) 10%, var(--gradient-bg-end) 100%);
+  --gradient-shoka-button-start: #ed6ea0;
+  --gradient-shoka-button-end: #ec8c69;
+  --gradient-shoka-button: linear-gradient(
+    to right,
+    var(--gradient-shoka-button-start) 0,
+    var(--gradient-shoka-button-end) 100%
+  );
 }
 .dark {
   --gradient-bg-start: #21252b;
   --gradient-bg-end: #373c38;
+  --gradient-bg: linear-gradient(180deg, var(--gradient-bg-start) 10%, var(--gradient-bg-end) 100%);
   --gradient-pink: linear-gradient(279deg, #f96676 0%, #e91e63 100%);
   --gradient-header: linear-gradient(-225deg, #2d3230 0, #322d31 100%);
 
   /* shoka migrate */
   --box-bg-shadow: #000;
   --grey-1-a5: rgba(34, 34, 34, 0.5);
+
+  --gradient-shoka-button-start: #f18bb3cc;
+  --gradient-shoka-button-end: #f0a387cc;
+  --gradient-shoka-button: linear-gradient(
+    to right,
+    var(--gradient-shoka-button-start) 0,
+    var(--gradient-shoka-button-end) 100%
+  );
 }

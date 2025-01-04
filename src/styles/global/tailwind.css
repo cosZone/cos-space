@@ -16,7 +16,7 @@
   h4,
   h5,
   h6 {
-    font-family: '方正悠宋 简 509R', var(--font-poppins), var(--font-notoSerifJp);
+    font-family: '方正悠宋 简 509R', 'Poppins', 'Noto Serif JP';
   }
   *::-webkit-scrollbar {
     display: none;
@@ -46,7 +46,7 @@
 @layer components {
   .font-default {
     font-family:
-      var(--font-poppins),
+      'Poppins',
       -apple-system,
       'PingFang SC',
       'Microsoft YaHei',

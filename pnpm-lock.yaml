@@ -17,6 +17,9 @@ importers:
       '@floating-ui/react':
         specifier: ^0.27.2
         version: 0.27.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      '@fontsource/noto-serif-jp':
+        specifier: ^5.1.2
+        version: 5.1.2
       '@fontsource/noto-serif-sc':
         specifier: ^5.1.0
         version: 5.1.0
@@ -1088,6 +1091,9 @@ packages:
 
   '@floating-ui/utils@0.2.8':
     resolution: {integrity: sha512-kym7SodPp8/wloecOpcmSnWJsK7M0E5Wg8UcFA+uO4B9s5d0ywXOEro/8HM9x0rW+TljRzul/14UYz3TleT3ig==}
+
+  '@fontsource/noto-serif-jp@5.1.2':
+    resolution: {integrity: sha512-pO+bVVRIIzsH6QQShV+T1DYyu3o/8H4ZEtiP8reVKX8ImSgAY5t9I/AWMsfixN40B0Iz6hrDt5+oWLkcYOWIOw==}
 
   '@fontsource/noto-serif-sc@5.1.0':
     resolution: {integrity: sha512-KUqvssRd5UGNk1tYykiKT+7cuXdCjQe865z0tv/oz6RQc4d48DjEvx4uBH6yO3WwN49SsgyV6Ajxd9iBIUnAQg==}
@@ -6532,6 +6538,8 @@ snapshots:
       tabbable: 6.2.0
 
   '@floating-ui/utils@0.2.8': {}
+
+  '@fontsource/noto-serif-jp@5.1.2': {}
 
   '@fontsource/noto-serif-sc@5.1.0': {}
 

@@ -95,6 +95,7 @@ export default {
         gradient: 'var(--gradient-bg)',
         'gradient-pink': 'var(--gradient-pink)',
         'gradient-header': 'var(--gradient-header)',
+        'gradient-shoka-button': 'var(--gradient-shoka-button)',
       },
       fontSize: {
         '4.5xl': '2.5rem',
@@ -105,6 +106,7 @@ export default {
         poppins: 'Poppins',
         candy: 'Candyshop',
         fg: 'Fredericka the Great',
+        FZYS: '方正悠宋 简 509R',
       },
       clipPath: {
         'post-img-left': 'polygon(0 0,92% 0%,100% 100%,0% 100%)',

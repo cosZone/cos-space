@@ -13,6 +13,7 @@
     "@astrojs/react": "^4.1.2",
     "@astrojs/tailwind": "^5.1.4",
     "@floating-ui/react": "^0.27.2",
+    "@fontsource/noto-serif-jp": "^5.1.2",
     "@fontsource/noto-serif-sc": "^5.1.0",
     "@fontsource/poppins": "^5.1.0",
     "@iconify-json/fa6-brands": "^1.2.5",
