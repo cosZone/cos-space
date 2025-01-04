@@ -35,7 +35,7 @@ const jsonLd = {
 };
 ---
 
-<Layout title={`${post.data.title} | ${siteConfig.title}`}>
+<Layout title={`${post.data.title} | ${siteConfig.title}`} description={post.data.description}>
   <script is:inline slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   <div class="mb-20 flex flex-col">
     <Cover client:load />

@@ -1,6 +1,7 @@
 ---
 interface Props {
   title: string;
+  description?: string;
 }
 import '@fontsource/poppins';
 import '@fontsource/noto-serif-sc';
@@ -9,27 +10,37 @@ import { ClientRouter } from 'astro:transitions';
 import LoadingIndicator from 'astro-loading-indicator/component';
 import Header from '@components/layout/Header.astro';
 import '@styles/index.css';
+import { siteConfig } from '@constants/site-config';
 
-const { title } = Astro.props;
+const { title = siteConfig.title, description = siteConfig.description } = Astro.props;
 ---
 
 <!doctype html>
 <html transition:name="root" transition:animate="none" lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Astro x Shadcn Starter Template" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <ClientRouter />
     <LoadingIndicator color="red" />
-    <!-- OpenGraph meta tags -->
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content="Astro x Shadcn Starter Template" />
-    <meta property="og:image" content="/opengraph.png?v=1" />
-    <meta property="og:url" content="https://astroshadcnstarter.netlify.app" />
+
+    <!-- metadata -->
+    <meta name="description" content={description} />
+    <meta name="author" content={siteConfig.author} />
+
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={siteConfig.name} />
+    <meta property="og:url" content={Astro.url} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <!-- <meta property="og:image" content="/opengraph.png?v=1" /> TODO: og image-->
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={Astro.url} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
   </head>
   <body>
     <div class="flex min-h-screen flex-col text-black dark:text-white">
