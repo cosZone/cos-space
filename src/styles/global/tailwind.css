@@ -81,7 +81,7 @@
   }
 
   #site-header {
-    @apply translate-y-0 transition-all duration-300;
+    @apply translate-y-0 transition-transform duration-300;
   }
   #site-header.with-background {
     text-shadow: none;
