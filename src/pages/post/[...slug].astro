@@ -38,12 +38,12 @@ const jsonLd = {
 <Layout title={`${post.data.title} | ${siteConfig.title}`} description={post.data.description}>
   <script is:inline slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   <div class="mb-20 flex flex-col">
-    <Cover client:load />
+    <Cover client:load postData={post} />
     <div class="mx-auto flex items-start justify-center pr-11 md:w-full md:pr-0">
       <HomeSider client:load>
         <div class="sticky top-20 flex min-w-[16rem] flex-col items-center p-4 px-5 md:hidden">Loading</div>
       </HomeSider>
-      <div class="prose flex-grow max-w-none"><Content /></div>
+      <div class="prose max-w-none flex-grow"><Content /></div>
     </div>
   </div>
 </Layout>

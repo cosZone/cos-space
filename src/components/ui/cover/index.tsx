@@ -6,9 +6,14 @@ import { defaultCoverList, siteConfig } from '@constants/site-config';
 import { AnimatePresence, motion } from 'motion/react';
 import { useCallback, useEffect, useState } from 'react';
 import WaveSvg from './wave';
+import type { BlogPost } from 'types/blog';
+import readingTime from 'reading-time';
+import { FaCalendarDays, FaPenNib } from 'react-icons/fa6';
+import { BiSolidTimeFive } from 'react-icons/bi';
+import { parseDate } from '@lib/datetime';
 
 type CoverProps = {
-  // postData?: PostData;
+  postData?: BlogPost;
   covers?: string[];
 };
 
@@ -18,9 +23,8 @@ const coverImageVariants = {
   exit: { scale: 1.3, opacity: 0, transition: { duration: 2 } },
 };
 
-export default function Cover({ covers = _.shuffle(defaultCoverList) }: CoverProps) {
+export default function Cover({ covers = _.shuffle(defaultCoverList), postData }: CoverProps) {
   const [current, setCurrent] = useState(0);
-  // const isMounted = useIsMounted();
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrent((prev) => (prev + 1) % covers.length);
@@ -29,29 +33,28 @@ export default function Cover({ covers = _.shuffle(defaultCoverList) }: CoverPro
   }, [covers, current]);
 
   const renderContent = useCallback(() => {
-    // if (postData) {
-    //   const { title, createdAt, content } = postData;
-    //   const parsedData = matter(content ?? '');
-    //   const readState = readingTime(parsedData?.content ?? ''); // TODO: standardize add readState to postDataWrapped
+    if (postData) {
+      const { title, date } = postData.data;
+      const readState = readingTime(postData.body ?? '');
 
-    //   return (
-    //     <>
-    //       <h1 className="shadow-text font-noto text-4.5xl font-bold">{title}</h1>
-    //       <p className="mt-3 flex items-center justify-center gap-4">
-    //         <span className="flex items-center gap-1">
-    //           <FaCalendarDays />
-    //           发表于 {parseDate(createdAt, 'YYYY-MM-DD')}
-    //         </span>
-    //         <span className="flex items-center gap-1">
-    //           <FaPenNib /> {readState?.words} 字
-    //         </span>
-    //         <span className="flex items-center gap-1">
-    //           <BiSolidTimeFive /> {readState?.text}
-    //         </span>
-    //       </p>
-    //     </>
-    //   );
-    // }
+      return (
+        <>
+          <h1 className="shadow-text font-noto text-4.5xl font-bold">{title}</h1>
+          <p className="mt-3 flex items-center justify-center gap-4">
+            <span className="flex items-center gap-1">
+              <FaCalendarDays />
+              发表于 {parseDate(date, 'YYYY-MM-DD')}
+            </span>
+            <span className="flex items-center gap-1">
+              <FaPenNib /> {readState?.words} 字
+            </span>
+            <span className="flex items-center gap-1">
+              <BiSolidTimeFive /> {readState?.text}
+            </span>
+          </p>
+        </>
+      );
+    }
     return (
       <>
         <h2 className="shadow-text font-fg text-5.5xl/[1.2]">{siteConfig?.alternate}</h2>
