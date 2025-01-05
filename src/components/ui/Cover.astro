@@ -56,11 +56,6 @@ const readState = readingTime(data?.body ?? '');
 <script is:inline>
   let lightColors = ['#ed719a', '#FFACDE', '#FBD7ED', '#EEF1F0', '#DDDDDD', '#B4B4B4'];
   let darkColors = ['#212832', '#3F4659', '#8592A7', '#EEEFEA', '#212832', '#3F4659'];
-  let colorbg = new Color4Bg.GridArrayBg({
-    dom: 'banner-box',
-    colors: lightColors,
-    loop: true,
-  });
 
   function changeColor(mode) {
     colorbg = new Color4Bg.GridArrayBg({

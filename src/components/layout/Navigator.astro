@@ -40,7 +40,13 @@ import { Icon } from 'astro-icon/components';
   let triggerDistance = window.innerHeight * 0.45;
   let lastScrollY = 0;
   function toggleDarkMode() {
-    document.documentElement.classList.toggle('dark');
+    if (localStorage.theme === 'dark') {
+      localStorage.theme = 'light';
+      document.documentElement.classList.remove('dark');
+    } else {
+      localStorage.theme = 'dark';
+      document.documentElement.classList.add('dark');
+    }
   }
 
   const handleScroll = () => {

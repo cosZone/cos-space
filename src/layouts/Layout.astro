@@ -42,6 +42,33 @@ const { title = siteConfig.title, description = siteConfig.description } = Astro
     <meta property="twitter:url" content={Astro.url} />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    <meta charset="UTF-8" />
+
+    <script is:inline>
+      // 立即执行主题检查 否则会闪烁
+      if (
+        localStorage.theme === 'dark' ||
+        (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+      ) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    </script>
+    <script>
+      function checkTheme() {
+        if (
+          localStorage.theme === 'dark' ||
+          (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+        ) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      }
+      // 在每次页面加载时检查
+      document.addEventListener('astro:page-load', checkTheme);
+    </script>
   </head>
   <body>
     <div class="flex min-h-screen flex-col text-black dark:text-white">
