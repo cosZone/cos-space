@@ -18,6 +18,14 @@ export default {
   vueIndentScriptAndStyle: false,
   endOfLine: 'lf',
   embeddedLanguageFormatting: 'auto',
-  plugins: ['prettier-plugin-tailwindcss', 'prettier-plugin-lint-md'],
+  plugins: ['prettier-plugin-lint-md', 'prettier-plugin-astro', 'prettier-plugin-tailwindcss'],
+  overrides: [
+    {
+      files: '*.astro',
+      options: {
+        parser: 'astro',
+      },
+    },
+  ],
   tailwindConfig: './tailwind.config.mjs',
 };
