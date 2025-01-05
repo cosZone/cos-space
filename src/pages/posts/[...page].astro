@@ -1,7 +1,7 @@
 ---
 import HomeSider from '@components/layout/HomeSider.astro';
 import PostList from '@components/post/PostList.astro';
-import Cover from '@components/ui/cover';
+import Cover from '@components/ui/Cover.astro';
 import { siteConfig } from '@constants/site-config';
 import Layout from '@layouts/Layout.astro';
 import { getSortedPosts } from '@lib/content';
@@ -17,7 +17,7 @@ const { page } = Astro.props;
 
 <Layout title={siteConfig.title}>
   <div class="mb-20 flex flex-col">
-    <Cover client:load />
+    <Cover />
     <div class="mx-auto flex items-start justify-center pr-11 md:w-full md:pr-0">
       <HomeSider />
       <PostList posts={page.data} page={page} />

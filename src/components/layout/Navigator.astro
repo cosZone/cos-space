@@ -1,21 +1,37 @@
 ---
+import ButtonLink from '@components/control/ButtonLink.astro';
 import { routers } from '@constants/router';
+import { cn } from '@lib/utils';
 import { Icon } from 'astro-icon/components';
 ---
 
 <div class="flex flex-grow items-center">
-  <div class="ml-4 flex flex-grow items-center gap-4">
+  <div class="flex flex-grow items-center">
     {
       routers.map(({ name, path }) => {
-        return <a href={path}>{name}</a>;
+        return (
+          <ButtonLink
+            url={path}
+            label={name}
+            variant="unstyle"
+            className={cn(
+              'relative w-full text-base after:absolute after:bottom-1 after:left-1/2 after:h-0.5 after:w-0 after:-translate-x-1/2 after:transition-all after:content-[""] hover:after:w-9/12',
+              {
+                'after:w-9/12': path === Astro.url.pathname,
+              },
+            )}
+          >
+            {name}
+          </ButtonLink>
+        );
       })
     }
   </div>
   <div class="ml-auto flex items-center gap-4">
-    <a href="https://github.com/cosZone/cos-space" target="_blank">
+    <a class="cursor-pointer" href="https://github.com/cosZone/cos-space" target="_blank">
       <Icon name="fa6-brands:github" class="h-8 w-8" onclick="backToTop()" />
     </a>
-    <Icon name="gg:dark-mode" class="h-8 w-8" onclick="toggleDarkMode()" />
+    <Icon name="gg:dark-mode" class="h-8 w-8 cursor-pointer" onclick="toggleDarkMode()" />
   </div>
 </div>
 

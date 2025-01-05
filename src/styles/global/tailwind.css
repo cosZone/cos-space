@@ -16,7 +16,7 @@
   h4,
   h5,
   h6 {
-    font-family: '方正悠宋 简 509R', 'Poppins', 'Noto Serif JP';
+    font-family: 'Poppins', '方正悠宋 简 509R', 'Noto Serif JP';
   }
   *::-webkit-scrollbar {
     display: none;
@@ -82,10 +82,23 @@
 
   #site-header {
     @apply translate-y-0 transition-transform duration-300;
+    button {
+      @apply shadow-text;
+      &::after {
+        transition-duration: 400ms;
+        @apply bg-white;
+      }
+    }
   }
   #site-header.with-background {
-    text-shadow: none;
-    @apply border-b border-border bg-gradient-header text-black dark:text-white;
+    @apply border-b border-border bg-gradient-header text-foreground;
+    button {
+      text-shadow: none;
+      &::after {
+        transition-duration: 400ms;
+        @apply bg-foreground;
+      }
+    }
   }
   #site-header.header-hidden {
     @apply -translate-y-full;

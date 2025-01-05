@@ -1,9 +1,11 @@
 ---
+import ButtonLink from '@components/control/ButtonLink.astro';
 import Segmented from '@components/ui/segmented';
 import { HomeSiderType } from '@constants/enum';
 import { routers } from '@constants/router';
 import { siteConfig } from '@constants/site-config';
 import { getCategoryList, getPostCount } from '@lib/content';
+import { cn } from '@lib/utils';
 
 interface Props {
   type?: HomeSiderType;
@@ -57,9 +59,16 @@ const { countMap } = await getCategoryList();
   <div class="mt-6 flex w-full flex-col gap-2">
     {
       routers.map(({ name, path }) => (
-        <a href={path} aria-label={name} class="text-lg/5 font-bold">
+        <ButtonLink
+          url={path}
+          label={name}
+          variant="gradient-shoka"
+          className={cn('w-full transition-all duration-300', {
+            'bg-none text-muted-foreground/80 hover:bg-muted hover:text-muted-foreground': path !== Astro.url.pathname,
+          })}
+        >
           {name}
-        </a>
+        </ButtonLink>
       ))
     }
   </div>

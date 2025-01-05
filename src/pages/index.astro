@@ -2,7 +2,7 @@
 import ButtonLink from '@components/control/ButtonLink.astro';
 import HomeSider from '@components/layout/HomeSider.astro';
 import PostList from '@components/post/PostList.astro';
-import Cover from '@components/ui/cover';
+import Cover from '@components/ui/Cover.astro';
 import { siteConfig } from '@constants/site-config';
 import Layout from '@layouts/Layout.astro';
 import { getSortedPosts } from '@lib/content';
@@ -13,8 +13,8 @@ const posts = postCollections.slice(0, 5);
 ---
 
 <Layout title={siteConfig.title}>
-  <div class="mb-20 flex flex-col">
-    <Cover client:load />
+  <div class="mb-20 flex flex-col" transition:name="page-cover">
+    <Cover />
     <div class="mx-auto flex items-start justify-center pr-11 md:w-full md:pr-0">
       <HomeSider />
       <div class="flex flex-col">

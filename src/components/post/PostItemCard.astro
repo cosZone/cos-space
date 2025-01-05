@@ -8,46 +8,36 @@ import { parseDate } from '@lib/datetime';
 import { routeBuilder } from '@lib/route';
 import { cn } from '@lib/utils';
 import { Icon } from 'astro-icon/components';
-import { createHash } from 'crypto';
 import readingTime from 'reading-time';
 import type { BlogPost } from 'types/blog';
 
 export interface PostItemCardProps {
-  className?: string;
   data?: BlogPost;
   leftClip?: boolean;
+  randomCover: string;
 }
 
-const { className, data, leftClip = true } = Astro.props as PostItemCardProps;
+const { randomCover, data, leftClip = true } = Astro.props as PostItemCardProps;
 
 const { cover, date, catalog, categories, title, description, link } = data?.data ?? {};
 const { id, body, rendered } = data ?? {};
 
 const readState = readingTime(body ?? '');
-
-const getFinalCover = () => {
-  if (cover) return cover;
-  if (title) {
-    const hash = createHash('md5').update(title).digest('hex');
-    const index = parseInt(hash, 16) % defaultCoverList.length;
-    return defaultCoverList[index];
-  }
-  return defaultCoverList[Math.floor(Math.random() * defaultCoverList.length)];
-};
-
+const finalCover = cover ?? randomCover ?? defaultCoverList[0];
 const href = routeBuilder(Routes.Post, { id, link: (rendered?.metadata?.link as string) ?? link });
 
 const getCategory = () => {
-  if (!catalog) return '';
+  if (!catalog || !categories?.length) return '';
   if (Array.isArray(categories[0])) return categories[0].join(' / ');
   return categories[0];
 };
 ---
 
 <div
-  class="hover:shadow-card-darker group relative flex cursor-pointer gap-2 rounded-lg text-card-foreground shadow-sm shadow-card transition-shadow xs:flex-col"
+  class="hover:shadow-card-darker group relative flex gap-2 rounded-lg text-card-foreground shadow-sm shadow-card transition-shadow xs:flex-col"
 >
   <a
+    aria-label="post-link"
     href={href}
     class={cn(
       'relative h-[11.625rem] max-h-[11.625rem] w-[calc(50%-2rem)] overflow-hidden rounded-lg xs:w-full xs:clip-path-none',
@@ -55,7 +45,7 @@ const getCategory = () => {
     )}
   >
     <img
-      src={getFinalCover()}
+      src={finalCover}
       loading="lazy"
       alt="post"
       class="h-full w-full cursor-pointer object-cover transition duration-500 group-hover:rotate-3 group-hover:scale-110"
@@ -87,14 +77,16 @@ const getCategory = () => {
       </div>
     </div>
     <div class="mt-1 flex flex-col space-y-1.5 p-0">
-      <h3 class="truncate text-xl font-bold leading-none tracking-tight text-primary">{title}</h3>
+      <a href={href} aria-label="post-link"
+        ><h3 class="truncate text-xl font-bold leading-none tracking-tight text-primary">{title}</h3>
+      </a>
     </div>
     <p class="line-clamp-3 h-15 overflow-hidden text-sm text-muted-foreground">{description ?? body?.slice(0, 150)}</p>
     <div class={cn('mt-2 flex flex-wrap gap-2', { 'justify-end': !leftClip })}>
       {
         data?.data.tags?.length
           ? data?.data.tags.map((tag: string) => (
-              <Badge className="gap-0.5 text-xs">
+              <Badge className="gap-0.5 cursor-pointer text-xs">
                 <Icon name="fa6-solid:tags" /> {tag}
               </Badge>
             ))

@@ -1,7 +1,6 @@
 // @ts-check
 import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
-import swup from '@swup/astro';
 import icon from 'astro-icon';
 import { defineConfig } from 'astro/config';
 import svgr from 'vite-plugin-svgr';
@@ -15,7 +14,6 @@ export default defineConfig({
       nesting: true,
       applyBaseStyles: false,
     }),
-    swup(),
     icon({
       include: {
         gg: ['*'],
