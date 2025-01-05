@@ -11,6 +11,7 @@ import LoadingIndicator from 'astro-loading-indicator/component';
 import Header from '@components/layout/Header.astro';
 import '@styles/index.css';
 import { siteConfig } from '@constants/site-config';
+import { Tooltips } from 'astro-tooltips';
 
 const { title = siteConfig.title, description = siteConfig.description } = Astro.props;
 ---
@@ -25,7 +26,7 @@ const { title = siteConfig.title, description = siteConfig.description } = Astro
     <title>{title}</title>
     <ClientRouter />
     <LoadingIndicator color="red" />
-
+    <Tooltips />
     <!-- metadata -->
     <meta name="description" content={description} />
     <meta name="author" content={siteConfig.author} />

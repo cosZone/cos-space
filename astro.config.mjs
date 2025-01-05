@@ -18,8 +18,10 @@ export default defineConfig({
     swup(),
     icon({
       include: {
-        'fa6-brands': ['*'],
         gg: ['*'],
+        'fa6-brands': ['*'],
+        'fa6-regular': ['*'],
+        'fa6-solid': ['*'],
       },
     }),
   ],

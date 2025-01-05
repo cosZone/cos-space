@@ -29,6 +29,12 @@ importers:
       '@iconify-json/fa6-brands':
         specifier: ^1.2.5
         version: 1.2.5
+      '@iconify-json/fa6-regular':
+        specifier: ^1.2.3
+        version: 1.2.3
+      '@iconify-json/fa6-solid':
+        specifier: ^1.2.3
+        version: 1.2.3
       '@iconify-json/gg':
         specifier: ^1.2.2
         version: 1.2.2
@@ -62,6 +68,9 @@ importers:
       astro-loading-indicator:
         specifier: ^0.7.0
         version: 0.7.0(astro@5.1.1(@types/node@22.10.5)(jiti@2.4.2)(rollup@2.79.2)(terser@5.37.0)(typescript@4.9.5)(yaml@2.6.1))
+      astro-tooltips:
+        specifier: ^0.6.2
+        version: 0.6.2
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -1124,6 +1133,12 @@ packages:
   '@iconify-json/fa6-brands@1.2.5':
     resolution: {integrity: sha512-U/iFfziz6jSN9zArOJZYTtoj2tQyh6MxPdI8M84DQ2kEulPaj8j+h9bqvjmzszNHmD7v+kmmKd/MLkMKk+3Zuw==}
 
+  '@iconify-json/fa6-regular@1.2.3':
+    resolution: {integrity: sha512-NGV2j5mn4j49mpP7MABCljp1WPWKjwgfjN6NGwsmlFuQ7bdnz36nZB/5aRXLOcT36NXaBeCoT05G9aatdtMr3A==}
+
+  '@iconify-json/fa6-solid@1.2.3':
+    resolution: {integrity: sha512-C5o8YJF+ekrS4wRb/6/0SE2KjRyJlCg++IOVC/fineiRinITivsmzFRNW1MQX2xfDZ1T7bxeKxLN6lcaTG3jGA==}
+
   '@iconify-json/gg@1.2.2':
     resolution: {integrity: sha512-8iQh8+Tdb/0jakNYy0+t2GVubjhbaJbuYoPsRhFw8IAs00IQV2BjE9GoB2kGF/UObaJCqvCelB3qRaUdizkrmg==}
 
@@ -1389,6 +1404,9 @@ packages:
   '@pkgr/core@0.1.1':
     resolution: {integrity: sha512-cq8o4cWH0ibXh9VGi5P20Tu9XF/0fFXl9EUinr9QfTM7a7p0oTA4iJRCQWppXR1Pg8dSM0UCItCkPwsk9qWWYA==}
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
+
+  '@popperjs/core@2.11.8':
+    resolution: {integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==}
 
   '@radix-ui/primitive@1.1.1':
     resolution: {integrity: sha512-SJ31y+Q/zAyShtXJc8x83i9TYdbAfHZ++tUZnvjJJqFjzsdUnKsxPL6IEtBlxKkU7yzer//GQtZSV4GbldL3YA==}
@@ -2092,6 +2110,9 @@ packages:
     resolution: {integrity: sha512-oNSUYbHq8Aaol0zcVuBzGz+qrqKsviOvKl1xaaKo3DLkEef7HCzHQAgTgWv4lB1iYFWa5GaieQvlxBO4KjzKZg==}
     peerDependencies:
       astro: ^4.0.0 || ^5.0.0
+
+  astro-tooltips@0.6.2:
+    resolution: {integrity: sha512-I9uXbchctnRqbc0mnxKcBRfweMuql/U+619+MzNvq3kANc7xthOXj6cMNgAkTaXoHJLdFMKL3Fx6vB5cyiiRXg==}
 
   astro@5.1.1:
     resolution: {integrity: sha512-prpWC2PRs4P3FKQg6gZaU+VNMqbZi5pDvORGB2nrjfRjkrvF6/l4BqhvkJ6YQ0Ohm5rIMVz8ljgaRI77mLHbwg==}
@@ -5076,6 +5097,9 @@ packages:
   tinyexec@0.3.1:
     resolution: {integrity: sha512-WiCJLEECkO18gwqIp6+hJg0//p23HXp4S+gGtAKu3mI2F2/sXC4FvHvXvB0zJVVaTPhx1/tOwdbRsa1sOBIKqQ==}
 
+  tippy.js@6.3.7:
+    resolution: {integrity: sha512-E1d3oP2emgJ9dRQZdf3Kkn0qJgI6ZLpyS5z6ZkY1DF3kaQaBsGZsndEpHwx+eC+tYM41HaSNvNtLx8tU57FzTQ==}
+
   to-regex-range@5.0.1:
     resolution: {integrity: sha512-65P7iz6X5yEr1cwcgvQxbbIw7Uk3gOy5dIdtZ4rDveLqhrdJP+Li/Hx6tyK0NEb+2GCyneCMJiGqrADCSNk8sQ==}
     engines: {node: '>=8.0'}
@@ -6562,6 +6586,14 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
+  '@iconify-json/fa6-regular@1.2.3':
+    dependencies:
+      '@iconify/types': 2.0.0
+
+  '@iconify-json/fa6-solid@1.2.3':
+    dependencies:
+      '@iconify/types': 2.0.0
+
   '@iconify-json/gg@1.2.2':
     dependencies:
       '@iconify/types': 2.0.0
@@ -6811,6 +6843,8 @@ snapshots:
     optional: true
 
   '@pkgr/core@0.1.1': {}
+
+  '@popperjs/core@2.11.8': {}
 
   '@radix-ui/primitive@1.1.1': {}
 
@@ -7575,6 +7609,10 @@ snapshots:
   astro-loading-indicator@0.7.0(astro@5.1.1(@types/node@22.10.5)(jiti@2.4.2)(rollup@2.79.2)(terser@5.37.0)(typescript@4.9.5)(yaml@2.6.1)):
     dependencies:
       astro: 5.1.1(@types/node@22.10.5)(jiti@2.4.2)(rollup@2.79.2)(terser@5.37.0)(typescript@4.9.5)(yaml@2.6.1)
+
+  astro-tooltips@0.6.2:
+    dependencies:
+      tippy.js: 6.3.7
 
   astro@5.1.1(@types/node@22.10.5)(jiti@2.4.2)(rollup@2.79.2)(terser@5.37.0)(typescript@4.9.5)(yaml@2.6.1):
     dependencies:
@@ -11404,6 +11442,10 @@ snapshots:
       globrex: 0.1.2
 
   tinyexec@0.3.1: {}
+
+  tippy.js@6.3.7:
+    dependencies:
+      '@popperjs/core': 2.11.8
 
   to-regex-range@5.0.1:
     dependencies:

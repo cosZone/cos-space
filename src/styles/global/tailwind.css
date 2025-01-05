@@ -7,7 +7,7 @@
     navigation: auto; /* enabled! */
   }
   body {
-    overscroll-behavior: none;
+    overscroll-behavior-y: none;
     background: linear-gradient(to top, var(--box-bg-shadow) 0, var(--gradient-bg-start) 30%) no-repeat bottom;
   }
   h1,
