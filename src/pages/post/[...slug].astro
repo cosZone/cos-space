@@ -19,13 +19,13 @@ export async function getStaticPaths() {
 }
 const { post } = Astro.props;
 const { Content } = await post.render();
-
+const tags = post.data?.tags ?? [];
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'BlogPosting',
   headline: post.data.title,
   description: post.data.description || post.body?.slice(0, 100),
-  keywords: post.data.tags?.concat(post.data.categories[0]),
+  keywords: post.data?.categories?.length ? tags.concat(post.data?.categories[0]) : tags,
   author: {
     '@type': 'Person',
     name: siteConfig.author ?? siteConfig.name,

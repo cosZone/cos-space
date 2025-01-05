@@ -1,60 +1,41 @@
-# Astro Starter Kit: Basics
+# 🚀 cosSpace
 
-```sh
-npm create astro@latest -- --template basics
+在 Astro 上复刻 Shoka 主题，之后考虑换一个名字～
+
+## 📦 部署
+
+### Vercel 一键部署
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FcosZone%2Fcos-space&project-name=my-cos-space&repository-name=my-cos-space)
+
+### 本地开发
+
+1. 克隆项目到本地
+
+```bash
+git clone https://github.com/cosZone/cos-space
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+2. 进入项目目录并安装依赖
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
+```bash
+cd cos-space
+pnpm i
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+3. 启动项目
 
-## 🧞 Commands
+```bash
+pnpm dev
+```
 
-All commands are run from the root of the project, from a terminal:
+## 🙏 鸣谢
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+感谢以下项目对 cosSpace 的开发提供的灵感及参考：
 
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
-
-## Thanks
-
-hexo 迁移
-
-- [4Ark - 再见 Hexo，你好 Astro！](https://github.com/gd4Ark/gd4Ark.github.io)
-
-theme inspiration
-
+- [mx-space](https://github.com/mx-space)
 - [Hexo 主题 Shoka](https://shoka.lostyu.me/computer-science/note/theme-shoka-doc/)
-
-- [astro - Yukina](https://github.com/WhitePaper233/yukina)
+- [waterwater.moe](https://github.com/lawvs/lawvs.github.io)
+- [yfi.moe](https://github.com/yy4382/yfi.moe)
+- [4ark.me](https://github.com/gd4Ark/gd4Ark.github.io)
+- ...
