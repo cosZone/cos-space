@@ -25,7 +25,7 @@ function NavItem({
   layoutIdPrefix = 'header',
 }: NavItemProps) {
   return (
-    <motion.div variants={delayOpenAnimVariants} whileHover={{ scale: 1.1 }}>
+    <div>
       <div
         className={cn(
           'relative flex w-full cursor-pointer items-center justify-center text-base',
@@ -43,9 +43,9 @@ function NavItem({
         {selected && (
           <motion.div
             className={cn(
-              'border-primary absolute inset-x-0 -bottom-1.5 border-t-2',
+              'absolute inset-x-0 -bottom-1.5 border-t-2 border-primary',
               {
-                'bg-gradient-pink inset-0 -z-10 rounded-lg border-none': type === 'sider',
+                'inset-0 -z-10 rounded-lg border-none bg-gradient-pink': type === 'sider',
               },
               indicatorClass,
             )}
@@ -55,7 +55,7 @@ function NavItem({
           />
         )}
       </div>
-    </motion.div>
+    </div>
   );
 }
 export default NavItem;
