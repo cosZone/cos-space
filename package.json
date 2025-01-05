@@ -7,7 +7,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "lint:md": "lint-md *.md"
+    "lint:md": "lint-md *.md",
+    "change": "git cliff -o CHANGELOG.md"
   },
   "dependencies": {
     "@astrojs/react": "^4.1.2",
