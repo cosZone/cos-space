@@ -3,28 +3,28 @@ title: PTA数据结构题目集 第六周——图（上）
 link: PTA数据结构题目集 第六周——图（上）
 catalog: true
 lang: cn
-date:   2020-08-08 20:09:53 
+date: 2020-08-08 20:09:53
 subtitle: PTA数据结构题目集 第六周 图（上），涉及知识有图的基本表示与遍历方法（DFS/BFS），所用语言为c++。
 tags:
-- c++
-- PTA
-- 数据结构
+  - c++
+  - PTA
+  - 数据结构
 categories:
-- 题目记录
+  - 题目记录
 ---
 
 [题目集总目录](https://blog.csdn.net/qq_45890533/article/details/107131440)
 学习指路博客 [图](https://blog.csdn.net/qq_45890533/article/details/105475331)
 
-# 06-图1 列出连通集 (25分)
+# 06-图 1 列出连通集 (25 分)
 
 [本题链接](https://pintia.cn/problem-sets/1268384564738605056/problems/1281571555112456192)
 
->非常基础的训练，**一定要做**
->
+> 非常基础的训练，**一定要做**
+
 ## 题目大意
 
-输出图中所有连通集。先输出DFS的结果，再输出BFS的结果。
+输出图中所有连通集。先输出 DFS 的结果，再输出 BFS 的结果。
 
 ## 代码
 
@@ -42,7 +42,7 @@ void DFS(int v) {
     visited[v] = true;
     printf(" %d", v);
     for(int i = 0; i < N; ++i) {
-        if(!visited[i] && edge[v][i] == 1) 
+        if(!visited[i] && edge[v][i] == 1)
             DFS(i);
     }
 }
@@ -55,7 +55,7 @@ void BFS(int v) {
         visited[v] = true;
         printf(" %d", v);
         for(int i = 0; i < N; ++i) {
-            if(!visited[i] && edge[v][i] == 1) 
+            if(!visited[i] && edge[v][i] == 1)
                 q.push(i);
         }
     }
@@ -91,11 +91,11 @@ int main(){
 测试点如下
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200720143957974.png)
 
-# 06-图2 Saving James Bond - Easy Version (25分)
+# 06-图 2 Saving James Bond - Easy Version (25 分)
 
 [本题链接](https://pintia.cn/problem-sets/1268384564738605056/problems/1281571555116650496)
 
->可怜的007在等着你拯救，你……看着办哈；
+> 可怜的 007 在等着你拯救，你……看着办哈；
 
 ## 代码
 
@@ -118,7 +118,7 @@ double countDist(Point a, Point b) {
 }
 bool check(Point a) {
     int s = 50 - D;
-    if(abs(a.x) >= s || abs(a.y) >= s) 
+    if(abs(a.x) >= s || abs(a.y) >= s)
         return true;
     else return false;
 }
@@ -171,12 +171,12 @@ int main(){
 测试点如下
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200720154807443.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODkwNTMz,size_16,color_FFFFFF,t_70)
 
-# 06-图3 六度空间 (30分)
+# 06-图 3 六度空间 (30 分)
 
 [本题链接](https://pintia.cn/problem-sets/1268384564738605056/problems/1281571555116650497)
 
->在听完课以后，这题的思路应该比较清晰了，不过实现起来还是颇有码量的，有时间就尝试一下。
->
+> 在听完课以后，这题的思路应该比较清晰了，不过实现起来还是颇有码量的，有时间就尝试一下。
+
 ## 题目大意
 
 给你一个社交网络图，请你对每个节点计算符合“六度空间”理论的结点占结点总数的百分比。

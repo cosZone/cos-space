@@ -6,20 +6,21 @@ subtitle: 知识点：二叉树、dfs/bfs，难度为中等、简单、简单
 date: 2022-04-04 18:56:00
 cover: img/header_img/polygon-pony-wallpaper-for-1920x1080-63-1175.jpg
 tags:
-- leetcode
-- 二叉树
-- dfs/bfs
+  - leetcode
+  - 二叉树
+  - dfs/bfs
 categories:
-- [题目记录, 剑指offer]
+  - [题目记录, 剑指offer]
 ---
-day6题目：[剑指 Offer 32 - I. 从上到下打印二叉树](https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-lcof/)、[剑指 Offer 32 - II. 从上到下打印二叉树 II](https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-ii-lcof/)、[剑指 Offer 32 - III. 从上到下打印二叉树 III](https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-iii-lcof/)
+
+day6 题目：[剑指 Offer 32 - I. 从上到下打印二叉树](https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-lcof/)、[剑指 Offer 32 - II. 从上到下打印二叉树 II](https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-ii-lcof/)、[剑指 Offer 32 - III. 从上到下打印二叉树 III](https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-iii-lcof/)
 
 知识点：二叉树、dfs/bfs，难度为中等、简单、中等
 
 学习计划链接：[「剑指 Offer」 - 学习计划](https://leetcode-cn.com/study-plan/lcof/?progress=7jn70jr)
 
-| 题目                                                                                                                        | 知识点                                                                                                        | 难度 |
-| --------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ---- |
+| 题目                                                                                                                           | 知识点                                                                                                              | 难度 |
+| ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------- | ---- |
 | [剑指 Offer 32 - I. 从上到下打印二叉树](https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-lcof/)           | [广度优先搜索](https://leetcode-cn.com/tag/breadth-first-search)、[二叉树](https://leetcode-cn.com/tag/binary-tree) | 中等 |
 | [剑指 Offer 32 - II. 从上到下打印二叉树 II](https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-ii-lcof/)    | [广度优先搜索](https://leetcode-cn.com/tag/breadth-first-search)、[二叉树](https://leetcode-cn.com/tag/binary-tree) | 简单 |
 | [剑指 Offer 32 - III. 从上到下打印二叉树 III](https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-iii-lcof/) | [广度优先搜索](https://leetcode-cn.com/tag/breadth-first-search)、[二叉树](https://leetcode-cn.com/tag/binary-tree) | 中等 |
@@ -31,7 +32,7 @@ day6题目：[剑指 Offer 32 - I. 从上到下打印二叉树](https://leetcode
 例如:
 给定二叉树: `[3,9,20,null,null,15,7]`,
 
-```
+```plain
     3
    / \
   9  20
@@ -41,7 +42,7 @@ day6题目：[剑指 Offer 32 - I. 从上到下打印二叉树](https://leetcode
 
 返回：
 
-```
+```plain
 [3,9,20,15,7]
 ```
 
@@ -51,28 +52,28 @@ day6题目：[剑指 Offer 32 - I. 从上到下打印二叉树](https://leetcode
 
 ## 思路及代码
 
-利用队列q存储，每次取出队列的第一个元素，然后将其左右子节点放入队列，直到队列为空。
+利用队列 q 存储，每次取出队列的第一个元素，然后将其左右子节点放入队列，直到队列为空。
 
 ```javascript
 /**
  * @param {TreeNode} root
  * @return {number[]}
  */
-var levelOrder = function(root) {
-    if(!root) return []
-    let ans = []
-    let q = []
-    q.push(root)
-    while(q.length > 0){
-        let n = q.length
-        for(let i = 0; i < n; ++i) {
-            let nowv = q.shift()
-            ans.push(nowv.val)
-            if(nowv.left) q.push(nowv.left)
-            if(nowv.right) q.push(nowv.right)
-        }
+var levelOrder = function (root) {
+  if (!root) return [];
+  let ans = [];
+  let q = [];
+  q.push(root);
+  while (q.length > 0) {
+    let n = q.length;
+    for (let i = 0; i < n; ++i) {
+      let nowv = q.shift();
+      ans.push(nowv.val);
+      if (nowv.left) q.push(nowv.left);
+      if (nowv.right) q.push(nowv.right);
     }
-    return ans
+  }
+  return ans;
 };
 ```
 
@@ -83,7 +84,7 @@ var levelOrder = function(root) {
 例如:
 给定二叉树: `[3,9,20,null,null,15,7]`,
 
-```
+```plain
     3
    / \
   9  20
@@ -93,7 +94,7 @@ var levelOrder = function(root) {
 
 返回其层次遍历结果：
 
-```
+```plain
 [
   [3],
   [9,20],
@@ -107,30 +108,30 @@ var levelOrder = function(root) {
 
 ## 思路及代码
 
-在上一题基础上，增加一个暂存每一层元素的数组 `level`，每次该层元素放入 `level` 数组，遍历完该层后1 `level` 数组放入结果数组。
+在上一题基础上，增加一个暂存每一层元素的数组 `level`，每次该层元素放入 `level` 数组，遍历完该层后 1 `level` 数组放入结果数组。
 
 ```javascript
 /**
  * @param {TreeNode} root
  * @return {number[]}
  */
-var levelOrder = function(root) {
-    if(!root) return []
-    let ans = []
-    let q = []
-    q.push(root)
-    while(q.length > 0){
-        let n = q.length
-        let level = []        
-        for(let i = 0; i < n; ++i) {
-            let nowv = q.shift()
-            level.push(nowv.val)  
-            if(nowv.left) q.push(nowv.left)
-            if(nowv.right) q.push(nowv.right)
-        }
-        ans.push(level)      
+var levelOrder = function (root) {
+  if (!root) return [];
+  let ans = [];
+  let q = [];
+  q.push(root);
+  while (q.length > 0) {
+    let n = q.length;
+    let level = [];
+    for (let i = 0; i < n; ++i) {
+      let nowv = q.shift();
+      level.push(nowv.val);
+      if (nowv.left) q.push(nowv.left);
+      if (nowv.right) q.push(nowv.right);
     }
-    return ans
+    ans.push(level);
+  }
+  return ans;
 };
 ```
 
@@ -141,7 +142,7 @@ var levelOrder = function(root) {
 例如:
 给定二叉树: `[3,9,20,null,null,15,7]`,
 
-```
+```plain
     3
    / \
   9  20
@@ -151,7 +152,7 @@ var levelOrder = function(root) {
 
 返回其层次遍历结果：
 
-```
+```plain
 [
   [3],
   [20,9],
@@ -174,25 +175,25 @@ var levelOrder = function(root) {
  * @param {TreeNode} root
  * @return {number[][]}
  */
-var levelOrder = function(root) {
-    if(!root) return []
-    let ans = []
-    let q = []
-    let h = 0
-    q.push(root)
-    while(q.length > 0){
-        let n = q.length
-        let level = []
-        for(let i = 0; i < n; ++i) {
-            let nowv = q.shift()
-            if(h%2 === 0) level.push(nowv.val)
-            else level.unshift(nowv.val)
-            if(nowv.left) q.push(nowv.left)
-            if(nowv.right) q.push(nowv.right)
-        }
-        ans.push(level)
-        ++h
+var levelOrder = function (root) {
+  if (!root) return [];
+  let ans = [];
+  let q = [];
+  let h = 0;
+  q.push(root);
+  while (q.length > 0) {
+    let n = q.length;
+    let level = [];
+    for (let i = 0; i < n; ++i) {
+      let nowv = q.shift();
+      if (h % 2 === 0) level.push(nowv.val);
+      else level.unshift(nowv.val);
+      if (nowv.left) q.push(nowv.left);
+      if (nowv.right) q.push(nowv.right);
     }
-    return ans
+    ans.push(level);
+    ++h;
+  }
+  return ans;
 };
 ```

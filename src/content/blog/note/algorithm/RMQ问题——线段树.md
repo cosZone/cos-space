@@ -6,27 +6,27 @@ lang: cn
 date: 2020-04-01 20:08:52
 subtitle: ~RMQ问题之线段树板子~
 tags:
-- c++
-- 线段树
-- 数据结构
+  - c++
+  - 线段树
+  - 数据结构
 categories:
-- [笔记, 算法]
+  - [笔记, 算法]
 ---
 
-上篇说到RMQ问题可以用ST表算法处理，但需要在线修改的时候，线段树是更好的选择。
+上篇说到 RMQ 问题可以用 ST 表算法处理，但需要在线修改的时候，线段树是更好的选择。
 如图，很明显线段树是个二叉搜索树
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200401162921333.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODkwNTMz,size_16,color_FFFFFF,t_70)
 要注意的点如下：
 
- 1. 线段树用数组存储，**数组空间**简单的就一般开到原数组的4*n倍（准确的说是将n向上扩充到2的幂次方然后乘2，如5->8->16）
- 2. 线段树数组存储中，某个结点的编号为n，则其**左子结点**编号为2 *n（**表示成 n << 1**）,**右子节点**编号为2*n+1(表示为 **n << 1 | 1**)
- 3. 规定根节点为1
+1.  线段树用数组存储，**数组空间**简单的就一般开到原数组的 4\*n 倍（准确的说是将 n 向上扩充到 2 的幂次方然后乘 2，如 5->8->16）
+2.  线段树数组存储中，某个结点的编号为 n，则其**左子结点**编号为 2 *n（**表示成 n << 1**）,**右子节点**编号为 2*n+1(表示为 **n << 1 | 1**)
+3.  规定根节点为 1
 
 ## 一、查询区间最值（点修改）
 
-[模板题：hihoCoder #1077  RMQ问题再临-线段树](http://hihocoder.com/problemset/problem/1077)
-题目大意：给出一个数组A，每次有查询或修改两种操作，此处是查询区间l到r上的最小值，或将编号为p的值改为v。
-用线段树维护最值，想要改成查询最大值，只需把所有min改成max，然后把inf换成0
+[模板题：hihoCoder #1077 RMQ 问题再临-线段树](http://hihocoder.com/problemset/problem/1077)
+题目大意：给出一个数组 A，每次有查询或修改两种操作，此处是查询区间 l 到 r 上的最小值，或将编号为 p 的值改为 v。
+用线段树维护最值，想要改成查询最大值，只需把所有 min 改成 max，然后把 inf 换成 0
 
 ### 1.建树
 
@@ -48,7 +48,7 @@ void Build(int l, int r, int rt) {//[l,r]表示区间，rt表示真实存储的�
 
 ### 2.更新
 
-调用时参数为根节点编号、修改位置p、要修改成的值v、修改影响的区间（即1~n）。
+调用时参数为根节点编号、修改位置 p、要修改成的值 v、修改影响的区间（即 1~n）。
 
 ```cpp
 void Update_point(int rt, int p, int val, int l, int r) {   //点修改
@@ -67,7 +67,7 @@ void Update_point(int rt, int p, int val, int l, int r) {   //点修改
 ### 3.查询
 
 难点所在，调用时参数分别为根结点、整个区间(1 ~ n)、要查询的区间(x ~ y)
-ps:要查询的区间是要一直传下去不会变的~当要查询的区间子区间为l ~ r时即可返回
+ps:要查询的区间是要一直传下去不会变的~当要查询的区间子区间为 l ~ r 时即可返回
 
 ```cpp
 int query(int rt, int l, int r,int x, int y) {//从节点rt开始查询L到R的最小值/最大值/区间和 此处以最小值为例
@@ -79,7 +79,7 @@ int query(int rt, int l, int r,int x, int y) {//从节点rt开始查询L到R的�
     if (x <= mid) //若当前区间左端点小于等于mid，则肯定要查询左半区间
         ans = min(query(rt<<1,l,mid,x,y), ans);
     if (y > mid)//若当前区间右端点大于mid，则肯定要查询右半区间
-        ans = min(query(rt<<1|1,mid+1,r,x,y), ans); 
+        ans = min(query(rt<<1|1,mid+1,r,x,y), ans);
     return ans;
 }
 ```
@@ -129,7 +129,7 @@ int query(int rt, int l, int r,int x, int y) {//从节点rt开始查询L到R的�
     if (x <= mid) //若当前区间左端点小于等于mid，则肯定要查询左半区间
         ans = min(query(rt<<1,l,mid,x,y), ans);
     if (y > mid)//若当前区间右端点大于mid，则肯定要查询右半区间
-        ans = min(query(rt<<1|1,mid+1,r,x,y), ans); 
+        ans = min(query(rt<<1|1,mid+1,r,x,y), ans);
     return ans;
 }
 int main(){
@@ -160,17 +160,15 @@ int main(){
 ### 1.区间加操作
 
 [洛谷 P3372 【模板】线段树 1](https://www.luogu.com.cn/problem/P3372)
-大意为：已知一个数列，你需要进行下面两种操作：
-1.将某区间每一个数加上 kk。
-2.求出某区间每一个数的和。
+大意为：已知一个数列，你需要进行下面两种操作：1.将某区间每一个数加上 kk。2.求出某区间每一个数的和。
 [大神题解](https://www.luogu.com.cn/problemnew/solution/P3372)
 ~~大神都写这么详细了我还写这个干嘛啊~~
 ~~算了算了自己敲一遍留着看也不错嘛~~  
 我们可以用线段树来维护区间和，以及修改的话是进行修改区间修改~这就需要一个标记数组标记，其实点修改就是区间修改的一个子问题
 
-#### pushdown操作
+#### pushdown 操作
 
-向下更新，因为懒标记add记录了对其子结点的影响，所以需要一个向下传递影响的函数
+向下更新，因为懒标记 add 记录了对其子结点的影响，所以需要一个向下传递影响的函数
 
 ```cpp
 inline void f(int rt, int l, int r, ll k) {//给当前结点加上k的影响，并更新其懒标记
@@ -264,7 +262,7 @@ ll query(int rt, int l, int r,int x, int y) {//从节点rt开始查询l到r的�
     if (x <= mid) //若当前区间左端点小于等于mid，则肯定要查询左半区间
         ans += query(rt<<1,l,mid,x,y);
     if (y > mid)//若当前区间右端点大于mid，则肯定要查询右半区间
-        ans += query(rt<<1|1,mid+1,r,x,y); 
+        ans += query(rt<<1|1,mid+1,r,x,y);
     return ans;
 }
 int main(){
@@ -295,16 +293,16 @@ int main(){
 
 [洛谷 P3373【模板】线段树 2](https://www.luogu.com.cn/problem/P3373)
 [大神题解](https://www.luogu.com.cn/problemnew/solution/P3373)
-这题就是在上一题的基础上变成可将某区间每个数乘/加上一个数，则需要两个懒标记数组add、mul，而在更新懒标记操作中也要注意若要更新add标记则只更新add,**若要更新mul则更新mul的同时也必须更新add（add乘上k）**
+这题就是在上一题的基础上变成可将某区间每个数乘/加上一个数，则需要两个懒标记数组 add、mul，而在更新懒标记操作中也要注意若要更新 add 标记则只更新 add,**若要更新 mul 则更新 mul 的同时也必须更新 add（add 乘上 k）**
 先乘后加！！
 先乘后加！！！
 先乘后加！！！
 重要的事情说三遍
 
-#### pushdown操作的变动
+#### pushdown 操作的变动
 
-主要是f函数的变动
-注意到f函数的功能是给当前结点rt的值加上上一个结点ft的所有影响（懒标记带来的），并更新当前结点ft的懒标记
+主要是 f 函数的变动
+注意到 f 函数的功能是给当前结点 rt 的值加上上一个结点 ft 的所有影响（懒标记带来的），并更新当前结点 ft 的懒标记
 
 ```cpp
 inline void f(int rt, int l, int r, int ft) {//给当前结点rt加上上一个结点ft的所有影响，更新其懒标记
@@ -453,7 +451,7 @@ ll query(int rt, int l, int r,int x, int y) {//从节点rt开始查询l到r的�
     if (x <= mid) //若当前区间左端点小于等于mid，则肯定要查询左半区间
         ans = (ans + query(rt<<1,l,mid,x,y)) % p;
     if (y > mid)//若当前区间右端点大于mid，则肯定要查询右半区间
-        ans = (ans + query(rt<<1|1,mid+1,r,x,y)) % p; 
+        ans = (ans + query(rt<<1|1,mid+1,r,x,y)) % p;
     return ans;
 }
 int main(){
@@ -484,5 +482,5 @@ int main(){
 }
 ```
 
-然后~ 恭喜ac ~ 耶~！
+然后~ 恭喜 ac ~ 耶~！
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200401195719322.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODkwNTMz,size_16,color_FFFFFF,t_70)

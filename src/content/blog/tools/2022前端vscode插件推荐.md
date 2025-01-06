@@ -5,11 +5,12 @@ catalog: true
 lang: cn
 date: 2023-01-31 15:28:56
 tags:
-- 前端
-- vscode 
+  - 前端
+  - vscode
 categories:
-- 工具
+  - 工具
 ---
+
 总结了下自己的 2022 的常用前端插件以及工具推荐，虽然 vscode 自带的插件同步功能已经很齐全了，但是还是自己总结了一篇以备不时之需。原飞书文档链接：[‍2022 前端开发 vscode 常用插件及其他工具推荐](https://nf2pjr3e5t.feishu.cn/docx/ExC0dt2tlo5sfExZk9ocKHLknle)
 
 # vscode 常用插件
@@ -18,13 +19,13 @@ categories:
 
 ### GitLens — Git supercharged
 
-拓展了vscode本身集成的Git功能，提供了很多好东西
+拓展了 vscode 本身集成的 Git 功能，提供了很多好东西
 
 ![](https://backblaze.cosine.ren/juejin/896ed607cf504cf2a182d247541cd145~Tplv-K3u1fbpfcp-Zoom-1.png)
 
 ### Auto Close Tag
 
-自动闭合HTML、JSX标签
+自动闭合 HTML、JSX 标签
 
 ![](https://backblaze.cosine.ren/juejin/Dc6e378b853b44cd9d8a17792c91c04a~Tplv-K3u1fbpfcp-Zoom-1.png)
 
@@ -36,7 +37,7 @@ categories:
 
 ### change-case
 
-命名转换 Ctrl+Shift+P 输入change case
+命名转换 Ctrl+Shift+P 输入 change case
 
 ![](https://backblaze.cosine.ren/juejin/588d36d067294b53bbf0c6b2f174a2d2~Tplv-K3u1fbpfcp-Zoom-1.png)
 
@@ -52,13 +53,13 @@ categories:
 
 ### ES7 React/Redux/GraphQL/React-Native snippets
 
-React代码片段，如题如图
+React 代码片段，如题如图
 
 ![](https://backblaze.cosine.ren/juejin/90c733f72f704973b55355beaf1bf189~Tplv-K3u1fbpfcp-Zoom-1.png)
 
 ### Commit Message Editor
 
-多人协作必备，git提交信息的编辑
+多人协作必备，git 提交信息的编辑
 
 ![](https://backblaze.cosine.ren/juejin/0819b66cd6764219a37e795c454397d0~Tplv-K3u1fbpfcp-Zoom-1.png)
 
@@ -68,7 +69,7 @@ React代码片段，如题如图
 
 ### Prettier
 
-指定配置文件.prettierrc.js，方便在项目中通过自己项目的prettier配置文件进行格式化
+指定配置文件.prettierrc.js，方便在项目中通过自己项目的 prettier 配置文件进行格式化
 
 Why Prettier？ <https://prettier.io/docs/en/why-prettier.html>
 
@@ -77,9 +78,9 @@ Why Prettier？ <https://prettier.io/docs/en/why-prettier.html>
 
 ![](https://backblaze.cosine.ren/juejin/8884949755674c40a77d6ad2b6140e6b~Tplv-K3u1fbpfcp-Zoom-1.png)
 
-### Tailwind CSS IntelliSense（使用Tailwind推荐）
+### Tailwind CSS IntelliSense（使用 Tailwind 推荐）
 
-tailwind的自动补全，智能提示
+tailwind 的自动补全，智能提示
 
 ![](https://backblaze.cosine.ren/juejin/5efb09a2a26646588bfce90b4c9b4dd4~Tplv-K3u1fbpfcp-Zoom-1.png)
 
@@ -91,7 +92,7 @@ tailwind的自动补全，智能提示
 
 ### CSS Modules
 
-CSS module模式必备
+CSS module 模式必备
 
 ![](https://backblaze.cosine.ren/juejin/73b5d3fc1e074441ba7534a387b44527~Tplv-K3u1fbpfcp-Zoom-1.png)
 
@@ -109,11 +110,11 @@ CSS module模式必备
 
 ### TabOut
 
-也是用习惯了就回不去的插件，按Tab跳出括号
+也是用习惯了就回不去的插件，按 Tab 跳出括号
 
 ![](https://backblaze.cosine.ren/juejin/Ea8b7baf5183478d991298fb91e97a83~Tplv-K3u1fbpfcp-Zoom-1.png)
 
-### vscode-styled-components（使用styled-components推荐）
+### vscode-styled-components（使用 styled-components 推荐）
 
 ![](https://backblaze.cosine.ren/juejin/6b25d9386b594ae8b4e59cc2bff209a8~Tplv-K3u1fbpfcp-Zoom-1.png)
 
@@ -129,9 +130,9 @@ CSS module模式必备
 
 ![](https://backblaze.cosine.ren/juejin/313f863f15a74da1b05d330c3648269a~Tplv-K3u1fbpfcp-Zoom-1.png)
 
-### Dev Containers （docker开发适用）
+### Dev Containers （docker 开发适用）
 
-打开docker容器内的文件，用docker开发的都说好
+打开 docker 容器内的文件，用 docker 开发的都说好
 
 ![](https://backblaze.cosine.ren/juejin/7f0daf44f15b4c59ab8cf8864d01e4d9~Tplv-K3u1fbpfcp-Zoom-1.png)
 
@@ -160,7 +161,7 @@ CSS module模式必备
 
 ### Project Manager
 
-vscode的项目管理器，一键切换项目
+vscode 的项目管理器，一键切换项目
 
 ![](https://backblaze.cosine.ren/juejin/Bcf067868c9143fda8491a84501ccc81~Tplv-K3u1fbpfcp-Zoom-1.png)
 
@@ -168,7 +169,7 @@ vscode的项目管理器，一键切换项目
 
 ### Todo Tree
 
-顾名思义 展示项目中注释的TODO在哪，只需要TODO自动就会高亮
+顾名思义 展示项目中注释的 TODO 在哪，只需要 TODO 自动就会高亮
 
 ![](https://backblaze.cosine.ren/juejin/3fe9ed9022de45cd97078a69f779ea19~Tplv-K3u1fbpfcp-Zoom-1.png)
 ![](https://backblaze.cosine.ren/juejin/62cdfa90c330480886ffd2595cc82f25~Tplv-K3u1fbpfcp-Zoom-1.png)
@@ -189,21 +190,21 @@ vscode的项目管理器，一键切换项目
 
 ### Bookmarks
 
-vscode的书签
+vscode 的书签
 
 ![](https://backblaze.cosine.ren/juejin/696877e1c8a9473c97921ef9cb815b3d~Tplv-K3u1fbpfcp-Zoom-1.png)
 
 ### Typora
 
-用的是 [Vditor](https://b3log.org/vditor/) 作为vscode的markdown编辑器相当好用，但有时候会与git冲突需要禁用。
+用的是 [Vditor](https://b3log.org/vditor/) 作为 vscode 的 markdown 编辑器相当好用，但有时候会与 git 冲突需要禁用。
 
 ![](https://backblaze.cosine.ren/juejin/814648e482fd427f968a784df1044ea1~Tplv-K3u1fbpfcp-Zoom-1.png)
 
 ![](https://backblaze.cosine.ren/juejin/96a042bf447e4a62be57f9d6174e4232~Tplv-K3u1fbpfcp-Zoom-1.png)
 
-### :emojisense:
+### :emojisense
 
-方便的输入emoj表情
+方便的输入 emoj 表情
 
 ![](https://backblaze.cosine.ren/juejin/D73565c91ec443be8da4dc03ecaf5b50~Tplv-K3u1fbpfcp-Zoom-1.png)
 
@@ -215,13 +216,13 @@ vscode的书签
 
 ### vscode-pdf
 
-vscode中看pdf文件
+vscode 中看 pdf 文件
 
 ![](https://backblaze.cosine.ren/juejin/58cbee89c4bf49538e082a6cc357b734~Tplv-K3u1fbpfcp-Zoom-1.png)
 
 ### Office Viewer(Markdown Editor)
 
-pdf都能看了看office文件当然也有插件，这个跟typora插件一样集成 [Vditor](https://b3log.org/vditor/) 可以写md文件
+pdf 都能看了看 office 文件当然也有插件，这个跟 typora 插件一样集成 [Vditor](https://b3log.org/vditor/) 可以写 md 文件
 
 ![](https://backblaze.cosine.ren/juejin/A6aa7cbdb3e94f009d750645ada69fe0~Tplv-K3u1fbpfcp-Zoom-1.png)
 
@@ -241,13 +242,13 @@ pdf都能看了看office文件当然也有插件，这个跟typora插件一样�
 
 ### One Dark Pro
 
-Atom 的标志性 One Dark 主题，也是VS Code安装最多的 [主题之一！](https://marketplace.visualstudio.com/search?target=VSCode&category=Themes&sortBy=Installs)
+Atom 的标志性 One Dark 主题，也是 VS Code 安装最多的 [主题之一！](https://marketplace.visualstudio.com/search?target=VSCode&category=Themes&sortBy=Installs)
 
 ![](https://backblaze.cosine.ren/juejin/9fcaa28afa434d039492c73bb22104fd~Tplv-K3u1fbpfcp-Zoom-1.png)
 
 ### vscode-icons
 
-改进vscode的文件图标，终于看着舒服多了
+改进 vscode 的文件图标，终于看着舒服多了
 
 ![](https://backblaze.cosine.ren/juejin/61c4203228ce4f6bb4e5d835ee456269~Tplv-K3u1fbpfcp-Zoom-1.png)
 
@@ -284,13 +285,13 @@ Atom 的标志性 One Dark 主题，也是VS Code安装最多的 [主题之一�
 
 ### Quokka.js
 
-实时打印js输出，适合刷题。
+实时打印 js 输出，适合刷题。
 
 ![](https://backblaze.cosine.ren/juejin/8e0f208c46364f0aa1b6bfdd7816bb79~Tplv-K3u1fbpfcp-Zoom-1.png)
 
 ### Competitive Programming Helper (cph)
 
-适合竞赛同学、acm（当然也适合刷面试算法题就是了，不过语言是c++。
+适合竞赛同学、acm（当然也适合刷面试算法题就是了，不过语言是 c++。
 
 ![](https://backblaze.cosine.ren/juejin/C2aac5f69ea94c058d478b847e47d81b~Tplv-K3u1fbpfcp-Zoom-1.png)
 
@@ -304,20 +305,20 @@ Atom 的标志性 One Dark 主题，也是VS Code安装最多的 [主题之一�
 
 ## 浏览器插件
 
-* 翻译插件
-  * [immersive-translate 沉浸式双语网页翻译扩展（Github）](https://link.juejin.cn?target=https%3A%2F%2Fgithub.com%2Fimmersive-translate%2Fimmersive-translate "https://github.com/immersive-translate/immersive-translate")、[介绍 - Immersive Translate](https://link.juejin.cn?target=https%3A%2F%2Fimmersive-translate.owenyoung.com%2F "https://immersive-translate.owenyoung.com/")
-  * 侧边翻译 [EdgeTranslate: A translation extension](https://link.juejin.cn?target=https%3A%2F%2Fgithub.com%2FEdgeTranslate%2FEdgeTranslate "https://github.com/EdgeTranslate/EdgeTranslate")
-* [VisBug - Microsoft Edge Addons](https://link.juejin.cn?target=https%3A%2F%2Fmicrosoftedge.microsoft.com%2Faddons%2Fdetail%2Fvisbug%2Fkdmdoinnkaeognnpegpkepdnggeaodkn "https://microsoftedge.microsoft.com/addons/detail/visbug/kdmdoinnkaeognnpegpkepdnggeaodkn")
+- 翻译插件
+  - [immersive-translate 沉浸式双语网页翻译扩展（Github）](https://link.juejin.cn?target=https%3A%2F%2Fgithub.com%2Fimmersive-translate%2Fimmersive-translate 'https://github.com/immersive-translate/immersive-translate')、[介绍 - Immersive Translate](https://link.juejin.cn?target=https%3A%2F%2Fimmersive-translate.owenyoung.com%2F 'https://immersive-translate.owenyoung.com/')
+  - 侧边翻译 [EdgeTranslate: A translation extension](https://link.juejin.cn?target=https%3A%2F%2Fgithub.com%2FEdgeTranslate%2FEdgeTranslate 'https://github.com/EdgeTranslate/EdgeTranslate')
+- [VisBug - Microsoft Edge Addons](https://link.juejin.cn?target=https%3A%2F%2Fmicrosoftedge.microsoft.com%2Faddons%2Fdetail%2Fvisbug%2Fkdmdoinnkaeognnpegpkepdnggeaodkn 'https://microsoftedge.microsoft.com/addons/detail/visbug/kdmdoinnkaeognnpegpkepdnggeaodkn')
 
-## 截图&gif工具
+## 截图&gif 工具
 
-* Snipaste 截图工具，用过都说好：<https://www.snipaste.com/>
-* ScreenToGif 顾名思义，录制 gif 的好东西 ：<https://www.screentogif.com/>
-* OBS 大名鼎鼎的视频录制和直播推流工具，dddd： <https://obsproject.com/>
+- Snipaste 截图工具，用过都说好：<https://www.snipaste.com/>
+- ScreenToGif 顾名思义，录制 gif 的好东西 ：<https://www.screentogif.com/>
+- OBS 大名鼎鼎的视频录制和直播推流工具，dddd： <https://obsproject.com/>
 
 ## 实用工具
 
-* Everything 快快快快速搜索文件，dddd <https://www.voidtools.com/zh-cn/downloads/>
+- Everything 快快快快速搜索文件，dddd <https://www.voidtools.com/zh-cn/downloads/>
 
 # 待补充
 

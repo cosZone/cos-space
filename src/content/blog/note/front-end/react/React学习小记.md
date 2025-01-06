@@ -6,11 +6,12 @@ date: 2022-02-05 14:30:00
 subtitle: 一点点React学习的记录（真的只有一点点- -）
 lang: cn
 tags:
-- 前端
-- React
+  - 前端
+  - React
 categories:
-- [笔记, 前端, React]
+  - [笔记, 前端, React]
 ---
+
 # 事件处理
 
 [事件处理 – React (docschina.org)](https://react.docschina.org/docs/handling-events.html)
@@ -47,16 +48,16 @@ class Toggle extends React.Component {
   constructor(props) {
     super(props);
     this.state = {isToggleOn: true};
-    // 为了在回调中使用 `this`，这个绑定是必不可少的    
-    this.handleClick = this.handleClick.bind(this);  
+    // 为了在回调中使用 `this`，这个绑定是必不可少的
+    this.handleClick = this.handleClick.bind(this);
   }
-    
-  handleClick() {    
+
+  handleClick() {
       this.setState(state => ({
-          isToggleOn: !state.isToggleOn    
-      }));  
+          isToggleOn: !state.isToggleOn
+      }));
   }
-    
+
   render() {
     return (
       <button onClick={this.handleClick}>
@@ -72,7 +73,7 @@ ReactDOM.render(
 );
 ```
 
-# 列表与key
+# 列表与 key
 
 [列表 & Key – React (docschina.org)](https://react.docschina.org/docs/lists-and-keys.html)
 
@@ -187,7 +188,7 @@ class Calculator extends React.Component {
 
 我们先从 `Calculator` 组件中抽离出 `TemperatureInput` 组件，然后为其添加一个新的 `scale` prop，它可以是 `"c"` 或是 `"f"`：
 
-```
+```plain
 const scaleNames = {  c: 'Celsius',  f: 'Fahrenheit'};
 class TemperatureInput extends React.Component {
   constructor(props) {

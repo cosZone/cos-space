@@ -6,14 +6,14 @@ subtitle: 今日知识点：链表、二叉树，难度仍为简单、中等、�
 date: 2022-03-10 17:30:22
 cover: img/header_img/milky-way-over-bow-lake-alberta-canada-wallpaper-for-1920x1080-63-873.jpg
 tags:
-- leetcode
-- 链表
-- 二叉树
+  - leetcode
+  - 链表
+  - 二叉树
 categories:
-- [题目记录, 字节校园]
+  - [题目记录, 字节校园]
 ---
 
-day3题目：[206. 反转链表](https://leetcode-cn.com/problems/reverse-linked-list/)、[199. 二叉树的右视图](https://leetcode-cn.com/problems/binary-tree-right-side-view/)、[bytedance-016. 16. 最短移动距离](https://leetcode-cn.com/problems/YWWN3V/)
+day3 题目：[206. 反转链表](https://leetcode-cn.com/problems/reverse-linked-list/)、[199. 二叉树的右视图](https://leetcode-cn.com/problems/binary-tree-right-side-view/)、[bytedance-016. 16. 最短移动距离](https://leetcode-cn.com/problems/YWWN3V/)
 
 学习计划链接：[冲刺春招-精选笔面试 66 题大通关](https://leetcode-cn.com/study-plan/bytedancecampus/?progress=dcmyjb3)
 
@@ -25,21 +25,21 @@ day3题目：[206. 反转链表](https://leetcode-cn.com/problems/reverse-linked
 
 给你单链表的头节点 head ，请你反转链表，并返回反转后的链表。
 
->示例 1：
-输入：head = [1,2,3,4,5]
-输出：[5,4,3,2,1]
+> 示例 1：
+> 输入：head = [1,2,3,4,5]
+> 输出：[5,4,3,2,1]
 
 > 示例 2：
-输入：head = [1,2]
-输出：[2,1]
+> 输入：head = [1,2]
+> 输出：[2,1]
 
 > 示例 3：
-输入：head = []
-输出：[]
+> 输入：head = []
+> 输出：[]
 
 ## 思路
 
-day1做的里边就有这题的思路，也不用多说了
+day1 做的里边就有这题的思路，也不用多说了
 
 ## 完整代码
 
@@ -48,37 +48,38 @@ day1做的里边就有这题的思路，也不用多说了
  * @param {ListNode} head
  * @return {ListNode}
  */
-var reverseList = function(head) {
-    let prev = null;
-    let nowv = head;
-    while(nowv) {
-        let temp = nowv.next;
-        nowv.next = prev;
-        prev = nowv;
-        nowv = temp;
-    }
-    return prev;
-}
+var reverseList = function (head) {
+  let prev = null;
+  let nowv = head;
+  while (nowv) {
+    let temp = nowv.next;
+    nowv.next = prev;
+    prev = nowv;
+    nowv = temp;
+  }
+  return prev;
+};
 ```
 
 # 199. 二叉树的右视图
 
 给定一个二叉树的 根节点 root，想象自己站在它的右侧，按照从顶部到底部的顺序，返回从右侧所能看到的节点值。
-> 示例1:
-输入: [1,2,3,null,5,null,4]
-输出: [1,3,4]
 
->示例 2:
-输入: [1,null,3]
-输出: [1,3]
+> 示例 1:
+> 输入: [1,2,3,null,5,null,4]
+> 输出: [1,3,4]
 
->示例 3:
-输入: []
-输出: []
+> 示例 2:
+> 输入: [1,null,3]
+> 输出: [1,3]
+
+> 示例 3:
+> 输入: []
+> 输出: []
 
 ## 思路
 
-这才是简单题吧啊喂，bfs就完事了，先右后左，高度若是小于maxh则不放入答案数组
+这才是简单题吧啊喂，bfs 就完事了，先右后左，高度若是小于 maxh 则不放入答案数组
 
 ## 完整代码
 
@@ -87,21 +88,21 @@ var reverseList = function(head) {
  * @param {TreeNode} root
  * @return {number[]}
  */
-var rightSideView = function(root) {
-    if(!root) return [];
-    let maxh = 0;
-    let ans = [];
-    function bfs(root, h) {
-        if(!root) return;
-        if(h > maxh) {
-            maxh = h;
-            ans.push(root.val);
-        }
-        bfs(root.right, h+1);
-        bfs(root.left, h+1);
+var rightSideView = function (root) {
+  if (!root) return [];
+  let maxh = 0;
+  let ans = [];
+  function bfs(root, h) {
+    if (!root) return;
+    if (h > maxh) {
+      maxh = h;
+      ans.push(root.val);
     }
-    bfs(root, 1);
-    return ans;
+    bfs(root.right, h + 1);
+    bfs(root.left, h + 1);
+  }
+  bfs(root, 1);
+  return ans;
 };
 ```
 
@@ -116,14 +117,16 @@ var rightSideView = function(root) {
 - 第一行包含两个正整数 n 和 m，表示树的节点数和松鼠的个数。
 - 第二行包含 n 个自然数，其中第 i 个数表示节点 i 的房间数 a[i]。
 - 第三行包含 m 个正整数，其中第 j 个数表示松鼠 j 的初始位置 b[j]。
-输出：
+  输出：
 - 输出一个数，表示 m 只松鼠各自找到独立房间的最短总移动距离。
-示例：
+  示例：
 
 > 输入：
-     5 4
-     0 0 4 1 1
-     5 4 2 2
+
+plain 5 4
+0 0 4 1 1
+5 4 2 2
+
 输出：4
 解释：前两只松鼠不需要移动，后两只松鼠需要经节点 1 移动到节点 3
 提示：
@@ -134,11 +137,11 @@ var rightSideView = function(root) {
 
 ## 思路
 
-字节，重新定义简单题！还是看评论才有的思路QAQ
-注意下标从1开始...
-读入房间数的时候，记录总房间数sum，用cnt记录未被使用房间数，读入松鼠时将其所处节点的a[b]减一，后续从最低层开始遍历，遇到松鼠将其往上走，遇到房间且还有需求时将房间往上走（但是只能解决自上而下的最短路径，等官方题解了。）
+字节，重新定义简单题！还是看评论才有的思路 QAQ
+注意下标从 1 开始...
+读入房间数的时候，记录总房间数 sum，用 cnt 记录未被使用房间数，读入松鼠时将其所处节点的 a[b]减一，后续从最低层开始遍历，遇到松鼠将其往上走，遇到房间且还有需求时将房间往上走（但是只能解决自上而下的最短路径，等官方题解了。）
 ps:开不开快读影响很大！
-pps:测试用例好像很弱，所以估计还有bug
+pps:测试用例好像很弱，所以估计还有 bug
 
 ## 完整代码
 

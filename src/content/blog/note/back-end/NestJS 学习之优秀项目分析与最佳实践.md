@@ -6,12 +6,13 @@ lang: cn
 date: 2023-09-23 23:28:03
 sticky: true
 tags:
-- nestjs
-- 后端
-- node
+  - nestjs
+  - 后端
+  - node
 categories:
-- [笔记, 后端]
---- 
+  - [笔记, 后端]
+---
+
 ## 前言
 
 进入 NestJS 的世界可能会让你感到不知所措，尤其是当你面对众多的模块和概念时。本文不仅会深入分析优秀的 NestJS 项目，介绍常用的 Nest 内置模块，还会解锁一些 NestJS 的高级特性和最佳实践，来帮助你更好地理解和应用这个强大的 Node.js 框架。无论你是一个初学者还是有经验的开发者，这篇文章都将为你提供宝贵的见解和实用的技巧，让你能够更加了解 NestJS。
@@ -39,7 +40,7 @@ prisam // 数据库相关
 src
 ├─ auth // 授权登陆模块
 │   ├─ auth.controller.ts
-│   ├─ auth.guard.ts // 守卫 
+│   ├─ auth.guard.ts // 守卫
 │   ├─ auth.interface.ts // 存放局部的该模块的类型声明
 │   ├─ auth.module.ts
 │   ├─ auth.service.ts
@@ -48,7 +49,7 @@ src
 │   ├─ entities
 │   │   └─ refresh-token.entity.ts
 ├─ common // 全局通用模块
-|   ├─ configs // 全局配置 
+|   ├─ configs // 全局配置
 |   ├─ constants // 定义一些常量
 |   ├─ decorators // 全局装饰器
 |   ├─ filters // 全局过滤器
@@ -63,11 +64,11 @@ src
 
 以一个用户授权模块为例，通常能看到这些文件，而他们的用途如下：
 
-- `*.module.ts` : 通常是模块文件，用于组织和管理控制器、服务、守卫等。它是Nest.js 应用程序的**基础单元**。
+- `*.module.ts` : 通常是模块文件，用于组织和管理控制器、服务、守卫等。它是 Nest.js 应用程序的**基础单元**。
 - `*.service.ts` : Service 层通常用于处理模块的业务逻辑。它们通常被注入到**控制器**（controller）中，并可以访问数据库、执行计算等。
-- `*.controller.ts` : 控制器文件用于处理HTTP请求和响应。它们通常依赖于 Service 来执行业务逻辑。
+- `*.controller.ts` : 控制器文件用于处理 HTTP 请求和响应。它们通常依赖于 Service 来执行业务逻辑。
 - `*.guard.ts` : 守卫文件用于实现**路由保护**，例如身份验证和授权。
-- `*.interface.ts` : 接口文件用于定义局部用到的类型和数据结构，以确保代码的健壮性。（ts声明等）
+- `*.interface.ts` : 接口文件用于定义局部用到的类型和数据结构，以确保代码的健壮性。（ts 声明等）
 - `*.dto.ts` : 数据传输对象（DTO）用于验证客户端发送的数据。
 - `*.entity.ts` : 实体文件用于定义数据库模型。
 
@@ -78,14 +79,14 @@ src
 - **Module**: 模块，NestJS 的基本组织单位，用于组织和管理控制器、服务等。
 - **Service**: 服务，包含主要的业务逻辑，通常被注入到控制器中。
 - **Entity**: 实体，用于定义数据库模型，通常与 ORM（对象关系映射）一起使用。
-- **Interceptor**:  拦截器在 NestJS 中是一个用 `@Injectable()` 装饰器注释的类，并实现 `NestInterceptor` 接口。拦截器用于在函数执行之前或之后执行一些操作，例如日志记录、异常处理、数据转换等。
-- **Reflector**:  Reflector 主要用于元数据的反射和操作。在拦截器中，Reflector 可以用于获取方法或类上设置的自定义元数据，从而允许更灵活的操作。
+- **Interceptor**: 拦截器在 NestJS 中是一个用 `@Injectable()` 装饰器注释的类，并实现 `NestInterceptor` 接口。拦截器用于在函数执行之前或之后执行一些操作，例如日志记录、异常处理、数据转换等。
+- **Reflector**: Reflector 主要用于元数据的反射和操作。在拦截器中，Reflector 可以用于获取方法或类上设置的自定义元数据，从而允许更灵活的操作。
 
 通过以上的目录结构和名词解释，我希望能为你提供一个清晰的视角，以更全面地理解 NestJS 的架构和设计理念。接下来，我们将深入探讨这些概念，并通过实际的代码示例来展示它们是如何在 NestJS 项目中应用的。
 
 ### Module
 
-1. **根模块**：每个Nest.js应用程序都有一个根模块，它是 Nest 用于构建应用程序图 （**application graph**）的起点。这个图用于解析模块与提供者（Providers）之间的关系和依赖。
+1. **根模块**：每个 Nest.js 应用程序都有一个根模块，它是 Nest 用于构建应用程序图 （**application graph**）的起点。这个图用于解析模块与提供者（Providers）之间的关系和依赖。
 2. **组织组件**：模块是组织和管理组件（如控制器、服务等）的有效方式。通过模块，你可以将密切相关的功能组合在一起。
 3. **多模块架构**：对于大型应用程序，通常会采用多模块架构。每个模块都封装了一组特定的、密切相关的功能。
 
@@ -111,13 +112,13 @@ export class AppModule {}
 #### 推荐阅读
 
 1. [Modules | NestJS - A progressive Node.js framework](https://docs.nestjs.com/modules)
-2. [深入了解Nest的模块Module - 掘金](https://juejin.cn/post/6925605351475806216)
+2. [深入了解 Nest 的模块 Module - 掘金](https://juejin.cn/post/6925605351475806216)
 
 ### Service 层（服务层）
 
-在软件架构中，通常会有几个不同的层来组织代码和功能。这些层有助于实现关注点分离（Separation of Concerns），使得代码更易于维护和扩展。在本例中，我们主要关注以下几个层：Service层和Controller层，至于DAO层：
+在软件架构中，通常会有几个不同的层来组织代码和功能。这些层有助于实现关注点分离（Separation of Concerns），使得代码更易于维护和扩展。在本例中，我们主要关注以下几个层：Service 层和 Controller 层，至于 DAO 层：
 
-> 无论是nest还是egg，官方demo里都没有明确提到dao层，直接在service层操作数据库了。这对于简单的业务逻辑没问题，如果业务逻辑变得复杂，service层的维护将会变得非常困难。业务一开始一般都很简单，它一定会向着复杂的方向演化，如果从长远考虑，一开始就应该保留dao。
+> 无论是 nest 还是 egg，官方 demo 里都没有明确提到 dao 层，直接在 service 层操作数据库了。这对于简单的业务逻辑没问题，如果业务逻辑变得复杂，service 层的维护将会变得非常困难。业务一开始一般都很简单，它一定会向着复杂的方向演化，如果从长远考虑，一开始就应该保留 dao。
 
 Service 层主要负责**业务逻辑的实现**。这一层通常会**与数据库进行交互**，执行 CRUD（创建、读取、更新、删除）操作，以及执行其他与业务逻辑相关的任务。
 
@@ -150,8 +151,8 @@ export class AuthService {
 #### 推荐阅读
 
 1. [NestJS - Services](https://docs.nestjs.com/providers#services)
-2. [nest后端开发实战（二）——分层 - 知乎](https://zhuanlan.zhihu.com/p/448037259)
-3. [浅谈NestJS设计思想（分层、IOC、AOP） - 掘金](https://juejin.cn/post/7192528039945699386)
+2. [nest 后端开发实战（二）——分层 - 知乎](https://zhuanlan.zhihu.com/p/448037259)
+3. [浅谈 NestJS 设计思想（分层、IOC、AOP） - 掘金](https://juejin.cn/post/7192528039945699386)
 
 ### Controller 层（控制器层）
 
@@ -178,11 +179,11 @@ export class UserController {
 #### 推荐阅读
 
 1. [Controllers | NestJS](https://docs.nestjs.com/controllers)
-2. [nest.js-Controller基础用法 - 掘金](https://juejin.cn/post/7260697932173787173)
+2. [nest.js-Controller 基础用法 - 掘金](https://juejin.cn/post/7260697932173787173)
 
 ### DTO（Data Transfer Object）
 
-用 po 和 dto来描述实体及其周边。po是持久化对象和数据库的表结构一一对应；dto数据传输对象则很灵活，可以在丰富的场景描述入参或返回值。下面是个user实体的例子：
+用 po 和 dto 来描述实体及其周边。po 是持久化对象和数据库的表结构一一对应；dto 数据传输对象则很灵活，可以在丰富的场景描述入参或返回值。下面是个 user 实体的例子：
 
 #### 与 Service 层和 Controller 层的关系
 
@@ -194,7 +195,7 @@ export class UserController {
 在这个例子中，`LoginUserDto` 是一个 DTO，它定义了用户注册时需要提交的数据格式。这个 DTO 在 Controller 层用于接收客户端的数据，并在 Service 层用于执行业务逻辑。
 
 ```ts
-// module/dto/LoginUserDto.ts 
+// module/dto/LoginUserDto.ts
 import { IsString, IsNotEmpty } from 'class-validator';
 
 export class LoginUserDto {
@@ -211,6 +212,7 @@ export class LoginUserDto {
 以上代码定义了用户注册时需要提交的数据格式。使用 [class-validator](https://www.npmjs.com/package/class-validator) 库来进行数据验证。
 
 - **属性解释**
+
   - `userName`: 用户名，必须是字符串类型。
   - `password`: 密码，必须是字符串类型。
 
@@ -222,7 +224,7 @@ export class LoginUserDto {
 
 #### 推荐阅读
 
-1. [学习Nest.js（五）：使用管道、DTO 验证入参 - 知乎](https://zhuanlan.zhihu.com/p/381739245)
+1. [学习 Nest.js（五）：使用管道、DTO 验证入参 - 知乎](https://zhuanlan.zhihu.com/p/381739245)
 2. [NestJS 官方文档：DTO 和验证](https://docs.nestjs.com/techniques/validation)
 
 ### Entity（实体）
@@ -253,9 +255,9 @@ export class UserEntity {
 
 ```ts
 export class GameInfo {
-  id: number;
-  name: string | null;
-  description: string | null;
+  id: number;
+  name: string | null;
+  description: string | null;
 }
 ```
 
@@ -314,7 +316,7 @@ export class AuthGuard implements CanActivate {
   constructor(
     private jwtService: JwtService,
     private configService: ConfigService,
-    private reflector: Reflector
+    private reflector: Reflector,
   ) {}
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
@@ -363,13 +365,9 @@ export class LoggingInterceptor implements NestInterceptor {
     console.log('Before...');
 
     const now = Date.now();
-    return next
-      .handle()
-      .pipe(
-        tap(() => console.log(`After... ${Date.now() - now}ms`)),
-      );
+    return next.handle().pipe(tap(() => console.log(`After... ${Date.now() - now}ms`)));
   }
-} 
+}
 ```
 
 由于 `handle()` 返回 RxJS `Observable` ，因此我们可以使用多种运算符来操作流。在上面的示例中，我们使用了 `tap()` 运算符，它在可观察流正常或异常终止时调用我们的匿名日志记录函数，但不会以其他方式干扰响应周期。
@@ -384,7 +382,7 @@ export class LoggingInterceptor implements NestInterceptor {
 
 ```ts
 import { SetMetadata } from '@nestjs/common';
-  
+
 export interface IResponse<T> {
   code: number;
   message: string;
@@ -394,9 +392,9 @@ export interface IResponse<T> {
 export const IS_RAW_DATA_KEY = 'is-raw-data';
 
 /**
- * 控制返回数据是否通过 Response 包装
- * @constructor
- */
+ * 控制返回数据是否通过 Response 包装
+ * @constructor
+ */
 export const RawData = () => SetMetadata(IS_RAW_DATA_KEY, true);
 ```
 
@@ -642,7 +640,7 @@ export class ApiService {
 }
 ```
 
-实际项目一般会自行重写http Service 请求添加统一的日志等，如下:
+实际项目一般会自行重写 http Service 请求添加统一的日志等，如下:
 
 ```ts
 import { HttpService } from '@nestjs/axios';
@@ -655,7 +653,7 @@ export class HttpClientService {
   constructor(private httpService: HttpService) {}
 
   private logger: Logger = new Logger(HttpClientService.name);
-  
+
   /**
    * 重写 http Service GET 请求, 打印 Request 和 Response
    * @param url
@@ -703,7 +701,7 @@ export class AudioProcessor {
 
 - **NPM**: [@nestjs/cache-manager](https://www.npmjs.com/package/@nestjs/cache-manager)
 - **文档**: [NestJS Caching](https://docs.nestjs.com/techniques/caching)
-- **简介**: 这个模块提供了缓存管理功能，支持多种缓存存储方式，如内存、Redis等
+- **简介**: 这个模块提供了缓存管理功能，支持多种缓存存储方式，如内存、Redis 等
 - **使用场景**: 数据缓存，如 **API 响应**、**数据库查询结果**、**会话缓存**等。
 - **代码示例**: 在这个示例中，我们使用了 `CacheModule` 来注册缓存，并使用 `CacheInterceptor` 拦截器来自动处理缓存逻辑。这样，当多次访问 `findAll` 方法时，结果会被缓存，从而提高响应速度。
 
@@ -767,14 +765,16 @@ import { diskStorage } from 'multer';
 @Controller('upload')
 export class UploadController {
   @Post()
-  @UseInterceptors(FileInterceptor('file', {
-    storage: diskStorage({
-      destination: './uploads',
-      filename: (req, file, cb) => {
-        cb(null, `${Date.now()}-${file.originalname}`);
-      },
+  @UseInterceptors(
+    FileInterceptor('file', {
+      storage: diskStorage({
+        destination: './uploads',
+        filename: (req, file, cb) => {
+          cb(null, `${Date.now()}-${file.originalname}`);
+        },
+      }),
     }),
-  }))
+  )
   uploadFile(@UploadedFile() file) {
     return { url: `./uploads/${file.filename}` };
   }
@@ -873,7 +873,7 @@ import { plainToClass } from 'class-transformer';
 
 const user = plainToClass(User, {
   name: 'John Doe',
-  email: 'john.doe@example.com'
+  email: 'john.doe@example.com',
 });
 ```
 
@@ -1056,7 +1056,7 @@ import { of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 const source$ = of(1, 2, 3);
-const result$ = source$.pipe(map(x => x * 2));
+const result$ = source$.pipe(map((x) => x * 2));
 
-result$.subscribe(x => console.log(x)); // 输出 2, 4, 6
+result$.subscribe((x) => console.log(x)); // 输出 2, 4, 6
 ```

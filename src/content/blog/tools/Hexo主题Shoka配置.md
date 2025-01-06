@@ -3,23 +3,25 @@ title: Hexo博客Shoka主题配置记录
 link: hexo-shoka-config
 catalog: true
 lang: cn
-date: 2022-05-06 23:38:56 
+date: 2022-05-06 23:38:56
 quiz: true
 math: true
 mermaid: true
 tags:
-- 前端
-- hexo
+  - 前端
+  - hexo
 categories:
-- 工具
+  - 工具
 ---
+
 # 起因
 
 今天闲逛的时候看到一个博客用的主题惊为天人:
+
 > 官方配置教程: [Hexo 主题 Shoka & multi-markdown-it 渲染器使用说明](https://shoka.lostyu.me/computer-science/note/theme-shoka-doc/) \
 > [**🚀快速开始**](https://shoka.lostyu.me/computer-science/note/theme-shoka-doc/) -> [💌依赖插件](https://shoka.lostyu.me/computer-science/note/theme-shoka-doc/dependents/) -> [📌基本配置](https://shoka.lostyu.me/computer-science/note/theme-shoka-doc/config/) -> [🌈界面显示](https://shoka.lostyu.me/computer-science/note/theme-shoka-doc/display/) -> [🦄特殊功能](https://shoka.lostyu.me/computer-science/note/theme-shoka-doc/special/)
 
-> 过程中遇到的一些问题，有看到这个博客里提到：[Hexo博客搭建：基础配置[主题:shoka]](https://blog.moehz.com/archives/hexo-shoka-build.html)
+> 过程中遇到的一些问题，有看到这个博客里提到：[Hexo 博客搭建：基础配置[主题:shoka]](https://blog.moehz.com/archives/hexo-shoka-build.html)
 
 这个博客主题简直就是为笔记而生~
 优点：
@@ -69,9 +71,9 @@ valine:
     friend: 小伙伴
     investor: 金主粑粑
   tagColor:
-    master: "var(--color-orange)"
-    friend: "var(--color-aqua)"
-    investor: "var(--color-pink)"
+    master: 'var(--color-orange)'
+    friend: 'var(--color-aqua)'
+    investor: 'var(--color-pink)'
   tagMember:
     master:
       # - hash of master@email.com
@@ -90,7 +92,7 @@ valine:
 
 ## 搜索配置
 
-搜索采用algolia，我是跟着这个来的 [Algolia搜索引擎](https://cloud.tencent.com/developer/article/1957568)
+搜索采用 algolia，我是跟着这个来的 [Algolia 搜索引擎](https://cloud.tencent.com/developer/article/1957568)
 配置完后，每次发布文章还需要手动一行命令
 
 ```bash
@@ -123,7 +125,7 @@ sticky: true
 
 ## links 链接块
 
-```
+```plain
 {% links %}
 - site: #站点名称
   owner: #管理员名字
@@ -138,7 +140,7 @@ sticky: true
 
 主要有:顶部可配置标题，右上角可配置参考链接，命令行可配置提示内容等等
 
-原始md文件内容：
+原始 md 文件内容：
 
 ````raw
 ```java 行高亮 https://shoka.lostyu.me 参考链接 mark:1,6-7
@@ -198,7 +200,7 @@ ps: 什么神仙功能
 
 需要在 Front Matter 中添加 `quiz: true` ，以正确显示题型标签。
 
-```raw 几个例子
+````raw 几个例子
 ---
 title: 练习题与答案
 quiz: true
@@ -233,56 +235,43 @@ quiz: true
 10. 如果定义 `int e=8; double f=6.4, g=8.9;`，则表达式 `f+int (e/3*int (f+g)/2)%4` 的值为 [9.4]{.gap}。 {.quiz .fill}
     > 注意运算顺序和数据类型
     > [8.4]{.mistake}
-```
+````
 
 效果如下：
 
 1. 编译时多态主要指运算符重载与函数重载，而运行时多态主要指虚函数。 {.quiz .true}
 
-2. 有基类 `SHAPE`，派生类 `CIRCLE`，声明如下变量：  {.quiz .multi}
+2. 有基类 `SHAPE`，派生类 `CIRCLE`，声明如下变量： {.quiz .multi}
 
-    ```cpp
-    SHAPE shape1,*p1;
-    CIRCLE circle1,*q1;
-    ```
+```cpp
+  SHAPE shape1,*p1;
+  CIRCLE circle1,*q1;
+```
 
-    下列哪些项是 “派生类对象替换基类对象”。
-    - `p1=&circle1;` {.correct}
-    - `q1=&shape1;`
-    - `shape1=circle1;` {.correct}
-    - `circle1=shape1;`
-{.options}
-    > - :heavy_check_mark: 令基类对象的指针指向派生类对象
-    > - :x: 派生类指针指向基类的引用
-    > - :heavy_check_mark: 派生类对象给基类对象赋值
-    > - :x: 基类对象给派生类对象赋值
-    > {.options}
+下列哪些项是 “派生类对象替换基类对象”。- `p1=&circle1;` {.correct} - `q1=&shape1;` - `shape1=circle1;` {.correct} - `circle1=shape1;
+{.options} > - :heavy_check_mark: 令基类对象的指针指向派生类对象 > - :x: 派生类指针指向基类的引用 > - :heavy_check_mark: 派生类对象给基类对象赋值 > - :x: 基类对象给派生类对象赋值 > {.options}
 
-3. 下列叙述正确的是 []{.gap} 。 {.quiz}
-    - 虚函数只能定义成无参函数
-    - 虚函数不能有返回值
-    - 能定义虚构造函数
-    - A、B、C 都不对 {.correct}
-{.options}
+3. 下列叙述正确的是 []{.gap} 。 {.quiz} - 虚函数只能定义成无参函数 - 虚函数不能有返回值 - 能定义虚构造函数 - A、B、C 都不对 {.correct}
+   {.options}
 
-10. 如果定义 `int e=8; double f=6.4, g=8.9;`，则表达式 `f+int (e/3*int (f+g)/2)%4` 的值为 [9.4]{.gap}。 {.quiz .fill}
-    > 注意运算顺序和数据类型
-    > [8.4]{.mistake}
+4. 如果定义 `int e=8; double f=6.4, g=8.9;`，则表达式 `f+int (e/3*int (f+g)/2)%4` 的值为 [9.4]{.gap}。 {.quiz .fill}
+   > 注意运算顺序和数据类型
+   > [8.4]{.mistake}
 
-| 标签 | 含义 |
-| --- | --- |
-| `{.quiz}` | 选择题 |
-| `{.quiz .multi}` | 多选题 |
-| `{.quiz .true}` | 正确的判断题 |
-| `{.quiz .false}` | 错误的判断题 |
-| `{.quiz .fill}` | 填空题 |
-| `[]{.gap}` | 空白下划线 |
+| 标签               | 含义             |
+| ------------------ | ---------------- |
+| `{.quiz}`          | 选择题           |
+| `{.quiz .multi}`   | 多选题           |
+| `{.quiz .true}`    | 正确的判断题     |
+| `{.quiz .false}`   | 错误的判断题     |
+| `{.quiz .fill}`    | 填空题           |
+| `[]{.gap}`         | 空白下划线       |
 | `[答案内容]{.gap}` | 答案内容带下划线 |
-| `{.options}` | ABCDE 选项 |
-| `{.correct}` | 选择题的正确选项 |
-| `>` | 答案解析 |
-| `[8.4]{.mistake} ` | 错题备注 |
- 
+| `{.options}`       | ABCDE 选项       |
+| `{.correct}`       | 选择题的正确选项 |
+| `>`                | 答案解析         |
+| `[8.4]{.mistake}`  | 错题备注         |
+
 ## emoji 绘文字
 
 基于 markdown-it-emoji ，所有标签参考戳此
@@ -329,8 +318,8 @@ quiz: true
 
 ## note 提醒块
 
-| 开始行  | `:::[风格颜色]` |
-| 结束行 |  `:::` |
+| 开始行 | `:::[风格颜色]` |
+| 结束行 | `:::` |
 
 ```raw
 :::default
@@ -440,14 +429,14 @@ quiz: true
 
 {% links %}
 
-- site: cos的博客
+- site: cos 的博客
   owner: cos
   url: <https://ysx.cosine.ren/>
   desc: 余弦的编程笔记 & 生活记录
   image: <https://fastly.jsdelivr.net/gh/yusixian/imgBed@latest/img/tx.jpg>
   color: "#1e80ff"
-{% endlinks %}
-;;;
+  {% endlinks %}
+  ;;;
 
 ;;;id1 卡片 2
 这里是卡片 2 的内容
@@ -457,7 +446,7 @@ quiz: true
 
 - 第一行
 - 第二行
-;;;
+  ;;;
 
 ;;;id2 ②号标签卡片 1
 这里是卡片 1 的内容
@@ -486,9 +475,9 @@ quiz: true
 
 - 第一行
 - 第二行
-+++
+  +++
 
-+++info  蓝色
++++info 蓝色
 ;;;id3 卡片 1
 这里是卡片 1 的内容
 ;;;
@@ -500,11 +489,12 @@ quiz: true
 
 +++success 绿色
 {% links %}
+
 - site: 優萌初華
   url: https://shoka.lostyu.me
   color: "#e9546b"
-{% endlinks %}
-+++
+  {% endlinks %}
+  +++
 
 +++warning 黄色
 !! 警告警告警告警告警告！！{.bulr}
@@ -527,9 +517,9 @@ quiz: true
 
 - 第一行
 - 第二行
-+++
+  +++
 
-+++info  蓝色
++++info 蓝色
 ;;;id3 卡片 1
 这里是卡片 1 的内容
 ;;;
@@ -545,8 +535,8 @@ quiz: true
 - site: 優萌初華
   url: <https://shoka.lostyu.me>
   color: "#e9546b"
-{% endlinks %}
-+++
+  {% endlinks %}
+  +++
 
 +++warning 黄色
 !! 警告警告警告警告警告！！{.bulr}
@@ -565,19 +555,19 @@ quiz: true
 
 {% media audio %}
 
-- title: cos的2021年度歌单
+- title: cos 的 2021 年度歌单
   list:
   - <https://music.163.com/playlist?id=7189274318>
-- title: cos的2020年度歌单
+- title: cos 的 2020 年度歌单
   list:
   - <https://music.163.com/playlist?id=5400313492>
-- title: cos的2019年度歌单
+- title: cos 的 2019 年度歌单
   list:
   - <https://music.163.com/playlist?id=3144460328>
 - title: ❤️安利向
   list:
   - <https://music.163.com/playlist?id=3036586237>
-{% endmedia %}
+    {% endmedia %}
 
 ## math 数学公式
 
@@ -607,7 +597,9 @@ $$\begin {array}{c}
 行内公式：$\sqrt {3x-1}+(1+x)^2$
 
 独立块显示：
-$$\begin {array}{c}
+
+$$
+\begin {array}{c}
 
 \nabla \times \vec {\mathbf {B}} -\, \frac1c\, \frac {\partial\vec {\mathbf {E}}}{\partial t} &
 = \frac {4\pi}{c}\vec {\mathbf {j}}    \nabla \cdot \vec {\mathbf {E}} & = 4 \pi \rho \\
@@ -616,6 +608,7 @@ $$\begin {array}{c}
 
 \nabla \cdot \vec {\mathbf {B}} & = 0
 
-\end {array}$$
+\end {array}
+$$
 
 总而言之，这个主题非常强大~

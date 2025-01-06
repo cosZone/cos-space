@@ -4,11 +4,12 @@ link: floating-ui-experience-dialog
 catalog: true
 date: 2023-06-16 15:11:15
 tags:
-- 前端
-- floating-ui
+  - 前端
+  - floating-ui
 categories:
-- [笔记, 前端]
+  - [笔记, 前端]
 ---
+
 上文：[Floating UI 使用经验分享 - Popover](https://x.cosine.ren/floating-ui-experience-popover)
 
 在本文中，我将分享如何使用 Floating UI 来创建另一种常见的浮动 UI 组件——**Dialog（对话框）**。Dialog 是一个浮动元素，显示需要立即关注的信息，他会出现在页面内容上并**阻止与页面的交互**，直到它被关闭。
@@ -65,90 +66,90 @@ categories:
 结合实际可以写出这样一个功能较为完整的 Dialog 案例，可以自定义遮罩层、内部元素的样式，也可以控制点击遮罩层是否关闭弹窗等，还可以结合 Framer-motion 制作弹窗动画等（以后有机会也写一篇）
 
 ```tsx
-import {  
-  FloatingFocusManager,  
-  FloatingOverlay,  
-  FloatingPortal,  
-  useClick,  
-  useDismiss,  
-  useFloating,  
-  useInteractions,  
-  useRole,  
-} from '@floating-ui/react';  
-import clsx from 'clsx';  
-import React, { cloneElement, useState } from 'react';  
-import { CgClose } from 'react-icons![](file:///C:\Users\34504\AppData\Roaming\Tencent\QQTempSys\3)6GH))S[9A2G57O0%MM45V.gif)';  
-  
-type DialogProps = {  
-  rootId?: string;  
-  open?: boolean;  
-  initialOpen?: boolean;  
-  onOpenChange?: (open: boolean) => void;  
-  children?: JSX.Element;  
-  render: (props: { close: () => void }) => React.ReactNode;  
-  className?: string;  
-  overlayClass?: string;  
-  containerClass?: string;  
-  isDismiss?: boolean;  
-  showCloseButton?: boolean;  
-};  
-  
-export default function Dialog({  
-  initialOpen = false,  
-  open: controlledOpen,  
-  onOpenChange: setControlledOpen,  
-  children,  
-  className,  
-  render,  
-  rootId: customRootId,  
-  overlayClass,  
-  containerClass,  
-  showCloseButton = true,  
-  isDismiss = true,  
-}: DialogProps) {  
-  const [uncontrolledOpen, setUncontrolledOpen] = useState(initialOpen);  
-  const open = controlledOpen ?? uncontrolledOpen;  
-  const setOpen = setControlledOpen ?? setUncontrolledOpen;  
-  
-  const { reference, floating, context } = useFloating({  
-    open,  
-    onOpenChange: setOpen,  
-  });  
-  
-  const click = useClick(context);  
-  const role = useRole(context);  
-  const dismiss = useDismiss(context, { enabled: isDismiss, outsidePressEvent: 'mousedown' });  
-  
-  const { getReferenceProps, getFloatingProps } = useInteractions([click, role, dismiss]);  
-  
-  const onClose = () => setOpen(false);  
-  
-  return (  
-    <>  
-      {children && cloneElement(children, getReferenceProps({ ref: reference, ...children.props }))}  
-      <FloatingPortal id={customRootId}>  
-        {open && (  
-          <FloatingOverlay  
-            className={clsx('absolute inset-0 z-10 flex h-full w-full items-center', overlayClass ?? 'bg-black/60')}  
-            lockScroll  
-          >  
-            <div className={clsx('m-auto grid place-items-center', containerClass)}>  
-              <FloatingFocusManager context={context}>  
-                <div  
-                  className={clsx('relative overflow-hidden rounded-md bg-white', className ?? 'mx-24')}  
-                  ref={floating}  
-                  {...getFloatingProps()}  
-                >  
-                  {showCloseButton && <CgClose className="absolute right-2 top-2 h-6 w-6 cursor-pointer" onClick={onClose} />}  
-                  {render({ close: onClose })}  
-                </div>  
-              </FloatingFocusManager>  
-            </div>  
-          </FloatingOverlay>  
-        )}  
-      </FloatingPortal>  
-    </>  
-  );  
+import {
+  FloatingFocusManager,
+  FloatingOverlay,
+  FloatingPortal,
+  useClick,
+  useDismiss,
+  useFloating,
+  useInteractions,
+  useRole,
+} from '@floating-ui/react';
+import clsx from 'clsx';
+import React, { cloneElement, useState } from 'react';
+import { CgClose } from 'react-icons![](file:///C:\Users\34504\AppData\Roaming\Tencent\QQTempSys\3)6GH))S[9A2G57O0%MM45V.gif)';
+
+type DialogProps = {
+  rootId?: string;
+  open?: boolean;
+  initialOpen?: boolean;
+  onOpenChange?: (open: boolean) => void;
+  children?: JSX.Element;
+  render: (props: { close: () => void }) => React.ReactNode;
+  className?: string;
+  overlayClass?: string;
+  containerClass?: string;
+  isDismiss?: boolean;
+  showCloseButton?: boolean;
+};
+
+export default function Dialog({
+  initialOpen = false,
+  open: controlledOpen,
+  onOpenChange: setControlledOpen,
+  children,
+  className,
+  render,
+  rootId: customRootId,
+  overlayClass,
+  containerClass,
+  showCloseButton = true,
+  isDismiss = true,
+}: DialogProps) {
+  const [uncontrolledOpen, setUncontrolledOpen] = useState(initialOpen);
+  const open = controlledOpen ?? uncontrolledOpen;
+  const setOpen = setControlledOpen ?? setUncontrolledOpen;
+
+  const { reference, floating, context } = useFloating({
+    open,
+    onOpenChange: setOpen,
+  });
+
+  const click = useClick(context);
+  const role = useRole(context);
+  const dismiss = useDismiss(context, { enabled: isDismiss, outsidePressEvent: 'mousedown' });
+
+  const { getReferenceProps, getFloatingProps } = useInteractions([click, role, dismiss]);
+
+  const onClose = () => setOpen(false);
+
+  return (
+    <>
+      {children && cloneElement(children, getReferenceProps({ ref: reference, ...children.props }))}
+      <FloatingPortal id={customRootId}>
+        {open && (
+          <FloatingOverlay
+            className={clsx('absolute inset-0 z-10 flex h-full w-full items-center', overlayClass ?? 'bg-black/60')}
+            lockScroll
+          >
+            <div className={clsx('m-auto grid place-items-center', containerClass)}>
+              <FloatingFocusManager context={context}>
+                <div
+                  className={clsx('relative overflow-hidden rounded-md bg-white', className ?? 'mx-24')}
+                  ref={floating}
+                  {...getFloatingProps()}
+                >
+                  {showCloseButton && <CgClose className="absolute right-2 top-2 h-6 w-6 cursor-pointer" onClick={onClose} />}
+                  {render({ close: onClose })}
+                </div>
+              </FloatingFocusManager>
+            </div>
+          </FloatingOverlay>
+        )}
+      </FloatingPortal>
+    </>
+  );
 }
 ```
 
@@ -163,8 +164,8 @@ export default function Dialog({
 ### Open state
 
 ```jsx
-import {useState} from 'react';
- 
+import { useState } from 'react';
+
 function Dialog() {
   const [isOpen, setIsOpen] = useState(false);
 }
@@ -176,18 +177,18 @@ function Dialog() {
 
 [useFloating hook](https://floating-ui.com/docs/dialog#usefloating-hook)
 
-`useFloating()` hook为我们的对话提供上下文。我们需要传递一些信息：
+`useFloating()` hook 为我们的对话提供上下文。我们需要传递一些信息：
 
 - `open` ：来自我们上面的 `useState()` 挂钩的打开状态。
 - `onOpenChange`: 对话框打开或关闭时调用的回调函数。我们将使用它来更新我们的 `isOpen` 状态。
 
 ```jsx
-import {useFloating} from '@floating-ui/react';
- 
+import { useFloating } from '@floating-ui/react';
+
 function Dialog() {
   const [isOpen, setIsOpen] = useState(false);
- 
-  const {refs, context} = useFloating({
+
+  const { refs, context } = useFloating({
     open: isOpen,
     onOpenChange: setIsOpen,
   });
@@ -198,7 +199,7 @@ function Dialog() {
 
 [Interaction hooks](https://floating-ui.com/docs/dialog#interaction-hooks)
 
-- `useClick()` 添加了在**单击引用元素**时**打开或关闭对话框**的功能。但是，对话框可能不会附加到引用元素，因此这是可选的。(一般对话框都是独立出来Portal的，也就是上下文是body)
+- `useClick()` 添加了在**单击引用元素**时**打开或关闭对话框**的功能。但是，对话框可能不会附加到引用元素，因此这是可选的。(一般对话框都是独立出来 Portal 的，也就是上下文是 body)
 - `useDismiss()` 添加了当用户按下 `esc` 键或在对话框外按下时关闭对话框的功能。可以将其的 `outsidePressEvent` 选项设置为 `'mousedown'` 以便触摸事件变得懒惰并且不会穿过背景，因为默认行为是急切的。（不太好理解，大概是）
 - `useRole()` 将 `dialog` 的正确 ARIA 属性添加到对话框和引用元素。
 
@@ -213,28 +214,24 @@ import {
   useInteractions,
   useId,
 } from '@floating-ui/react';
- 
+
 function Dialog() {
   const [isOpen, setIsOpen] = useState(false);
- 
-  const {refs, context} = useFloating({
+
+  const { refs, context } = useFloating({
     open: isOpen,
     onOpenChange: setIsOpen,
   });
- 
+
   const click = useClick(context);
   const dismiss = useDismiss(context, {
     outsidePressEvent: 'mousedown',
   });
   const role = useRole(context);
- 
+
   // Merge all the interactions into prop getters
-  const {getReferenceProps, getFloatingProps} = useInteractions([
-    click,
-    dismiss,
-    role,
-  ]);
- 
+  const { getReferenceProps, getFloatingProps } = useInteractions([click, dismiss, role]);
+
   // Set up label and description ids
   const labelId = useId();
   const descriptionId = useId();
@@ -245,7 +242,7 @@ function Dialog() {
 
 [Rendering](https://floating-ui.com/docs/dialog#rendering)
 
-现在我们已经设置了所有的变量和hook，可以渲染我们的元素了。
+现在我们已经设置了所有的变量和 hook，可以渲染我们的元素了。
 
 ```jsx
 function Dialog() {
@@ -256,22 +253,12 @@ function Dialog() {
         Reference element
       </button>
       {isOpen && (
-        <FloatingOverlay
-          lockScroll
-          style={{background: 'rgba(0, 0, 0, 0.8)'}}
-        >
+        <FloatingOverlay lockScroll style={{ background: 'rgba(0, 0, 0, 0.8)' }}>
           <FloatingFocusManager context={context}>
-            <div
-              ref={refs.setFloating}
-              aria-labelledby={labelId}
-              aria-describedby={descriptionId}
-              {...getFloatingProps()}
-            >
+            <div ref={refs.setFloating} aria-labelledby={labelId} aria-describedby={descriptionId} {...getFloatingProps()}>
               <h2 id={labelId}>Heading element</h2>
               <p id={descriptionId}>Description element</p>
-              <button onClick={() => setIsOpen(false)}>
-                Close
-              </button>
+              <button onClick={() => setIsOpen(false)}>Close</button>
             </div>
           </FloatingFocusManager>
         </FloatingOverlay>
@@ -287,18 +274,18 @@ function Dialog() {
 
 - `<FloatingOverlay />` 是一个在浮动元素后面**渲染背景覆盖元素**的组件，具有**锁定主体滚动**的能力。 [FloatingOverlay docs](https://floating-ui.com/docs/FloatingOverlay)
   - 提供了一个固定的基本样式，使背景内容变暗并阻止浮动元素后面的指针事件。
-  - 它是一个常规的 `<div/>`，因此可以通过任何CSS解决方案进行样式设置。
+  - 它是一个常规的 `<div/>`，因此可以通过任何 CSS 解决方案进行样式设置。
 - `<FloatingFocusManager />`
   - [FloatingPortal docs](https://floating-ui.com/docs/floatingportal) 一个管理和控制页面中浮动元素焦点的组件
   - 自动检测焦点变化，调整页面上的浮动元素的位置和状态，确保页面上所有元素的可访问性和可用性。
   - 默认情况通常**将焦点捕获在内部**。
-  - 它应该**直接包裹浮动元素**，并且**只在对话框也被渲染时才被渲染**。  [FloatingFocusManager docs](https://floating-ui.com/docs/floatingfocusmanager)
+  - 它应该**直接包裹浮动元素**，并且**只在对话框也被渲染时才被渲染**。 [FloatingFocusManager docs](https://floating-ui.com/docs/floatingfocusmanager)
     - `<FloatingPortal />`将浮动元素传送到给定的容器元素中——默认情况下，在应用程序根之外并进入 body。
     - 可以自定义 root，也就是可选择具有 id 的节点，或者创建它并将其附加到指定的根（body）
 
 ```jsx
-import {FloatingPortal} from '@floating-ui/react';
- 
+import { FloatingPortal } from '@floating-ui/react';
+
 function Tooltip() {
   return (
     isOpen && (

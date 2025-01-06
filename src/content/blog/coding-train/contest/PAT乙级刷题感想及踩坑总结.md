@@ -3,53 +3,53 @@ title: PAT乙级刷题感想及踩坑总结
 link: PAT乙级刷题感想及踩坑总结
 catalog: true
 lang: cn
-date: 2021-09-11 10:58:02 
+date: 2021-09-11 10:58:02
 subtitle: 《坑 点 大 赏》还有好多坑点没写，等有机会再补吧【咕咕咕】
 tags:
-- 后端
-- c++
-- PAT乙级
+  - 后端
+  - c++
+  - PAT乙级
 categories:
-- [题目记录, 竞赛]
+  - [题目记录, 竞赛]
 ---
 
-后记：考完PTA乙级了，92分人麻了，字符串的题永远的痛呜呜呜呜（
+后记：考完 PTA 乙级了，92 分人麻了，字符串的题永远的痛呜呜呜呜（
 
 # 注意点
 
-- 规定几位输出老老实实输出几位，比如规定id4位数就%04d，限制好域宽，不然前导0没了！！这个经常吃亏
-  -  典型题：[1065 单身狗 (25 分)](https://pintia.cn/problem-sets/994805260223102976/problems/994805266942377984)、[1072 开学寄语 (20 分)](https://pintia.cn/problem-sets/994805260223102976/problems/994805263964422144)
-- 同理，需要去掉前导0的时候不要犹豫：[1074 宇宙无敌加法器 (20 分)](https://pintia.cn/problem-sets/994805260223102976/problems/994805263297527808)
-- printf输出%的时候用%%（不会吧不会吧不会只有我忘了吧）
-- 注意数据范围，选好用什么类型，有时候需要用long long
-- 字符串题getline用烂（）
-- 基本上反反复复就用那么几个vector、map，尤其是map的find函数（
-- 注意边界，为0，为最大值，重复等情况，
+- 规定几位输出老老实实输出几位，比如规定 id4 位数就%04d，限制好域宽，不然前导 0 没了！！这个经常吃亏
+  - 典型题：[1065 单身狗 (25 分)](https://pintia.cn/problem-sets/994805260223102976/problems/994805266942377984)、[1072 开学寄语 (20 分)](https://pintia.cn/problem-sets/994805260223102976/problems/994805263964422144)
+- 同理，需要去掉前导 0 的时候不要犹豫：[1074 宇宙无敌加法器 (20 分)](https://pintia.cn/problem-sets/994805260223102976/problems/994805263297527808)
+- printf 输出%的时候用%%（不会吧不会吧不会只有我忘了吧）
+- 注意数据范围，选好用什么类型，有时候需要用 long long
+- 字符串题 getline 用烂（）
+- 基本上反反复复就用那么几个 vector、map，尤其是 map 的 find 函数（
+- 注意边界，为 0，为最大值，重复等情况，
 
 # 好题推荐
 
-- [1003 我要通过！ (20 分)](https://pintia.cn/problem-sets/994805260223102976/problems/994805323154440192)  看到这个通过率就明白了。
+- [1003 我要通过！ (20 分)](https://pintia.cn/problem-sets/994805260223102976/problems/994805323154440192) 看到这个通过率就明白了。
 - [1013 数素数 (20 分)](https://pintia.cn/problem-sets/994805260223102976/problems/994805309963354112) 经典埃式筛法求素数，练习一下。
-- [1014 福尔摩斯的约会 (20 分)](https://pintia.cn/problem-sets/994805260223102976/problems/994805308755394560)  典型的好玩的字符串题。
-- [1024 科学计数法 (20 分)](https://pintia.cn/problem-sets/994805260223102976/problems/994805297229447168) 字符串解析，坑点挺多，记得补0，分正负等
-- [1034 有理数四则运算 (20 分)](https://pintia.cn/problem-sets/994805260223102976/problems/994805287624491008)  gcd、lcm、最简分数 (其实lcm没用上，不过作为一个练习了)
-- [1035 插入与归并 (25 分)](https://pintia.cn/problem-sets/994805260223102976/problems/994805286714327040)  好题啊好题.jpg，考到了插入排序和归并排序，个人感觉挺难的一道题
-- [1040 有理数四则运算 (20 分)](https://pintia.cn/problem-sets/994805260223102976/problems/994805282389999616)   字符串，dp
+- [1014 福尔摩斯的约会 (20 分)](https://pintia.cn/problem-sets/994805260223102976/problems/994805308755394560) 典型的好玩的字符串题。
+- [1024 科学计数法 (20 分)](https://pintia.cn/problem-sets/994805260223102976/problems/994805297229447168) 字符串解析，坑点挺多，记得补 0，分正负等
+- [1034 有理数四则运算 (20 分)](https://pintia.cn/problem-sets/994805260223102976/problems/994805287624491008) gcd、lcm、最简分数 (其实 lcm 没用上，不过作为一个练习了)
+- [1035 插入与归并 (25 分)](https://pintia.cn/problem-sets/994805260223102976/problems/994805286714327040) 好题啊好题.jpg，考到了插入排序和归并排序，个人感觉挺难的一道题
+- [1040 有理数四则运算 (20 分)](https://pintia.cn/problem-sets/994805260223102976/problems/994805282389999616) 字符串，dp
 - [1045 快速排序 (25 分)](https://pintia.cn/problem-sets/994805260223102976/problems/994805278589960192) 说是快排，其实是找一个元素其左边元素都比他小，右边都比他大，即找主元
 - [1049 数列的片段和 (20 分)](https://pintia.cn/problem-sets/994805260223102976/problems/994805275792359424) 思维题，找规律
 - [1050 螺旋矩阵 (25 分)](https://pintia.cn/problem-sets/994805260223102976/problems/994805275146436608) 蓝桥杯模拟赛做过，模拟一下这个过程即可
-- [1055 集体照 (25 分)](https://pintia.cn/problem-sets/994805260223102976/problems/994805272021680128)  坑点较多，可以一做，结构体。
-- [1073 多选题常见计分法 (20 分)](https://pintia.cn/problem-sets/994805260223102976/problems/994805263624683520)，是之前1058的选择题plus版本，感觉可以当25分题了（
-- [1074 宇宙无敌加法器 (20 分)](https://pintia.cn/problem-sets/994805260223102976/problems/994805263297527808)  考到了进制和大整数加法，我愿称之为好题
-- [1075 链表元素分类 (25 分)](https://pintia.cn/problem-sets/994805260223102976/problems/994805262953594880)  直接用vector模拟链表，注意结点不在链表中的情况 。1070-1075这一套题挺好的
-- [1078 字符串压缩与解压 (20 分)](https://pintia.cn/problem-sets/994805260223102976/problems/994805262018265088)  字符串处理的好题
-- [1080 MOOC期终成绩 (25 分)](https://pintia.cn/problem-sets/994805260223102976/problems/994805261493977088)  典型结构体、重载排序规则
-- [1084 外观数列 (20 分)](https://pintia.cn/problem-sets/994805260223102976/problems/994805260583813120)， 题意读懂就很简单，核心思想类同于1078中的字符串压缩，一个个处理
-- [1090 危险品装箱 (25 分)](https://pintia.cn/problem-sets/994805260223102976/problems/1038429484026175488)  有坑点，但我不说，哎就是玩（
+- [1055 集体照 (25 分)](https://pintia.cn/problem-sets/994805260223102976/problems/994805272021680128) 坑点较多，可以一做，结构体。
+- [1073 多选题常见计分法 (20 分)](https://pintia.cn/problem-sets/994805260223102976/problems/994805263624683520)，是之前 1058 的选择题 plus 版本，感觉可以当 25 分题了（
+- [1074 宇宙无敌加法器 (20 分)](https://pintia.cn/problem-sets/994805260223102976/problems/994805263297527808) 考到了进制和大整数加法，我愿称之为好题
+- [1075 链表元素分类 (25 分)](https://pintia.cn/problem-sets/994805260223102976/problems/994805262953594880) 直接用 vector 模拟链表，注意结点不在链表中的情况 。1070-1075 这一套题挺好的
+- [1078 字符串压缩与解压 (20 分)](https://pintia.cn/problem-sets/994805260223102976/problems/994805262018265088) 字符串处理的好题
+- [1080 MOOC 期终成绩 (25 分)](https://pintia.cn/problem-sets/994805260223102976/problems/994805261493977088) 典型结构体、重载排序规则
+- [1084 外观数列 (20 分)](https://pintia.cn/problem-sets/994805260223102976/problems/994805260583813120)， 题意读懂就很简单，核心思想类同于 1078 中的字符串压缩，一个个处理
+- [1090 危险品装箱 (25 分)](https://pintia.cn/problem-sets/994805260223102976/problems/1038429484026175488) 有坑点，但我不说，哎就是玩（
 
 ## 1003 我要通过！ (20 分)
 
-- [1003 我要通过！ (20 分)](https://pintia.cn/problem-sets/994805260223102976/problems/994805323154440192)  看到这个通过率就明白了。
+- [1003 我要通过！ (20 分)](https://pintia.cn/problem-sets/994805260223102976/problems/994805323154440192) 看到这个通过率就明白了。
 
 ```cpp
 #include <iostream>
@@ -70,7 +70,7 @@ int main() {
             if(s[i] == 'P') vp = i;
             if(s[i] == 'T') vt = i;
         }
-        if(m.size() == 3 && m['P'] == 1 && m['T'] == 1 
+        if(m.size() == 3 && m['P'] == 1 && m['T'] == 1
         && vt-vp != 1 && vp * (vt-vp-1) == len - vt - 1)
             cout << "YES" << endl;
         else cout << "NO" << endl;
@@ -117,7 +117,7 @@ int main() {
 
 ## 1014 福尔摩斯的约会 (20 分)
 
-- [1014 福尔摩斯的约会 (20 分)](https://pintia.cn/problem-sets/994805260223102976/problems/994805308755394560)  典型的好玩的字符串题。
+- [1014 福尔摩斯的约会 (20 分)](https://pintia.cn/problem-sets/994805260223102976/problems/994805308755394560) 典型的好玩的字符串题。
 
 ```cpp
 #include <iostream>
@@ -165,7 +165,7 @@ int main() {
             if(ch == input[3].at(i)) {
                 m = i;
                 break;
-            } 
+            }
         };
     }
     cout << day[date-'A'];
@@ -177,7 +177,7 @@ int main() {
 
 ## 1024 科学计数法 (20 分)
 
-- [1024 科学计数法 (20 分)](https://pintia.cn/problem-sets/994805260223102976/problems/994805297229447168) 字符串解析，坑点挺多，记得补0，分正负等
+- [1024 科学计数法 (20 分)](https://pintia.cn/problem-sets/994805260223102976/problems/994805297229447168) 字符串解析，坑点挺多，记得补 0，分正负等
 
 ```cpp
 #include <iostream>
@@ -220,10 +220,10 @@ int main() {
         for(int i = 2; i < lenA; ++i) {
             cout << A[i];
             --h;
-            if(h == 0 && i+1 < lenA) cout << '.'; 
+            if(h == 0 && i+1 < lenA) cout << '.';
         }
         int len0 = h-(lenA-2)+1;
-        for(int i = 0; i < len0; ++i) 
+        for(int i = 0; i < len0; ++i)
             cout << '0';
     }
     return 0;
@@ -232,7 +232,7 @@ int main() {
 
 ## 1034 有理数四则运算 (20 分)
 
-- [1034 有理数四则运算 (20 分)](https://pintia.cn/problem-sets/994805260223102976/problems/994805287624491008)  gcd、lcm (其实lcm没用上，不过作为一个范例了)
+- [1034 有理数四则运算 (20 分)](https://pintia.cn/problem-sets/994805260223102976/problems/994805287624491008) gcd、lcm (其实 lcm 没用上，不过作为一个范例了)
 
 ```cpp
 #include <iostream>
@@ -308,21 +308,21 @@ int main() {
     ll lc = lcm(b1, b2);
     solve(a1*(lc/b1)+a2*(lc/b2), lc);
     printf("\n");
-    
+
     solve(a1, b1);
     printf(" - ");
     solve(a2, b2);
     printf(" = ");
     solve(a1*(lc/b1)-a2*(lc/b2), lc);
     printf("\n");// ohhhhhhhh
-    
+
     solve(a1, b1);
     printf(" * ");
     solve(a2, b2);
     printf(" = ");
     solve(a1*a2, b1*b2);
     printf("\n");
-    
+
     solve(a1, b1);
     printf(" / ");
     solve(a2, b2);
@@ -335,7 +335,7 @@ int main() {
 
 ## 1035 插入与归并 (25 分)
 
-- [1035 插入与归并 (25 分)](https://pintia.cn/problem-sets/994805260223102976/problems/994805286714327040)  好题啊好题.jpg，考到了插入排序和归并排序，个人感觉挺难的一道题
+- [1035 插入与归并 (25 分)](https://pintia.cn/problem-sets/994805260223102976/problems/994805286714327040) 好题啊好题.jpg，考到了插入排序和归并排序，个人感觉挺难的一道题
 
 ```cpp
 #include <iostream>
@@ -384,7 +384,7 @@ void Merge(ll a[], ll tmp[], int s, int m, int e) {
 void Merge_Pass(ll a[], ll b[], int N, int len) {
     // 按len长度切分 归并到b
     int i;
-    for(i = 0; i <= N-2*len; i+=2*len) 
+    for(i = 0; i <= N-2*len; i+=2*len)
         Merge(a, b, i, i+len, i+2*len-1);
     if(i+len < N) Merge(a, b,i, i+len, N-1);//剩2个子列
     else for(int j = i; j < N; ++j) b[j] = a[j];
@@ -416,11 +416,11 @@ int main() {
     if(Insert_sort(a, N)) {
         printf("Insertion Sort\n");
     } else {
-        for(int i = 0; i < N; ++i) 
+        for(int i = 0; i < N; ++i)
             a[i] = b[i];
         Merge_Sort(a, N);
         printf("Merge Sort\n");
-        
+
     }
     for(int i = 0; i < N; ++i) {
         printf(" %lld"+!i, a[i]);
@@ -429,9 +429,9 @@ int main() {
 }
 ```
 
-## 1040 有几个PAT (25 分)
+## 1040 有几个 PAT (25 分)
 
-- [1040 有理数四则运算 (20 分)](https://pintia.cn/problem-sets/994805260223102976/problems/994805282389999616)   字符串，dp
+- [1040 有理数四则运算 (20 分)](https://pintia.cn/problem-sets/994805260223102976/problems/994805282389999616) 字符串，dp
 
 ```cpp
 // PPAATTPATTAP
@@ -480,7 +480,7 @@ int main() {
     cin >> N;
     maxx = a[0];
     l[0] = true;
-    for(int i = 0; i < N; ++i) 
+    for(int i = 0; i < N; ++i)
         cin >> a[i];
     for(int i = 1; i < N; ++i) {
         if(a[i] < maxx) {
@@ -564,16 +564,16 @@ int main() {
     while(t < N) {
         while(nowj+1 < n && !b[nowi][nowj+1]) { // 右
             b[nowi][++nowj] = a[t++];
-        } 
+        }
         while(nowi+1 < m && !b[nowi+1][nowj]) { // 下
             b[++nowi][nowj] = a[t++];
-        } 
+        }
         while(nowj-1 >= 0 && !b[nowi][nowj-1]) {// 左
             b[nowi][--nowj] = a[t++];
-        } 
+        }
         while(nowi-1 >= 0 && !b[nowi-1][nowj]) {// 上
             b[--nowi][nowj] = a[t++];
-        } 
+        }
     }
     for(int i = 0; i < m; ++i) {
         for(int j = 0; j < n; ++j) {
@@ -587,7 +587,7 @@ int main() {
 
 ## 1055 集体照 (25 分)
 
-- [1055 集体照 (25 分)](https://pintia.cn/problem-sets/994805260223102976/problems/994805272021680128)  坑点较多，可以一做，结构体。
+- [1055 集体照 (25 分)](https://pintia.cn/problem-sets/994805260223102976/problems/994805272021680128) 坑点较多，可以一做，结构体。
 
 ```cpp
 #include <iostream>
@@ -624,7 +624,7 @@ void solve(vector<Person> t) {
     }
     ans.push(newt);
 }
-int main() {  
+int main() {
     cin >> N >> K;
     for(int i = 0; i < N; ++i) {
         cin >> p.name >> p.height;
@@ -635,11 +635,11 @@ int main() {
     int i = 0;
     while(i < N) {
         vector<Person> t;
-        for(int j = i; j < i+k; ++j) t.push_back(v[j]); 
+        for(int j = i; j < i+k; ++j) t.push_back(v[j]);
         i += k;
         if(i+k > N) {
-            for(int j = i; j < N; ++j) 
-                t.push_back(v[j]); 
+            for(int j = i; j < N; ++j)
+                t.push_back(v[j]);
             i += k;
         }
         solve(t);
@@ -656,7 +656,7 @@ int main() {
 }
 // 6 2
 // sss 190
-// die 202 
+// die 202
 // wjc 120
 // abs 180
 // bsw 180
@@ -665,7 +665,7 @@ int main() {
 
 ## 1073 多选题常见计分法 (20 分)
 
-- [1073 多选题常见计分法 (20 分)](https://pintia.cn/problem-sets/994805260223102976/problems/994805263624683520)，是之前1058的选择题plus版本，感觉可以当25分题了（
+- [1073 多选题常见计分法 (20 分)](https://pintia.cn/problem-sets/994805260223102976/problems/994805263624683520)，是之前 1058 的选择题 plus 版本，感觉可以当 25 分题了（
 
 ```cpp
 #include <iostream>
@@ -709,7 +709,7 @@ string tran(int id, char ch) {
     ss >> s;
     return s;
 }
-int main() { 
+int main() {
     cin >> N >> M;
     for(int i = 0; i < M; ++i) {
         cin >> t[i].sumg >> t[i].cnt >> t[i].rcnt;
@@ -724,7 +724,7 @@ int main() {
         cin.ignore();
         // cout << t[i].allr << endl;
     }
-    // 
+    //
     for(int i = 0; i < N; ++i) {
         int total;     //学生选择的选项数
         char nowc;
@@ -748,13 +748,13 @@ int main() {
                         c[ct].val = nowc;
                         ++ct;
                     } else ++c[m[s]].falcnt;
-                } else v[t[j].rindex[nowc]] = 1;           
+                } else v[t[j].rindex[nowc]] = 1;
             }
             scanf("%*c%*c");
             if(flag != 2) {//漏选
                 for(int k = 0; k < t[j].rcnt; ++k) {
                     if(v[k] == 0) {
-                        // cout << k << ':' << t[j].allr << ':' << t[j].allr[k] << endl;; 
+                        // cout << k << ':' << t[j].allr << ':' << t[j].allr[k] << endl;;
                         string s = tran(j, t[j].allr[k]);
                         if(m.find(s) == m.end()) {
                             m[s] = ct;
@@ -777,12 +777,12 @@ int main() {
     else {
         int k = 0;
         while(k+1 < ct && c[k+1].falcnt == c[k].falcnt) ++k;
-        for(int i = 0; i <= k; ++i) 
+        for(int i = 0; i <= k; ++i)
             cout << c[i].falcnt << ' ' << tran(c[i].id, c[i].val) << endl;
     }
     return 0;
 }
-// 3 4 
+// 3 4
 // 3 4 2 a c
 // 2 5 1 b
 // 5 3 2 b c
@@ -794,7 +794,7 @@ int main() {
 
 ## 1074 宇宙无敌加法器 (20 分)
 
-- [1074 宇宙无敌加法器 (20 分)](https://pintia.cn/problem-sets/994805260223102976/problems/994805263297527808)  考到了进制和大整数加法，我愿称之为好题
+- [1074 宇宙无敌加法器 (20 分)](https://pintia.cn/problem-sets/994805260223102976/problems/994805263297527808) 考到了进制和大整数加法，我愿称之为好题
 
 ```cpp
 #include <iostream>
@@ -847,7 +847,7 @@ int main() {
 
 ## 1075 链表元素分类 (25 分)
 
-- [1075 链表元素分类 (25 分)](https://pintia.cn/problem-sets/994805260223102976/problems/994805262953594880)  直接用vector模拟链表，也可以直接写个链表。1070-1075这一套题挺好的
+- [1075 链表元素分类 (25 分)](https://pintia.cn/problem-sets/994805260223102976/problems/994805262953594880) 直接用 vector 模拟链表，也可以直接写个链表。1070-1075 这一套题挺好的
 
 ```cpp
 #include <iostream>
@@ -899,7 +899,7 @@ int main() {
 
 ## 1078 字符串压缩与解压 (20 分)
 
-- [1078 字符串压缩与解压 (20 分)](https://pintia.cn/problem-sets/994805260223102976/problems/994805262018265088)  字符串处理的好题
+- [1078 字符串压缩与解压 (20 分)](https://pintia.cn/problem-sets/994805260223102976/problems/994805262018265088) 字符串处理的好题
 
 ```cpp
 #include <iostream>
@@ -958,9 +958,9 @@ int main() {
 // 10T2h4is i5s a3 te4st CA3a as10Z
 ```
 
-## 1080 MOOC期终成绩 (25 分)
+## 1080 MOOC 期终成绩 (25 分)
 
-- [1080 MOOC期终成绩 (25 分)](https://pintia.cn/problem-sets/994805260223102976/problems/994805261493977088)  典型结构体、重载排序规则
+- [1080 MOOC 期终成绩 (25 分)](https://pintia.cn/problem-sets/994805260223102976/problems/994805261493977088) 典型结构体、重载排序规则
 
 ```cpp
 #include <iostream>
@@ -1035,7 +1035,7 @@ int main() {
 
 ## 1084 外观数列 (20 分)
 
-- [1084 外观数列 (20 分)](https://pintia.cn/problem-sets/994805260223102976/problems/994805260583813120)， 题意读懂就很简单，核心思想类同于1078中的字符串压缩，一个个处理
+- [1084 外观数列 (20 分)](https://pintia.cn/problem-sets/994805260223102976/problems/994805260583813120)， 题意读懂就很简单，核心思想类同于 1078 中的字符串压缩，一个个处理
 
 ```cpp
 #include <iostream>
@@ -1082,7 +1082,7 @@ int main() {
 
 ## 1090 危险品装箱 (25 分)
 
-- [1090 危险品装箱 (25 分)](https://pintia.cn/problem-sets/994805260223102976/problems/1038429484026175488)  有坑点，但我不说，哎就是玩（
+- [1090 危险品装箱 (25 分)](https://pintia.cn/problem-sets/994805260223102976/problems/1038429484026175488) 有坑点，但我不说，哎就是玩（
 
 ```cpp
 #include <iostream>
@@ -1125,4 +1125,4 @@ int main() {
 
 # 感想
 
-PTA乙级的题目特别抠细节，往往有些题会卡在那么一两个测试点上令人头疼，但只要程序正常写出来了一般能拿到大部分分，最难好像也就考到排序、dp和一些思维题，没有任何高级算法的出现。最后，善用STL基本上就没问题了。
+PTA 乙级的题目特别抠细节，往往有些题会卡在那么一两个测试点上令人头疼，但只要程序正常写出来了一般能拿到大部分分，最难好像也就考到排序、dp 和一些思维题，没有任何高级算法的出现。最后，善用 STL 基本上就没问题了。

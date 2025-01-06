@@ -7,8 +7,12 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "lint:md": "lint-md *.md",
-    "change": "git cliff -o CHANGELOG.md"
+    "lint": "eslint .",
+    "lint-md": "lint-md ./src/content/**/*.{md,mdx}",
+    "lint-md:fix": "lint-md ./src/content/**/*.{md,mdx} --fix",
+    "lint-staged": "lint-staged",
+    "change": "git cliff -o CHANGELOG.md",
+    "prepare": "husky"
   },
   "dependencies": {
     "@astrojs/react": "^4.1.2",
@@ -55,11 +59,20 @@
     "eslint": "^9.17.0",
     "eslint-plugin-astro": "^1.3.1",
     "eslint-plugin-jsx-a11y": "^6.10.2",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.3.0",
     "prettier": "^3.4.2",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-lint-md": "^1.0.1",
     "prettier-plugin-tailwindcss": "^0.6.9",
     "vite-plugin-svgr": "^4.3.0"
   },
-  "packageManager": "pnpm@9.15.1+sha256.9e534e70afef06374f6126b44bda5760947135ce16a30aef1010e965fb7e3e3e"
+  "packageManager": "pnpm@9.15.1+sha256.9e534e70afef06374f6126b44bda5760947135ce16a30aef1010e965fb7e3e3e",
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,md,mdx,json,astro}": [
+      "prettier --write",
+      "eslint --fix",
+      "eslint"
+    ]
+  }
 }

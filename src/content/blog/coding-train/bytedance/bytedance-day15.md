@@ -2,17 +2,17 @@
 title: 冲刺春招-精选笔面试66题大通关day15
 link: coding-train/leetcode/bytedance/bytedance-day15
 catalog: true
-subtitle:  今日知识点：栈、队列、回溯、哈希表等，难度为简单、中等、中等
+subtitle: 今日知识点：栈、队列、回溯、哈希表等，难度为简单、中等、中等
 date: 2022-03-22 23:10:32
 cover: img/header_img/milky-way-over-bow-lake-alberta-canada-wallpaper-for-1920x1080-63-873.jpg
 tags:
-- leetcode
-- 回溯
+  - leetcode
+  - 回溯
 categories:
-- [题目记录, 字节校园]
+  - [题目记录, 字节校园]
 ---
 
-day15题目：[232. 用栈实现队列](https://leetcode-cn.com/problems/implement-queue-using-stacks/)、[22. 括号生成](https://leetcode-cn.com/problems/generate-parentheses/)、[128. 最长连续序列](https://leetcode-cn.com/problems/longest-consecutive-sequence/)
+day15 题目：[232. 用栈实现队列](https://leetcode-cn.com/problems/implement-queue-using-stacks/)、[22. 括号生成](https://leetcode-cn.com/problems/generate-parentheses/)、[128. 最长连续序列](https://leetcode-cn.com/problems/longest-consecutive-sequence/)
 
 学习计划链接：[冲刺春招-精选笔面试 66 题大通关](https://leetcode-cn.com/study-plan/bytedancecampus/?progress=dcmyjb3)
 
@@ -38,7 +38,7 @@ day15题目：[232. 用栈实现队列](https://leetcode-cn.com/problems/impleme
 
 **示例 1：**
 
-```
+```plain
 输入：
 ["MyQueue", "push", "push", "peek", "pop", "empty"]
 [[], [1], [2], [], [], []]
@@ -82,11 +82,11 @@ public:
     stack<int> s2;
     MyQueue() {
     }
-    
+
     void push(int x) {
         s1.push(x);
     }
-    
+
     int pop() {
         if(s2.empty()) {
             while(!s1.empty()) {
@@ -98,7 +98,7 @@ public:
         s2.pop();
         return t;
     }
-    
+
     int peek() {
         if(s2.empty()) {
             while(!s1.empty()) {
@@ -108,7 +108,7 @@ public:
         }
         return s2.top();
     }
-    
+
     bool empty() {
         return s1.empty() && s2.empty();
     }
@@ -122,7 +122,7 @@ public:
  * int param_3 = obj->peek();
  * bool param_4 = obj->empty();
  */
- ```
+```
 
 # [22. 括号生成](https://leetcode-cn.com/problems/generate-parentheses/)
 
@@ -130,14 +130,14 @@ public:
 
 **示例 1：**
 
-```
+```plain
 输入： n = 3
 输出： ["((()))","(()())","(())()","()(())","()()()"]
 ```
 
 **示例 2：**
 
-```
+```plain
 输入： n = 1
 输出： ["()"]
 ```
@@ -148,7 +148,7 @@ public:
 
 ## 思路
 
-这道题是 [2020蓝桥杯省模拟赛题目记录](https://blog.csdn.net/qq_45890533/article/details/105668209) 中的括号序列（一模一样），回溯法
+这道题是 [2020 蓝桥杯省模拟赛题目记录](https://blog.csdn.net/qq_45890533/article/details/105668209) 中的括号序列（一模一样），回溯法
 
 - 因为要生成 `n` 对括号，故传入括号总数 `sum` 初始为 `n*2`，已使用左括号数 `lnum` 和右括号数 `rnum`
 - 先排列左括号，再排右括号，这样若 `lnum < rnum` 就直接返回
@@ -163,28 +163,29 @@ public:
  * @param {number} n
  * @return {string[]}
  */
- var generateParenthesis = function(n) {
-    let ans = [];
-    let par = [];   // 当前括号序列
-    let generate = function(sum, lnum, rnum) {    // 剩余括号数， 已使用左括号数，已使用右括号数
-        if(lnum < rnum) return;
-        if(sum == 0) {
-            ans.push(par.join(''));
-            return;
-        }
-        if(lnum < n) {
-            par.push('(');
-            generate(sum-1, lnum+1, rnum);
-            par.pop();
-        }
-        if(rnum < n) {
-            par.push(')');
-            generate(sum-1, lnum, rnum+1);
-            par.pop();
-        }
+var generateParenthesis = function (n) {
+  let ans = [];
+  let par = []; // 当前括号序列
+  let generate = function (sum, lnum, rnum) {
+    // 剩余括号数， 已使用左括号数，已使用右括号数
+    if (lnum < rnum) return;
+    if (sum == 0) {
+      ans.push(par.join(''));
+      return;
     }
-    generate(n*2, 0, 0);
-    return ans;
+    if (lnum < n) {
+      par.push('(');
+      generate(sum - 1, lnum + 1, rnum);
+      par.pop();
+    }
+    if (rnum < n) {
+      par.push(')');
+      generate(sum - 1, lnum, rnum + 1);
+      par.pop();
+    }
+  };
+  generate(n * 2, 0, 0);
+  return ans;
 };
 ```
 
@@ -192,11 +193,11 @@ public:
 
 给定一个未排序的整数数组 `nums` ，找出数字连续的最长序列（不要求序列元素在原数组中连续）的长度。
 
-请你设计并实现时间复杂度为 `O(n)` **的算法解决此问题。
+请你设计并实现时间复杂度为 `O(n)` \*\*的算法解决此问题。
 
 **示例 1：**
 
-```
+```plain
 输入： nums = [100,4,200,1,3,2]
 输出： 4
 解释： 最长数字连续序列是 [1, 2, 3, 4]。它的长度为 4。
@@ -204,7 +205,7 @@ public:
 
 **示例 2：**
 
-```
+```plain
 输入： nums = [0,3,7,2,5,8,4,6,0,1]
 输出： 9
 ```
@@ -216,7 +217,7 @@ public:
 
 ## 思路
 
-- 利用hash表存 `nums[i]` 是否存在
+- 利用 hash 表存 `nums[i]` 是否存在
 - 枚举数组中的每个数 `nums[i]`
   - 以 `nums[i]` 为起点，判断`nums[i]-1`、`nums[i]-2` …… `y`是否存在并更新最大长度，直到`y` 不存在
   - 若 `nums[i]+1` 存在则当前 `nums[i]` 无需判断，直接跳过
@@ -228,22 +229,21 @@ public:
  * @param {number[]} nums
  * @return {number}
  */
- var longestConsecutive = function(nums) {
-    if(nums.length == 0) return 0;
-    let m = new Map()
-    for(let i = 0; i < nums.length; ++i) 
-        m.set(nums[i], true);
-    let ans = 1;
-    for(let i = 0; i < nums.length; ++i) {
-        if(!m.has(nums[i]+1)) {
-            let num = nums[i]-1;
-            let cnt = 1;
-            while( m.has(num) ) {
-                if(++cnt > ans) ans = cnt;
-                --num;
-            }
-        }
+var longestConsecutive = function (nums) {
+  if (nums.length == 0) return 0;
+  let m = new Map();
+  for (let i = 0; i < nums.length; ++i) m.set(nums[i], true);
+  let ans = 1;
+  for (let i = 0; i < nums.length; ++i) {
+    if (!m.has(nums[i] + 1)) {
+      let num = nums[i] - 1;
+      let cnt = 1;
+      while (m.has(num)) {
+        if (++cnt > ans) ans = cnt;
+        --num;
+      }
     }
-    return ans;
+  }
+  return ans;
 };
 ```

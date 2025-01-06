@@ -8,9 +8,10 @@ tags:
   - 跨端
   - 前端
 categories:
-- [笔记, 前端]
+  - [笔记, 前端]
 ---
-由于业务需要，开始学习RN以备后面的需求，而虽然之前有用过 RN 但是项目搭建等都是封装好的脚手架，对本身其实了解不算太多，于是打算记录一下个人从头搭建 RN 项目的一个过程。顺带进行一个资料收集。
+
+由于业务需要，开始学习 RN 以备后面的需求，而虽然之前有用过 RN 但是项目搭建等都是封装好的脚手架，对本身其实了解不算太多，于是打算记录一下个人从头搭建 RN 项目的一个过程。顺带进行一个资料收集。
 
 > 适合：有前端基础，有前端基本开发环境，想了解一下 Expo 搭建 RN 项目过程的人群
 
@@ -22,8 +23,8 @@ categories:
 - 中文网：[简介 · React Native 中文网](https://www.reactnative.cn/docs/getting-started)
 - Expo 官网： [Expo](https://expo.dev/)
 - Github 资源
-  - [GitHub - jondot/awesome-react-native](https://github.com/jondot/awesome-react-native) Awesome React Native是一个很棒的风格列表，它策划了最好的React Native库、工具、教程、文章等。
-  - [GitHub - infinitered/ignite](https://github.com/infinitered/ignite)  Ignite 是 Expo 和裸 React Native 中最受欢迎的 React Native 应用程序样板，是六年多持续 React Native 开发的结晶。
+  - [GitHub - jondot/awesome-react-native](https://github.com/jondot/awesome-react-native) Awesome React Native 是一个很棒的风格列表，它策划了最好的 React Native 库、工具、教程、文章等。
+  - [GitHub - infinitered/ignite](https://github.com/infinitered/ignite) Ignite 是 Expo 和裸 React Native 中最受欢迎的 React Native 应用程序样板，是六年多持续 React Native 开发的结晶。
 - 博文
   - [📝 没 2 年 React Native 开发经验，你都遇不到这些坑 - 掘金](https://juejin.cn/post/7012804162249293854)
 
@@ -50,7 +51,7 @@ categories:
 Android Studio 默认安装最新的 Android SDK。 使用本机代码构建 React Native 应用程序尤其需要 `Android 13 (Tiramisu)` SDK。可以通过 Android Studio 中的 SDK 管理器安装其他 Android SDK。
 
 1. 打开 Android Studio，单击“More Actions”按钮并选择“SDK Manager”。
-2. 从SDK Manager中选择“SDK Platforms”选项卡，然后勾选右下角“Show Package Details”旁边的框。查找并展开  `Android 13 (Tiramisu)`  条目，然后确保选中以下项目：
+2. 从 SDK Manager 中选择“SDK Platforms”选项卡，然后勾选右下角“Show Package Details”旁边的框。查找并展开  `Android 13 (Tiramisu)`  条目，然后确保选中以下项目：
 
 - `Android SDK Platform 33`
 - `Intel x86 Atom_64 System Image`  或者  `Google APIs Intel x86 Atom System Image`
@@ -59,13 +60,13 @@ Android Studio 默认安装最新的 Android SDK。 使用本机代码构建 Rea
 
 3. 接下来，选择“SDK Tools”选项卡并选中“Show Package Details”旁边的复选框。查找并展开 `Android SDK Build-Tools` 条目，然后确保选择了 `33.0.0` （**ps: 现在是 `34.0.0`了**）
 4. 配置 `ANDROID_HOME` 环境变量
-   高级系统设置 - 环境变量 -  单击 New... 创建一个新的 `ANDROID_HOME` 用户变量，指向您的 Android SDK 的路径：
+   高级系统设置 - 环境变量 - 单击 New... 创建一个新的 `ANDROID_HOME` 用户变量，指向您的 Android SDK 的路径：
 
 ![Pasted image 20230620141904.png](https://backblaze.cosine.ren/juejin/57ae0d6c666e475e9f2eb3e771c28073~Tplv-K3u1fbpfcp-Watermark.png)
 
 默认情况下，SDK 安装在以下位置：
 
-```
+```plain
 %LOCALAPPDATA%\Android\Sdk
 ```
 
@@ -77,7 +78,7 @@ eg: `C:\Users\xxxx\AppData\Local\Android\Sdk`
 
 验证环境变量已添加：
 
-- 打开powershell
+- 打开 powershell
 - 复制并粘贴 `Get-ChildItem -Path Env:\` 到 powershell
 - 验证 `ANDROID_HOME` 已添加
 
@@ -87,13 +88,13 @@ eg: `C:\Users\xxxx\AppData\Local\Android\Sdk`
 
 #### 为什么用 Expo ？
 
-> Expo是一组工具、库和服务，可以通过编写JavaScript来构建本地的iOS和android应用程序。说人话，就是在React Native的基础上再封装了一层，让我们的开发更方便，更快速。
+> Expo 是一组工具、库和服务，可以通过编写 JavaScript 来构建本地的 iOS 和 android 应用程序。说人话，就是在 React Native 的基础上再封装了一层，让我们的开发更方便，更快速。
 >
-> - 做过移动端的同学在做跨平台之前肯定会担心一个点，就是各种原生功能（相机，相册，定位，蓝牙等等），使用expo的话，会比你开发一个裸的React Native真的会快很多，而且会少踩很多坑
+> - 做过移动端的同学在做跨平台之前肯定会担心一个点，就是各种原生功能（相机，相册，定位，蓝牙等等），使用 expo 的话，会比你开发一个裸的 React Native 真的会快很多，而且会少踩很多坑
 > - 没有做过移动端的前端那就更需要这个了，不然移动端的一些隐藏的限制和坑，会让你很头疼
->   ——[`<cite>`React Native 基于Expo开发（一）项目搭建 - 掘金`</cite>`](https://juejin.cn/post/7102802785355169806)
+>   ——[`<cite>`React Native 基于 Expo 开发（一）项目搭建 - 掘金`</cite>`](https://juejin.cn/post/7102802785355169806)
 
-接下来将根据官网教程，搭建一个Expo的应用程序： [Create your first app - Expo Documentation](https://docs.expo.dev/tutorial/create-your-first-app/)
+接下来将根据官网教程，搭建一个 Expo 的应用程序： [Create your first app - Expo Documentation](https://docs.expo.dev/tutorial/create-your-first-app/)
 
 ### 初始化 Expo 项目
 
@@ -124,8 +125,8 @@ npx expo install react-dom react-native-web @expo/webpack-config
 npx expo start
 ```
 
-| Scan QR code                                                                                                                                                                | 启动成功                                                                                                                                                                    |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Scan QR code                                                                                                                                                 | 启动成功                                                                                                                                                     |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | ![Screenshot_2023-06-20-14-37-42-694_host.exp.expon.jpg](https://backblaze.cosine.ren/juejin/Ef171bf33f904e0ca8bddbdbc9c25001~Tplv-K3u1fbpfcp-Watermark.png) | ![Screenshot_2023-06-20-14-37-23-383_host.exp.expon.jpg](https://backblaze.cosine.ren/juejin/ab571910785e4c34aebec93a0d5a06b0~tplv-k3u1fbpfcp-watermark.png) |
 
 ### Expo 推荐配合库
@@ -141,15 +142,15 @@ npx expo start
 
 还有其他的一些推荐库，可以看这里
 
-[开始使用React Native和Expo SDK - 掘金](https://juejin.cn/post/7067103345361567775)
+[开始使用 React Native 和 Expo SDK - 掘金](https://juejin.cn/post/7067103345361567775)
 
-- [AppAuth](https://docs.expo.io/versions/v34.0.0/sdk/app-auth/)，[AuthSession](https://docs.expo.io/versions/v34.0.0/sdk/auth-session/)：通过OAuth对用户进行认证
+- [AppAuth](https://docs.expo.io/versions/v34.0.0/sdk/app-auth/)，[AuthSession](https://docs.expo.io/versions/v34.0.0/sdk/auth-session/)：通过 OAuth 对用户进行认证
 - [SplashScreen](https://docs.expo.io/versions/v34.0.0/sdk/splash-screen/)：在启动应用程序时制作一个闪屏（官方文档）
-- [localization](https://docs.expo.io/versions/v34.0.0/sdk/localization/) 管理你的应用程序的l10n/i18n，以达到本地化的目的
+- [localization](https://docs.expo.io/versions/v34.0.0/sdk/localization/) 管理你的应用程序的 l10n/i18n，以达到本地化的目的
 - [AppLoading](https://docs.expo.io/versions/v34.0.0/sdk/app-loading/)：加载资产、字体等。
 - [MapView](https://docs.expo.io/versions/v34.0.0/sdk/map-view/)：在应用程序中使用地图
 - [ImagePicker](https://docs.expo.io/versions/v34.0.0/sdk/imagepicker/) or [ImageManipulator](https://docs.expo.io/versions/v34.0.0/sdk/imagemanipulator/) ：从设备上打开图像或视频
 - [Sharing](https://docs.expo.io/versions/v34.0.0/sdk/sharing/)：在应用程序和设备之间共享数据
 - [SecureStore](https://docs.expo.io/versions/v34.0.0/sdk/securestore/): 在设备存储器上保存数据
 - [Camera](https://docs.expo.io/versions/v34.0.0/sdk/camera/): 使用设备的摄像头拍摄照片和视频
-- [Notifications](https://link.juejin.cn?target=https%3A%2F%2Fdocs.expo.io%2Fversions%2Fv34.0.0%2Fsdk%2Fnotifications%2F "https://docs.expo.io/versions/v34.0.0/sdk/notifications/")：来自 Expo 推送服务的推送通知
+- [Notifications](https://link.juejin.cn?target=https%3A%2F%2Fdocs.expo.io%2Fversions%2Fv34.0.0%2Fsdk%2Fnotifications%2F 'https://docs.expo.io/versions/v34.0.0/sdk/notifications/')：来自 Expo 推送服务的推送通知

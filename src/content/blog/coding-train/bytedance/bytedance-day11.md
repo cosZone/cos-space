@@ -6,14 +6,14 @@ subtitle: 今日知识点：字符串、模拟、动态规划，难度为简单�
 date: 2022-03-18 18:10:22
 cover: img/header_img/milky-way-over-bow-lake-alberta-canada-wallpaper-for-1920x1080-63-873.jpg
 tags:
-- leetcode
-- 动态规划
-- 模拟
+  - leetcode
+  - 动态规划
+  - 模拟
 categories:
-- [题目记录, 字节校园]
+  - [题目记录, 字节校园]
 ---
 
-day11题目：[415. 字符串相加](https://leetcode-cn.com/problems/add-strings/)、[5. 最长回文子串](https://leetcode-cn.com/problems/longest-palindromic-substring/)、[72. 编辑距离](https://leetcode-cn.com/problems/edit-distance/)
+day11 题目：[415. 字符串相加](https://leetcode-cn.com/problems/add-strings/)、[5. 最长回文子串](https://leetcode-cn.com/problems/longest-palindromic-substring/)、[72. 编辑距离](https://leetcode-cn.com/problems/edit-distance/)
 
 学习计划链接：[冲刺春招-精选笔面试 66 题大通关](https://leetcode-cn.com/study-plan/bytedancecampus/?progress=dcmyjb3)
 
@@ -29,21 +29,21 @@ day11题目：[415. 字符串相加](https://leetcode-cn.com/problems/add-string
 
 **示例 1：**
 
-```
+```plain
 输入： num1 = "11", num2 = "123"
 输出： "134"
 ```
 
 **示例 2：**
 
-```
+```plain
 输入： num1 = "456", num2 = "77"
 输出： "533"
 ```
 
 **示例 3：**
 
-```
+```plain
 输入： num1 = "0", num2 = "0"
 输出： "0"
 ```
@@ -56,7 +56,7 @@ day11题目：[415. 字符串相加](https://leetcode-cn.com/problems/add-string
 
 ## 思路
 
-flag为进位标志，从右侧开始往左走，若sum大于等于10则进位，非常典型的大数相加了。
+flag 为进位标志，从右侧开始往左走，若 sum 大于等于 10 则进位，非常典型的大数相加了。
 
 ## 代码
 
@@ -66,24 +66,24 @@ flag为进位标志，从右侧开始往左走，若sum大于等于10则进位�
  * @param {string} num2
  * @return {string}
  */
-var addStrings = function(num1, num2) {
-    let [len1, len2] = [num1.length, num2.length];
-    let flag = 0;   // 进位标志
-    let ans = '';
-    for(let i = len1-1, j = len2-1; i >= 0 || j >= 0 || flag == 1; --i, --j) {
-        let x, y;
-        x = i >= 0? parseInt(num1[i]): 0;
-        y = j >= 0? parseInt(num2[j]): 0;
-        let sum = x+y+flag;
-        if(sum >= 10) {
-            ans += (sum%10);
-            flag = 1;
-        } else {
-            ans += sum;
-            flag = 0;
-        }
+var addStrings = function (num1, num2) {
+  let [len1, len2] = [num1.length, num2.length];
+  let flag = 0; // 进位标志
+  let ans = '';
+  for (let i = len1 - 1, j = len2 - 1; i >= 0 || j >= 0 || flag == 1; --i, --j) {
+    let x, y;
+    x = i >= 0 ? parseInt(num1[i]) : 0;
+    y = j >= 0 ? parseInt(num2[j]) : 0;
+    let sum = x + y + flag;
+    if (sum >= 10) {
+      ans += sum % 10;
+      flag = 1;
+    } else {
+      ans += sum;
+      flag = 0;
     }
-    return ans.split('').reverse().join('');
+  }
+  return ans.split('').reverse().join('');
 };
 ```
 
@@ -93,7 +93,7 @@ var addStrings = function(num1, num2) {
 
 **示例 1：**
 
-```
+```plain
 输入： s = "babad"
 输出： "bab"
 解释： "aba" 同样是符合题意的答案。
@@ -101,7 +101,7 @@ var addStrings = function(num1, num2) {
 
 **示例 2：**
 
-```
+```plain
 输入： s = "cbbd"
 输出： "bb"
 ```
@@ -113,7 +113,7 @@ var addStrings = function(num1, num2) {
 
 ## 思路
 
-也是非常经典的做过好多遍的题了（起码做了有4次了- -），动态规划就行了，核心就是**dp[i][j] 表示i~j是否为回文串**，先遍历一遍，将dp[i][i]都置为true，dp[i][i-1]看情况置为true（前后相同），然后从长度为3开始dp。
+也是非常经典的做过好多遍的题了（起码做了有 4 次了- -），动态规划就行了，核心就是**dp[i][j] 表示 i~j 是否为回文串**，先遍历一遍，将 dp[i][i]都置为 true，dp[i][i-1]看情况置为 true（前后相同），然后从长度为 3 开始 dp。
 
 ##
 
@@ -122,31 +122,31 @@ var addStrings = function(num1, num2) {
  * @param {string} s
  * @return {string}
  */
-var longestPalindrome = function(s) {
-    let len = s.length;
-    let dp = new Array(len).fill(0).map(v => (new Array(len).fill(0))); // JS初始化二维数组全为0
-    let maxlen = 1;
-    let ans = s[0];
-    for(let i = 0; i < len; ++i) {
-        dp[i][i] = 1;
-        if(i > 0 && s[i-1] == s[i]) {
-            dp[i-1][i] = 1;
-            maxlen = 2;
-            ans = s[i-1]+s[i];
-        }
+var longestPalindrome = function (s) {
+  let len = s.length;
+  let dp = new Array(len).fill(0).map((v) => new Array(len).fill(0)); // JS初始化二维数组全为0
+  let maxlen = 1;
+  let ans = s[0];
+  for (let i = 0; i < len; ++i) {
+    dp[i][i] = 1;
+    if (i > 0 && s[i - 1] == s[i]) {
+      dp[i - 1][i] = 1;
+      maxlen = 2;
+      ans = s[i - 1] + s[i];
     }
-    for(let k = 3; k <= len; ++k) {
-        for(let l = 0, r = l+k-1; r < len; ++l, ++r) {
-            if(s[l] == s[r] && dp[l+1][r-1] == 1) {
-                dp[l][r] = 1;
-                if(k > maxlen) {
-                    maxlen = k;
-                    ans = s.substring(l, r+1);
-                }
-            }
+  }
+  for (let k = 3; k <= len; ++k) {
+    for (let l = 0, r = l + k - 1; r < len; ++l, ++r) {
+      if (s[l] == s[r] && dp[l + 1][r - 1] == 1) {
+        dp[l][r] = 1;
+        if (k > maxlen) {
+          maxlen = k;
+          ans = s.substring(l, r + 1);
         }
+      }
     }
-    return ans;
+  }
+  return ans;
 };
 ```
 
@@ -162,7 +162,7 @@ var longestPalindrome = function(s) {
 
 **示例 1：**
 
-```
+```plain
 输入： word1 = "horse", word2 = "ros"
 输出： 3
 解释：
@@ -173,7 +173,7 @@ rose -> ros (删除 'e')
 
 **示例 2：**
 
-```
+```plain
 输入： word1 = "intention", word2 = "execution"
 输出： 5
 解释：
@@ -192,13 +192,13 @@ exection -> execution (插入 'u')
 ## 思路
 
 动态规划，没想出来，看了题解。
-dp[i][j] 表示word1中前i个字符变成word2中前j个字符最少需要多少步
+dp[i][j] 表示 word1 中前 i 个字符变成 word2 中前 j 个字符最少需要多少步
 
-- `i=0` 的时候（即第一行）为word2前j个数变为空字符串需要几步（自然是j步）
-- `j=0` 时（即第一列）为word1前 `i` 个数变为空字符串需要几步
+- `i=0` 的时候（即第一行）为 word2 前 j 个数变为空字符串需要几步（自然是 j 步）
+- `j=0` 时（即第一列）为 word1 前 `i` 个数变为空字符串需要几步
 - 开始遍历，过程中若当前 `word1[i] == word2[j]`，则说明无需变化，`dp[i][j] = dp[i-1][j-1];`
 - 否则 `dp[i][j]`为`dp[i-1][j-1]`、`dp[i-1][j]`、 `dp[i][j-1])+1`中最小步数+1
-  - 这里最小值若为 `dp[i-1][j-1]` 表示修改一个字符，`dp[i][j-1]` 表示往word2[j-1]后面添加一个字符，`dp[i-1][j]` 表示往word1[i-1]后面添加一个字符
+  - 这里最小值若为 `dp[i-1][j-1]` 表示修改一个字符，`dp[i][j-1]` 表示往 word2[j-1]后面添加一个字符，`dp[i-1][j]` 表示往 word1[i-1]后面添加一个字符
 
 ## 代码
 
@@ -208,20 +208,17 @@ dp[i][j] 表示word1中前i个字符变成word2中前j个字符最少需要多�
  * @param {string} word2
  * @return {number}
  */
-var minDistance = function(word1, word2) {
-    let [m, n] = [word1.length+1, word2.length+1];
-    let dp = new Array(m).fill(0).map((v) => (new Array(n).fill(0)));
-    for(let i = 0; i < m; ++i)
-        dp[i][0] = i;   // word1前i个字符串变为''需要多少步
-    for(let i = 0; i < n; ++i)
-        dp[0][i] = i;   // word2前i个字符串变为''需要多少步
-    for(let i = 1; i < m; ++i) {
-        for(let j = 1; j < n; ++j) {
-            if(word1[i-1] == word2[j-1])
-                dp[i][j] = dp[i-1][j-1];
-            else dp[i][j] = Math.min(dp[i-1][j-1], dp[i-1][j], dp[i][j-1])+1;
-        }
+var minDistance = function (word1, word2) {
+  let [m, n] = [word1.length + 1, word2.length + 1];
+  let dp = new Array(m).fill(0).map((v) => new Array(n).fill(0));
+  for (let i = 0; i < m; ++i) dp[i][0] = i; // word1前i个字符串变为''需要多少步
+  for (let i = 0; i < n; ++i) dp[0][i] = i; // word2前i个字符串变为''需要多少步
+  for (let i = 1; i < m; ++i) {
+    for (let j = 1; j < n; ++j) {
+      if (word1[i - 1] == word2[j - 1]) dp[i][j] = dp[i - 1][j - 1];
+      else dp[i][j] = Math.min(dp[i - 1][j - 1], dp[i - 1][j], dp[i][j - 1]) + 1;
     }
-    return dp[m-1][n-1];
+  }
+  return dp[m - 1][n - 1];
 };
 ```

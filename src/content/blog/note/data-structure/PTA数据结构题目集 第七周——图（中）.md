@@ -3,26 +3,26 @@ title: PTA数据结构题目集 第七周——图（中）
 link: PTA数据结构题目集 第七周——图（中）
 catalog: true
 lang: cn
-date:   2020-08-08 20:33:20 
+date: 2020-08-08 20:33:20
 subtitle: PTA数据结构题目集 第七周——图（中），涉及图的单源最短路算法（Floyed算法、Dijkstra算法），所用语言为c++。
 tags:
-- c++
-- PTA
-- 数据结构
-- 最短路
+  - c++
+  - PTA
+  - 数据结构
+  - 最短路
 categories:
-- 题目记录
+  - 题目记录
 ---
 
 [题目集总目录](https://blog.csdn.net/qq_45890533/article/details/107131440)
-学习指路博客  [图论](https://blog.csdn.net/qq_45890533/article/details/105475331)
+学习指路博客 [图论](https://blog.csdn.net/qq_45890533/article/details/105475331)
 
-# 07-图4 哈利·波特的考试 (25分)
+# 07-图 4 哈利·波特的考试 (25 分)
 
 [本题链接](https://pintia.cn/problem-sets/1268384564738605056/problems/1284061680916697088)
 
->是很基本的算法应用，**一定要做**。如果不会，那么看看小白专场，会详细介绍C语言的实现方法
->
+> 是很基本的算法应用，**一定要做**。如果不会，那么看看小白专场，会详细介绍 C 语言的实现方法
+
 ## 题目大意
 
 给出每两个动物之间所需魔咒长度
@@ -31,7 +31,7 @@ categories:
 
 ## 思路
 
-用Floyd算法得出最短路矩阵dist(dist[i][j]表示i到j所需最短长度，在每行里找最难变(即dist[i][j]最大)的元素，在这些元素中找最小的，输出最小值的下标i和最小值
+用 Floyd 算法得出最短路矩阵 dist(dist[i][j]表示 i 到 j 所需最短长度，在每行里找最难变(即 dist[i][j]最大)的元素，在这些元素中找最小的，输出最小值的下标 i 和最小值
 
 ## 代码
 
@@ -52,7 +52,7 @@ void init() {
     for(int i = 1; i <= N; ++i) {
        for(int j = 1; j <= N; ++j) {
             dist[i][j] = inf;
-        } 
+        }
         dist[i][i] = 0;
     }
 }
@@ -104,19 +104,19 @@ int main(){
 测试点如下
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200720184504862.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODkwNTMz,size_16,color_FFFFFF,t_70)
 
-# 07-图5 Saving James Bond - Hard Version (30分)
+# 07-图 5 Saving James Bond - Hard Version (30 分)
 
 [本题链接](https://pintia.cn/problem-sets/1268384564738605056/problems/1284061680920891392)
 
->有余力的话，好人做到底，如果上周已经尝试着救过007了，这周就继续给他建议吧；
->
+> 有余力的话，好人做到底，如果上周已经尝试着救过 007 了，这周就继续给他建议吧；
+
 ## 题目大意
 
-输出最少的跳转次数以及沿途跳转的鳄鱼的xy坐标
+输出最少的跳转次数以及沿途跳转的鳄鱼的 xy 坐标
 
 ## 思路
 
-用Floyd算法得出最短路矩阵edge(edge[i][j]表示鳄鱼i到鳄鱼j所需最少跳转次数，初始化时能跳转则置为1，不能则置为0），同时用path存储路径。
+用 Floyd 算法得出最短路矩阵 edge(edge[i][j]表示鳄鱼 i 到鳄鱼 j 所需最少跳转次数，初始化时能跳转则置为 1，不能则置为 0），同时用 path 存储路径。
 注意一点：如果有许多最短路径，只需输出具有最小第一跳转的路径
 
 ## 代码
@@ -162,7 +162,7 @@ double countDist(Point a, Point b) {
 }
 bool check(Point a) {
     int s = 50 - D;
-    if(abs(a.x) >= s || abs(a.y) >= s) 
+    if(abs(a.x) >= s || abs(a.y) >= s)
         return true;
     else return false;
 }
@@ -251,7 +251,7 @@ int main(){
             PrintPath(S,E);
             printf("%d %d\n", v[E].x, v[E].y);
         }
-    }  else 
+    }  else
         printf("0\n");
     return 0;
 }
@@ -262,11 +262,11 @@ int main(){
 测试点如下
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200729190645667.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODkwNTMz,size_16,color_FFFFFF,t_70)
 
-# 07-图6 旅游规划 (25分)
+# 07-图 6 旅游规划 (25 分)
 
 [本题链接](https://pintia.cn/problem-sets/1268384564738605056/problems/1284061680920891393)
 
->Dijkstra算法的变形——姥姥只能帮你到这里了，自己动脑筋想一下怎么改造经典去解决这个问题？实在不会也不要急，再下周会讲算法的。
+> Dijkstra 算法的变形——姥姥只能帮你到这里了，自己动脑筋想一下怎么改造经典去解决这个问题？实在不会也不要急，再下周会讲算法的。
 
 ## 题目大意
 
@@ -274,7 +274,7 @@ int main(){
 
 ## 思路
 
-Dijkstra算法的变形，只需存边的时候同时存储距离及花费，多加一个cost数组，更新dist时的同时更新cost。
+Dijkstra 算法的变形，只需存边的时候同时存储距离及花费，多加一个 cost 数组，更新 dist 时的同时更新 cost。
 
 ## 代码
 

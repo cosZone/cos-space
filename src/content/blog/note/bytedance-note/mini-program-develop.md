@@ -6,12 +6,13 @@ date: 2022-01-30 14:30:17
 subtitle: 讲解了小程序的发展历程和技术解析，并实现了一个简易的番茄钟小程序~
 lang: cn
 tags:
-- 前端
-- 小程序
-- JavaScript
+  - 前端
+  - 小程序
+  - JavaScript
 categories:
-- [笔记, 青训营笔记]
+  - [笔记, 青训营笔记]
 ---
+
 终于到了我超期待的一门课~~
 
 课程目标：
@@ -37,11 +38,11 @@ categories:
 
 # 业务价值
 
-## 与WEB的区别
+## 与 WEB 的区别
 
 - 有着固定的语法以及统一的版本管理， 平台可以更**方便的进行审核**
 - **平台能够控制各个入口**，如二维码，文章内嵌，端内分享。入口上也能带来更好的用户体验
-- 小程序基于特殊的架构，在流畅度上比WEB更好，有**更优秀的跳转体验**
+- 小程序基于特殊的架构，在流畅度上比 WEB 更好，有**更优秀的跳转体验**
 
 ## 三大价值
 
@@ -49,13 +50,13 @@ categories:
 
 - 便捷导流
 
-由于小程序的便捷性，依托于超级平台，小程序能够充分为很多场景导流，如美团和美团优选微信小程序带来的流量占比分别是40%和80%
+由于小程序的便捷性，依托于超级平台，小程序能够充分为很多场景导流，如美团和美团优选微信小程序带来的流量占比分别是 40%和 80%
 
 ### 业务探索价值
 
 - 快速试错
 
-相比原生APP来说，小程序的开发难度和成本都降低的很多，这就创造了很多场景开发者能够用小程序来**快速试错**，不断探索新的业务价值
+相比原生 APP 来说，小程序的开发难度和成本都降低的很多，这就创造了很多场景开发者能够用小程序来**快速试错**，不断探索新的业务价值
 
 ### 数字升级价值
 
@@ -70,8 +71,8 @@ categories:
 第三方开发应用最简单最方便的方式？
 
 - WebView + JSBridge
-  - WebView：移动端提供的运行JavaScript的环境，相当于App内的浏览器页面
-  - JSBridge：顾名思义，作为桥梁开发者可以调用App本身的一些api
+  - WebView：移动端提供的运行 JavaScript 的环境，相当于 App 内的浏览器页面
+  - JSBridge：顾名思义，作为桥梁开发者可以调用 App 本身的一些 api
 
 几个问题：
 
@@ -83,9 +84,9 @@ categories:
 
 - 开发门槛低——HTML+JS+CSS
 - 接近原生的使用体验——资源加载 + 渲染 + 页面切换
-- 安全管控——独立JS沙箱：隔绝操作dom的方式
-  - 不操作DOM如何控制页面渲染？
-  - Data -> 根据数据处理DOM -> 页面
+- 安全管控——独立 JS 沙箱：隔绝操作 dom 的方式
+  - 不操作 DOM 如何控制页面渲染？
+  - Data -> 根据数据处理 DOM -> 页面
 
 ![image.png](https://backblaze.cosine.ren/juejin/9395e25b321e44b1b78c0f9735d9a07d~Tplv-K3u1fbpfcp-Watermark.png)
 
@@ -93,7 +94,7 @@ categories:
 
 ![image.png](https://backblaze.cosine.ren/juejin/ca88825a4bdf46fbbe95df9a0b1f77cf~tplv-k3u1fbpfcp-watermark.png)
 
-如图：比如字节小程序是TTML/JS/TTSS，而微信小程序则是WXML/JS/WXSS，对应HTML/JS/CSS
+如图：比如字节小程序是 TTML/JS/TTSS，而微信小程序则是 WXML/JS/WXSS，对应 HTML/JS/CSS
 
 ## 实现简易番茄时钟
 
@@ -103,9 +104,9 @@ categories:
 
 ![番茄钟.gif](https://backblaze.cosine.ren/juejin/B8ada35bb88143319ce17603de92c141~Tplv-K3u1fbpfcp-Watermark.gif)
 
-### 编写tomatoClock.wxml（html）
+### 编写 tomatoClock.wxml（html）
 
-简单的用html写个界面先~
+简单的用 html 写个界面先~
 
 ```html
 <view class="container">
@@ -115,15 +116,15 @@ categories:
 </view>
 ```
 
-{{timeText}} 实现页面与js中数据的**双向绑定**（该数据更新时页面也会进行渲染~）
+{{timeText}} 实现页面与 js 中数据的**双向绑定**（该数据更新时页面也会进行渲染~）
 
-### 编写tomatoClock.js
+### 编写 tomatoClock.js
 
-编写js进行事件函数、该页面数据的绑定
+编写 js 进行事件函数、该页面数据的绑定
 
 ```js
 // pages/apply/tomatoClock/tomatoClock.js
-const DEFAULT_TIME = 25*60; // 25分钟
+const DEFAULT_TIME = 25 * 60; // 25分钟
 function formatTime(time) {
   const minutes = Math.floor(time / 60);
   const seconds = time % 60;
@@ -133,9 +134,9 @@ function formatTime(time) {
 }
 ```
 
-从后往前截断实现前导0补全，就可以展示两位数时间（学到了！）
+从后往前截断实现前导 0 补全，就可以展示两位数时间（学到了！）
 
-然后是事件的处理，setTimer函数设置一个间隔1s的定时器，设置初始time为默认时间，每隔1s使得当前time-1(同时页面也会刷新)，onStart事件在开始时设置定时器并置running为true，onReset事件在重置时时清除定时器，设置running为false并将timeText设置为默认时间
+然后是事件的处理，setTimer 函数设置一个间隔 1s 的定时器，设置初始 time 为默认时间，每隔 1s 使得当前 time-1(同时页面也会刷新)，onStart 事件在开始时设置定时器并置 running 为 true，onReset 事件在重置时时清除定时器，设置 running 为 false 并将 timeText 设置为默认时间
 
 ```js
 Page({
@@ -144,51 +145,53 @@ Page({
    */
   data: {
     timeText: formatTime(DEFAULT_TIME),
-    running: false
+    running: false,
   },
-  setTimer:function() {
+  setTimer: function () {
     this.timer = setInterval(() => {
       this.time = this.time - 1;
-      if(this.time < 0) {
+      if (this.time < 0) {
         clearInterval(this.timer);
         return;
       }
       this.setData({
-        timeText: formatTime(this.time)
-      })
+        timeText: formatTime(this.time),
+      });
     }, 1000);
   },
   // 事件函数 开始时设置定时器并置running为true
-  onStart: function() {
-    if(!this.timer) {
+  onStart: function () {
+    if (!this.timer) {
       this.time = DEFAULT_TIME;
       this.setTimer();
       this.setData({
-        running: true
-      })
+        running: true,
+      });
     }
   },
   // 事件函数 重置时清除定时器，设置running为false并将timeText设置为默认时间
-  onReset: function() {
+  onReset: function () {
     clearInterval(this.timer);
     this.timer = null;
     this.time = DEFAULT_TIME;
     this.setData({
       timeText: formatTime(DEFAULT_TIME),
-      running: false
+      running: false,
     });
   },
   // else 生命周期函数（监听页面加载、渲染等）
-})
+});
 ```
 
-### 编写一点点wxss（css）
+### 编写一点点 wxss（css）
 
-可以在app.wxss中，实现全局通用的css如container等
+可以在 app.wxss 中，实现全局通用的 css 如 container 等
 
 ```css
 /**app.wxss**/
-page { background-color: #97ABFF; }
+page {
+  background-color: #97abff;
+}
 .container {
   height: 100%;
   display: flex;
@@ -198,12 +201,11 @@ page { background-color: #97ABFF; }
   gap: 10px;
   padding: 200rpx 0;
   box-sizing: border-box;
-  background-color: #97ABFF;  
-} 
-
+  background-color: #97abff;
+}
 ```
 
-在页面自己的css里(index.wxss)，写该页面所需的css~
+在页面自己的 css 里(index.wxss)，写该页面所需的 css~
 
 ```css
 /**index.wxss**/
@@ -223,7 +225,7 @@ page { background-color: #97ABFF; }
   margin-top: 200rpx;
   text-align: center;
   border-radius: 10px;
-  border: 3px solid white; 
+  border: 3px solid white;
   background-color: transparent;
 
   font-size: 25px;
@@ -251,13 +253,13 @@ page { background-color: #97ABFF; }
 
 [抽象语法树 - 维基百科](https://zh.wikipedia.org/wiki/抽象語法樹)
 
-> 在[计算机科学](https://zh.wikipedia.org/wiki/计算机科学)中，**抽象语法树**（**A**bstract **S**yntax **T**ree，AST），或简称**语法树**（Syntax tree），是[源代码](https://zh.wikipedia.org/wiki/源代码)[语法](https://zh.wikipedia.org/wiki/语法学)结构的一种抽象表示。它以[树状](https://zh.wikipedia.org/wiki/树_(图论))的形式表现[编程语言](https://zh.wikipedia.org/wiki/编程语言)的语法结构，树上的每个节点都表示源代码中的一种结构。之所以说语法是“抽象”的，是因为这里的语法并不会表示出真实语法中出现的每个细节。比如，嵌套括号被隐含在树的结构中，并没有以节点的形式呈现；而类似于 `if-condition-then` 这样的条件跳转语句，可以使用带有三个分支的节点来表示。
+> 在[计算机科学](https://zh.wikipedia.org/wiki/计算机科学)中，**抽象语法树**（**A**bstract **S**yntax **T**ree，AST），或简称**语法树**（Syntax tree），是[源代码](https://zh.wikipedia.org/wiki/源代码)[语法](https://zh.wikipedia.org/wiki/语法学)结构的一种抽象表示。它以[树状](<https://zh.wikipedia.org/wiki/树_(图论)>)的形式表现[编程语言](https://zh.wikipedia.org/wiki/编程语言)的语法结构，树上的每个节点都表示源代码中的一种结构。之所以说语法是“抽象”的，是因为这里的语法并不会表示出真实语法中出现的每个细节。比如，嵌套括号被隐含在树的结构中，并没有以节点的形式呈现；而类似于 `if-condition-then` 这样的条件跳转语句，可以使用带有三个分支的节点来表示。
 >
-> 和抽象语法树相对的是具体语法树（通常称作[分析树](https://zh.wikipedia.org/wiki/分析树)）。一般的，在源代码的翻译和[编译](https://zh.wikipedia.org/wiki/编译)过程中，[语法分析器](https://zh.wikipedia.org/wiki/語法分析器)创建出分析树，然后从分析树生成AST。一旦AST被创建出来，在后续的处理过程中，比如[语义分析](https://zh.wikipedia.org/wiki/语义分析)阶段，会添加一些信息。
+> 和抽象语法树相对的是具体语法树（通常称作[分析树](https://zh.wikipedia.org/wiki/分析树)）。一般的，在源代码的翻译和[编译](https://zh.wikipedia.org/wiki/编译)过程中，[语法分析器](https://zh.wikipedia.org/wiki/語法分析器)创建出分析树，然后从分析树生成 AST。一旦 AST 被创建出来，在后续的处理过程中，比如[语义分析](https://zh.wikipedia.org/wiki/语义分析)阶段，会添加一些信息。
 
 ![image.png](https://backblaze.cosine.ren/juejin/a563ebdd42444d7e9f722ae3e570e268~tplv-k3u1fbpfcp-watermark.png)
 
-解析 -> 生成AST语法树 ->生成页面
+解析 -> 生成 AST 语法树 ->生成页面
 
 ![image.png](https://backblaze.cosine.ren/juejin/16a0e587d4f9463e8687ed7c3fddbd76~Tplv-K3u1fbpfcp-Watermark.png)
 
@@ -280,11 +282,11 @@ page { background-color: #97ABFF; }
 
 ### 运行时
 
-#### 虚拟DOM
+#### 虚拟 DOM
 
-本质为js中的一个对象，有很多dom中的属性值标签等，通过这个对象可以生成我们的实际DOM
+本质为 js 中的一个对象，有很多 dom 中的属性值标签等，通过这个对象可以生成我们的实际 DOM
 
-#### Template组件
+#### Template 组件
 
 小程序中提供的动态生成的模板。
 

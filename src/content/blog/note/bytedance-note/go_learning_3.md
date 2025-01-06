@@ -7,11 +7,12 @@ date: 2022-05-12 20:44:01
 subtitle: Go语言工程实践
 quiz: true
 tags:
-- 后端
-- Go
+  - 后端
+  - Go
 categories:
-- [笔记, 青训营笔记]
+  - [笔记, 青训营笔记]
 ---
+
 本节课讲了如何写出更简洁清晰的代码，每种语言都有自己的特性，也有自己独特的代码规范，对于 Go 来说，有哪些性能优化的手段、趁手的工具，也都进行了介绍。
 
 高质量代码需要具备正确可靠、简洁清晰的特性
@@ -20,19 +21,19 @@ categories:
 - 可靠性：异常情况或错误处理明确，依赖的服务异常能够及时处理
 - 简洁：逻辑是否简单、后续新增功能是否能够快速支持
 - 清晰可读：其他人阅读理解代码时是否能清楚明白、重构时是否不会担心出现无法预料的情况
-而这就需要编码规范。
+  而这就需要编码规范。
 
 # 编码规范
 
 ## 格式化工具
 
-提到编码规范就不得不提到代码格式化工具，推荐使用Go官方提供的格式化工具 `gofmt`，Goland中内置了其功能，常见的IDE也都能方便的配置
+提到编码规范就不得不提到代码格式化工具，推荐使用 Go 官方提供的格式化工具 `gofmt`，Goland 中内置了其功能，常见的 IDE 也都能方便的配置
 
 - 另一个工具是 `goimports`，相当于 `gofmt` 加上依赖包的管理，自动增删依赖的包。
 
 ![image.png](https://backblaze.cosine.ren/juejin/07f5cc789bcc4526a35da211cf843a89~Tplv-K3u1fbpfcp-Zoom-1.png)
 
-> js中也有类似的格式化工具 `Prettier`，可以配合ESLint进行代码格式化。
+> js 中也有类似的格式化工具 `Prettier`，可以配合 ESLint 进行代码格式化。
 
 ## 注释规范
 
@@ -105,7 +106,7 @@ func ( c *Client ) send( req *Request, deadline time.Time )
 
 - 函数名 **不携带包名的上下文信息**，因为包名和函数名总是成对出现的
 
-  - 如http包中创建服务的函数， `Serve` > `ServeHTTP`，因为调用时总是`http.Serve`
+  - 如 http 包中创建服务的函数， `Serve` > `ServeHTTP`，因为调用时总是`http.Serve`
 
 - 函数名 **尽量简短**
 
@@ -199,9 +200,9 @@ func ( c *Client ) send( req *Request, deadline time.Time )
   - 使用 `errors.Is` 判定错误是否为某特定错误，可判定错误链上的所有错误（[go/wrap_test.go · golang/go](https://github.com/golang/go/blob/master/src/errors/wrap_test.go#L255)）
   - 使用 `errors.As` 在错误链上获取特定种类的错误，并将错误赋值给定义好的变量。（[go/wrap_test.go · golang/go](https://github.com/golang/go/blob/master/src/errors/wrap_test.go#L255)）
 
-在Go中，比错误更严重的就是 `panic`，它的出现表示**程序无法正常工作**了
+在 Go 中，比错误更严重的就是 `panic`，它的出现表示**程序无法正常工作**了
 
-- 不建议在业务代码中使用panic
+- 不建议在业务代码中使用 panic
 
   - `panic` 发生后，会向上传播至调用栈顶
   - 调用函数全都不包含 `recover` 会造成**整个程序崩溃**。
@@ -209,11 +210,11 @@ func ( c *Client ) send( req *Request, deadline time.Time )
 
 - 当程序**启动阶段**发生**不可逆转**的错误时，可以在 `init` 或 `main` 函数中使用 `panic`（[sarama/main.go · Shopify/sarama](https://github.com/Shopify/sarama/blob/main/examples/consumergroup/main.go#L94)）
 
-有`painc`，自然就会提到 `recover`，如果是引入其它库的`bug`导致`panic`，影响到自身的逻辑时，就需要recover
+有`painc`，自然就会提到 `recover`，如果是引入其它库的`bug`导致`panic`，影响到自身的逻辑时，就需要 recover
 
-- `recover` 只能在被 `defer`的函数中使用，嵌套无法生效，只在当前goroutine 生效（[github.com/golang/go/b…](https://github.com/golang/go/blob/master/src/fmt/scan.go#L247)）
-- defer的语句是**后进先出**的。
-- 如果需要更多的上下文信息，可以 recover 后在 log 中记录当前的调用栈（[github.com/golang/webs…](https://github.com/golang/website/blob/master/internal/gitfs/fs.go#L228)）
+- `recover` 只能在被 `defer`的函数中使用，嵌套无法生效，只在当前 goroutine 生效（[github.com/golang/go/b……](https://github.com/golang/go/blob/master/src/fmt/scan.go#L247)）
+- defer 的语句是**后进先出**的。
+- 如果需要更多的上下文信息，可以 recover 后在 log 中记录当前的调用栈（[github.com/golang/webs……](https://github.com/golang/website/blob/master/internal/gitfs/fs.go#L228)）
 
 ### 小结
 
@@ -230,7 +231,7 @@ func ( c *Client ) send( req *Request, deadline time.Time )
 
 ## 预分配内存
 
-使用make() 初始化切片时尽可能提供容量信息
+使用 make() 初始化切片时尽可能提供容量信息
 
 ```go
  func PreAlloc(size int) {
@@ -285,19 +286,19 @@ func ( c *Client ) send( req *Request, deadline time.Time )
   - 节省内存空间
   - 空结构体本身具备很强的语义，即这里不需要任何值，仅作为占位符
 
-- 如实现Set时，利用map的键，而将值设为空结构体。([golang-set/threadunsafe...](https://github.com/deckarep/golang-set/blob/main/threadunsafe.go))
+- 如实现 Set 时，利用 map 的键，而将值设为空结构体。([golang-set/threadunsafe...](https://github.com/deckarep/golang-set/blob/main/threadunsafe.go))
 
 # 相关链接
 
-- [《golang pprof 实战》](https://blog.wolfogre.com/posts/go-ppof-practice/)代码实验用例： [github.com/wolfogre/go…](https://github.com/wolfogre/go-pprof-practice)
-- 尝试使用 test 命令，编写并运行简单测试 [go.dev/doc/tutoria…](https://go.dev/doc/tutorial/add-a-test)
-- 尝试使用 -bench 参数，对编写的函数进行性能测试，[pkg.go.dev/testing#hdr…](https://pkg.go.dev/testing#hdr-Benchmarks)
-- Go 代码 Review 建议 [github.com/golang/go/w…](https://github.com/golang/go/wiki/CodeReviewComments)
-- Uber 的 Go 编码规范，[github.com/uber-go/gui…](https://github.com/uber-go/guide)
+- [《golang pprof 实战》](https://blog.wolfogre.com/posts/go-ppof-practice/)代码实验用例： [github.com/wolfogre/go……](https://github.com/wolfogre/go-pprof-practice)
+- 尝试使用 test 命令，编写并运行简单测试 [go.dev/doc/tutoria……](https://go.dev/doc/tutorial/add-a-test)
+- 尝试使用 -bench 参数，对编写的函数进行性能测试，[pkg.go.dev/testing#hdr……](https://pkg.go.dev/testing#hdr-Benchmarks)
+- Go 代码 Review 建议 [github.com/golang/go/w……](https://github.com/golang/go/wiki/CodeReviewComments)
+- Uber 的 Go 编码规范，[github.com/uber-go/gui……](https://github.com/uber-go/guide)
 
 # 总结及心得
 
-本节课介绍了Go乃至其他语言中常见的代码规范，提出了Go语言中相关的性能优化建议。后续还进行了性能优化的实战练习，使用pprof工具进行。
+本节课介绍了 Go 乃至其他语言中常见的代码规范，提出了 Go 语言中相关的性能优化建议。后续还进行了性能优化的实战练习，使用 pprof 工具进行。
 
 > 笔记内容来源于第三届青训营张雷老师的课程《高质量编程与性能调优实战》\
 > 课程资料：[【Go 语言原理与实践学习资料（上）】第三届字节跳动青训营-后端专场](https://juejin.cn/post/7093721879462019102/#heading-16)

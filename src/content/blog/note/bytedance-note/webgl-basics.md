@@ -6,20 +6,20 @@ date: 2022-01-27 14:30:17
 subtitle: 这节课老师非常详尽的讲解了WebGL的绘图及其相关库，展示了很多有意思的WebGL小项目~
 lang: cn
 tags:
-- 前端
-- WebGL
-- 图形学
+  - 前端
+  - WebGL
+  - 图形学
 categories:
-- [笔记, 青训营笔记]
+  - [笔记, 青训营笔记]
 ---
 
 # 本节课重点内容
 
 ## Why WebGL / Why GPU?
 
-- WebGL是什么?
+- WebGL 是什么?
   - GPU ≠ WebGL ≠ 3D
-- WebGL为什么不像其他前端技术那么简单?
+- WebGL 为什么不像其他前端技术那么简单?
 
 ## 现代的图像系统
 
@@ -44,26 +44,26 @@ categories:
 
 ### GPU
 
-- GPU由**大量的小运算单元**构成
+- GPU 由**大量的小运算单元**构成
 - 每个运算单元只负责处理很**简单**的计算
 - 每个运算单元彼此**独立**
 - 因此所有计算可以**并行**处理
 
-### WebGL & OpenGL关系
+### WebGL & OpenGL 关系
 
 [OpenGL, OpenGL ES, WebGL, GLSL, GLSL ES API Tables (umich.edu)](http://web.eecs.umich.edu/~sugih/courses/eecs487/common/notes/APITables.xml)
 
 ![image.png](https://backblaze.cosine.ren/juejin/ce125f7f2cc14fada66e2971853070d2~tplv-k3u1fbpfcp-watermark.png)
 
-## WebGL绘图步骤
+## WebGL 绘图步骤
 
 **步骤**
 
-1. 创建WebGL上下文
-2. 创建WebGL Program
+1. 创建 WebGL 上下文
+2. 创建 WebGL Program
 3. 将数据存入缓冲区
-4. 将缓冲区数据读取到GPU
-5. GPU执行WebGL程序，输出结果
+4. 将缓冲区数据读取到 GPU
+5. GPU 执行 WebGL 程序，输出结果
 
 ![image.png](https://backblaze.cosine.ren/juejin/a24f2b13adc646e28dec4623c43ee41f~tplv-k3u1fbpfcp-watermark.png)
 
@@ -73,35 +73,35 @@ categories:
 - Vertex Processor **顶点着色器**
 - 运算后送到 **片元着色器** 进行处理：Fragment Processor
 
-### 创建WebGL上下文
+### 创建 WebGL 上下文
 
 ```js
 const canvas = document.querySelector('canvas');
 const gl = canvas.getContext('webgl');
 // 创建上下文， 注意兼容
 function create3DContext(canvas, options) {
-    const names = ['webgl', 'experimental-webgL','webkit-3d','moz-webgl'];  // 特性判断
-    if(options.webgl2) names.unshift(webgl2);
-    let context = null;
-    for(let ii = 0; ii < names.length; ++ii) {
-        try {
-            context = canvas.getContext(names[ii], options);
-        } catch(e) {
-            // no-empty
-        }
-        if(context) {
-            break;
-        }
+  const names = ['webgl', 'experimental-webgL', 'webkit-3d', 'moz-webgl']; // 特性判断
+  if (options.webgl2) names.unshift(webgl2);
+  let context = null;
+  for (let ii = 0; ii < names.length; ++ii) {
+    try {
+      context = canvas.getContext(names[ii], options);
+    } catch (e) {
+      // no-empty
     }
-    return context;
+    if (context) {
+      break;
+    }
+  }
+  return context;
 }
 ```
 
-### 创建WebGL Program（The Shaders）
+### 创建 WebGL Program（The Shaders）
 
 1. Vertex Shader（顶点着色器）
 
-   通过类型数组position，**并行**处理每个顶点的位置
+   通过类型数组 position，**并行**处理每个顶点的位置
 
    ```js
    attribute vec2 position;// vec2 二维向量
@@ -165,7 +165,7 @@ function create3DContext(canvas, options) {
 
 6. 使用 **[`attachShader()`](https://developer.mozilla.org/zh-CN/docs/Web/API/WebGLRenderingContext/attachShader)** 往 [`WebGLProgram`](https://developer.mozilla.org/zh-CN/docs/Web/API/WebGLProgram) 添加一个片段或者顶点着色器。
 
-7. 使用 **[`linkProgram()`](https://developer.mozilla.org/zh-CN/docs/Web/API/WebGLRenderingContext/linkProgram)**链接给定的[`WebGLProgram`](https://developer.mozilla.org/zh-CN/docs/Web/API/WebGLProgram)，从而完成为程序的片元和顶点着色器准备GPU代码的过程。
+7. 使用 **[`linkProgram()`](https://developer.mozilla.org/zh-CN/docs/Web/API/WebGLRenderingContext/linkProgram)**链接给定的[`WebGLProgram`](https://developer.mozilla.org/zh-CN/docs/Web/API/WebGLProgram)，从而完成为程序的片元和顶点着色器准备 GPU 代码的过程。
 
 8. 使用 **[`useProgram()`](https://developer.mozilla.org/zh-CN/docs/Web/API/WebGLRenderingContext/useProgram)** 将定义好的[`WebGLProgram`](https://developer.mozilla.org/zh-CN/docs/Web/API/WebGLProgram) 对象添加到当前的渲染状态
 
@@ -175,33 +175,28 @@ function create3DContext(canvas, options) {
    gl.attachShader(program, vertexShader);
    gl.attachShader(program, fragmentShader);
    gl.linkProgram(program);
-   
+
    gl.useProgram(program);
    ```
 
 ### 将数据存到缓冲区中（Data to Frame Buffer）
 
-- **坐标轴**：webGL的坐标系统是归一化的，**浏览器和canvas2D**的坐标系统是以**左上角为坐标原点，y轴向下，x轴向右**，坐标值相对于原点。而**webGL**的坐标系是以绘制画布的**中心点为原点**，**正常的笛卡尔坐标系**。
+- **坐标轴**：webGL 的坐标系统是归一化的，**浏览器和 canvas2D**的坐标系统是以**左上角为坐标原点，y 轴向下，x 轴向右**，坐标值相对于原点。而**webGL**的坐标系是以绘制画布的**中心点为原点**，**正常的笛卡尔坐标系**。
 
-通过一个顶点数组表示其顶点，使用 **[`createBuffer()`](https://developer.mozilla.org/zh-CN/docs/Web/API/WebGLRenderingContext/createBuffer)** 创建并初始化一个用于储存顶点数据或着色数据的[`WebGLBuffer`](https://developer.mozilla.org/zh-CN/docs/Web/API/WebGLBuffer)对象并返回`bufferId`，然后使用 **[`bindBuffer()`](https://developer.mozilla.org/zh-CN/docs/Web/API/WebGLRenderingContext/bindBuffer)** 将给定的 `bufferId` 绑定到目标并返回，最后使用**[`bufferData()`](https://developer.mozilla.org/zh-CN/docs/Web/API/WebGLRenderingContext/bufferData)**，将数据绑定至buffer中。
+通过一个顶点数组表示其顶点，使用 **[`createBuffer()`](https://developer.mozilla.org/zh-CN/docs/Web/API/WebGLRenderingContext/createBuffer)** 创建并初始化一个用于储存顶点数据或着色数据的[`WebGLBuffer`](https://developer.mozilla.org/zh-CN/docs/Web/API/WebGLBuffer)对象并返回`bufferId`，然后使用 **[`bindBuffer()`](https://developer.mozilla.org/zh-CN/docs/Web/API/WebGLRenderingContext/bindBuffer)** 将给定的 `bufferId` 绑定到目标并返回，最后使用**[`bufferData()`](https://developer.mozilla.org/zh-CN/docs/Web/API/WebGLRenderingContext/bufferData)**，将数据绑定至 buffer 中。
 
 ```js
 // 顶点数据
-const points = new Float32Array([
-    -1, -1,
-    0, 1,
-    1, -1,
-]);
+const points = new Float32Array([-1, -1, 0, 1, 1, -1]);
 // 创建缓冲区
 const bufferId = gl.createBuffer();
 gl.bindBuffer(gl.ARRAY_BUFFER, bufferId);
 gl.bufferData(gl.ARRAY_BUFFER, points, gl.STATIC_DRAW);
 ```
 
-### 读取缓冲区数据到GPU（Frame Buffer to GPU）
+### 读取缓冲区数据到 GPU（Frame Buffer to GPU）
 
 > - [getAttribLocation()](https://developer.mozilla.org/zh-CN/docs/Web/API/WebGLRenderingContext/getAttribLocation)返回了给定[`WebGLProgram`](https://developer.mozilla.org/zh-CN/docs/Web/API/WebGLProgram)对象中某属性的下标指向位置。
->
 > - [vertexAttribPointer()](https://developer.mozilla.org/zh-CN/docs/Web/API/WebGLRenderingContext/vertexAttribPointer) 告诉显卡从当前绑定的缓冲区（bindBuffer()指定的缓冲区）中读取顶点数据。
 > - [enableVertexAttribArray()](https://developer.mozilla.org/zh-CN/docs/Web/API/WebGLRenderingContext/enableVertexAttribArray) 可以打开属性数组列表中指定索引处的通用顶点属性数组。
 
@@ -219,17 +214,17 @@ gl.enableVertexAttribArray(vPosition); // 激活这个变量
 
 ```js
 // output
-gl.clear(gl.COLOR_BUFFER_BIT);  //清除缓冲的数据
+gl.clear(gl.COLOR_BUFFER_BIT); //清除缓冲的数据
 gl.drawArrays(gl.TRIANGLES, 0, points.length / 2);
 ```
 
 ![image.png](https://backblaze.cosine.ren/juejin/4a2a842817cf45c1b630cd7cfc168031~tplv-k3u1fbpfcp-watermark.png)
 
-## WebGL太复杂？其他方式
+## WebGL 太复杂？其他方式
 
 ### canvas 2D
 
-看看人家canvas2D，绘制同样的三角形：
+看看人家 canvas2D，绘制同样的三角形：
 
 ```js
 // canvas 简单粗暴，都封装好了
@@ -268,7 +263,7 @@ renderer.drawMeshes([mesh]);
 
 使用[Earcut](https://github.com/mapbox/earcut)进行三角剖分
 
-```
+```plain
 const vertices = [
     [-0.7, 0.5],
     [-0.4, 0.3],
@@ -321,24 +316,24 @@ const triangles = earcut(points)
 
 ## 3D Matrix
 
-3D标准模型的**四个齐次矩阵**(mat4)
+3D 标准模型的**四个齐次矩阵**(mat4)
 
-1. 投影矩阵Projection Matrix（正交投影和透视投影）
-2. 模型矩阵Model Matrix （对顶点进行变换Transform）
-3. 视图矩阵View Matrix（3D的视角，想象成一个相机，在相机的视口下）
-4. 法向量矩阵Normal Matrix（垂直于物体表面的法向量，通常用于计算物体光照）
+1. 投影矩阵 Projection Matrix（正交投影和透视投影）
+2. 模型矩阵 Model Matrix （对顶点进行变换 Transform）
+3. 视图矩阵 View Matrix（3D 的视角，想象成一个相机，在相机的视口下）
+4. 法向量矩阵 Normal Matrix（垂直于物体表面的法向量，通常用于计算物体光照）
 
 ## Read more
 
 1. [The Book of Shaders](https://thebookofshaders.com/) （介绍片元着色器，非常好玩的）
 2. [Mesh.js](https://github.com/mesh-js/mesh.js) （底层库，欸嘿）
-3. [Glsl Doodle](https://doodle.webgl.group/) （片元着色器的一个轻量库，有很多小demo）
-4. [SpriteJS](http://spritejs.com/#/) （月影老师写的开源库orz）
+3. [Glsl Doodle](https://doodle.webgl.group/) （片元着色器的一个轻量库，有很多小 demo）
+4. [SpriteJS](http://spritejs.com/#/) （月影老师写的开源库 orz）
 5. [Three.js](https://threejs.org/)（很多有意思的~~游戏~~项目）
 6. [Shadertoy BETA](https://www.shadertoy.com/)（很多有意思的项目）
 
 ## 总结感想
 
-这节课老师非常详尽的讲解了WebGL的绘图及其相关库，展示了很多有意思的WebGL小项目~
+这节课老师非常详尽的讲解了 WebGL 的绘图及其相关库，展示了很多有意思的 WebGL 小项目~
 
-> 本文引用的大部分内容来自月影老师的课和MDN！月影老师，tql!
+> 本文引用的大部分内容来自月影老师的课和 MDN！月影老师，tql!

@@ -6,28 +6,29 @@ lang: cn
 date: 2021-12-01 20:12:48
 subtitle: 课堂小测：设计并实现某火车票售票系统的放票功能
 tags:
-- 后端
-- Java
-- 多线程
+  - 后端
+  - Java
+  - 多线程
 categories:
-- [笔记, 后端]
+  - [笔记, 后端]
 ---
+
 # 题目
 
 设计并实现某火车票售票系统的放票功能:
 
-某车次预留100张有座， 在每晚8点开启放票功能，每隔30分钟随机放出10张票。
+某车次预留 100 张有座， 在每晚 8 点开启放票功能，每隔 30 分钟随机放出 10 张票。
 
 简单模拟放票、购票功能：显示客户在某时刻抢到某号码的票。
 模拟服务器放票，客户端购票功能：服务器显示某时刻放出某些票，在某时刻卖出某张票的信息；客户端显示某时刻买走某张票的信息。
 
 # 思路与代码
 
-服务器为Producer类，客户端为Customer类，均继承Thread实现多线程，然后一个Tickets类，表示余票，一个MyTime类表示时间（
+服务器为 Producer 类，客户端为 Customer 类，均继承 Thread 实现多线程，然后一个 Tickets 类，表示余票，一个 MyTime 类表示时间（
 
 源代码下载在这儿：[cos_javatest2](http://cosine.ren/wp-content/uploads/2021/12/cos_javatest2.zip)
 
-MyTime类：passM函数表示过去minute分钟
+MyTime 类：passM 函数表示过去 minute 分钟
 
 ```java
 public class MyTime {
@@ -59,9 +60,9 @@ public class MyTime {
 }
 ```
 
-Tickets类：
+Tickets 类：
 
-重点，total为总共预留的票数（100），time为时间，cid表示售票编号，已售出1票则为1，pid为存票编号，存了10张则为10，available表示是否还有余票，作为同步的标志。初始化均为0，Tickets为两个线程所共享的对象
+重点，total 为总共预留的票数（100），time 为时间，cid 表示售票编号，已售出 1 票则为 1，pid 为存票编号，存了 10 张则为 10，available 表示是否还有余票，作为同步的标志。初始化均为 0，Tickets 为两个线程所共享的对象
 
 ```java
 import java.util.List;
@@ -108,8 +109,8 @@ public class Tickets {
 }
 ```
 
-Customer类如下：继承Thread，重载run
-假设每3分钟有一个顾客买票，与Producer类共享Tickets对象，所以Tickets内部的函数都需是同步的。
+Customer 类如下：继承 Thread，重载 run
+假设每 3 分钟有一个顾客买票，与 Producer 类共享 Tickets 对象，所以 Tickets 内部的函数都需是同步的。
 
 ```java
 public class Custormer extends Thread{
@@ -130,7 +131,7 @@ public class Custormer extends Thread{
 }
 ```
 
-Producer类如下：
+Producer 类如下：
 
 ```java
 public class Producer extends Thread {
@@ -151,7 +152,7 @@ public class Producer extends Thread {
 }
 ```
 
-主函数：new两个线程并启动，设置当前时间为20：00
+主函数：new 两个线程并启动，设置当前时间为 20：00
 
 ```java
 public class Main {

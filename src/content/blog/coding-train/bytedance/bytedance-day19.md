@@ -6,14 +6,14 @@ subtitle: 今日知识点：链表、递归、双指针，难度为简单、中�
 date: 2022-03-26 18:58:55
 cover: img/header_img/milky-way-over-bow-lake-alberta-canada-wallpaper-for-1920x1080-63-873.jpg
 tags:
-- leetcode
-- 链表
-- 双指针
+  - leetcode
+  - 链表
+  - 双指针
 categories:
-- [题目记录, 字节校园]
+  - [题目记录, 字节校园]
 ---
 
-day19题目：[160. 相交链表](https://leetcode-cn.com/problems/intersection-of-two-linked-lists/)、[143. 重排链表](https://leetcode-cn.com/problems/reorder-list/)、[142. 环形链表 II](https://leetcode-cn.com/problems/linked-list-cycle-ii/)
+day19 题目：[160. 相交链表](https://leetcode-cn.com/problems/intersection-of-two-linked-lists/)、[143. 重排链表](https://leetcode-cn.com/problems/reorder-list/)、[142. 环形链表 II](https://leetcode-cn.com/problems/linked-list-cycle-ii/)
 
 今日知识点：链表、递归、双指针，难度为简单、中等、中等
 
@@ -49,7 +49,7 @@ day19题目：[160. 相交链表](https://leetcode-cn.com/problems/intersection-
 
 ![](https://backblaze.cosine.ren/juejin/06c967f2dff445c7b02e8a61b1f48fca~Tplv-K3u1fbpfcp-Zoom-1.png)
 
-```
+```plain
 输入： intersectVal = 8, listA = [4,1,8,4,5], listB = [5,6,1,8,4,5], skipA = 2, skipB = 3
 输出： Intersected at '8'
 解释： 相交节点的值为 8 （注意，如果两个链表相交则不能为 0）。
@@ -61,7 +61,7 @@ day19题目：[160. 相交链表](https://leetcode-cn.com/problems/intersection-
 
 ![](https://backblaze.cosine.ren/juejin/9f1b335701854e6b816e2c877c454de4~Tplv-K3u1fbpfcp-Zoom-1.png)
 
-```
+```plain
 输入： intersectVal = 2, listA = [1,9,1,2,4], listB = [3,2,4], skipA = 3, skipB = 1
 输出： Intersected at '2'
 解释： 相交节点的值为 2 （注意，如果两个链表相交则不能为 0）。
@@ -73,7 +73,7 @@ day19题目：[160. 相交链表](https://leetcode-cn.com/problems/intersection-
 
 ![](https://backblaze.cosine.ren/juejin/25631057c2ec45428562c5baef969d86~Tplv-K3u1fbpfcp-Zoom-1.png)
 
-```
+```plain
 输入： intersectVal = 0, listA = [2,6,4], listB = [1,5], skipA = 3, skipB = 2
 输出： null
 解释： 从各自的表头开始算起，链表 A 为 [2,6,4]，链表 B 为 [1,5]。
@@ -96,7 +96,7 @@ day19题目：[160. 相交链表](https://leetcode-cn.com/problems/intersection-
 
 ## 思路
 
-双指针，利用 `prea` 和 `preb` 作为a和b的前一个结点，当 `prea === preb` 时说明这当前节点上一个节点都是同一个结点
+双指针，利用 `prea` 和 `preb` 作为 a 和 b 的前一个结点，当 `prea === preb` 时说明这当前节点上一个节点都是同一个结点
 
 ## 代码
 
@@ -114,31 +114,31 @@ day19题目：[160. 相交链表](https://leetcode-cn.com/problems/intersection-
  * @param {ListNode} headB
  * @return {ListNode}
  */
-var getIntersectionNode = function(headA, headB) {
-    if(!headA || !headB) return null
-    let [prea, preb] = [headA, headB]
-    while(prea !== preb) {
-        prea = prea.next
-        preb = preb.next
-        if(prea === preb) return prea
-        if(!prea) prea = headB
-        if(!preb) preb = headA
-    }
-    return prea
+var getIntersectionNode = function (headA, headB) {
+  if (!headA || !headB) return null;
+  let [prea, preb] = [headA, headB];
+  while (prea !== preb) {
+    prea = prea.next;
+    preb = preb.next;
+    if (prea === preb) return prea;
+    if (!prea) prea = headB;
+    if (!preb) preb = headA;
+  }
+  return prea;
 };
 ```
 
 # [143. 重排链表](https://leetcode-cn.com/problems/reorder-list/)
 
-给定一个单链表 `L` **的头节点 `head` ，单链表 `L` 表示为：
+给定一个单链表 `L` \*\*的头节点 `head` ，单链表 `L` 表示为：
 
-```
+```plain
 L0 → L1 → … → Ln - 1 → Ln
 ```
 
 请将其重新排列后变为：
 
-```
+```plain
 L0 → Ln → L1 → Ln - 1 → L2 → Ln - 2 → …
 ```
 
@@ -148,7 +148,7 @@ L0 → Ln → L1 → Ln - 1 → L2 → Ln - 2 → …
 
 ![](https://backblaze.cosine.ren/juejin/E316b5a26066492aa1c495e4d9cddf98~Tplv-K3u1fbpfcp-Zoom-1.png)
 
-```
+```plain
 输入： head = [1,2,3,4]
 输出： [1,4,2,3]
 ```
@@ -157,7 +157,7 @@ L0 → Ln → L1 → Ln - 1 → L2 → Ln - 2 → …
 
 ![](https://backblaze.cosine.ren/juejin/076404a90c2e4eadac340d9ba9285c3d~Tplv-K3u1fbpfcp-Zoom-1.png)
 
-```
+```plain
 输入： head = [1,2,3,4,5]
 输出： [1,5,2,4,3]
 ```
@@ -181,18 +181,18 @@ L0 → Ln → L1 → Ln - 1 → L2 → Ln - 2 → …
  * @param {ListNode} head
  * @return {void} Do not return anything, modify head in-place instead.
  */
-var reorderList = function(head) {
-    if(!head || !head.next) return;
-    let [prev, nowv] = [null, head];
-    while(nowv.next) {
-        prev = nowv
-        nowv = nowv.next
-    }
-    if(!prev || prev === head)  return
-    prev.next = null
-    nowv.next = head.next
-    head.next = nowv
-    reorderList(nowv.next)
+var reorderList = function (head) {
+  if (!head || !head.next) return;
+  let [prev, nowv] = [null, head];
+  while (nowv.next) {
+    prev = nowv;
+    nowv = nowv.next;
+  }
+  if (!prev || prev === head) return;
+  prev.next = null;
+  nowv.next = head.next;
+  head.next = nowv;
+  reorderList(nowv.next);
 };
 ```
 
@@ -208,7 +208,7 @@ var reorderList = function(head) {
 
 ![](https://backblaze.cosine.ren/juejin/A96b1a0bf3914cabb562383b7cd8a266~Tplv-K3u1fbpfcp-Zoom-1.png)
 
-```
+```plain
 输入： head = [3,2,0,-4], pos = 1
 输出： 返回索引为 1 的链表节点
 解释： 链表中有一个环，其尾部连接到第二个节点。
@@ -218,7 +218,7 @@ var reorderList = function(head) {
 
 ![](https://backblaze.cosine.ren/juejin/B17258179ba14652afcc35109bcd0a3b~Tplv-K3u1fbpfcp-Zoom-1.png)
 
-```
+```plain
 输入： head = [1,2], pos = 0
 输出： 返回索引为 0 的链表节点
 解释： 链表中有一个环，其尾部连接到第一个节点。
@@ -228,7 +228,7 @@ var reorderList = function(head) {
 
 ![](https://backblaze.cosine.ren/juejin/Ddd3659d9e8246168e5f8175b4ed98c0~Tplv-K3u1fbpfcp-Zoom-1.png)
 
-```
+```plain
 输入： head = [1], pos = -1
 输出： 返回 null
 解释： 链表中没有环。
@@ -264,19 +264,19 @@ var reorderList = function(head) {
  * @param {ListNode} head
  * @return {ListNode}
  */
-var detectCycle = function(head) {
-    let [slow, fast] = [head, head];
-    while(fast && fast.next) {
-        slow = slow.next
-        fast = fast.next.next
-        if(slow === fast) break
-    }
-    if(!fast || !fast.next) return null
-    let p = head
-    while(p !== slow) {
-        p = p.next
-        slow = slow.next
-    }
-    return p
+var detectCycle = function (head) {
+  let [slow, fast] = [head, head];
+  while (fast && fast.next) {
+    slow = slow.next;
+    fast = fast.next.next;
+    if (slow === fast) break;
+  }
+  if (!fast || !fast.next) return null;
+  let p = head;
+  while (p !== slow) {
+    p = p.next;
+    slow = slow.next;
+  }
+  return p;
 };
 ```

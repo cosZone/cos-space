@@ -6,20 +6,21 @@ lang: cn
 date: 2021-12-16 00:02:03
 subtitle: 《反射、Collection接口、正则、工厂设计模式、观察者模式》
 tags:
-- 后端
-- Java
-- 设计模式
-- Reflect
+  - 后端
+  - Java
+  - 设计模式
+  - Reflect
 categories:
-- [笔记, 后端]
+  - [笔记, 后端]
 ---
-# 1、自行设计一个反射的实例,说明class对象的使用方法
+
+# 1、自行设计一个反射的实例,说明 class 对象的使用方法
 
 项目代码：[ReflectionTest](http://cosine.ren/wp-content/uploads/2021/12/ReflectionTest.zip)
 
-Java中的反射是在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法；对于任意一个对象，都能够调用它的任意方法和属性；并且能改变它的属性。
+Java 中的反射是在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法；对于任意一个对象，都能够调用它的任意方法和属性；并且能改变它的属性。
 
-首先创建两个测试类，学生类Student和教师类Teacher，重载他们的toString函数便于显示信息。
+首先创建两个测试类，学生类 Student 和教师类 Teacher，重载他们的 toString 函数便于显示信息。
 
 ```java
 package dao;
@@ -77,7 +78,7 @@ public class Student {
 }
 ```
 
-教师类Teacher
+教师类 Teacher
 
 ```java
 package dao;
@@ -131,17 +132,17 @@ public class Teacher {
 }
 ```
 
-通过Class类我们就可以在程序中动态地获取成员变量、成员方法、接口、超类、构造方法等，每一个类在 JVM 中有且仅有一个 Class 实例
+通过 Class 类我们就可以在程序中动态地获取成员变量、成员方法、接口、超类、构造方法等，每一个类在 JVM 中有且仅有一个 Class 实例
 
 查阅 API 可以看到 Class 有很多方法：
 
 - getName()：获得类的完整名字。
-- getFields()：获得类的public类型的属性。
-- getDeclaredFields()：获得类的所有属性。包括private 声明的和继承类
-- getMethods()：获得类的public类型的方法。
-- getDeclaredMethods()：获得类的所有方法。包括private 声明的和继承类
-- getMethod(String name, Class[] parameterTypes)：获得类的特定方法，name参数指定方法的名字，parameterTypes 参数指定方法的参数类型。
-- getConstructors()：获得类的public类型的构造方法。
+- getFields()：获得类的 public 类型的属性。
+- getDeclaredFields()：获得类的所有属性。包括 private 声明的和继承类
+- getMethods()：获得类的 public 类型的方法。
+- getDeclaredMethods()：获得类的所有方法。包括 private 声明的和继承类
+- getMethod(String name, Class[] parameterTypes)：获得类的特定方法，name 参数指定方法的名字，parameterTypes 参数指定方法的参数类型。
+- getConstructors()：获得类的 public 类型的构造方法。
 - getConstructor(Class[] parameterTypes)：获得类的特定构造方法，parameterTypes 参数指定构造方法的参数类型。
 - newInstance()：通过类的不带参数的构造方法创建这个类的一个对象。
 
@@ -189,9 +190,9 @@ public class Main {
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/4d56c999c3ce41ae95e671770515851b.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5L2ZY29z,size_20,color_FFFFFF,t_70,g_se,x_16)
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/2370e2dfc47641d88ae06e66defd5126.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5L2ZY29z,size_19,color_FFFFFF,t_70,g_se,x_16)
 
-# 2、自行设计一个实例,说明 Collection接口和迭代器,比较器的使用方法
+# 2、自行设计一个实例,说明 Collection 接口和迭代器,比较器的使用方法
 
-Collection集合是java中提供的一种容器，可以用来存储多个数据，这里以单列集合java.util.Collection为例。Collection是所有单列集合（如List）的父接口，因此在Collection中定义了单列集合(List和Set)通用的一些方法，这些方法可用于操作所有的单列集合。方法如下：
+Collection 集合是 java 中提供的一种容器，可以用来存储多个数据，这里以单列集合 java.util.Collection 为例。Collection 是所有单列集合（如 List）的父接口，因此在 Collection 中定义了单列集合(List 和 Set)通用的一些方法，这些方法可用于操作所有的单列集合。方法如下：
 
 - public boolean add(Obeject o)： 把给定的对象添加到当前集合中 。
 - public void clear() :清空集合中所有的元素。
@@ -201,14 +202,14 @@ Collection集合是java中提供的一种容器，可以用来存储多个数据
 - public int size(): 返回集合中元素的个数。
 - public Object[] toArray(): 把集合中的元素，存储到数组中。
 
-迭代器：在程序开发中，经常需要遍历集合中的所有元素。针对这种需求，JDK专门提供了一个接口java.util.Iterator。Iterator接口主要用于迭代访问（即遍历）Collection中的元素，因此Iterator对象也被称为迭代器。public Iterator iterator(): 获取集合对应的迭代器，用来遍历集合中的元素。这个概念与c++中STL的iterator一致（
-Iterator接口的常用方法如下：
+迭代器：在程序开发中，经常需要遍历集合中的所有元素。针对这种需求，JDK 专门提供了一个接口 java.util.Iterator。Iterator 接口主要用于迭代访问（即遍历）Collection 中的元素，因此 Iterator 对象也被称为迭代器。public Iterator iterator(): 获取集合对应的迭代器，用来遍历集合中的元素。这个概念与 c++中 STL 的 iterator 一致（
+Iterator 接口的常用方法如下：
 
 - public Obeject next():返回迭代的下一个元素。
 - public boolean hasNext():如果仍有元素可以迭代，则返回 true。
 
 比较器：
-指的是集合存储的元素的特性，如果元素是可比较的则可以进行相应的排序，否则不行。对于Comparable接口来说，它往往是进行比较类需要实现的接口，它仅包含一个有compareTo()方法，只有一个参数，返回值为int，返回值大于0表示对象大于参数对象；小于0表示对象小于参数对象；等于0表示两者相等
+指的是集合存储的元素的特性，如果元素是可比较的则可以进行相应的排序，否则不行。对于 Comparable 接口来说，它往往是进行比较类需要实现的接口，它仅包含一个有 compareTo()方法，只有一个参数，返回值为 int，返回值大于 0 表示对象大于参数对象；小于 0 表示对象小于参数对象；等于 0 表示两者相等
 
 ```java
 import java.util.*;
@@ -254,11 +255,11 @@ public class Main {
 输出如图所示
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/29f19381ce1e4314b253f9aa1ee338a1.png)
 
-# 3、比较JavaScript,Python和 Java使用正则表达式的异同
+# 3、比较 JavaScript,Python 和 Java 使用正则表达式的异同
 
-使用Python的正则时，字符串前面加上‘r’，告诉编译器这个string是个raw string，不要转义 ‘’ 。 例如，\n 在raw string中，是两个字符，\和n， 而不会转意为换行符。由于正则表达式和 \ 会有冲突，因此，当一个字符串使用了正则表达式后，最好在前面加上’r’。
-javascript中的正则表达式和java的正则表达式基本上是相同的，区别在于分组引用和对象，方法以及Java的正则比js的多一个转义符号“\”
-更具体的异同看这篇博客：[正则表达式：JavaScript、Java、Python基础语法](https://blog.csdn.net/weixin_43473435/article/details/83831719)
+使用 Python 的正则时，字符串前面加上‘r’，告诉编译器这个 string 是个 raw string，不要转义 ‘’ 。 例如，\n 在 raw string 中，是两个字符，\和 n， 而不会转意为换行符。由于正则表达式和 \ 会有冲突，因此，当一个字符串使用了正则表达式后，最好在前面加上’r’。
+javascript 中的正则表达式和 java 的正则表达式基本上是相同的，区别在于分组引用和对象，方法以及 Java 的正则比 js 的多一个转义符号“\”
+更具体的异同看这篇博客：[正则表达式：JavaScript、Java、Python 基础语法](https://blog.csdn.net/weixin_43473435/article/details/83831719)
 
 4、自学工厂设计模式、观察者模式并写出相应的例程。
 
@@ -266,4 +267,4 @@ javascript中的正则表达式和java的正则表达式基本上是相同的，
 
 [设计模式之工厂模式（factory pattern）](https://www.cnblogs.com/yssjun/p/11102162.html)
 
- [JAVA设计模式之观察者模式](https://www.cnblogs.com/porotin/p/7825656.html)
+[JAVA 设计模式之观察者模式](https://www.cnblogs.com/porotin/p/7825656.html)

@@ -6,18 +6,19 @@ subtitle: 今日知识点：栈、深搜/广搜、滑动窗口，难度为简单
 date: 2022-03-15 23:10:22
 cover: img/header_img/milky-way-over-bow-lake-alberta-canada-wallpaper-for-1920x1080-63-873.jpg
 tags:
-- leetcode
-- dfs/bfs
-- 滑动窗口
+  - leetcode
+  - dfs/bfs
+  - 滑动窗口
 categories:
-- [题目记录, 字节校园]
+  - [题目记录, 字节校园]
 ---
 
-day8题目：[20. 有效的括号](https://leetcode-cn.com/problems/valid-parentheses/)、[200. 岛屿数量](https://leetcode-cn.com/problems/number-of-islands/)、[76. 最小覆盖子串](https://leetcode-cn.com/problems/minimum-window-substring/)
+day8 题目：[20. 有效的括号](https://leetcode-cn.com/problems/valid-parentheses/)、[200. 岛屿数量](https://leetcode-cn.com/problems/number-of-islands/)、[76. 最小覆盖子串](https://leetcode-cn.com/problems/minimum-window-substring/)
 
 学习计划链接：[冲刺春招-精选笔面试 66 题大通关](https://leetcode-cn.com/study-plan/bytedancecampus/?progress=dcmyjb3)
 
 今日知识点：栈、深搜/广搜、滑动窗口，难度为简单、中等、困难
+
 <!-- more -->
 
 # 20. 有效的括号
@@ -29,7 +30,7 @@ day8题目：[20. 有效的括号](https://leetcode-cn.com/problems/valid-parent
 左括号必须用相同类型的右括号闭合。
 左括号必须以正确的顺序闭合。
 
- **示例 1：**
+**示例 1：**
 输入：s = "()"
 输出：true
 
@@ -39,7 +40,7 @@ day8题目：[20. 有效的括号](https://leetcode-cn.com/problems/valid-parent
 
 ## 思路
 
-典中典堆栈判断有效括号，遇到左括号将其入栈，遇到右括号跟栈顶比较，若不匹配或者栈为空则返回false，全部比较完都没问题且栈为空了则返回true。
+典中典堆栈判断有效括号，遇到左括号将其入栈，遇到右括号跟栈顶比较，若不匹配或者栈为空则返回 false，全部比较完都没问题且栈为空了则返回 true。
 
 ## 代码
 
@@ -48,21 +49,21 @@ day8题目：[20. 有效的括号](https://leetcode-cn.com/problems/valid-parent
  * @param {string} s
  * @return {boolean}
  */
-var isValid = function(s) {
-    let stack = [];
-    for(let i = 0; i < s.length; ++i) {
-        if(s[i] == '{' || s[i] == '(' || s[i] == '[') {
-            stack.push(s[i]);
-        } else {
-            if(stack.length == 0) return false;
-            let top = stack.length-1;
-            if(s[i] == '}' && stack[top] == '{') stack.pop();
-            else if(s[i] == ')' && stack[top] == '(') stack.pop();
-            else if(s[i] == ']' && stack[top] == '[') stack.pop();
-            else return false;
-        }
+var isValid = function (s) {
+  let stack = [];
+  for (let i = 0; i < s.length; ++i) {
+    if (s[i] == '{' || s[i] == '(' || s[i] == '[') {
+      stack.push(s[i]);
+    } else {
+      if (stack.length == 0) return false;
+      let top = stack.length - 1;
+      if (s[i] == '}' && stack[top] == '{') stack.pop();
+      else if (s[i] == ')' && stack[top] == '(') stack.pop();
+      else if (s[i] == ']' && stack[top] == '[') stack.pop();
+      else return false;
     }
-    return stack.length == 0;
+  }
+  return stack.length == 0;
 };
 ```
 
@@ -77,7 +78,7 @@ var isValid = function(s) {
 **示例 1：**
 输入：
 
-```
+```plain
 grid = [
   ["1","1","1","1","0"],
   ["1","1","0","1","0"],
@@ -91,7 +92,7 @@ grid = [
 **示例 2：**
 输入：
 
-```
+```plain
 grid = [
   ["1","1","0","0","0"],
   ["1","1","0","0","0"],
@@ -104,7 +105,7 @@ grid = [
 
 **提示：**
 
-```
+```plain
 m == grid.length
 n == grid[i].length
 1 <= m, n <= 300
@@ -113,7 +114,7 @@ grid[i][j] 的值为 '0' 或 '1'
 
 ## 思路
 
-一眼题，一眼就用dfs就行了，标记数组vis表示是否访问过，对每个没访问过的1进行dfs并++ans。也可以用并查集做。
+一眼题，一眼就用 dfs 就行了，标记数组 vis 表示是否访问过，对每个没访问过的 1 进行 dfs 并++ans。也可以用并查集做。
 
 ## 代码
 
@@ -132,8 +133,8 @@ public:
         for(int k = 0; k < 4; ++k) {
             int nowx = i+dx[k];
             int nowy = j+dy[k];
-            if(nowx >= 0 && nowx < m && nowy >= 0 && nowy < n && g[nowx][nowy] == '1') 
-                dfs(nowx, nowy); 
+            if(nowx >= 0 && nowx < m && nowy >= 0 && nowy < n && g[nowx][nowy] == '1')
+                dfs(nowx, nowy);
         }
     }
     int numIslands(vector<vector<char>>& grid) {
@@ -181,7 +182,7 @@ s 和 t 由英文字母组成
 
 ## 思路
 
-滑动窗口，首先遍历一遍t（t[i]为该字符的ASCII码），将所有出现过的m[t[i]]--，这样遍历完后，m中小于0的就是需要满足的字符数，然后双指针开始滑动窗口，使用cnt作为判断，若cnt为t中字符数则满足条件，将左指针尽可能往右移动。
+滑动窗口，首先遍历一遍 t（t[i]为该字符的 ASCII 码），将所有出现过的 m[t[i]]--，这样遍历完后，m 中小于 0 的就是需要满足的字符数，然后双指针开始滑动窗口，使用 cnt 作为判断，若 cnt 为 t 中字符数则满足条件，将左指针尽可能往右移动。
 
 ## 代码
 
@@ -191,24 +192,22 @@ s 和 t 由英文字母组成
  * @param {string} t
  * @return {string}
  */
-var minWindow = function(s, t) {
-    if(s.length < t.length) return '';
-    let m = new Array(130);
-    m.fill(0);
-    for(let i = 0; i < t.length; ++i) 
-        --m[t.charCodeAt(i)];
-    let ans = '';
-    let cnt = 0;    // 满足字符个数
-    for(let l = 0, r = 0; r < s.length; ++r) {
-        let k = s.charCodeAt(r);
-        if(m[k] < 0) ++cnt;
-        ++m[k];
-        while(cnt == t.length && m[s.charCodeAt(l)] > 0) 
-            m[s.charCodeAt(l++)]--;
-        if(cnt == t.length && (ans == '' || r-l+1 <= ans.length) ) {
-            ans = s.substring(l, r+1);
-        }
+var minWindow = function (s, t) {
+  if (s.length < t.length) return '';
+  let m = new Array(130);
+  m.fill(0);
+  for (let i = 0; i < t.length; ++i) --m[t.charCodeAt(i)];
+  let ans = '';
+  let cnt = 0; // 满足字符个数
+  for (let l = 0, r = 0; r < s.length; ++r) {
+    let k = s.charCodeAt(r);
+    if (m[k] < 0) ++cnt;
+    ++m[k];
+    while (cnt == t.length && m[s.charCodeAt(l)] > 0) m[s.charCodeAt(l++)]--;
+    if (cnt == t.length && (ans == '' || r - l + 1 <= ans.length)) {
+      ans = s.substring(l, r + 1);
     }
-    return ans;
+  }
+  return ans;
 };
 ```

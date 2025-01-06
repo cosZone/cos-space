@@ -6,32 +6,32 @@ subtitle: 知识点：数组、数学、分治，难度为简单、困难
 date: 2022-04-28 23:08:00
 cover: img/header_img/polygon-pony-wallpaper-for-1920x1080-63-1175.jpg
 tags:
-- leetcode
-- 数组
-- 数学
-- 分治
+  - leetcode
+  - 数组
+  - 数学
+  - 分治
 categories:
-- [题目记录, 剑指offer]
+  - [题目记录, 剑指offer]
 ---
 
-day30题目：[剑指 Offer 17. 打印从1到最大的n位数](https://leetcode-cn.com/problems/da-yin-cong-1dao-zui-da-de-nwei-shu-lcof/)、[剑指 Offer 51. 数组中的逆序对](https://leetcode-cn.com/problems/shu-zu-zhong-de-ni-xu-dui-lcof/)
+day30 题目：[剑指 Offer 17. 打印从 1 到最大的 n 位数](https://leetcode-cn.com/problems/da-yin-cong-1dao-zui-da-de-nwei-shu-lcof/)、[剑指 Offer 51. 数组中的逆序对](https://leetcode-cn.com/problems/shu-zu-zhong-de-ni-xu-dui-lcof/)
 
 知识点：数组、数学、分治，难度为简单、困难
 
 学习计划链接：[「剑指 Offer」 - 学习计划](https://leetcode-cn.com/study-plan/lcof/?progress=7jn70jr)
 
-| 题目 | 知识点 | 难度 |
-| --- | ---- | ---- |
-| [剑指 Offer 17. 打印从1到最大的n位数](https://leetcode-cn.com/problems/da-yin-cong-1dao-zui-da-de-nwei-shu-lcof/) | [数组](https://leetcode-cn.com/tag/array)、[数学](https://leetcode-cn.com/tag/math) | 简单 |
-| [剑指 Offer 51. 数组中的逆序对](https://leetcode-cn.com/problems/shu-zu-zhong-de-ni-xu-dui-lcof/)| [树状数组](https://leetcode-cn.com/tag/binary-indexed-tree)、[线段树](https://leetcode-cn.com/tag/segment-tree)、[数组](https://leetcode-cn.com/tag/array) | 困难 |
+| 题目                                                                                                                  | 知识点                                                                                                                                                     | 难度 |
+| --------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ---- |
+| [剑指 Offer 17. 打印从 1 到最大的 n 位数](https://leetcode-cn.com/problems/da-yin-cong-1dao-zui-da-de-nwei-shu-lcof/) | [数组](https://leetcode-cn.com/tag/array)、[数学](https://leetcode-cn.com/tag/math)                                                                        | 简单 |
+| [剑指 Offer 51. 数组中的逆序对](https://leetcode-cn.com/problems/shu-zu-zhong-de-ni-xu-dui-lcof/)                     | [树状数组](https://leetcode-cn.com/tag/binary-indexed-tree)、[线段树](https://leetcode-cn.com/tag/segment-tree)、[数组](https://leetcode-cn.com/tag/array) | 困难 |
 
-# [剑指 Offer 17. 打印从1到最大的n位数](https://leetcode-cn.com/problems/da-yin-cong-1dao-zui-da-de-nwei-shu-lcof/)
+# [剑指 Offer 17. 打印从 1 到最大的 n 位数](https://leetcode-cn.com/problems/da-yin-cong-1dao-zui-da-de-nwei-shu-lcof/)
 
 输入数字 `n`，按顺序打印出从 1 到最大的 n 位十进制数。比如输入 3，则打印出 1、2、3 一直到最大的 3 位数 999。
 
 **示例 1:**
 
-```
+```plain
 输入: n = 1
 输出: [1,2,3,4,5,6,7,8,9]
 ```
@@ -43,19 +43,18 @@ day30题目：[剑指 Offer 17. 打印从1到最大的n位数](https://leetcode-
 
 ## 思路及代码
 
-不考虑大数，那么这道题秒杀。考虑的话……不听不听我不听QAQ（以后有机会补上）
+不考虑大数，那么这道题秒杀。考虑的话……不听不听我不听 QAQ（以后有机会补上）
 
 ```javascript
 /**
  * @param {number} n
  * @return {number[]}
  */
-var printNumbers = function(n) {
-    let maxv = Math.pow(10, n)
-    let res = []
-    for(let i = 1; i < maxv; ++i) 
-        res.push(i)
-    return res
+var printNumbers = function (n) {
+  let maxv = Math.pow(10, n);
+  let res = [];
+  for (let i = 1; i < maxv; ++i) res.push(i);
+  return res;
 };
 ```
 
@@ -65,7 +64,7 @@ var printNumbers = function(n) {
 
 **示例 1:**
 
-```
+```plain
 输入: [7,5,6,4]
 输出: 5
 ```
@@ -85,36 +84,35 @@ var printNumbers = function(n) {
  * @param {number[]} nums
  * @return {number}
  */
-var reversePairs = function(nums) {
-    let res = 0
-    function merge(nums, s, mid, e) {   // 合并s~mid mid+1~e
-        let next = new Array(e-s+1)
-        let cnt = 0 // 新数组的下标
-        let [i, j] = [s, mid+1]
-        while(i <= mid && j <= e) {
-            if(nums[i] <= nums[j]) {
-                next[cnt++] = nums[i++]
-            } else {    // 大于 说明产生了逆序对~
-                res += mid-i+1 
-                next[cnt++] = nums[j++]
-            }
-        }
-        while(i <= mid)
-            next[cnt++] = nums[i++]
-        while(j <= e)
-            next[cnt++] = nums[j++]
-        cnt = 0
-        while(s <= e)
-            nums[s++] = next[cnt++]
+var reversePairs = function (nums) {
+  let res = 0;
+  function merge(nums, s, mid, e) {
+    // 合并s~mid mid+1~e
+    let next = new Array(e - s + 1);
+    let cnt = 0; // 新数组的下标
+    let [i, j] = [s, mid + 1];
+    while (i <= mid && j <= e) {
+      if (nums[i] <= nums[j]) {
+        next[cnt++] = nums[i++];
+      } else {
+        // 大于 说明产生了逆序对~
+        res += mid - i + 1;
+        next[cnt++] = nums[j++];
+      }
     }
-    function mergeSort(nums, s, e) {
-        if(s >= e) return
-        let mid = (s+e)>>1
-        mergeSort(nums, s, mid)
-        mergeSort(nums, mid+1, e)
-        merge(nums, s, mid, e)
-    }
-    mergeSort(nums, 0, nums.length-1)
-    return res
+    while (i <= mid) next[cnt++] = nums[i++];
+    while (j <= e) next[cnt++] = nums[j++];
+    cnt = 0;
+    while (s <= e) nums[s++] = next[cnt++];
+  }
+  function mergeSort(nums, s, e) {
+    if (s >= e) return;
+    let mid = (s + e) >> 1;
+    mergeSort(nums, s, mid);
+    mergeSort(nums, mid + 1, e);
+    merge(nums, s, mid, e);
+  }
+  mergeSort(nums, 0, nums.length - 1);
+  return res;
 };
 ```

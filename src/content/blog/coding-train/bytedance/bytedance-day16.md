@@ -6,15 +6,15 @@ subtitle: 今日知识点：正则、树、dfs、滑动窗口，难度为字节�
 date: 2022-03-24 00:13:32
 cover: img/header_img/milky-way-over-bow-lake-alberta-canada-wallpaper-for-1920x1080-63-873.jpg
 tags:
-- leetcode
-- 正则
-- dfs/bfs
-- 滑动窗口
+  - leetcode
+  - 正则
+  - dfs/bfs
+  - 滑动窗口
 categories:
-- [题目记录, 字节校园]
+  - [题目记录, 字节校园]
 ---
 
-day16题目：[bytedance-007. 化学公式解析](https://leetcode-cn.com/problems/fF9c0W/)、[129. 求根节点到叶节点数字之和](https://leetcode-cn.com/problems/sum-root-to-leaf-numbers/)、[239. 滑动窗口最大值](https://leetcode-cn.com/problems/sliding-window-maximum/)
+day16 题目：[bytedance-007. 化学公式解析](https://leetcode-cn.com/problems/fF9c0W/)、[129. 求根节点到叶节点数字之和](https://leetcode-cn.com/problems/sum-root-to-leaf-numbers/)、[239. 滑动窗口最大值](https://leetcode-cn.com/problems/sliding-window-maximum/)
 
 学习计划链接：[冲刺春招-精选笔面试 66 题大通关](https://leetcode-cn.com/study-plan/bytedancecampus/?progress=dcmyjb3)
 
@@ -34,7 +34,7 @@ day16题目：[bytedance-007. 化学公式解析](https://leetcode-cn.com/proble
 
 **格式：**
 
-```
+```plain
 输入：
 - 化学公式的字符串表达式，例如：K4[ON(SO3)2]2 。
 输出：
@@ -43,7 +43,7 @@ day16题目：[bytedance-007. 化学公式解析](https://leetcode-cn.com/proble
 
 **示例：**
 
-```
+```plain
 输入：K4[ON(SO3)2]2
 输出：K4N2O14S4
 ```
@@ -60,29 +60,29 @@ day16题目：[bytedance-007. 化学公式解析](https://leetcode-cn.com/proble
 ## 代码
 
 ```js
-var input = require('fs').readFileSync('/dev/stdin', 'utf8').trim().split('\n')[0]
+var input = require('fs').readFileSync('/dev/stdin', 'utf8').trim().split('\n')[0];
 function replacer(match, str, k) {
-    k = k? parseInt(k): 1;
-    return str.repeat(k)
+  k = k ? parseInt(k) : 1;
+  return str.repeat(k);
 }
-input = input.replace(/\((.+)\)(\d+)/g, replacer)   // 小括号替换
-input = input.replace(/\[(.+)\](\d+)/g, replacer)   // 中括号替换
-input = input.replace(/([A-Z][a-z]?)(\d+)/g, replacer)   // 原子展开
-var map = new Map()
-var ans = []
-input = input.match(/[A-Z][a-z]?/g)
-for(let i = 0; i < input.length; ++i) {
-    let ch = input[i]
-    if(!map.has(ch)) {
-        map.set(ch, ans.length)
-        ans.push([ch, 1])
-    } else {
-        let key = map.get(ch)
-        ++ans[key][1]
-    }
+input = input.replace(/\((.+)\)(\d+)/g, replacer); // 小括号替换
+input = input.replace(/\[(.+)\](\d+)/g, replacer); // 中括号替换
+input = input.replace(/([A-Z][a-z]?)(\d+)/g, replacer); // 原子展开
+var map = new Map();
+var ans = [];
+input = input.match(/[A-Z][a-z]?/g);
+for (let i = 0; i < input.length; ++i) {
+  let ch = input[i];
+  if (!map.has(ch)) {
+    map.set(ch, ans.length);
+    ans.push([ch, 1]);
+  } else {
+    let key = map.get(ch);
+    ++ans[key][1];
+  }
 }
 ans = ans.sort((a, b) => a[0].localeCompare(b[0]));
-console.log(ans.toString().replace(/\,/g, ''))
+console.log(ans.toString().replace(/\,/g, ''));
 ```
 
 # [129. 求根节点到叶节点数字之和](https://leetcode-cn.com/problems/sum-root-to-leaf-numbers/)
@@ -101,7 +101,7 @@ console.log(ans.toString().replace(/\,/g, ''))
 
 ![](https://backblaze.cosine.ren/juejin/C2582dda288345e1bfc0171997da14de~Tplv-K3u1fbpfcp-Zoom-1.png)
 
-```
+```plain
 输入： root = [1,2,3]
 输出： 25
 解释：
@@ -114,7 +114,7 @@ console.log(ans.toString().replace(/\,/g, ''))
 
 ![](https://backblaze.cosine.ren/juejin/84606833c16d4dc19afbceb9af735f99~Tplv-K3u1fbpfcp-Zoom-1.png)
 
-```
+```plain
 输入： root = [4,9,0,5,1]
 输出： 1026
 解释：
@@ -132,7 +132,7 @@ console.log(ans.toString().replace(/\,/g, ''))
 
 ## 思路
 
-一眼题，dfs就完事了，到叶子节点将 sum 加到答案中
+一眼题，dfs 就完事了，到叶子节点将 sum 加到答案中
 
 ## 代码
 
@@ -149,32 +149,32 @@ console.log(ans.toString().replace(/\,/g, ''))
  * @param {TreeNode} root
  * @return {number}
  */
-var sumNumbers = function(root) {
-    let ans = 0
-    let dfs = function(rt, sum) {
-        if(!rt) return
-        sum = sum*10 + rt.val
-        if(!rt.left && !rt.right) {
-            ans += sum
-            return
-        }
-        if(rt.left) dfs(rt.left, sum);
-        if(rt.right) dfs(rt.right, sum);
+var sumNumbers = function (root) {
+  let ans = 0;
+  let dfs = function (rt, sum) {
+    if (!rt) return;
+    sum = sum * 10 + rt.val;
+    if (!rt.left && !rt.right) {
+      ans += sum;
+      return;
     }
-    dfs(root, 0);
-    return ans;
+    if (rt.left) dfs(rt.left, sum);
+    if (rt.right) dfs(rt.right, sum);
+  };
+  dfs(root, 0);
+  return ans;
 };
 ```
 
 # [239. 滑动窗口最大值](https://leetcode-cn.com/problems/sliding-window-maximum/)
 
-给你一个整数数组 `nums`，有一个大小为 `k` **的滑动窗口从数组的最左侧移动到数组的最右侧。你只可以看到在滑动窗口内的 `k` 个数字。滑动窗口每次只向右移动一位。
+给你一个整数数组 `nums`，有一个大小为 `k` \*\*的滑动窗口从数组的最左侧移动到数组的最右侧。你只可以看到在滑动窗口内的 `k` 个数字。滑动窗口每次只向右移动一位。
 
 返回 *滑动窗口中的最大值* 。
 
 **示例 1：**
 
-```
+```plain
 输入： nums = [1,3,-1,-3,5,3,6,7], k = 3
 输出： [3,3,5,5,6,7]
 解释：
@@ -190,7 +190,7 @@ var sumNumbers = function(root) {
 
 **示例 2：**
 
-```
+```plain
 输入： nums = [1], k = 1
 输出： [1]
 ```
@@ -203,7 +203,7 @@ var sumNumbers = function(root) {
 
 ## 思路
 
-队列q存储下标，其对应元素单调递减
+队列 q 存储下标，其对应元素单调递减
 
 - 若滑动窗口中两个元素 `j < i` 并且 `nums[j] <= nums[i]` ，只要 `j` 还在窗口中，那么 `i` 一定也还在窗口中，所以最值一定不是 `nums[j]`，故可以将其移除
 - 滑动过程中记录，若队尾元素小于等于当前新元素，则弹出，直到为空或者队尾元素大于新元素
@@ -217,24 +217,22 @@ var sumNumbers = function(root) {
  * @param {number} k
  * @return {number[]}
  */
- var maxSlidingWindow = function(nums, k) {
-    let q = []
-    for(let i = 0; i < k; ++i) {    // 可以移除就移除
-        while(q.length != 0 && nums[i] >= nums[q[q.length-1]]) 
-            q.pop()
-        q.push(i)
-    }
-    let ans = [nums[q[0]]]
-    let len = nums.length
-    for(let l = 1; l+k-1 < len; ++l) {
-        let r = l+k-1
-        while(q.length != 0 && nums[r] >= nums[q[q.length-1]]) 
-            q.pop()
-        q.push(r)
-        while(q.length != 0 && q[0] < l) 
-            q.shift() // 队首弹出
-        ans.push(nums[q[0]])
-    }
-    return ans
+var maxSlidingWindow = function (nums, k) {
+  let q = [];
+  for (let i = 0; i < k; ++i) {
+    // 可以移除就移除
+    while (q.length != 0 && nums[i] >= nums[q[q.length - 1]]) q.pop();
+    q.push(i);
+  }
+  let ans = [nums[q[0]]];
+  let len = nums.length;
+  for (let l = 1; l + k - 1 < len; ++l) {
+    let r = l + k - 1;
+    while (q.length != 0 && nums[r] >= nums[q[q.length - 1]]) q.pop();
+    q.push(r);
+    while (q.length != 0 && q[0] < l) q.shift(); // 队首弹出
+    ans.push(nums[q[0]]);
+  }
+  return ans;
 };
 ```

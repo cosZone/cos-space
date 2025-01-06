@@ -6,19 +6,21 @@ subtitle: 今日知识点：树、层序遍历、处理输入输出？（bushi�
 date: 2022-03-16 23:10:22
 cover: img/header_img/milky-way-over-bow-lake-alberta-canada-wallpaper-for-1920x1080-63-873.jpg
 tags:
-- leetcode
-- 树
-- 层序遍历
+  - leetcode
+  - 树
+  - 层序遍历
 categories:
-- [题目记录, 字节校园]
+  - [题目记录, 字节校园]
 ---
 
-day9题目：[105. 从前序与中序遍历序列构造二叉树](https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/)、[103. 二叉树的锯齿形层序遍历](https://leetcode-cn.com/problems/binary-tree-zigzag-level-order-traversal/)、[bytedance-010. 数组组成最大数](https://leetcode-cn.com/problems/9nsGSS/)
+day9 题目：[105. 从前序与中序遍历序列构造二叉树](https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/)、[103. 二叉树的锯齿形层序遍历](https://leetcode-cn.com/problems/binary-tree-zigzag-level-order-traversal/)、[bytedance-010. 数组组成最大数](https://leetcode-cn.com/problems/9nsGSS/)
 
 学习计划链接：[冲刺春招-精选笔面试 66 题大通关](https://leetcode-cn.com/study-plan/bytedancecampus/?progress=dcmyjb3)
 
 今日知识点：树、层序遍历、处理输入输出？（bushi），难度为中等、中等、字节の简单
+
 <!-- more -->
+
 # 105. 从前序与中序遍历序列构造二叉树
 
 给定两个整数数组 preorder 和 inorder ，其中 preorder 是二叉树的先序遍历， inorder 是同一棵树的中序遍历，请构造二叉树并返回其根节点。
@@ -32,13 +34,13 @@ day9题目：[105. 从前序与中序遍历序列构造二叉树](https://leetco
 输出: [-1]
 
 > 提示:
-1 <= preorder.length <= 3000
-inorder.length == preorder.length
--3000 <= preorder[i], inorder[i] <= 3000
-preorder 和 inorder 均 **无重复** 元素
-inorder 均出现在 preorder
-preorder **保证** 为二叉树的前序遍历序列
-inorder **保证** 为二叉树的中序遍历序列
+> 1 <= preorder.length <= 3000
+> inorder.length == preorder.length
+> -3000 <= preorder[i], inorder[i] <= 3000
+> preorder 和 inorder 均 **无重复** 元素
+> inorder 均出现在 preorder
+> preorder **保证** 为二叉树的前序遍历序列
+> inorder **保证** 为二叉树的中序遍历序列
 
 ## 思路
 
@@ -60,18 +62,16 @@ inorder **保证** 为二叉树的中序遍历序列
  * @param {number[]} inorder
  * @return {TreeNode}
  */
-var buildTree = function(preorder, inorder) {
-    if(!preorder || !inorder) return null;
-    let root = new TreeNode(preorder[0]);
-    let idx = inorder.findIndex((v) => (v == preorder[0]));
-    let len = preorder.length;
-    let lnum = idx;
-    let rnum = lnum == -1 ? len-1 : len-1-lnum;
-    if(lnum > 0) 
-        root.left = buildTree(preorder.slice(1, lnum+1), inorder.slice(0, lnum+1));
-    if(rnum > 0) 
-        root.right = buildTree(preorder.slice(len-rnum), inorder.slice(len-rnum));
-    return root;
+var buildTree = function (preorder, inorder) {
+  if (!preorder || !inorder) return null;
+  let root = new TreeNode(preorder[0]);
+  let idx = inorder.findIndex((v) => v == preorder[0]);
+  let len = preorder.length;
+  let lnum = idx;
+  let rnum = lnum == -1 ? len - 1 : len - 1 - lnum;
+  if (lnum > 0) root.left = buildTree(preorder.slice(1, lnum + 1), inorder.slice(0, lnum + 1));
+  if (rnum > 0) root.right = buildTree(preorder.slice(len - rnum), inorder.slice(len - rnum));
+  return root;
 };
 ```
 
@@ -91,13 +91,13 @@ var buildTree = function(preorder, inorder) {
 输入：root = []
 输出：[]
 
->提示：
-树中节点数目在范围 [0, 2000] 内
--100 <= Node.val <= 100
+> 提示：
+> 树中节点数目在范围 [0, 2000] 内
+> -100 <= Node.val <= 100
 
 ### 思路
 
-层序遍历将结果存至level数组中，然后反转奇数层的结果，简单粗暴の解法，记得特判一下root为空的情况
+层序遍历将结果存至 level 数组中，然后反转奇数层的结果，简单粗暴の解法，记得特判一下 root 为空的情况
 
 ### 代码
 
@@ -106,28 +106,28 @@ var buildTree = function(preorder, inorder) {
  * @param {TreeNode} root
  * @return {number[][]}
  */
-var zigzagLevelOrder = function(root) {
-    let level = []  // 每一层的
-    let q = []; // 队列
-    if(!root) return [];
-    q.push(root);
-    let nowl = [];
-    while(q.length != 0) {
-        let nodelist = q.slice(0);
-        q = [];
-        for(let v of nodelist) {
-            nowl.push(v.val);
-            if(v.left) q.push(v.left);
-            if(v.right) q.push(v.right);
-        }
-        level.push(nowl);
-        nowl = [];
+var zigzagLevelOrder = function (root) {
+  let level = []; // 每一层的
+  let q = []; // 队列
+  if (!root) return [];
+  q.push(root);
+  let nowl = [];
+  while (q.length != 0) {
+    let nodelist = q.slice(0);
+    q = [];
+    for (let v of nodelist) {
+      nowl.push(v.val);
+      if (v.left) q.push(v.left);
+      if (v.right) q.push(v.right);
     }
-    if(nowl.length != 0) level.push(nowl);
-    for(let i = 0; i < level.length; ++i) {
-        if(i % 2 == 1) level[i].reverse();
-    }
-    return level;
+    level.push(nowl);
+    nowl = [];
+  }
+  if (nowl.length != 0) level.push(nowl);
+  for (let i = 0; i < level.length; ++i) {
+    if (i % 2 == 1) level[i].reverse();
+  }
+  return level;
 };
 ```
 
@@ -143,21 +143,20 @@ var zigzagLevelOrder = function(root) {
 输入：[3,30,34,5,9]
 输出：9534330
 
-ACM模式！！
+ACM 模式！！
 
 ## 思路
 
 别问，问就是前些天面试刚碰到过，蚌，终生难忘，重载一下排序规则即可。
-天哪真有人拿acm模式放核心输出的样例吗，输入输出还是看评论学的，蚌。`var input = require('fs').readFileSync('/dev/stdin', 'utf8').trim().split('\n')[0];
-`，字符串处理还是js来吧，lei了。
+天哪真有人拿 acm 模式放核心输出的样例吗，输入输出还是看评论学的，蚌。`var input = require('fs').readFileSync('/dev/stdin', 'utf8').trim().split('\n')[0];`，字符串处理还是 js 来吧，lei 了。
 
-重载排序顺序，利用字符串排序规则，重载小于号a < b 变为a+b > b+a（字符串形式），这样的话比如30， 21 就是3021 > 2130，12，2就是212>12，990，9就是9990 > 9909
+重载排序顺序，利用字符串排序规则，重载小于号 a < b 变为 a+b > b+a（字符串形式），这样的话比如 30， 21 就是 3021 > 2130，12，2 就是 212>12，990，9 就是 9990 > 9909
 
 ## 代码
 
 ```js
 var input = require('fs').readFileSync('/dev/stdin', 'utf8').trim().split('\n')[0];
-input = input.slice(1, input.length-1).split(',');
-var ans = input.sort((a, b) => ((b+a) - (a+b))).join('');
-console.log(ans)
+input = input.slice(1, input.length - 1).split(',');
+var ans = input.sort((a, b) => b + a - (a + b)).join('');
+console.log(ans);
 ```

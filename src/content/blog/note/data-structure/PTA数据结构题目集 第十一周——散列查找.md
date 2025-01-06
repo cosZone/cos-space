@@ -3,27 +3,26 @@ title: PTA数据结构题目集 第十一周——散列查找
 link: PTA数据结构题目集 第十一周——散列查找
 catalog: true
 lang: cn
-date:  2020-09-05 22:39:22 
+date: 2020-09-05 22:39:22
 subtitle: PTA数据结构题目集 第十一周——散列查找练习题，涉及散列查找的应用、KMP等，所用语言为c++。
 tags:
-- c++
-- PTA
-- KMP
-- 数据结构
-- 散列查找
+  - c++
+  - PTA
+  - KMP
+  - 数据结构
+  - 散列查找
 categories:
-- 题目记录
+  - 题目记录
 ---
 
 [题目集总目录](https://blog.csdn.net/qq_45890533/article/details/107131440)
-学习指路博客 [数据结构学习笔记＜9＞ 散列查找
-](https://blog.csdn.net/qq_45890533/article/details/108269198)
+学习指路博客 [数据结构学习笔记＜9＞ 散列查找](https://blog.csdn.net/qq_45890533/article/details/108269198)
 
-# 11-散列1 电话聊天狂人 (25分)
+# 11-散列 1 电话聊天狂人 (25 分)
 
 [本题链接](https://pintia.cn/problem-sets/1268384564738605056/problems/1294124786527993856)
 
->一定要做。如果不知道怎么下手，可以看“小白专场”，将详细给出C语言实现的方法
+> 一定要做。如果不知道怎么下手，可以看“小白专场”，将详细给出 C 语言实现的方法
 
 ## 思路
 
@@ -61,7 +60,7 @@ typedef HashTable *ptrHash;
 int NextPrime(int N) {
     int i, p = (N%2) ? N+2 : N+1;//从大于N的下一个奇数p开始
     while(p <= MaxSize) {
-        for(i = (int)sqrt(p); i > 2; i--) 
+        for(i = (int)sqrt(p); i > 2; i--)
             if(!(p %i)) break;//不是素数
         if(i == 2) break;//for正常结束，是素数
         else p += 2;//试探下一个奇数
@@ -75,18 +74,18 @@ ptrHash CreateTable(int TableSize) {
     H = new HashTable;
     H->TableSize = NextPrime(TableSize);
     H->Units = new HashNode[H->TableSize];
-    for(int i = 0; i < H->TableSize; ++i) 
+    for(int i = 0; i < H->TableSize; ++i)
         H->Units[i].flag = Empty;
     return H;
 }
-//返回经散列函数计算后的下标 
-Index Hash(DataType Key, int TableSize) { 
+//返回经散列函数计算后的下标
+Index Hash(DataType Key, int TableSize) {
     unsigned int h = 0; //散列函数值，初始化为0
     string str = Key.str;
     int len = str.length();
-    for(int i = 0; i < len; ++i) 
+    for(int i = 0; i < len; ++i)
         h = (h << 5) + str[i];
-    
+
     return h % TableSize;
 }
 //查找Key元素,这里采用平方探测法处理冲突
@@ -121,7 +120,7 @@ bool Insert(ptrHash H, DataType Key) {
         H->Units[p].data.num++;
         return false;
     }
-    
+
 }
 int main() {
     int N;
@@ -158,15 +157,15 @@ int main() {
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200829162852764.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODkwNTMz,size_16,color_FFFFFF,t_70#pic_center)
 
-# 11-散列2 Hashing (25分)
+# 11-散列 2 Hashing (25 分)
 
 [本题链接](https://pintia.cn/problem-sets/1268384564738605056/problems/1294124786527993857)
 
->2014年考研上机复试真题，比较直白，一定要做；
->
+> 2014 年考研上机复试真题，比较直白，一定要做；
+
 ## 思路
 
-有几个坑，1不算素数，如果M为1的话要特判。这题因为没有删除操作直接输出下标，所以只要维护一个数组标记是否存过数。
+有几个坑，1 不算素数，如果 M 为 1 的话要特判。这题因为没有删除操作直接输出下标，所以只要维护一个数组标记是否存过数。
 
 ## 代码
 
@@ -178,8 +177,8 @@ const int maxn = 100005;
 typedef long long ll;
 int TableSize;
 bool a[maxn];
-bool isPrime(int m) { 
-    if(m <= 1) return false; 
+bool isPrime(int m) {
+    if(m <= 1) return false;
     int k = (int)sqrt(m);
     for(int i = 2; i <= k; ++i) {
         if(m % i == 0) return false;
@@ -233,7 +232,7 @@ int main() {
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200829190732464.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODkwNTMz,size_16,color_FFFFFF,t_70#pic_center)
 
-# 11-散列3 QQ帐户的申请与登陆 (25分)
+# 11-散列 3 QQ 帐户的申请与登陆 (25 分)
 
 [本题链接](https://pintia.cn/problem-sets/1268384564738605056/problems/1294124786527993858)
 
@@ -241,15 +240,15 @@ int main() {
 
 ## 题目大意
 
-实现QQ新帐户申请和老帐户登陆的简化版功能。主要就是判断账号存在与否以及密码是否对应
+实现 QQ 新帐户申请和老帐户登陆的简化版功能。主要就是判断账号存在与否以及密码是否对应
 
 ## 思路
 
-一开始用常规散列查找，移位法和平方探测法后两个样例一直错误，于是改成了用STL中map来替代…
+一开始用常规散列查找，移位法和平方探测法后两个样例一直错误，于是改成了用 STL 中 map 来替代……
 
 ## 代码
 
-用STL中的map做的话，非常简洁
+用 STL 中的 map 做的话，非常简洁
 
 ```cpp
 #include <iostream>
@@ -264,29 +263,29 @@ int main() {
     for(int i = 0; i < N; ++i) {
         cin >> o >> us >> pw;
         if(o == "L") {//Login
-            if(user.find(us) == user.end()) 
+            if(user.find(us) == user.end())
                 cout << "ERROR: Not Exist" << endl;
-            else if(user[us] == pw) 
+            else if(user[us] == pw)
                 cout << "Login: OK" << endl;
             else cout << "ERROR: Wrong PW" << endl;
         } else if(o == "N") {//New
-            if(user.find(us) != user.end()) 
+            if(user.find(us) != user.end())
                 cout << "ERROR: Exist" << endl;
-            else { 
+            else {
                 user[us] = pw;
                 cout << "New: OK" << endl;
             }
         }
     }
     return 0;
-} 
+}
 ```
 
 ## 测试点
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200905223734281.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODkwNTMz,size_16,color_FFFFFF,t_70#pic_center)
 
-# 11-散列4 Hashing - Hard Version (30分)
+# 11-散列 4 Hashing - Hard Version (30 分)
 
 [本题链接](https://pintia.cn/problem-sets/1268384564738605056/problems/1294124786527993859)
 
@@ -294,9 +293,9 @@ int main() {
 
 ## 题目大意
 
-- 已知散列函数H(x) = x%N 以及用线性探测法解决冲突问题
+- 已知散列函数 H(x) = x%N 以及用线性探测法解决冲突问题
 - 先给出散列映射的结果，反求输入顺序
-  - 当元素x被映射到H(x)位置后，发现这个位置已经有y了，则y一定是在x之前被输入的
+  - 当元素 x 被映射到 H(x)位置后，发现这个位置已经有 y 了，则 y 一定是在 x 之前被输入的
 
 ## 思路
 
@@ -304,7 +303,7 @@ int main() {
 
 ## 代码
 
-注意有个坑，入度都为0即不确定谁先输出时，挑最小的输出，所以这里用优先队列代替小顶堆来存，并用map记录对应下标~
+注意有个坑，入度都为 0 即不确定谁先输出时，挑最小的输出，所以这里用优先队列代替小顶堆来存，并用 map 记录对应下标~
 
 ```cpp
 #include <iostream>
@@ -361,7 +360,7 @@ int main() {
                 edge[j][i] = 1;
             }
         }
-        
+
     }
     Topsort();
     return 0;
@@ -372,7 +371,7 @@ int main() {
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200905223424128.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODkwNTMz,size_16,color_FFFFFF,t_70#pic_center)
 
-# Kmp 串的模式匹配 (25分)
+# Kmp 串的模式匹配 (25 分)
 
 [本题链接](https://pintia.cn/problem-sets/1268384564738605056/problems/1296272390837731328)
 
@@ -380,7 +379,7 @@ int main() {
 
 ## 思路
 
-没啥好说的，KMP就完事了
+没啥好说的，KMP 就完事了
 
 ## 代码
 
@@ -398,7 +397,7 @@ int N,M;
 int nxt[maxn];
 void getnxt(string t) {
     int len = t.length();
-    int i = 0, j = -1; 
+    int i = 0, j = -1;
     nxt[0] = -1;
     while (i < len) {
         if (j == -1 || t[i] == t[j]) {

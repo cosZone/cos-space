@@ -2,45 +2,45 @@
 title: Campus SNS 校园社区后端接口开发（附前端地址）
 link: campus-sns-develop
 catalog: true
-subtitle: 使用 koa2 + Sequelize 搭建的校园社区后端，巧妇难为无米之炊！一个厉害的项目的后端！ 
+subtitle: 使用 koa2 + Sequelize 搭建的校园社区后端，巧妇难为无米之炊！一个厉害的项目的后端！
 date: 2022-11-13 22:30:22
 tags:
-- 后端
-- 项目
+  - 后端
+  - 项目
 categories:
-- 项目集锦
+  - 项目集锦
 ---
 
 使用 koa2 + Sequelize 搭建的校园社区后端，巧妇难为无米之炊！一个厉害的项目的后端！
 
 # 前言及项目介绍
 
-这个项目是我刚学前端时参加的百度前端训练营进阶班的第一题，具备完善的校园社区功能及一个后台管理系统，于今年3月份开发，我负责的主要是后端的发帖管理、分区管理等地方的接口，在接口文档中就可以看到。当时团队里总共6人，3人参与开发后端，2人开发移动端前端，1人开发PC端，并且由于还年轻，写了挺多文档记录。
+这个项目是我刚学前端时参加的百度前端训练营进阶班的第一题，具备完善的校园社区功能及一个后台管理系统，于今年 3 月份开发，我负责的主要是后端的发帖管理、分区管理等地方的接口，在接口文档中就可以看到。当时团队里总共 6 人，3 人参与开发后端，2 人开发移动端前端，1 人开发 PC 端，并且由于还年轻，写了挺多文档记录。
 
-个人感觉这个接口系统麻雀虽小五脏俱全（某后端爷评价），既有两个前端（PC端的后台管理系统和手机端的校园社区），又有后端完善的接口，倒挺**适合新人**初学，也确实有过学弟学妹来问我我问题，故打算完善一下写篇博客总结一下。
+个人感觉这个接口系统麻雀虽小五脏俱全（某后端爷评价），既有两个前端（PC 端的后台管理系统和手机端的校园社区），又有后端完善的接口，倒挺**适合新人**初学，也确实有过学弟学妹来问我我问题，故打算完善一下写篇博客总结一下。
 
 后端项目一直运行在自己的云服务器上，可请求 <http://cosine.ren:8000> 尝试（~~轻点打，求求了，虽然有备份~~），哪天要是挂了我也不好说，建议大家本地运行前后端尝试~
 
 个人认为**优点**是
 
-- **文档**很齐全（接口文档、开发文档、bug记录...），这在以后的我看来也是很有用的事，实习之后就不怎么写文档了
-- 基本的增删改查加上统计都有涉及到，接口规范遵循 `Restful` （老实说，当时不知道restful的概念但是自然而然的就用到了）
+- **文档**很齐全（接口文档、开发文档、bug 记录...），这在以后的我看来也是很有用的事，实习之后就不怎么写文档了
+- 基本的增删改查加上统计都有涉及到，接口规范遵循 `Restful` （老实说，当时不知道 restful 的概念但是自然而然的就用到了）
 - 主要参数基本都有中间件进行校验，权限控制等，代码里的注释特别多
 - 错误码有专门的说明，接口函数都有注释（实习之后愈发觉得这真的是太棒了...）
 
 **缺点**问题也很明显
 
-- **分支管理**压根没有（当时还不熟悉，加上大家开发的都是不同功能，直接在master分支开发并解决冲突）
+- **分支管理**压根没有（当时还不熟悉，加上大家开发的都是不同功能，直接在 master 分支开发并解决冲突）
 - 很多功能**实现简单**，毕竟工期也就快一个月
 - 当时刚学，也没有用 prettier 这类**代码格式化**工具，也没上 ts，现在的新项目基本都会使用 ts
 
 # 在线地址及项目演示
 
-上来先放源码地址，当时是在 gitee 进行开发，后来我将后端同步到了github
+上来先放源码地址，当时是在 gitee 进行开发，后来我将后端同步到了 github
 
 - 后端接口仓库：[campus-community-backend](https://github.com/yusixian/campus-community-backend)
 - 前端（移动端）仓库地址： [campus-sns-campus-community（gitee）](https://gitee.com/honxinn/campus-sns-campus-community)
-- 前端（PC端后台管理系统）仓库地址：[back-manage（gitee）](https://gitee.com/honxinn/back-manage)
+- 前端（PC 端后台管理系统）仓库地址：[back-manage（gitee）](https://gitee.com/honxinn/back-manage)
 - 接口文档地址：[校园社区后端接口文档](https://www.apifox.cn/apidoc/shared-9459ed60-58b2-45b8-b5a8-89a63d77357f/api-11836993)
 
 如果觉得不错的话，就 star 一个吧~也欢迎提 issue 和 pr
@@ -63,9 +63,9 @@ categories:
 
 ![image.png](https://backblaze.cosine.ren/juejin/6750bfaa8d3f4e4ebd1c041a019f4783~tplv-k3u1fbpfcp-watermark.png)
 
-## 前端（PC端后台管理系统）
+## 前端（PC 端后台管理系统）
 
-- 前端（PC端后台管理系统）地址：<https://gitee.com/honxinn/back-manage>
+- 前端（PC 端后台管理系统）地址：<https://gitee.com/honxinn/back-manage>
 - 基于 `Vue3` + `Vite` 构建
 
 ![image.png](https://backblaze.cosine.ren/juejin/Fd5a2bf10be047edb453f81be9eaaf09~Tplv-K3u1fbpfcp-Watermark.png)
@@ -87,17 +87,17 @@ categories:
 - 前端（移动端）仓库地址：<https://gitee.com/honxinn/campus-sns-campus-community>
 - 基于 `Vue3` + `Vite` 构建
 
-| 演示 |  |
-| --- | --- |
-| ![image.png](https://backblaze.cosine.ren/juejin/fc24fe8a9c95491abb4edf1a3a4d0d22~tplv-k3u1fbpfcp-watermark.png) | ![image.png](https://backblaze.cosine.ren/juejin/5cb2a0b56061471292a941fe33e5ce7c~Tplv-K3u1fbpfcp-Watermark.png)  |
+| 演示                                                                                                             |                                                                                                                  |
+| ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| ![image.png](https://backblaze.cosine.ren/juejin/fc24fe8a9c95491abb4edf1a3a4d0d22~tplv-k3u1fbpfcp-watermark.png) | ![image.png](https://backblaze.cosine.ren/juejin/5cb2a0b56061471292a941fe33e5ce7c~Tplv-K3u1fbpfcp-Watermark.png) |
 | ![image.png](https://backblaze.cosine.ren/juejin/d99975dee1d340088eff1c9b6ea55ab5~tplv-k3u1fbpfcp-watermark.png) | ![image.png](https://backblaze.cosine.ren/juejin/e64eaa3a6bd943c7b353e67b12a729b4~tplv-k3u1fbpfcp-watermark.png) |
-| ![image.png](https://backblaze.cosine.ren/juejin/27576fb449184ca2aa81e7ef12fb9f18~tplv-k3u1fbpfcp-watermark.png) | ![image.png](https://backblaze.cosine.ren/juejin/5ef4ef2d469a4611af1b655f8a8a0f00~tplv-k3u1fbpfcp-watermark.png)|
+| ![image.png](https://backblaze.cosine.ren/juejin/27576fb449184ca2aa81e7ef12fb9f18~tplv-k3u1fbpfcp-watermark.png) | ![image.png](https://backblaze.cosine.ren/juejin/5ef4ef2d469a4611af1b655f8a8a0f00~tplv-k3u1fbpfcp-watermark.png) |
 
 # 开发文档
 
 [开发记录文档](https://github.com/yusixian/campus-community-backend/blob/master/%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95%E6%96%87%E6%A1%A3.md) 记录了从 0 到 1 的搭建记录，非常详细的~
 
-[bug回忆录](https://github.com/yusixian/campus-community-backend/blob/master/bug%E5%9B%9E%E5%BF%86%E5%BD%95.md) 顾名思义，搭建过程中的问题记录
+[bug 回忆录](https://github.com/yusixian/campus-community-backend/blob/master/bug%E5%9B%9E%E5%BF%86%E5%BD%95.md) 顾名思义，搭建过程中的问题记录
 
 ### 接口功能说明
 
@@ -105,7 +105,7 @@ categories:
   - [x] 数据统计
     - [x] 获取社区十大热帖
     - [x] 获取社区十大红人
-    - [x] 近7日文章增长量等统计
+    - [x] 近 7 日文章增长量等统计
   - [x] 用户管理 user
     - [x] 上传头像
     - [x] 修改用户信息
@@ -147,9 +147,9 @@ categories:
 - src
   - app
     - `errHandler.js`错误统一处理函数
-    - `index.js`进行app的实例化
+    - `index.js`进行 app 的实例化
   - config
-    - `config.default.js` 系统的默认配置文件,用dotenv读取`.env`中的配置并暴露出来
+    - `config.default.js` 系统的默认配置文件,用 dotenv 读取`.env`中的配置并暴露出来
   - constant
     - `err.type.js` 错误类型的汇总(常量)
   - controller 所有的业务逻辑
@@ -160,7 +160,7 @@ categories:
     - `seq.js` 连接数据库的控制文件(通过`.env`中默认配置连接本地数据库)
   - middleware 所有的中间件
     - `article.middleware.js` 文章相关的中间件
-    - `auth.middleware.js` 解析token的中间件
+    - `auth.middleware.js` 解析 token 的中间件
     - `user.middleware.js` 用户相关的中间件
     - ……
   - model
@@ -181,15 +181,15 @@ categories:
     - `user.service.js` 用户相关的数据库操作
     - ……
   - views 存储一些路由的模板
-    - `index.html` 主路由的html模板
+    - `index.html` 主路由的 html 模板
 - logs
   - `err.log` 存放错误日志
   - `out.log` 存放输出日志
   - `seq.log` 存放查询日志
-- main.js 导入封装的app并在`.env`中指定的端口号进行监听
+- main.js 导入封装的 app 并在`.env`中指定的端口号进行监听
 - .env 存储配置信息
-- .gitignore git提交默认忽略`node_modules`(下载的依赖文件)
-- package.json npm的插件版本号等
+- .gitignore git 提交默认忽略`node_modules`(下载的依赖文件)
+- package.json npm 的插件版本号等
 - 一些文档
 
 ## 运行方式（后端）
@@ -204,7 +204,7 @@ npm install
 
 ### 数据库的相关配置
 
-- 1.在本地打开数据库(一般都是默认打开的mysql) 如果没有打开使用cmd命令`net start mysql`
+- 1.在本地打开数据库(一般都是默认打开的 mysql) 如果没有打开使用 cmd 命令`net start mysql`
 - 2.登录数据库后建立一个数据库，比如名字叫`schoolcommunity`，当然你也可以用`navicat`等来创建
 - 3.在本项目的 `.env` 文件中更新 mysql 的相关配置
 - 4.使用命令`npm run createModel`来创建所有的数据表

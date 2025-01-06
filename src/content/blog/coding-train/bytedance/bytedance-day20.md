@@ -6,14 +6,14 @@ subtitle: 今日知识点：数组、二分、模拟，难度为简单、中等�
 date: 2022-03-27 21:10:55
 cover: img/header_img/milky-way-over-bow-lake-alberta-canada-wallpaper-for-1920x1080-63-873.jpg
 tags:
-- leetcode
-- 二分
-- 模拟
+  - leetcode
+  - 二分
+  - 模拟
 categories:
-- [题目记录, 字节校园]
+  - [题目记录, 字节校园]
 ---
 
-day20题目：[704. 二分查找](https://leetcode-cn.com/problems/binary-search/)、[43. 字符串相乘](https://leetcode-cn.com/problems/multiply-strings/)、[bytedance-002. 发下午茶](https://leetcode-cn.com/problems/OMrszv/)
+day20 题目：[704. 二分查找](https://leetcode-cn.com/problems/binary-search/)、[43. 字符串相乘](https://leetcode-cn.com/problems/multiply-strings/)、[bytedance-002. 发下午茶](https://leetcode-cn.com/problems/OMrszv/)
 
 今日知识点： 数组、二分、模拟，难度为简单、中等、字节の简单
 
@@ -27,7 +27,7 @@ day20题目：[704. 二分查找](https://leetcode-cn.com/problems/binary-search
 
 **示例 1:**
 
-```
+```plain
 输入: nums = [-1,0,3,5,9,12], target = 9
 输出: 4
 解释: 9 出现在 nums 中并且下标为 4
@@ -35,7 +35,7 @@ day20题目：[704. 二分查找](https://leetcode-cn.com/problems/binary-search
 
 **示例 2:**
 
-```
+```plain
 输入: nums = [-1,0,3,5,9,12], target = 2
 输出: -1
 解释: 2 不存在 nums 中因此返回 -1
@@ -64,15 +64,15 @@ day20题目：[704. 二分查找](https://leetcode-cn.com/problems/binary-search
  * @param {number} target
  * @return {number}
  */
-var search = function(nums, target) {
-    let [l, r] = [0, nums.length - 1];
-    while (l <= r) {
-        let mid = (l+r) >> 1;
-        if(nums[mid] == target) return mid;
-        else if(nums[mid] < target) l = mid + 1;
-        else r = mid - 1;
-    }
-    return -1;
+var search = function (nums, target) {
+  let [l, r] = [0, nums.length - 1];
+  while (l <= r) {
+    let mid = (l + r) >> 1;
+    if (nums[mid] == target) return mid;
+    else if (nums[mid] < target) l = mid + 1;
+    else r = mid - 1;
+  }
+  return -1;
 };
 ```
 
@@ -84,14 +84,14 @@ var search = function(nums, target) {
 
 **示例 1:**
 
-```
+```plain
 输入: num1 = "2", num2 = "3"
 输出: "6"
 ```
 
 **示例 2:**
 
-```
+```plain
 输入: num1 = "123", num2 = "456"
 输出: "56088"
 ```
@@ -100,7 +100,7 @@ var search = function(nums, target) {
 
 - `1 <= num1.length, num2.length <= 200`
 - `num1` 和 `num2` 只能由数字组成。
-- `num1` 和 `num2` 都不包含任何前导零，除了数字0本身。
+- `num1` 和 `num2` 都不包含任何前导零，除了数字 0 本身。
 
 ## 思路
 
@@ -110,7 +110,7 @@ var search = function(nums, target) {
 - 开头先特判一下是否有哪个数有为 `0` 的情况，直接返回 `0`
 - 被乘数 `num1` 位数为 `n` ，乘数 `num2` 位数为 `m`， `num1 * num2` 的结果 `res` 最大总位数为 `n+m`
 - `num1[i] * num2[j]` 的结果 `mul`，第一位位于 `res[i+j]`，第二位位于 `res[i+j+1]`。
-- 最后需去除前导0
+- 最后需去除前导 0
 
 ## 代码
 
@@ -120,22 +120,22 @@ var search = function(nums, target) {
  * @param {string} num2
  * @return {string}
  */
-var multiply = function(num1, num2) {
-    if(num1 == '0' || num2 == '0') 
-        return '0'
-    let [n, m] = [num1.length, num2.length]
-    let res = new Array(n+m).fill(0)
-    for(let i = n-1; i >= 0; i--) {
-        for(let j = m-1; j >= 0; j--) {
-            let mul = parseInt(num1[i]) * parseInt(num2[j])
-            let p1 = i + j, p2 = i + j + 1
-            let sum = mul + res[p2]
-            res[p1] += Math.floor(sum / 10)
-            res[p2] = sum % 10  // 取余
-        }
+var multiply = function (num1, num2) {
+  if (num1 == '0' || num2 == '0') return '0';
+  let [n, m] = [num1.length, num2.length];
+  let res = new Array(n + m).fill(0);
+  for (let i = n - 1; i >= 0; i--) {
+    for (let j = m - 1; j >= 0; j--) {
+      let mul = parseInt(num1[i]) * parseInt(num2[j]);
+      let p1 = i + j,
+        p2 = i + j + 1;
+      let sum = mul + res[p2];
+      res[p1] += Math.floor(sum / 10);
+      res[p2] = sum % 10; // 取余
     }
-    let idx = res.findIndex(x => x != 0)  // 去除前导0
-    return idx == -1? '0' : res.slice(idx).join('')
+  }
+  let idx = res.findIndex((x) => x != 0); // 去除前导0
+  return idx == -1 ? '0' : res.slice(idx).join('');
 };
 ```
 
@@ -154,7 +154,7 @@ var multiply = function(num1, num2) {
 
 **格式：**
 
-```
+```plain
 输入：
 - 第一行是字节君的数量K和工区的数量 N
 - 第二行 N 个数字是每个工区需要的下午茶数量 Ti
@@ -164,7 +164,7 @@ var multiply = function(num1, num2) {
 
 **示例 1：**
 
-```
+```plain
 输入：
      3 3
      7 1 1
@@ -177,7 +177,7 @@ var multiply = function(num1, num2) {
 
 **示例 2：**
 
-```
+```plain
 输入：
      2 4
      3 3 1 1
@@ -209,7 +209,7 @@ const int maxn = 1005;
 int K, N;
 int t[maxn], t2[maxn];
 bool check(int time) {
-    for(int i = 0; i < N; i++) 
+    for(int i = 0; i < N; i++)
         t2[i] = t[i];
     for(int i = 0; i < K; i++) {    // 每个人
         int rest = time;    // 可用时间
@@ -223,7 +223,7 @@ bool check(int time) {
                 t2[j] -= rest;
                 break;
             }
-                
+
         }
     }
     for(int i = 0; i < N; ++i) {

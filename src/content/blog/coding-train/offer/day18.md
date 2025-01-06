@@ -6,22 +6,23 @@ subtitle: 知识点：树、dfs/bfs，难度为简单、简单
 date: 2022-04-16 17:58:00
 cover: img/header_img/polygon-pony-wallpaper-for-1920x1080-63-1175.jpg
 tags:
-- leetcode
-- 树
-- dfs/bfs
+  - leetcode
+  - 树
+  - dfs/bfs
 categories:
-- [题目记录, 剑指offer]
+  - [题目记录, 剑指offer]
 ---
-day18题目：[剑指 Offer 55 - I. 二叉树的深度](https://leetcode-cn.com/problems/er-cha-shu-de-shen-du-lcof/)、[剑指 Offer 55 - II. 平衡二叉树](https://leetcode-cn.com/problems/ping-heng-er-cha-shu-lcof/)
+
+day18 题目：[剑指 Offer 55 - I. 二叉树的深度](https://leetcode-cn.com/problems/er-cha-shu-de-shen-du-lcof/)、[剑指 Offer 55 - II. 平衡二叉树](https://leetcode-cn.com/problems/ping-heng-er-cha-shu-lcof/)
 
 知识点：树、dfs/bfs，难度为简单、简单
 
 学习计划链接：[「剑指 Offer」 - 学习计划](https://leetcode-cn.com/study-plan/lcof/?progress=7jn70jr)
 
-| 题目 | 知识点 | 难度 |
-| --- | ---- | ---- |
+| 题目                                                                                            | 知识点                                                                                                                                                                   | 难度 |
+| ----------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---- |
 | [剑指 Offer 55 - I. 二叉树的深度](https://leetcode-cn.com/problems/er-cha-shu-de-shen-du-lcof/) | [树](https://leetcode-cn.com/tag/tree)、[深度优先搜索](https://leetcode-cn.com/tag/depth-first-search)、[广度优先搜索](https://leetcode-cn.com/tag/breadth-first-search) | 简单 |
-| [剑指 Offer 55 - II. 平衡二叉树](https://leetcode-cn.com/problems/ping-heng-er-cha-shu-lcof/) | [树](https://leetcode-cn.com/tag/tree)、[深度优先搜索](https://leetcode-cn.com/tag/depth-first-search)、[二叉树](https://leetcode-cn.com/tag/binary-tree) |简单 |
+| [剑指 Offer 55 - II. 平衡二叉树](https://leetcode-cn.com/problems/ping-heng-er-cha-shu-lcof/)   | [树](https://leetcode-cn.com/tag/tree)、[深度优先搜索](https://leetcode-cn.com/tag/depth-first-search)、[二叉树](https://leetcode-cn.com/tag/binary-tree)                | 简单 |
 
 # [剑指 Offer 55 - I. 二叉树的深度](https://leetcode-cn.com/problems/er-cha-shu-de-shen-du-lcof/)
 
@@ -31,7 +32,7 @@ day18题目：[剑指 Offer 55 - I. 二叉树的深度](https://leetcode-cn.com/
 
 给定二叉树 `[3,9,20,null,null,15,7]`，
 
-```
+```plain
     3
    / \
   9  20
@@ -56,21 +57,21 @@ day18题目：[剑指 Offer 55 - I. 二叉树的深度](https://leetcode-cn.com/
  * @param {TreeNode} root
  * @return {number}
  */
-var maxDepth = function(root) {
-    if(!root) return 0
-    return Math.max(maxDepth(root.left), maxDepth(root.right)) + 1
+var maxDepth = function (root) {
+  if (!root) return 0;
+  return Math.max(maxDepth(root.left), maxDepth(root.right)) + 1;
 };
 ```
 
 # [剑指 Offer 55 - II. 平衡二叉树](https://leetcode-cn.com/problems/ping-heng-er-cha-shu-lcof/)
 
-输入一棵二叉树的根节点，判断该树是不是平衡二叉树。如果某二叉树中任意节点的左右子树的深度相差不超过1，那么它就是一棵平衡二叉树。
+输入一棵二叉树的根节点，判断该树是不是平衡二叉树。如果某二叉树中任意节点的左右子树的深度相差不超过 1，那么它就是一棵平衡二叉树。
 
 **示例 1:**
 
 给定二叉树 `[3,9,20,null,null,15,7]`
 
-```
+```plain
     3
    / \
   9  20
@@ -84,7 +85,7 @@ var maxDepth = function(root) {
 
 给定二叉树 `[1,2,2,3,3,null,null,4,4]`
 
-```
+```plain
        1
       / \
      2   2
@@ -111,12 +112,12 @@ var maxDepth = function(root) {
  * @param {TreeNode} root
  * @return {boolean}
  */
-var isBalanced = function(root) {
-    function countHeight(root) {
-        if(!root) return 0
-        return Math.max(countHeight(root.left), countHeight(root.right)) + 1
-    }
-    if(!root) return true
-    return Math.abs(countHeight(root.left) - countHeight(root.right)) <= 1 && isBalanced(root.left) && isBalanced(root.right)
+var isBalanced = function (root) {
+  function countHeight(root) {
+    if (!root) return 0;
+    return Math.max(countHeight(root.left), countHeight(root.right)) + 1;
+  }
+  if (!root) return true;
+  return Math.abs(countHeight(root.left) - countHeight(root.right)) <= 1 && isBalanced(root.left) && isBalanced(root.right);
 };
 ```

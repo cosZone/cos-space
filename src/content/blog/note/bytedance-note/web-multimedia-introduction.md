@@ -6,17 +6,17 @@ date: 2022-01-30 14:30:17
 subtitle: 本节课老师科普了Web多媒体技术的基本概念，如编码格式、封装格式、多媒体元素、流媒体协议等，并阐述了Web多媒体的多种应用场景
 lang: cn
 tags:
-- 前端
-- 图像编码
-- Web多媒体
+  - 前端
+  - 图像编码
+  - Web多媒体
 categories:
-- [笔记, 青训营笔记]
+  - [笔记, 青训营笔记]
 ---
 
-# Web多媒体历史
+# Web 多媒体历史
 
-- PC时代：Flash等播放插件，富客户端。
-- 移动互联网时代：Flash等逐渐被淘汰，HTML5出现了，但其支持视频格式等有限
+- PC 时代：Flash 等播放插件，富客户端。
+- 移动互联网时代：Flash 等逐渐被淘汰，HTML5 出现了，但其支持视频格式等有限
 - Media Source Extensions ，支持多种视频格式等
 
 # 基础知识
@@ -27,8 +27,8 @@ categories:
 
 - **图像分辨率**：用于确定组成一副图像的像素数据，就是指在**水平和垂直方向上图像所具有的像素个数**。
 - **图像深度**：图像深度是指**存储每个像素所需要的比特数**。图像深度决定了图像的每个像素**可能的颜色数**，或可能的灰度级数。
-  - 例如，彩色图像每个像素用R,G,B三个分量表示，**每个分量用8位**，**像素深度为24位**，可以表示的颜色数目为2的24次方，既16777216个；
-  - 而一副**单色**图像存储每个像素需要8bit,则图像的**像素深度为8位**，最大灰度数目为2的8次方，既**256**个。
+  - 例如，彩色图像每个像素用 R,G,B 三个分量表示，**每个分量用 8 位**，**像素深度为 24 位**，可以表示的颜色数目为 2 的 24 次方，既 16777216 个；
+  - 而一副**单色**图像存储每个像素需要 8bit,则图像的**像素深度为 8 位**，最大灰度数目为 2 的 8 次方，既**256**个。
 - 图像分辨率与图像深度共同决定了图像所占的大小~
 
 ### 视频基本概念
@@ -40,31 +40,31 @@ categories:
 
 ### 视频帧的分类
 
-I帧、P帧、B帧
+I 帧、P 帧、B 帧
 
-**I帧（帧内编码帧）**：**自带全部信息**的独立帧，**独立**进行解码，不依赖其他帧
+**I 帧（帧内编码帧）**：**自带全部信息**的独立帧，**独立**进行解码，不依赖其他帧
 
-**P帧（前向预测编码帧）**：**参考**前面的 I帧 或者 P帧 才能进行编码
+**P 帧（前向预测编码帧）**：**参考**前面的 I 帧 或者 P 帧 才能进行编码
 
-**B帧（双向预测编码帧）**：依赖前面与后面的帧，本帧与前后帧的差别
+**B 帧（双向预测编码帧）**：依赖前面与后面的帧，本帧与前后帧的差别
 
-1 -> 2 -> 3 ->.....
+1 -> 2 -> 3 ->……
 
 ![image.png](https://backblaze.cosine.ren/juejin/fcd4aa649e144a3bb7eaf6f0f8ac2ceb~tplv-k3u1fbpfcp-watermark.png)
 
-> DTS（Decode Time Stamp）解码时间戳：决定bit流什么时候开始送入解码器中进行解码。
+> DTS（Decode Time Stamp）解码时间戳：决定 bit 流什么时候开始送入解码器中进行解码。
 >
 > PTS（Presentation Time Stamp）显示时间戳：决定解码后的视频帧什么时候被显示出来
 >
-> 在没有B帧存在的情况下DTS的顺序和PTS的顺序应该是一样的
+> 在没有 B 帧存在的情况下 DTS 的顺序和 PTS 的顺序应该是一样的
 
 ### GOP(group of picture)
 
-两个 I帧 之间的间隔，通常在2~4s
+两个 I 帧 之间的间隔，通常在 2~4s
 
 ![image.png](https://backblaze.cosine.ren/juejin/cbe3576fcea94d15b56c58c69ce857f7~tplv-k3u1fbpfcp-watermark.png)
 
-I帧比较多的话，视频就会比较大
+I 帧比较多的话，视频就会比较大
 
 ### 为什么要编码？
 
@@ -72,9 +72,9 @@ I帧比较多的话，视频就会比较大
 
 那么视频里一张图片大小：1920 × 1080× 24/8 = 6220800Byte(5.2M)
 
-那么帧率为30FPS、时长90分钟的这样一个视频，占用大小：**933G**，**太大了！**
+那么帧率为 30FPS、时长 90 分钟的这样一个视频，占用大小：**933G**，**太大了！**
 
-更别说更高的60FPS了……
+更别说更高的 60FPS 了……
 
 编码都压缩掉了些什么呢？
 
@@ -86,7 +86,7 @@ I帧比较多的话，视频就会比较大
 
 ![image.png](https://backblaze.cosine.ren/juejin/eca3ad131e344b9daf3f188f276aaa29~tplv-k3u1fbpfcp-watermark.png)
 
-- **编码冗余**：如图的图像，可以蓝色用1白色用0来表示（因为只有这两种颜色，艾特某哈夫曼编码方式）
+- **编码冗余**：如图的图像，可以蓝色用 1 白色用 0 来表示（因为只有这两种颜色，艾特某哈夫曼编码方式）
 
   ![image.png](https://backblaze.cosine.ren/juejin/4645bf9109fd4e92917c39544e297080~tplv-k3u1fbpfcp-watermark.png)
 
@@ -113,11 +113,11 @@ I帧比较多的话，视频就会比较大
 
 ![image.png](https://backblaze.cosine.ren/juejin/429a385de6bc4cd189a250c9706c6d3f~tplv-k3u1fbpfcp-watermark.png)
 
-## 多媒体元素和扩展API
+## 多媒体元素和扩展 API
 
 ### video & audio
 
-[`<video>`](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/video) 标签用于在HTML或者XHTML文档中嵌入媒体播放器，用于支持文档内的视频播放。
+[`<video>`](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/video) 标签用于在 HTML 或者 XHTML 文档中嵌入媒体播放器，用于支持文档内的视频播放。
 
 ```html
 <!DOCTYPE html>
@@ -131,10 +131,10 @@ I帧比较多的话，视频就会比较大
 </html>
 ```
 
-[`<audio>`](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/audio)  元素用于在文档中嵌入音频内容。
+[`<audio>`](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/audio) 元素用于在文档中嵌入音频内容。
 
 ```html
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html>
 <body>
     <audio src="./auido.mp3" muted autoplay controls width=600 he ight=300></audio>
@@ -147,13 +147,13 @@ I帧比较多的话，视频就会比较大
 
 [HTMLMediaElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement)
 
-| 方法                                                         | 描述                                  |
-| ------------------------------------------------------------ | ------------------------------------- |
-| [play()](https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLMediaElement/play) | 开始播放音/视频（**异步的**）         |
-| [pause()](https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLMediaElement/pause) | 暂停当前播放的音/视频                 |
-| [load()](https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLMediaElement/load) | 重新加载音/视频元素                   |
+| 方法                                                                                           | 描述                                  |
+| ---------------------------------------------------------------------------------------------- | ------------------------------------- |
+| [play()](https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLMediaElement/play)               | 开始播放音/视频（**异步的**）         |
+| [pause()](https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLMediaElement/pause)             | 暂停当前播放的音/视频                 |
+| [load()](https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLMediaElement/load)               | 重新加载音/视频元素                   |
 | [canPlayType()](https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLMediaElement/canPlayType) | 检测浏览器是否能播放指定的音/视频类型 |
-| addTextTrack()                                               | 向音视频添加新的文本轨道              |
+| addTextTrack()                                                                                 | 向音视频添加新的文本轨道              |
 
 | 属性         | 描述                                                 |
 | ------------ | ---------------------------------------------------- |
@@ -163,9 +163,9 @@ I帧比较多的话，视频就会比较大
 | duration     | 返回当前音频/视频的**长度**(以秒计)                  |
 | src          | 设置或返回音频/视频元素的**当前来源**                |
 | volume       | 设置或返回音频/视频的**音量**                        |
-| buffered     | 返回表示音频/视频**已缓冲部分**的TimeRanges对象      |
+| buffered     | 返回表示音频/视频**已缓冲部分**的 TimeRanges 对象    |
 | playbackRate | 设置或返回音频/视频播放的**速度**。                  |
-| error        | 返回表示音频/视频错误状态的**MediaError对象**        |
+| error        | 返回表示音频/视频错误状态的**MediaError 对象**       |
 | readyState   | 返回音频/视频当前的**就绪状态**。                    |
 | ...          | ...                                                  |
 
@@ -185,30 +185,30 @@ I帧比较多的话，视频就会比较大
 
 #### 缺陷
 
-- audio与video不支持直接播放hls、flv等视频格式
+- audio 与 video 不支持直接播放 hls、flv 等视频格式
 - 视频资源的请求和加载无法通过代码控制，也就无法实现以下功能
   - 分段加载（节约流量）
   - 清晰度无缝切换
   - 精确预加载
 
-### MSE（拓展API）
+### MSE（拓展 API）
 
-媒体源扩展API (Media Source Extensions)
+媒体源扩展 API (Media Source Extensions)
 
-- 无插件在web端播放流媒体
-- 支持播放hIs、flv、 mp4等格式视频
+- 无插件在 web 端播放流媒体
+- 支持播放 hIs、flv、 mp4 等格式视频
 - 可实现视频分段加载、清晰度无缝切换、自适应码率、精确预加载等
 
-- 主流浏览器基本支持，除了IOS的Safari
+- 主流浏览器基本支持，除了 IOS 的 Safari
 
 ![image.png](https://backblaze.cosine.ren/juejin/57817e4755fb424cbda2d1810fb702d2~tplv-k3u1fbpfcp-watermark.png)
 
-1. 创建mediaSource实例
-2. 创建指向mediaSource的URL
-3. 监听sourceopen事件
-4. 创建sourceBuffer
-5. 向sourceBuffer中加入数据
-6. 监听updateend事件
+1. 创建 mediaSource 实例
+2. 创建指向 mediaSource 的 URL
+3. 监听 sourceopen 事件
+4. 创建 sourceBuffer
+5. 向 sourceBuffer 中加入数据
+6. 监听 updateend 事件
 
 ![image.png](https://backblaze.cosine.ren/juejin/6bb5eaa1edf54ad69934d046c3963cf6~tplv-k3u1fbpfcp-watermark.png)
 
@@ -220,18 +220,18 @@ I帧比较多的话，视频就会比较大
 
 ![image.png](https://backblaze.cosine.ren/juejin/ae27e7b4cedb4a72a9648f0d8644b450~tplv-k3u1fbpfcp-watermark.png)
 
-HLS全称是HTTP Live Streaming,是一个由Apple公司提出的基于HTTP的媒体流传输协议，用于实时音视频流的传输。目前HLS协议被广泛的应用于**视频点播**和直播领域。
+HLS 全称是 HTTP Live Streaming,是一个由 Apple 公司提出的基于 HTTP 的媒体流传输协议，用于实时音视频流的传输。目前 HLS 协议被广泛的应用于**视频点播**和直播领域。
 
 # 应用场景
 
 ![image.png](https://backblaze.cosine.ren/juejin/d112114f71f945a399ecd45fe24b31b1~tplv-k3u1fbpfcp-watermark.png)
 
 - 点播/直播 -> 视频上传 -> 视频转码
-- 图片  -> 支持一些新的图片
+- 图片 -> 支持一些新的图片
 - 云游戏 -> 不必再下繁琐的客户端等，运行在远端上，视频流来回传播（对延时要求高）
 
 # 总结感想
 
-本节课老师科普了Web多媒体技术的基本概念，如编码格式、封装格式、多媒体元素、流媒体协议等，并阐述了Web多媒体的多种应用场景
+本节课老师科普了 Web 多媒体技术的基本概念，如编码格式、封装格式、多媒体元素、流媒体协议等，并阐述了 Web 多媒体的多种应用场景
 
-> 本文引用的大部分内容来自刘立国老师的课以及MDN
+> 本文引用的大部分内容来自刘立国老师的课以及 MDN

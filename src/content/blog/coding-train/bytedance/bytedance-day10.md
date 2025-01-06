@@ -6,42 +6,44 @@ subtitle: 今日知识点：树的遍历、字符串、栈，难度为简单、�
 date: 2022-03-17 19:10:22
 cover: img/header_img/milky-way-over-bow-lake-alberta-canada-wallpaper-for-1920x1080-63-873.jpg
 tags:
-- leetcode
-- 树
-- 字符串
+  - leetcode
+  - 树
+  - 字符串
 categories:
-- [题目记录, 字节校园]
+  - [题目记录, 字节校园]
 ---
 
-day10题目：[94. 二叉树的中序遍历](https://leetcode-cn.com/problems/binary-tree-inorder-traversal/)、[102. 二叉树的层序遍历](https://leetcode-cn.com/problems/binary-tree-level-order-traversal/)、[394. 字符串解码](https://leetcode-cn.com/problems/decode-string/)
+day10 题目：[94. 二叉树的中序遍历](https://leetcode-cn.com/problems/binary-tree-inorder-traversal/)、[102. 二叉树的层序遍历](https://leetcode-cn.com/problems/binary-tree-level-order-traversal/)、[394. 字符串解码](https://leetcode-cn.com/problems/decode-string/)
 
 学习计划链接：[冲刺春招-精选笔面试 66 题大通关](https://leetcode-cn.com/study-plan/bytedancecampus/?progress=dcmyjb3)
 
 今日知识点：树的遍历、字符串、栈，难度为简单、中等、中等
 
 昨日题目链接：[冲刺春招-精选笔面试 66 题大通关 day9](https://ysx.cosine.ren/cn/%E5%86%B2%E5%88%BA%E6%98%A5%E6%8B%9B-%E7%B2%BE%E9%80%89%E7%AC%94%E9%9D%A2%E8%AF%95%2066%20%E9%A2%98%E5%A4%A7%E9%80%9A%E5%85%B3%20day9/)
+
 <!-- more -->
+
 # 94. 二叉树的中序遍历
 
 给定一个二叉树的根节点 `root` ，返回它的 **中序** 遍历。
 
 **示例 1：**
 
-```
+```plain
 输入： root = [1,null,2,3]
 输出： [1,3,2]
 ```
 
 **示例 2：**
 
-```
+```plain
 输入： root = []
 输出： []
 ```
 
 ## 思路
 
-easy题，中序遍历就是 左-根-右 ，前序就是根左右，后序就是左右根。
+easy 题，中序遍历就是 左-根-右 ，前序就是根左右，后序就是左右根。
 
 ## 代码
 
@@ -58,16 +60,16 @@ easy题，中序遍历就是 左-根-右 ，前序就是根左右，后序就是
  * @param {TreeNode} root
  * @return {number[]}
  */
-var inorderTraversal = function(root) {
-    var ans = [];
-    var inorder = function(rt) {
-        if(!rt) return;
-        inorder(rt.left);
-        ans.push(rt.val);
-        inorder(rt.right);
-    }
-    inorder(root);
-    return ans;
+var inorderTraversal = function (root) {
+  var ans = [];
+  var inorder = function (rt) {
+    if (!rt) return;
+    inorder(rt.left);
+    ans.push(rt.val);
+    inorder(rt.right);
+  };
+  inorder(root);
+  return ans;
 };
 ```
 
@@ -77,28 +79,28 @@ var inorderTraversal = function(root) {
 
 **示例 1：**
 
-```
+```plain
 输入： root = [3,9,20,null,null,15,7]
 输出： [[3],[9,20],[15,7]]
 ```
 
 **示例 2：**
 
-```
+```plain
 输入： root = [1]
 输出： [[1]]
 ```
 
 **示例 3：**
 
-```
+```plain
 输入： root = []
 输出： []
 ```
 
 ### 思路
 
-比昨天的题简单，每一层的结点存至q然后用nodelist暂存当前队列中所有结点（即该层的结点）后将q置空，遍历nodelist将每一个节点的孩子节点放入q
+比昨天的题简单，每一层的结点存至 q 然后用 nodelist 暂存当前队列中所有结点（即该层的结点）后将 q 置空，遍历 nodelist 将每一个节点的孩子节点放入 q
 
 ### 代码
 
@@ -115,24 +117,24 @@ var inorderTraversal = function(root) {
  * @param {TreeNode} root
  * @return {number[][]}
  */
-var levelOrder = function(root) {
-    if(!root) return [];
-    let ans = [];
-    let nowlist = [];
-    let q = [];
-    q.push(root)
-    while(q.length != 0) {
-        let nodes = q.slice(0);
-        q = [];
-        for(let v of nodes) {
-            nowlist.push(v.val);
-            if(v.left) q.push(v.left);
-            if(v.right) q.push(v.right);
-        }
-        ans.push(nowlist);
-        nowlist = [];
+var levelOrder = function (root) {
+  if (!root) return [];
+  let ans = [];
+  let nowlist = [];
+  let q = [];
+  q.push(root);
+  while (q.length != 0) {
+    let nodes = q.slice(0);
+    q = [];
+    for (let v of nodes) {
+      nowlist.push(v.val);
+      if (v.left) q.push(v.left);
+      if (v.right) q.push(v.right);
     }
-    return ans;
+    ans.push(nowlist);
+    nowlist = [];
+  }
+  return ans;
 };
 ```
 
@@ -148,28 +150,28 @@ var levelOrder = function(root) {
 
 **示例 1：**
 
-```
+```plain
 输入： s = "3[a]2[bc]"
 输出： "aaabcbc"
 ```
 
 **示例 2：**
 
-```
+```plain
 输入： s = "3[a2[c]]"
 输出： "accaccacc"
 ```
 
 **示例 3：**
 
-```
+```plain
 输入： s = "2[abc]3[cd]ef"
 输出： "abcabccdcdcdef"
 ```
 
 **示例 4：**
 
-```
+```plain
 输入： s = "abc3[cd]xyz"
 输出： "abccdcdcdxyz"
 ```
@@ -183,7 +185,7 @@ var levelOrder = function(root) {
 
 ## 思路
 
-遍历，若为数字则过滤出来该数字作为k，用一个栈stack存左括号，遇到右括号且栈中左括号数量不为1时出栈，当栈中只有一个左括号时，将该当前tempStr字符串递归解码后返回，重复k次后拼接至答案ans，若为其他则正常存入。
+遍历，若为数字则过滤出来该数字作为 k，用一个栈 stack 存左括号，遇到右括号且栈中左括号数量不为 1 时出栈，当栈中只有一个左括号时，将该当前 tempStr 字符串递归解码后返回，重复 k 次后拼接至答案 ans，若为其他则正常存入。
 
 ## 代码
 
@@ -192,31 +194,30 @@ var levelOrder = function(root) {
  * @param {string} s
  * @return {string}
  */
- var decodeString = function(s) {
-    let stack = [];
-    let ans = '';
-    let len = s.length;
-    for(let i = 0; i < len; ++i) {
-        if(s[i] >= '0' && s[i] <= '9') {
-            let tk = s[i++];
-            while(i < len && s[i] >= '0' && s[i] <= '9')
-                tk += s[i++];
-            let k = parseInt(tk);
-            let tempStr = '';
-            stack.push(s[i++]);   // 放入'['
-            while(i < len && (s[i] != ']' || stack.length != 1)) { // 若s[i] == ']' 并且 stack中只有一个时结束
-                if(s[i] == '[') {
-                    stack.push(s[i]);
-                } else if(s[i] == ']') 
-                    stack.pop();
-                tempStr += s[i];
-                ++i;
-            }
-            stack.pop();
-            let decode = decodeString(tempStr); // 核心
-            ans += `${decode.repeat(k)}`;
-        } else ans += s[i];
-    }
-    return ans;
+var decodeString = function (s) {
+  let stack = [];
+  let ans = '';
+  let len = s.length;
+  for (let i = 0; i < len; ++i) {
+    if (s[i] >= '0' && s[i] <= '9') {
+      let tk = s[i++];
+      while (i < len && s[i] >= '0' && s[i] <= '9') tk += s[i++];
+      let k = parseInt(tk);
+      let tempStr = '';
+      stack.push(s[i++]); // 放入'['
+      while (i < len && (s[i] != ']' || stack.length != 1)) {
+        // 若s[i] == ']' 并且 stack中只有一个时结束
+        if (s[i] == '[') {
+          stack.push(s[i]);
+        } else if (s[i] == ']') stack.pop();
+        tempStr += s[i];
+        ++i;
+      }
+      stack.pop();
+      let decode = decodeString(tempStr); // 核心
+      ans += `${decode.repeat(k)}`;
+    } else ans += s[i];
+  }
+  return ans;
 };
 ```

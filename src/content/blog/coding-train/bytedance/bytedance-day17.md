@@ -6,15 +6,15 @@ subtitle: 今日知识点：快慢指针、dfs、链表，难度为简单、中�
 date: 2022-03-24 17:09:32
 cover: img/header_img/milky-way-over-bow-lake-alberta-canada-wallpaper-for-1920x1080-63-873.jpg
 tags:
-- leetcode
-- 链表
-- 快慢指针
-- dfs/bfs
+  - leetcode
+  - 链表
+  - 快慢指针
+  - dfs/bfs
 categories:
-- [题目记录, 字节校园]
+  - [题目记录, 字节校园]
 ---
 
-day17题目：[141. 环形链表](https://leetcode-cn.com/problems/linked-list-cycle/)、[236. 二叉树的最近公共祖先](https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/)、[92. 反转链表 II](https://leetcode-cn.com/problems/reverse-linked-list-ii/)
+day17 题目：[141. 环形链表](https://leetcode-cn.com/problems/linked-list-cycle/)、[236. 二叉树的最近公共祖先](https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/)、[92. 反转链表 II](https://leetcode-cn.com/problems/reverse-linked-list-ii/)
 
 学习计划链接：[冲刺春招-精选笔面试 66 题大通关](https://leetcode-cn.com/study-plan/bytedancecampus/?progress=dcmyjb3)
 
@@ -34,7 +34,7 @@ day17题目：[141. 环形链表](https://leetcode-cn.com/problems/linked-list-c
 
 ![](https://backblaze.cosine.ren/juejin/194b1ae012b044ec9c443d9fba166f04~Tplv-K3u1fbpfcp-Zoom-1.png)
 
-```
+```plain
 输入： head = [3,2,0,-4], pos = 1
 输出： true
 解释： 链表中有一个环，其尾部连接到第二个节点。
@@ -44,7 +44,7 @@ day17题目：[141. 环形链表](https://leetcode-cn.com/problems/linked-list-c
 
 ![](https://backblaze.cosine.ren/juejin/C7e0b3ec5858499488fb3eca9d0a5ed7~Tplv-K3u1fbpfcp-Zoom-1.png)
 
-```
+```plain
 输入： head = [1,2], pos = 0
 输出： true
 解释： 链表中有一个环，其尾部连接到第一个节点。
@@ -54,7 +54,7 @@ day17题目：[141. 环形链表](https://leetcode-cn.com/problems/linked-list-c
 
 ![](https://backblaze.cosine.ren/juejin/5eac2477a0684c81910ffe905f60d7d7~Tplv-K3u1fbpfcp-Zoom-1.png)
 
-```
+```plain
 输入： head = [1], pos = -1
 输出： false
 解释： 链表中没有环。
@@ -87,15 +87,15 @@ day17题目：[141. 环形链表](https://leetcode-cn.com/problems/linked-list-c
  * @param {ListNode} head
  * @return {boolean}
  */
-var hasCycle = function(head) {
-    if(!head) return false
-    let [f, s] = [head, head]
-    while(s.next && f.next && f.next.next) {
-        f = f.next.next;
-        s = s.next
-        if(f === s) return true; 
-    }
-    return false;
+var hasCycle = function (head) {
+  if (!head) return false;
+  let [f, s] = [head, head];
+  while (s.next && f.next && f.next.next) {
+    f = f.next.next;
+    s = s.next;
+    if (f === s) return true;
+  }
+  return false;
 };
 ```
 
@@ -109,7 +109,7 @@ var hasCycle = function(head) {
 
 ![](https://backblaze.cosine.ren/juejin/3dc124e9ec624327a6c317cee3761d2f~Tplv-K3u1fbpfcp-Zoom-1.png)
 
-```
+```plain
 输入： root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 1
 输出： 3
 解释： 节点 5 和节点 1 的最近公共祖先是节点 3 。
@@ -119,7 +119,7 @@ var hasCycle = function(head) {
 
 ![](https://backblaze.cosine.ren/juejin/B2ebbac4b57b4255840806caa1d46ef9~Tplv-K3u1fbpfcp-Zoom-1.png)
 
-```
+```plain
 输入： root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 4
 输出： 5
 解释： 节点 5 和节点 4 的最近公共祖先是节点 5 。因为根据定义最近公共祖先节点可以为节点本身。
@@ -127,7 +127,7 @@ var hasCycle = function(head) {
 
 **示例 3：**
 
-```
+```plain
 输入： root = [1,2], p = 1, q = 2
 输出： 1
 ```
@@ -142,7 +142,7 @@ var hasCycle = function(head) {
 
 ## 思路
 
-先从一个节点往上走将沿途的vis置为true，再从另一个结点往上走，遇到vis为true的就是最近共同祖先，返回。
+先从一个节点往上走将沿途的 vis 置为 true，再从另一个结点往上走，遇到 vis 为 true 的就是最近共同祖先，返回。
 
 ## 代码
 
@@ -160,33 +160,33 @@ var hasCycle = function(head) {
  * @param {TreeNode} q
  * @return {TreeNode}
  */
-var lowestCommonAncestor = function(root, p, q) {
-    let fa = new Map()
-    let vis = new Map()
-    let init = function(rt) {
-        vis.set(rt.val, false);
-        if(rt.left) {
-            fa.set(rt.left.val, rt)
-            init(rt.left)
-        }
-        if(rt.right) {
-            fa.set(rt.right.val, rt)
-            init(rt.right)
-        }
+var lowestCommonAncestor = function (root, p, q) {
+  let fa = new Map();
+  let vis = new Map();
+  let init = function (rt) {
+    vis.set(rt.val, false);
+    if (rt.left) {
+      fa.set(rt.left.val, rt);
+      init(rt.left);
     }
-    fa.set(root.val, null)
-    init(root)
-    let ptr = p
-    while(ptr && fa.has(ptr.val)) {
-        vis.set(ptr.val, true)
-        ptr = fa.get(ptr.val)
+    if (rt.right) {
+      fa.set(rt.right.val, rt);
+      init(rt.right);
     }
-    ptr = q
-    while(ptr && fa.has(ptr.val)) {
-        if(vis.get(ptr.val)) return ptr
-        ptr = fa.get(ptr.val)
-    }
-}
+  };
+  fa.set(root.val, null);
+  init(root);
+  let ptr = p;
+  while (ptr && fa.has(ptr.val)) {
+    vis.set(ptr.val, true);
+    ptr = fa.get(ptr.val);
+  }
+  ptr = q;
+  while (ptr && fa.has(ptr.val)) {
+    if (vis.get(ptr.val)) return ptr;
+    ptr = fa.get(ptr.val);
+  }
+};
 ```
 
 # [92. 反转链表 II](https://leetcode-cn.com/problems/reverse-linked-list-ii/)
@@ -197,14 +197,14 @@ var lowestCommonAncestor = function(root, p, q) {
 
 ![](https://backblaze.cosine.ren/juejin/E7e0b18aac5140ec946a0d1f90bdd11e~Tplv-K3u1fbpfcp-Zoom-1.png)
 
-```
+```plain
 输入： head = [1,2,3,4,5], left = 2, right = 4
 输出： [1,4,3,2,5]
 ```
 
 **示例 2：**
 
-```
+```plain
 输入： head = [5], left = 1, right = 1
 输出： [5]
 ```
@@ -220,20 +220,20 @@ var lowestCommonAncestor = function(root, p, q) {
 
 ## 思路
 
-哎，先来一个反转链表的函数，day1的K组一个反转链表里边我们就写过：
+哎，先来一个反转链表的函数，day1 的 K 组一个反转链表里边我们就写过：
 
 ```js
-var reverseList = function(s, e) {
-    let prev = e.next
-    let nowv = s
-    while(prev != e) {
-        let temp = nowv.next
-        nowv.next = prev
-        prev = nowv
-        nowv = temp
-    }
-    return [e, s]
-}
+var reverseList = function (s, e) {
+  let prev = e.next;
+  let nowv = s;
+  while (prev != e) {
+    let temp = nowv.next;
+    nowv.next = prev;
+    prev = nowv;
+    nowv = temp;
+  }
+  return [e, s];
+};
 ```
 
 然后，当务之急是找到 `left` 和 `right` 对应的结点指针 `l` 和 `r`，以及 `l` 前面的 `prev`
@@ -251,38 +251,38 @@ var reverseList = function(s, e) {
  *     this.next = (next===undefined ? null : next)
  * }
  */
- var reverseList = function(s, e) {
-    let prev = e.next
-    let nowv = s
-    while(prev != e) {
-        let temp = nowv.next
-        nowv.next = prev
-        prev = nowv
-        nowv = temp
-    }
-    return [e, s]
-}
+var reverseList = function (s, e) {
+  let prev = e.next;
+  let nowv = s;
+  while (prev != e) {
+    let temp = nowv.next;
+    nowv.next = prev;
+    prev = nowv;
+    nowv = temp;
+  }
+  return [e, s];
+};
 /**
  * @param {ListNode} head
  * @param {number} left
  * @param {number} right
  * @return {ListNode}
  */
-var reverseBetween = function(head, left, right) {
-    let ehead = new ListNode(0, head)
-    let [prev, nowv, prel, l, r] = [ehead, head, ehead, head, head]
-    for(let cnt = 1; nowv; ++cnt, nowv = nowv.next) {
-        if(cnt === left) {
-            prel = prev
-            l = nowv
-        }
-        if(cnt === right) r = nowv
-        prev = nowv
+var reverseBetween = function (head, left, right) {
+  let ehead = new ListNode(0, head);
+  let [prev, nowv, prel, l, r] = [ehead, head, ehead, head, head];
+  for (let cnt = 1; nowv; ++cnt, nowv = nowv.next) {
+    if (cnt === left) {
+      prel = prev;
+      l = nowv;
     }
-    let temp = r.next
-    let [s, e] = reverseList(l, r)
-    prel.next = s
-    e.next = temp
-    return ehead.next
+    if (cnt === right) r = nowv;
+    prev = nowv;
+  }
+  let temp = r.next;
+  let [s, e] = reverseList(l, r);
+  prel.next = s;
+  e.next = temp;
+  return ehead.next;
 };
 ```

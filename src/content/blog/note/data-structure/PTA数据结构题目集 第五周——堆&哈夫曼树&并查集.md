@@ -6,25 +6,25 @@ lang: cn
 date: 2020-08-08 19:59:36
 subtitle: PTA数据结构题目集 第五周——堆&哈夫曼树&并查集，涉及小顶堆、并查集、哈夫曼树的基本操作，所用语言为c++。
 tags:
-- c++
-- PTA
-- 数据结构
+  - c++
+  - PTA
+  - 数据结构
 categories:
-- 题目记录
+  - 题目记录
 ---
 
 [题目集总目录](https://blog.csdn.net/qq_45890533/article/details/107131440)
 学习指路博客 [堆与哈夫曼树与并查集](https://blog.csdn.net/qq_45890533/article/details/105374437)
 
-# 05-树7 堆中的路径 (25分)
+# 05-树 7 堆中的路径 (25 分)
 
 [本题链接](https://pintia.cn/problem-sets/1268384564738605056/problems/1278908289143574528)
 
->将在“小白专场”中介绍C语言的实现方法，是建立最小堆的基本操作训练，**一定要做**
->
+> 将在“小白专场”中介绍 C 语言的实现方法，是建立最小堆的基本操作训练，**一定要做**
+
 ## 题目大意
 
-给出最小堆的插入序列，和下标序列，每个下标i输出Data[i]到根结点路径上的值。
+给出最小堆的插入序列，和下标序列，每个下标 i 输出 Data[i]到根结点路径上的值。
 
 ## 代码
 
@@ -84,15 +84,15 @@ int main() {
 测试点如下
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200714230745789.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODkwNTMz,size_16,color_FFFFFF,t_70)
 
-# 05-树8 File Transfer (25分)
+# 05-树 8 File Transfer (25 分)
 
 [本题链接](https://pintia.cn/problem-sets/1268384564738605056/problems/1278908289143574529)
 
->关于并查集，2005、2007年浙江大学计算机学院免试研究生上机考试题即由此题改编而来。“小白专场”中介绍了原始并查集算法的优化，听完课以后自己尝试一下
->
+> 关于并查集，2005、2007 年浙江大学计算机学院免试研究生上机考试题即由此题改编而来。“小白专场”中介绍了原始并查集算法的优化，听完课以后自己尝试一下
+
 ## 题目大意
 
-每个样例中，C为查询任意两个计算机是否联通，I为连通这两个计算机，最后S结束后检查是否全部连通，如没有全部不连通则输出有多少个连通的。
+每个样例中，C 为查询任意两个计算机是否联通，I 为连通这两个计算机，最后 S 结束后检查是否全部连通，如没有全部不连通则输出有多少个连通的。
 
 ## 思路
 
@@ -108,7 +108,7 @@ int fa[maxn];
 int N, x, y;
 char ch;
 inline void init() {
-    for(int i = 1; i <= N; ++i) 
+    for(int i = 1; i <= N; ++i)
         fa[i] = i;
 }
 int find(int x) {//查询+路径压缩 把沿途的每个节点的父节点都设为根节点
@@ -146,16 +146,16 @@ int main() {
 测试点如下
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/2020071915082251.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODkwNTMz,size_16,color_FFFFFF,t_70)
 
-# 05-树9 Huffman Codes (30分)
+# 05-树 9 Huffman Codes (30 分)
 
 [本题链接](https://pintia.cn/problem-sets/1268384564738605056/problems/1278908289143574530)
 
->考察对Huffman编码的理解，程序可能略繁，量力而为。
->**题目大意**： 给出若干字符及其频率，判断学生给的编码方式是否为最优编码
+> 考察对 Huffman 编码的理解，程序可能略繁，量力而为。
+> **题目大意**： 给出若干字符及其频率，判断学生给的编码方式是否为最优编码
 
 ## 思路
 
-看了陈越姥姥的讲解才知道，先根据给定的字符及其频率构建哈夫曼树，得到最优解的WPL(编码长度)，再判断学生给的编码，在长度一致的情况下，判断是否为前缀码。这里我用优先队列代替小顶堆的一大串代码，求wpl时用的是另一种方法。![在这里插入图片描述](https://img-blog.csdnimg.cn/20200722204540598.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODkwNTMz,size_16,color_FFFFFF,t_70)
+看了陈越姥姥的讲解才知道，先根据给定的字符及其频率构建哈夫曼树，得到最优解的 WPL(编码长度)，再判断学生给的编码，在长度一致的情况下，判断是否为前缀码。这里我用优先队列代替小顶堆的一大串代码，求 wpl 时用的是另一种方法。![在这里插入图片描述](https://img-blog.csdnimg.cn/20200722204540598.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODkwNTMz,size_16,color_FFFFFF,t_70)
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200722204602517.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODkwNTMz,size_16,color_FFFFFF,t_70)
 
 ## 代码
@@ -191,7 +191,7 @@ int WPL() {
   int t2 = q.top();
   q.pop();
   wpl += (t1+t2);
-  q.push(t1+t2); 
+  q.push(t1+t2);
  }
  return wpl;
 }

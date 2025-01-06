@@ -6,25 +6,25 @@ lang: cn
 date: 2020-03-21 20:41:41
 subtitle: O(nlogn)复杂度预处理，可以实现O(1)复杂度的查询。
 tags:
-- c++
-- 数据结构
-- ST表
+  - c++
+  - 数据结构
+  - ST表
 categories:
-- [笔记, 算法]
+  - [笔记, 算法]
 ---
 
-## ST表是什么
+## ST 表是什么
 
-ST表是一个用来解决区间最值问题查询的算法
-它用**O(nlogn)复杂度预处理，可以实现O(1)复杂度的查询。**
+ST 表是一个用来解决区间最值问题查询的算法
+它用**O(nlogn)复杂度预处理，可以实现 O(1)复杂度的查询。**
 **缺点：无法支持在线修改**
-模板题：[ST表-洛谷](https://www.luogu.com.cn/problem/P3865)
+模板题：[ST 表-洛谷](https://www.luogu.com.cn/problem/P3865)
 
 ### 1.预处理
 
-用一个二维数组dp[i][j]表示下标为 i ~ i + 2^j^ - 1 的最值（最大or最小值）
+用一个二维数组 dp[i][j]表示下标为 i ~ i + 2^j^ - 1 的最值（最大 or 最小值）
 则
-①易知边界条件dp[i][0]为a[i]，既i~i的最大值为其本身
+①易知边界条件 dp[i][0]为 a[i]，既 i~i 的最大值为其本身
 ②接下来是状态转移方程，如图
 
 > #### **1 << j 相当于 2^j^**
@@ -47,19 +47,19 @@ void init(int n) {
 
 ### 2.查询
 
-接下来就是查询，因为每次给出的查询区间长度不一定恰好为2^j，所以我们需要以下定理:（参考[大佬证明](https://blog.csdn.net/Hanks_o/article/details/77547380)）
+接下来就是查询，因为每次给出的查询区间长度不一定恰好为 2^j，所以我们需要以下定理:（参考[大佬证明](https://blog.csdn.net/Hanks_o/article/details/77547380)）
 
->##  **2^log(a)^>a/2**
+> ## **2^log(a)^>a/2**
 >
->### log(a)表示小于等于a的2的最大几次方
+> ### log(a)表示小于等于 a 的 2 的最大几次方
 >
->###### eg:log(4)=2,log(5)=2,log(6)=2,log(7)=2,log(8)=3,log(9)=3……
+> ###### eg:log(4)=2,log(5)=2,log(6)=2,log(7)=2,log(8)=3,log(9)=3……
 
-若我们要查询a~b区间的最小值
+若我们要查询 a~b 区间的最小值
 首先我们求出区间长度**len = b-a+1** 并令 **t = log(len)**
 由上述定理，**2^t^>len/2**
-也就是说，2^t在a,b区间的右半边
-a,b的最小值，即为min（a ~ (a+2^t^-1), (b-2^t^+1) ~ t）如图
+也就是说，2^t 在 a,b 区间的右半边
+a,b 的最小值，即为 min（a ~ (a+2^t^-1), (b-2^t^+1) ~ t）如图
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200321184107899.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODkwNTMz,size_16,color_FFFFFF,t_70)
 查询代码：
 
@@ -72,8 +72,8 @@ ll sol(int a, int b) {
 
 ### 3.完整代码
 
-题目：[ST表-洛谷](https://www.luogu.com.cn/problem/P3865)
-开了O2优化和快读才能ac
+题目：[ST 表-洛谷](https://www.luogu.com.cn/problem/P3865)
+开了 O2 优化和快读才能 ac
 
 ```cpp
 #include <iostream>

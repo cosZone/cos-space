@@ -6,24 +6,24 @@ subtitle: 知识点：树、字符串、回溯，难度为困难、中等
 date: 2022-04-26 22:32:00
 cover: img/header_img/polygon-pony-wallpaper-for-1920x1080-63-1175.jpg
 tags:
-- leetcode
-- 树
-- 字符串
-- 回溯
+  - leetcode
+  - 树
+  - 字符串
+  - 回溯
 categories:
-- [题目记录, 剑指offer]
+  - [题目记录, 剑指offer]
 ---
 
-day28题目：[剑指 Offer 37. 序列化二叉树](https://leetcode-cn.com/problems/xu-lie-hua-er-cha-shu-lcof/)、[剑指 Offer 38. 字符串的排列](https://leetcode-cn.com/problems/zi-fu-chuan-de-pai-lie-lcof/)
+day28 题目：[剑指 Offer 37. 序列化二叉树](https://leetcode-cn.com/problems/xu-lie-hua-er-cha-shu-lcof/)、[剑指 Offer 38. 字符串的排列](https://leetcode-cn.com/problems/zi-fu-chuan-de-pai-lie-lcof/)
 
 知识点：树、字符串、回溯，难度为困难、中等
 
 学习计划链接：[「剑指 Offer」 - 学习计划](https://leetcode-cn.com/study-plan/lcof/?progress=7jn70jr)
 
-| 题目 | 知识点 | 难度 |
-| --- | ---- | ---- |
-| [剑指 Offer 37. 序列化二叉树](https://leetcode-cn.com/problems/xu-lie-hua-er-cha-shu-lcof/) | [树](https://leetcode-cn.com/tag/tree)、[深度优先搜索](https://leetcode-cn.com/tag/depth-first-search) | 困难 |
-| [剑指 Offer 38. 字符串的排列](https://leetcode-cn.com/problems/zi-fu-chuan-de-pai-lie-lcof/) | [字符串](https://leetcode-cn.com/tag/string)、[回溯](https://leetcode-cn.com/tag/backtracking) | 中等 |
+| 题目                                                                                         | 知识点                                                                                                 | 难度 |
+| -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ | ---- |
+| [剑指 Offer 37. 序列化二叉树](https://leetcode-cn.com/problems/xu-lie-hua-er-cha-shu-lcof/)  | [树](https://leetcode-cn.com/tag/tree)、[深度优先搜索](https://leetcode-cn.com/tag/depth-first-search) | 困难 |
+| [剑指 Offer 38. 字符串的排列](https://leetcode-cn.com/problems/zi-fu-chuan-de-pai-lie-lcof/) | [字符串](https://leetcode-cn.com/tag/string)、[回溯](https://leetcode-cn.com/tag/backtracking)         | 中等 |
 
 # [剑指 Offer 37. 序列化二叉树](https://leetcode-cn.com/problems/xu-lie-hua-er-cha-shu-lcof/)
 
@@ -37,7 +37,7 @@ day28题目：[剑指 Offer 37. 序列化二叉树](https://leetcode-cn.com/prob
 
 ![](https://backblaze.cosine.ren/juejin/70a2e7018db1416dab0c4907d0e73893~Tplv-K3u1fbpfcp-Zoom-1.png)
 
-```
+```plain
 输入： root = [1,2,3,null,null,4,5]
 输出： [1,2,3,null,null,4,5]
 ```
@@ -50,11 +50,11 @@ day28题目：[剑指 Offer 37. 序列化二叉树](https://leetcode-cn.com/prob
 
 ```javascript
 function seria(root, str) {
-    if(root === null) return str+'N,'
-    str += `${root.val},`
-    str = seria(root.left, str)
-    str = seria(root.right, str)
-    return str
+  if (root === null) return str + 'N,';
+  str += `${root.val},`;
+  str = seria(root.left, str);
+  str = seria(root.right, str);
+  return str;
 }
 ```
 
@@ -64,15 +64,15 @@ function seria(root, str) {
 
 ```javascript
 function deseria(arr) {
-    if(arr[0] == 'N') {
-        arr.shift()
-        return null
-    }
-    let root = new TreeNode(parseInt(arr[0]))
-    arr.shift()
-    root.left = deseria(arr)
-    root.right = deseria(arr)
-    return root 
+  if (arr[0] == 'N') {
+    arr.shift();
+    return null;
+  }
+  let root = new TreeNode(parseInt(arr[0]));
+  arr.shift();
+  root.left = deseria(arr);
+  root.right = deseria(arr);
+  return root;
 }
 ```
 
@@ -93,15 +93,15 @@ function deseria(arr) {
  * @param {TreeNode} root
  * @return {string}
  */
-var serialize = function(root) {
-    function seria(root, str) {
-        if(root === null) return str+'N,'
-        str += `${root.val},`
-        str = seria(root.left, str)
-        str = seria(root.right, str)
-        return str
-    }
-    return seria(root, '')
+var serialize = function (root) {
+  function seria(root, str) {
+    if (root === null) return str + 'N,';
+    str += `${root.val},`;
+    str = seria(root.left, str);
+    str = seria(root.right, str);
+    return str;
+  }
+  return seria(root, '');
 };
 
 /**
@@ -110,20 +110,20 @@ var serialize = function(root) {
  * @param {string} data
  * @return {TreeNode}
  */
-var deserialize = function(data) {
-    function deseria(arr) {
-        if(arr[0] == 'N') {
-            arr.shift()
-            return null
-        }
-        let root = new TreeNode(parseInt(arr[0]))
-        arr.shift()
-        root.left = deseria(arr)
-        root.right = deseria(arr)
-        return root 
+var deserialize = function (data) {
+  function deseria(arr) {
+    if (arr[0] == 'N') {
+      arr.shift();
+      return null;
     }
-    let arr = data.split(',')
-    return deseria(arr)
+    let root = new TreeNode(parseInt(arr[0]));
+    arr.shift();
+    root.left = deseria(arr);
+    root.right = deseria(arr);
+    return root;
+  }
+  let arr = data.split(',');
+  return deseria(arr);
 };
 
 /**
@@ -140,7 +140,7 @@ var deserialize = function(data) {
 
 **示例:**
 
-```
+```plain
 输入： s = "abc"
 输出：[ "abc","acb","bac","bca","cab","cba" ]
 ```
@@ -153,30 +153,29 @@ var deserialize = function(data) {
 
 经典の字符串全排列
 
-不过注意，这里是有重复元素的全排列~所以需要用到map，之前出现过的就不必再排列
+不过注意，这里是有重复元素的全排列~所以需要用到 map，之前出现过的就不必再排列
 
 ```javascript
 /**
  * @param {string} s
  * @return {string[]}
  */
-var permutation = function(s) {
-    let res = [];
-    function permu(rest, str) {
-        if(rest.length == 0) {
-            res.push(str)
-            return
-        }
-        let m = new Map();
-        for(let i = 0; i < rest.length; i++) {
-            if(m.has(rest[i]))
-                continue
-            m.set(rest[i], 1)
-            let next = rest.slice(0, i) + rest.slice(i+1)
-            permu(next, str+rest[i])
-        }
+var permutation = function (s) {
+  let res = [];
+  function permu(rest, str) {
+    if (rest.length == 0) {
+      res.push(str);
+      return;
     }
-    permu(s, '')
-    return res;
+    let m = new Map();
+    for (let i = 0; i < rest.length; i++) {
+      if (m.has(rest[i])) continue;
+      m.set(rest[i], 1);
+      let next = rest.slice(0, i) + rest.slice(i + 1);
+      permu(next, str + rest[i]);
+    }
+  }
+  permu(s, '');
+  return res;
 };
 ```

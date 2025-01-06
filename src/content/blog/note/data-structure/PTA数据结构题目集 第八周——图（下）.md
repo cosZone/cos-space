@@ -3,30 +3,30 @@ title: PTA数据结构题目集 第八周——图（下）
 link: PTA数据结构题目集 第八周——图（下）
 catalog: true
 lang: cn
-date:  2020-08-21 03:45:26
+date: 2020-08-21 03:45:26
 subtitle: PTA数据结构题目集 第八周——图（下），涉及图的最小生成树（Kruskal算法、Prim算法），所用语言为c++。
 tags:
-- c++
-- PTA
-- 数据结构
-- 最小生成树
+  - c++
+  - PTA
+  - 数据结构
+  - 最小生成树
 categories:
-- 题目记录
+  - 题目记录
 ---
 
 @[TOC](目录)
 [题目集总目录](https://blog.csdn.net/qq_45890533/article/details/107131440)
-学习指路博客  [解决最小生成树问题(Kruskal算法&Prim算法)](https://blog.csdn.net/qq_45890533/article/details/105684653)、[数据结构学习笔记＜8＞ 排序](https://blog.csdn.net/qq_45890533/article/details/108246044)
+学习指路博客 [解决最小生成树问题(Kruskal 算法&Prim 算法)](https://blog.csdn.net/qq_45890533/article/details/105684653)、[数据结构学习笔记＜8＞ 排序](https://blog.csdn.net/qq_45890533/article/details/108246044)
 
-# 08-图7 公路村村通 (30分)
+# 08-图 7 公路村村通 (30 分)
 
 [本题链接](https://pintia.cn/problem-sets/1268384564738605056/problems/1286606445168746496)
 
->非常直白的最小生成树问题，但编程量略大，选做 —— 有时间就写写；
+> 非常直白的最小生成树问题，但编程量略大，选做 —— 有时间就写写；
 
 ## 题目大意
 
-给你所有村庄之间的高速公路所需成本，计算村村通所需最小成本，典型的最小生成树板子题，用Kruskal算法即可
+给你所有村庄之间的高速公路所需成本，计算村村通所需最小成本，典型的最小生成树板子题，用 Kruskal 算法即可
 
 ## 代码
 
@@ -82,15 +82,15 @@ int main(){
 测试点如下：
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/2020080818560191.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODkwNTMz,size_16,color_FFFFFF,t_70)
 
-# 08-图8 How Long Does It Take (25分)
+# 08-图 8 How Long Does It Take (25 分)
 
 [本题链接](https://pintia.cn/problem-sets/1268384564738605056/problems/1286606445168746497)
 
->拓扑排序的变形，程序不算复杂，建议尝试；
+> 拓扑排序的变形，程序不算复杂，建议尝试；
 
 ## 题目大意
 
-给你项目的N个活动检查点（编号从0 ~ N-1）和M个活动，接下来M行每行3个整数分别是活动的开始检查点编号，结束检查点编号和持续时间，找到项目的最早完成时间。
+给你项目的 N 个活动检查点（编号从 0 ~ N-1）和 M 个活动，接下来 M 行每行 3 个整数分别是活动的开始检查点编号，结束检查点编号和持续时间，找到项目的最早完成时间。
 
 ## 思路
 
@@ -138,7 +138,7 @@ bool Topsort() {//拓扑排序
         for(int i = 0; i < N; ++i) {
             if(v == i || edge[v][i] == -1) continue;//检查以v为起点的所有边
             In[i]--;
-            if(mint[i] < mint[v] + edge[v][i]) 
+            if(mint[i] < mint[v] + edge[v][i])
                 mint[i] = mint[v] + edge[v][i];
             if(In[i] == 0) q.push(i);
         }
@@ -170,11 +170,11 @@ int main(){
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200820235833692.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODkwNTMz,size_16,color_FFFFFF,t_70#pic_center)
 
-# 08-图9 关键活动 (30分)
+# 08-图 9 关键活动 (30 分)
 
 [本题链接](https://pintia.cn/problem-sets/1268384564738605056/problems/1286606445168746498)
 
->在听完课以后，这题的思路应该比较清晰了，只需要在前面一题的程序基础上增加一些内容。不过编程量还是有一些的，根据自己的时间决定，慎入。
+> 在听完课以后，这题的思路应该比较清晰了，只需要在前面一题的程序基础上增加一些内容。不过编程量还是有一些的，根据自己的时间决定，慎入。
 
 ## 题目大意
 
@@ -214,7 +214,7 @@ void init() {
 bool Get_Mint() {
     queue<int> q;
     for(int i = 1; i <= N; ++i) {
-        if(In[i] == 0) 
+        if(In[i] == 0)
             q.push(i);
     }
     int cnt = 0;
@@ -227,7 +227,7 @@ bool Get_Mint() {
             In[i]--;
             //<v,i>有有向边
             mint[i] = max(mint[i], mint[v] + edge[v][i]);
-            if(In[i] == 0) 
+            if(In[i] == 0)
                 q.push(i);
         }
     }
@@ -269,7 +269,7 @@ int main(){
         In[v]++;
         Out[u]++;
     }
-    if(Get_Mint()) { 
+    if(Get_Mint()) {
         for(int i = 1; i <= N; ++i) {
             if(ans < mint[i]) {
                 ans = mint[i];
@@ -277,7 +277,7 @@ int main(){
             }
         }
         cout << ans << endl;
-        Get_Maxt(); 
+        Get_Maxt();
         for(int i = 1; i <= N; ++i) {
             for(int j = N; j >= 1; --j) {
                 if(edge[i][j] != -1 && edge[i][j] == maxt[j] - mint[i]) {
@@ -292,5 +292,5 @@ int main(){
 
 ## 测试点
 
-疯狂WA测试点2和5……最后发现是两行代码弄反了qwq
+疯狂 WA 测试点 2 和 5……最后发现是两行代码弄反了 qwq
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/2020082103435554.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODkwNTMz,size_16,color_FFFFFF,t_70#pic_center)

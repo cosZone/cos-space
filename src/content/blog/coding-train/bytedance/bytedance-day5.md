@@ -6,13 +6,14 @@ subtitle: 今日知识点：链表、数组、快排，难度为中等、中等�
 date: 2022-03-12 23:30:22
 cover: img/header_img/milky-way-over-bow-lake-alberta-canada-wallpaper-for-1920x1080-63-873.jpg
 tags:
-- leetcode
-- 快速排序
-- 链表
+  - leetcode
+  - 快速排序
+  - 链表
 categories:
-- [题目记录, 字节校园]
+  - [题目记录, 字节校园]
 ---
-day5题目：[7. 整数反转](https://leetcode-cn.com/problems/reverse-integer/)、[215. 数组中的第K个最大元素](https://leetcode-cn.com/problems/kth-largest-element-in-an-array/)、[23. 合并K个升序链表](https://leetcode-cn.com/problems/merge-k-sorted-lists/)
+
+day5 题目：[7. 整数反转](https://leetcode-cn.com/problems/reverse-integer/)、[215. 数组中的第 K 个最大元素](https://leetcode-cn.com/problems/kth-largest-element-in-an-array/)、[23. 合并 K 个升序链表](https://leetcode-cn.com/problems/merge-k-sorted-lists/)
 
 学习计划链接：[冲刺春招-精选笔面试 66 题大通关](https://leetcode-cn.com/study-plan/bytedancecampus/?progress=dcmyjb3)
 
@@ -24,7 +25,7 @@ day5题目：[7. 整数反转](https://leetcode-cn.com/problems/reverse-integer/
 
 给你一个 32 位的有符号整数 x ，返回将 x 中的数字部分反转后的结果。
 
-如果反转后整数超过 32 位的有符号整数的范围 [−231,  231 − 1] ，就返回 0。
+如果反转后整数超过 32 位的有符号整数的范围 [−231, 231 − 1] ，就返回 0。
 
 假设环境不允许存储 64 位整数（有符号或无符号）。
 
@@ -38,7 +39,7 @@ day5题目：[7. 整数反转](https://leetcode-cn.com/problems/reverse-integer/
 看了题解才晓得，是数学题嗷，通过不等式变换
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/ab6f52e151fa4b2981ff5a239430c580.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5L2ZY29z,size_20,color_FFFFFF,t_70,g_se,x_16)
 这我是真没想到（）
-取巧一些的话就用long long存防止溢出
+取巧一些的话就用 long long 存防止溢出
 
 ## 完整代码
 
@@ -57,7 +58,7 @@ public:
 };
 ```
 
-# 215. 数组中的第K个最大元素
+# 215. 数组中的第 K 个最大元素
 
 给定整数数组 nums 和整数 k，请返回数组中第 k 个最大的元素。
 
@@ -73,7 +74,7 @@ public:
 
 ## 思路
 
-取巧一点就直接调sort排好序之后返回。
+取巧一点就直接调 sort 排好序之后返回。
 否则的话手写快排咯~~具体可以看排序那期的学习笔记：[数据结构学习笔记＜8＞ 排序](https://blog.csdn.net/qq_45890533/article/details/108246044)
 
 ## 完整代码
@@ -90,7 +91,7 @@ public:
 };
 ```
 
-手写快排，主元在s~e中随机抽取以避免最坏情况。
+手写快排，主元在 s~e 中随机抽取以避免最坏情况。
 
 ```cpp
 class Solution {
@@ -118,7 +119,7 @@ public:
 };
 ```
 
-# 23. 合并K个升序链表
+# 23. 合并 K 个升序链表
 
 给你一个链表数组，每个链表都已经按升序排列。
 
@@ -129,16 +130,17 @@ public:
 > 输出：[1,1,2,3,4,4,5,6]
 > 解释：链表数组如下：
 > [
-> 1->4->5,
-> 1->3->4,
-> 2->6
-> ]
-> 将它们合并到一个有序链表中得到。
-> 1->1->2->3->4->4->5->6
+>
+> > 1->4->5,
+> > 1->3->4,
+> > 2->6
+> > ]
+> > 将它们合并到一个有序链表中得到。
+> > 1->1->2->3->4->4->5->6
 
 ## 思路
 
-day1就写过合并两个有序链表，这次的只需要暴力就好了。
+day1 就写过合并两个有序链表，这次的只需要暴力就好了。
 但要优化的话，可以使用优先队列每次链表头的结点，取出最顶上的结点放至答案链表后。
 
 ## 完整代码
@@ -153,32 +155,32 @@ day1就写过合并两个有序链表，这次的只需要暴力就好了。
  *     this.next = (next===undefined ? null : next)
  * }
  */
- 
-var mergeList = function(list1, list2) {
-    let p1 = list1;
-    let p2 = list2;
-    if(!p1 && !p2) return null;
-    else if(!p1) return p2;
-    else if(!p2) return p1;
-    else if(p1.val <= p2.val) {
-        p1.next = mergeList(p1.next, p2);
-        return p1;
-    } else {
-        p2.next = mergeList(p2.next, p1);
-        return p2;
-    }
-}
+
+var mergeList = function (list1, list2) {
+  let p1 = list1;
+  let p2 = list2;
+  if (!p1 && !p2) return null;
+  else if (!p1) return p2;
+  else if (!p2) return p1;
+  else if (p1.val <= p2.val) {
+    p1.next = mergeList(p1.next, p2);
+    return p1;
+  } else {
+    p2.next = mergeList(p2.next, p1);
+    return p2;
+  }
+};
 /**
  * @param {ListNode[]} lists
  * @return {ListNode}
  */
-var mergeKLists = function(lists) {
-    let ans = null;
-    let len = lists.length;
-    for(let i = 0; i < len; ++i) {
-        ans = mergeList(ans, lists[i]);
-    }
-    return ans;
+var mergeKLists = function (lists) {
+  let ans = null;
+  let len = lists.length;
+  for (let i = 0; i < len; ++i) {
+    ans = mergeList(ans, lists[i]);
+  }
+  return ans;
 };
 ```
 
