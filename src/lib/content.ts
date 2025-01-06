@@ -84,3 +84,11 @@ export function addCategoryRecursively(rootCategories: Category[], parentNames: 
     }
   }
 }
+
+// 统一 ['分类1', '分类2'] 和 '分类'
+export function getCategoryArr(categories?: string[] | string) {
+  if (!categories) return [];
+  if (Array.isArray(categories) && categories.length) {
+    return categories as string[];
+  } else return [categories as string];
+}

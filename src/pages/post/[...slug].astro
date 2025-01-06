@@ -3,7 +3,7 @@ import HomeSider from '@components/layout/HomeSider.astro';
 import Cover from '@components/ui/cover/Cover.astro';
 import { siteConfig } from '@constants/site-config';
 import Layout from '@layouts/Layout.astro';
-import { getSortedPosts } from '@lib/content';
+import { getCategoryArr, getSortedPosts } from '@lib/content';
 import { parseDate } from '@lib/datetime';
 
 export async function getStaticPaths() {
@@ -19,23 +19,26 @@ export async function getStaticPaths() {
 }
 const { post } = Astro.props;
 const { Content } = await post.render();
-const tags = post.data?.tags ?? [];
+const { title, description, categories = [], tags = [], date } = post?.data ?? {};
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'BlogPosting',
-  headline: post.data.title,
-  description: post.data.description || post.body?.slice(0, 100),
-  keywords: post.data?.categories?.length ? tags.concat(post.data?.categories[0]) : tags,
+  headline: title,
+  description: description || post.body?.slice(0, 100),
+  keywords: categories?.length ? tags.concat(categories[0]) : tags,
   author: {
     '@type': 'Person',
     name: siteConfig.author ?? siteConfig.name,
     url: Astro.site,
   },
-  datePublished: parseDate(post.data.date, 'YYYY-MM-DD'),
+  datePublished: parseDate(date, 'YYYY-MM-DD'),
 };
+
+const categoryArr = getCategoryArr(categories?.[0]);
+const categoryStr = categoryArr?.length ? ` | ${categoryArr.join(' / ')}` : '';
 ---
 
-<Layout title={`${post.data.title} | ${siteConfig.title}`} description={post.data.description}>
+<Layout title={`${post.data.title}${categoryStr} | ${siteConfig.title}`} description={description}>
   <script is:inline slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   <div class="mb-20 flex flex-col">
     <Cover data={post} />
