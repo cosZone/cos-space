@@ -1,12 +1,14 @@
 type SiteConfig = {
-  title: string;
-  alternate?: string;
-  subtitle?: string;
-  name: string;
-  description?: string;
-  avatar?: string;
-  showLogo?: boolean;
-  author?: string;
+  title: string; // 网站标题名称（banner 上）
+  alternate?: string; // 网站英文短名
+  subtitle?: string; // 副标题
+  name: string; // 作者名称
+  description?: string; // 站点简介（一段话）
+  avatar?: string; // 站点头像 logo.png or url
+  showLogo?: boolean; // 是否显示 logo，否则用 alternate 当·logo
+  author?: string; // 文章作者
+  // theme
+  enableJSGridCover?: boolean; // 是否启用 color4bg 的背景 (写了不舍得扔)
 };
 
 // TODO: change to backend
@@ -15,16 +17,18 @@ type SiteConfig = {
 export const siteConfig: SiteConfig = {
   title: '余弦の博客', // 网站名称
   alternate: 'cosine', // 网站名称
-  subtitle: 'WA的一声就哭了', // 副标题
+  subtitle: 'WA 的一声就哭了', // 副标题
   name: 'cos',
   description: '图片迁移完毕，博客待重构~', // 站点简介（一段话）
   avatar: 'https://ysx.cosine.ren/img/avatar.jpg', // 站点头像 logo.png or url
   showLogo: true, // 是否显示 logo 否则用 title
   author: 'cos', // 作者名称
-};
 
+  enableJSGridCover: false, // 是否启用 color4bg 的背景
+};
+const { title, alternate, subtitle } = siteConfig;
 export const seoConfig = {
-  title: 'Cos Space',
+  title: `${alternate ? alternate + ' = ' : ''}${title}${subtitle ? ' = ' + subtitle : ''}`,
   description:
     'cosSpace 是基于 Next.js (App Router)、Typescript、React 和 Tailwind 开发的个人空间，是 cos_blogs 的重构版，为用户提供同时拥有博客和个人空间的平台。',
   keywords: 'cos, cosine, cos_blogs, 博客, 个人空间, 技术, 前端, cos-space',

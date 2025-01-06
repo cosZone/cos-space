@@ -5,6 +5,7 @@ import { Icon } from 'astro-icon/components';
 import readingTime from 'reading-time';
 import type { BlogPost } from 'types/blog';
 import WaveSvg from './wave';
+import JSBgScript from './JSBgScript.astro';
 
 export interface CoverProps {
   data?: BlogPost;
@@ -47,49 +48,10 @@ const readState = readingTime(data?.body ?? '');
       )
     }
   </div>
-  <div class="relative -z-10 h-full min-h-[15rem] w-full" transition:persist="page-cover-banner" id="banner-box"></div>
+  <div class="relative -z-10 h-full min-h-[15rem] w-full" transition:persist="page-cover-banner" id="banner-box">
+    <img src="https://r2.cosine.ren/i/2025/01/04/9al5e-x5.webp" alt="cover" class="h-full w-full object-cover" />
+  </div>
   <WaveSvg transition:persist="page-cover-wave" />
 </div>
-<!-- thanks https://www.color4bg.com/zh-hans/ -->
-<script src="/js/GridArrayBg.min.js" is:inline></script>
 
-<script is:inline>
-  let lightColors = ['#ed719a', '#FFACDE', '#FBD7ED', '#EEF1F0', '#DDDDDD', '#B4B4B4'];
-  let darkColors = ['#212832', '#3F4659', '#8592A7', '#EEEFEA', '#212832', '#3F4659'];
-
-  function changeColor(mode) {
-    colorbg = new Color4Bg.GridArrayBg({
-      dom: 'banner-box',
-      colors: mode === 'light' ? lightColors : darkColors,
-      loop: true,
-    });
-  }
-  // 监听html的class属性变化若包含dark或者不包含则重新new
-  new MutationObserver((mutationsList, observer) => {
-    for (const mutation of mutationsList) {
-      if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
-        console.log('change', document.documentElement.classList);
-        if (document.documentElement.classList.contains('dark')) {
-          changeColor('dark');
-        } else {
-          changeColor('light');
-        }
-      }
-    }
-  }).observe(document.documentElement, { attributes: true });
-
-  function debounce(fn, delay) {
-    let timer = null;
-    return function () {
-      clearTimeout(timer);
-      timer = setTimeout(fn, delay);
-    };
-  }
-  // 监听resize 加个防抖
-  window.addEventListener(
-    'resize',
-    debounce(() => {
-      changeColor(document.documentElement.classList.contains('dark') ? 'dark' : 'light');
-    }, 1000),
-  );
-</script>
+{siteConfig?.enableJSGridCover && <JSBgScript />}

@@ -10,10 +10,10 @@ import { ClientRouter } from 'astro:transitions';
 import LoadingIndicator from 'astro-loading-indicator/component';
 import Header from '@components/layout/Header.astro';
 import '@styles/index.css';
-import { siteConfig } from '@constants/site-config';
+import { seoConfig, siteConfig } from '@constants/site-config';
 import { Tooltips } from 'astro-tooltips';
 
-const { title = siteConfig.title, description = siteConfig.description } = Astro.props;
+const { title = seoConfig.title, description = seoConfig.description } = Astro.props;
 ---
 
 <!doctype html>
@@ -51,8 +51,10 @@ const { title = siteConfig.title, description = siteConfig.description } = Astro
         (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
       ) {
         document.documentElement.classList.add('dark');
+        document.documentElement.classList.remove('light');
       } else {
         document.documentElement.classList.remove('dark');
+        document.documentElement.classList.add('light');
       }
     </script>
     <script>
@@ -62,8 +64,10 @@ const { title = siteConfig.title, description = siteConfig.description } = Astro
           (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
         ) {
           document.documentElement.classList.add('dark');
+          document.documentElement.classList.remove('light'); // 本来是没有 light 的，这样是为了触发 MutationObserver
         } else {
           document.documentElement.classList.remove('dark');
+          document.documentElement.classList.add('light');
         }
       }
       // 在每次页面加载时检查
