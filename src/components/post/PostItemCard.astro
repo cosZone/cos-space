@@ -40,8 +40,9 @@ const getCategory = () => {
     aria-label="post-link"
     href={href}
     class={cn(
-      'relative h-[11.625rem] max-h-[11.625rem] w-[calc(50%-2rem)] overflow-hidden rounded-lg xs:w-full xs:clip-path-none',
-      leftClip ? 'order-1 clip-path-post-img-left' : 'order-2 clip-path-post-img-right',
+      'relative h-[11.625rem] max-h-[11.625rem] w-[calc(50%-2rem)] overflow-hidden rounded-lg xs:w-auto xs:clip-path-none',
+      leftClip ? ' order-1 clip-path-post-img-left' : 'order-2 clip-path-post-img-right',
+      'xs:order-none xs:clip-path-none',
     )}
   >
     <img
@@ -51,7 +52,13 @@ const getCategory = () => {
       class="h-full w-full cursor-pointer object-cover transition duration-500 group-hover:rotate-3 group-hover:scale-110"
     />
   </a>
-  <div class={cn('flex w-[calc(50%+2rem)] flex-col gap-2 px-4 pb-2 pt-4 xs:w-full xs:pt-1', leftClip ? 'order-2' : 'order-1')}>
+  <div
+    class={cn(
+      'flex w-[calc(50%+2rem)] flex-col gap-2 px-4 pb-2 pt-4 xs:w-full xs:pt-1',
+      leftClip ? 'order-2' : 'order-1',
+      'xs:order-none',
+    )}
+  >
     <div class="flex w-full justify-between">
       <div class="flex-center text-xs text-muted-foreground">
         <Icon name="gg:flag" />
@@ -81,8 +88,10 @@ const getCategory = () => {
         ><h3 class="truncate text-xl font-bold leading-none tracking-tight text-primary">{title}</h3>
       </a>
     </div>
-    <p class="line-clamp-3 h-15 overflow-hidden text-sm text-muted-foreground">{description ?? body?.slice(0, 150)}</p>
-    <div class={cn('mt-2 flex flex-wrap gap-2', { 'justify-end': !leftClip })}>
+    <p class="line-clamp-3 h-15 overflow-hidden text-sm text-muted-foreground">
+      {description ?? body?.slice(0, 150)}
+    </p>
+    <div class={cn('mt-2 flex flex-wrap gap-2', { 'justify-end': !leftClip }, 'xs:justify-start')}>
       {
         data?.data.tags?.length
           ? data?.data.tags.map((tag: string) => (
@@ -93,13 +102,18 @@ const getCategory = () => {
           : null
       }
     </div>
-    <a href={href} aria-label="more info" class={cn('absolute bottom-0', leftClip ? 'right-0' : 'left-0')}>
+    <a
+      href={href}
+      aria-label="more info"
+      class={cn('absolute bottom-0', leftClip ? 'right-0' : 'left-0', 'xs:left-auto xs:right-0')}
+    >
       <Button
         className={cn(
           'rounded-2xl bg-gradient-shoka-button transition-all hover:translate-y-1 hover:scale-105',
           leftClip
             ? 'rounded-es-none rounded-se-none hover:translate-x-1'
             : 'rounded-ee-none rounded-ss-none hover:-translate-x-1',
+          'xs:rounded-ee-2xl xs:rounded-es-none xs:rounded-se-none xs:rounded-ss-2xl xs:hover:-translate-x-1',
         )}
       >
         more...

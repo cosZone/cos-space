@@ -115,6 +115,9 @@ export default {
       spacing: {
         15: '3.75rem',
       },
+      maxWidth: {
+        '8xl': '87.5rem',
+      },
     },
   },
   plugins: [require('tailwindcss-animate'), require('tailwind-clip-path'), require('@tailwindcss/typography')],
