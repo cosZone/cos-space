@@ -3,7 +3,11 @@
 @tailwind utilities;
 
 @layer base {
+  @view-transition {
+    navigation: auto; /* enabled! */
+  }
   body {
+    overscroll-behavior-y: none;
     background: linear-gradient(to top, var(--box-bg-shadow) 0, var(--gradient-bg-start) 30%) no-repeat bottom;
   }
   h1,
@@ -12,7 +16,7 @@
   h4,
   h5,
   h6 {
-    font-family: '方正悠宋 简 509R', var(--font-poppins), var(--font-notoSerifJp);
+    font-family: 'Poppins', '方正悠宋 简 509R', 'Noto Serif JP';
   }
   *::-webkit-scrollbar {
     display: none;
@@ -41,7 +45,12 @@
 /* utils */
 @layer components {
   .font-default {
-    font-family: var(--font-poppins), -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    font-family:
+      'Poppins',
+      -apple-system,
+      'PingFang SC',
+      'Microsoft YaHei',
+      sans-serif;
   }
   .flex-center {
     @apply flex items-center justify-center;
@@ -69,5 +78,29 @@
 
   .shadow-text {
     text-shadow: 0 0.2rem 0.3rem rgba(0, 0, 0, 0.5);
+  }
+
+  #site-header {
+    @apply translate-y-0 transition-transform duration-300;
+    button {
+      @apply shadow-text;
+      &::after {
+        transition-duration: 400ms;
+        @apply bg-white;
+      }
+    }
+  }
+  #site-header.with-background {
+    @apply border-b border-border bg-gradient-header text-foreground;
+    button {
+      text-shadow: none;
+      &::after {
+        transition-duration: 400ms;
+        @apply bg-foreground;
+      }
+    }
+  }
+  #site-header.header-hidden {
+    @apply -translate-y-full;
   }
 }

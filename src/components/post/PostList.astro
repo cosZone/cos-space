@@ -1,0 +1,43 @@
+---
+import type { BlogPost } from 'types/blog';
+import Divider from '@components/ui/divider';
+import EmptySvg from '@components/svg/EmptySvg';
+import type { Page } from 'astro';
+import Paginator from './Paginator.astro';
+import PostItemCard from './PostItemCard.astro';
+import { defaultCoverList } from '@constants/site-config';
+import { shuffle } from 'lodash-es';
+interface Props {
+  posts?: BlogPost[];
+  page?: Page<BlogPost>;
+  showPaginator?: boolean;
+}
+
+const { posts, page, showPaginator = true } = Astro.props;
+const covers = shuffle(defaultCoverList).slice(0, 10);
+---
+
+<div class="shadow-box flex w-full flex-col gap-8 bg-gradient-start p-4 pt-8 2xl:container md:px-1 md:py-2">
+  <Divider>文章列表</Divider>
+
+  {
+    !posts?.length && (
+      <div class="flex flex-col items-center gap-2 text-foreground/30">
+        <EmptySvg className="fill-foreground/20" />
+        <span>还没有发表文章哦～</span>
+      </div>
+    )
+  }
+  {
+    posts && posts?.length > 0 && (
+      <>
+        <div class="flex flex-col gap-8 px-5">
+          {posts.map((post, index) => (
+            <PostItemCard data={post} leftClip={index % 2 === 0} randomCover={covers[index]} />
+          ))}
+        </div>
+        {showPaginator && page && <Paginator page={page} />}
+      </>
+    )
+  }
+</div>

@@ -1,13 +1,10 @@
-import React from 'react';
-import { twMerge } from 'tailwind-merge';
-
 /**
  * Empty
  * @constructor
  */
 export default function EmptySvg({ className }: { className?: string }) {
   return (
-    <svg className={className} width="48" height="38" viewBox="0 0 48 38" fill="current" xmlns="http://www.w3.org/2000/svg">
+    <svg className={className} width="48" height="38" viewBox="0 0 48 38" fill="current">
       <g filter="url(#filter0_b_3364_6889)">
         <path
           fillRule="evenodd"

@@ -1,11 +1,10 @@
-import React, { cloneElement, useRef, useState } from 'react';
+import React, { cloneElement, useRef, useState, type JSX } from 'react';
 import {
   arrow,
   autoUpdate,
   flip,
   FloatingPortal,
   offset,
-  Placement,
   shift,
   useDismiss,
   useFloating,
@@ -13,9 +12,10 @@ import {
   useHover,
   useInteractions,
   useRole,
+  type Placement,
 } from '@floating-ui/react';
-import { fontVariants } from '@/constants/font';
-import { cn } from '@/lib/utils';
+// import { fontVariants } from '@constants/font';
+import { cn } from '@lib/utils';
 
 type TooltipProps = {
   offsetX?: number;
@@ -26,6 +26,8 @@ type TooltipProps = {
 };
 
 export default function Tooltip({ children, title, placement = 'top', offsetX, className }: TooltipProps) {
+  const isBrowser = typeof window !== 'undefined';
+
   const arrowRef = useRef<HTMLImageElement>(null);
   const [open, setOpen] = useState(false);
   const { x, y, refs, strategy, context, middlewareData } = useFloating({
@@ -35,7 +37,6 @@ export default function Tooltip({ children, title, placement = 'top', offsetX, c
     whileElementsMounted: autoUpdate,
     middleware: [offset(offsetX ?? 5), shift(), arrow({ element: arrowRef }), flip({ fallbackAxisSideDirection: 'start' })],
   });
-
   const { getReferenceProps, getFloatingProps } = useInteractions([
     useHover(context, { move: false }),
     useFocus(context),
@@ -43,6 +44,10 @@ export default function Tooltip({ children, title, placement = 'top', offsetX, c
     useRole(context, { role: 'tooltip' }),
   ]);
 
+  // 如果不在浏览器环境，直接返回children
+  if (!isBrowser) {
+    return children;
+  }
   return (
     <>
       {cloneElement(children, getReferenceProps({ ref: refs.setReference, ...children.props }))}
@@ -51,7 +56,7 @@ export default function Tooltip({ children, title, placement = 'top', offsetX, c
           <div
             className={cn(
               'text-xs/3.5 z-10 rounded-lg border bg-background/80 px-3 py-1 text-card-foreground backdrop-blur-lg',
-              ...fontVariants,
+              // ...fontVariants, // TODO: Font 迁移
               className,
             )}
             ref={refs.setFloating}

@@ -1,7 +1,8 @@
-import { Routes } from '@/constants/router';
+import { Routes } from '@constants/router';
 
 type PostParam = {
-  id: number | string;
+  id?: number | string;
+  link?: string;
 };
 export type RouteParams<T extends Routes> = T extends Routes.Post ? PostParam : undefined;
 
@@ -10,7 +11,7 @@ export function routeBuilder<T extends Routes>(route: T, param: RouteParams<type
   if (typeof param === 'undefined') return href;
   switch (route) {
     case Routes.Post:
-      href += `/${param.id}`;
+      href += `/${param?.link ?? param?.id}`;
       break;
     default:
       break;

@@ -1,0 +1,109 @@
+---
+// 导入所需的库和类型
+import { Badge } from '@components/ui/badge';
+import { Button } from '@components/ui/button';
+import { Routes } from '@constants/router';
+import { defaultCoverList } from '@constants/site-config';
+import { parseDate } from '@lib/datetime';
+import { routeBuilder } from '@lib/route';
+import { cn } from '@lib/utils';
+import { Icon } from 'astro-icon/components';
+import readingTime from 'reading-time';
+import type { BlogPost } from 'types/blog';
+
+export interface PostItemCardProps {
+  data?: BlogPost;
+  leftClip?: boolean;
+  randomCover: string;
+}
+
+const { randomCover, data, leftClip = true } = Astro.props as PostItemCardProps;
+
+const { cover, date, catalog, categories, title, description, link } = data?.data ?? {};
+const { id, body, rendered } = data ?? {};
+
+const readState = readingTime(body ?? '');
+const finalCover = cover ?? randomCover ?? defaultCoverList[0];
+const href = routeBuilder(Routes.Post, { id, link: (rendered?.metadata?.link as string) ?? link });
+
+const getCategory = () => {
+  if (!catalog || !categories?.length) return '';
+  if (Array.isArray(categories[0])) return categories[0].join(' / ');
+  return categories[0];
+};
+---
+
+<div
+  class="hover:shadow-card-darker group relative flex gap-2 rounded-lg text-card-foreground shadow-card transition-shadow xs:flex-col"
+>
+  <a
+    aria-label="post-link"
+    href={href}
+    class={cn(
+      'relative h-[11.625rem] max-h-[11.625rem] w-[calc(50%-2rem)] overflow-hidden rounded-lg xs:w-full xs:clip-path-none',
+      leftClip ? 'order-1 clip-path-post-img-left' : 'order-2 clip-path-post-img-right',
+    )}
+  >
+    <img
+      src={finalCover}
+      loading="lazy"
+      alt="post"
+      class="h-full w-full cursor-pointer object-cover transition duration-500 group-hover:rotate-3 group-hover:scale-110"
+    />
+  </a>
+  <div class={cn('flex w-[calc(50%+2rem)] flex-col gap-2 px-4 pb-2 pt-4 xs:w-full xs:pt-1', leftClip ? 'order-2' : 'order-1')}>
+    <div class="flex w-full justify-between">
+      <div class="flex-center text-xs text-muted-foreground">
+        <Icon name="gg:flag" />
+        {getCategory()}
+      </div>
+      <div class="flex justify-end gap-4 text-xs text-muted-foreground">
+        {
+          date ? (
+            <p class="flex-center gap-1">
+              <Icon name="fa6-solid:calendar-days" />
+              {parseDate(date, 'YYYY-MM-DD')}
+            </p>
+          ) : null
+        }
+        <p class="flex-center gap-1">
+          <Icon name="fa6-solid:pen-nib" />
+          {readState?.words} 字
+        </p>
+        <p class="flex-center gap-1" title={`预计阅读时长: ${readState?.minutes} min`} data-tooltip-placement="top">
+          <Icon name="fa6-solid:clock" />
+          {readState?.text}
+        </p>
+      </div>
+    </div>
+    <div class="mt-1 flex flex-col space-y-1.5 p-0">
+      <a href={href} aria-label="post-link"
+        ><h3 class="truncate text-xl font-bold leading-none tracking-tight text-primary">{title}</h3>
+      </a>
+    </div>
+    <p class="line-clamp-3 h-15 overflow-hidden text-sm text-muted-foreground">{description ?? body?.slice(0, 150)}</p>
+    <div class={cn('mt-2 flex flex-wrap gap-2', { 'justify-end': !leftClip })}>
+      {
+        data?.data.tags?.length
+          ? data?.data.tags.map((tag: string) => (
+              <Badge className="gap-0.5 cursor-pointer text-xs">
+                <Icon name="fa6-solid:tags" /> {tag}
+              </Badge>
+            ))
+          : null
+      }
+    </div>
+    <a href={href} aria-label="more info" class={cn('absolute bottom-0', leftClip ? 'right-0' : 'left-0')}>
+      <Button
+        className={cn(
+          'rounded-2xl bg-gradient-shoka-button transition-all hover:translate-y-1 hover:scale-105',
+          leftClip
+            ? 'rounded-es-none rounded-se-none hover:translate-x-1'
+            : 'rounded-ee-none rounded-ss-none hover:-translate-x-1',
+        )}
+      >
+        more...
+      </Button>
+    </a>
+  </div>
+</div>

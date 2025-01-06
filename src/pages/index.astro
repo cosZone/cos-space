@@ -1,0 +1,31 @@
+---
+import ButtonLink from '@components/control/ButtonLink.astro';
+import HomeSider from '@components/layout/HomeSider.astro';
+import PostList from '@components/post/PostList.astro';
+import Cover from '@components/ui/cover/Cover.astro';
+import { seoConfig } from '@constants/site-config';
+import Layout from '@layouts/Layout.astro';
+import { getSortedPosts } from '@lib/content';
+import { Icon } from 'astro-icon/components';
+
+const postCollections = await getSortedPosts();
+const posts = postCollections.slice(0, 5);
+---
+
+<Layout title={seoConfig.title}>
+  <div class="mb-20 flex flex-col" transition:name="page-cover">
+    <Cover />
+    <div class="mx-auto flex items-start justify-center pr-11 md:w-full md:pr-0">
+      <HomeSider />
+      <div class="flex flex-col">
+        <PostList posts={posts} showPaginator={false} />
+        <div class="flex-center">
+          <ButtonLink variant="gradient-shoka" url="/posts" size="lg" label="所有文章" className="mt-10 items-center">
+            所有文章
+            <Icon name="gg:format-justify" />
+          </ButtonLink>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

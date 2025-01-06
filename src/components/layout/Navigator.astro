@@ -1,0 +1,104 @@
+---
+import ButtonLink from '@components/control/ButtonLink.astro';
+import { routers } from '@constants/router';
+import { cn } from '@lib/utils';
+import { Icon } from 'astro-icon/components';
+---
+
+<div class="flex flex-grow items-center">
+  <div class="flex flex-grow items-center">
+    {
+      routers.map(({ name, path }) => {
+        return (
+          <ButtonLink
+            url={path}
+            label={name}
+            variant="unstyle"
+            className={cn(
+              'relative w-full text-base after:absolute after:bottom-1 after:left-1/2 after:h-0.5 after:w-0 after:-translate-x-1/2 after:transition-all after:content-[""] hover:after:w-9/12',
+              {
+                'after:w-9/12': path === Astro.url.pathname,
+              },
+            )}
+          >
+            {name}
+          </ButtonLink>
+        );
+      })
+    }
+  </div>
+  <div class="ml-auto flex items-center gap-4">
+    <a class="cursor-pointer" href="https://github.com/cosZone/cos-space" target="_blank">
+      <Icon name="fa6-brands:github" class="h-8 w-8" onclick="backToTop()" />
+    </a>
+    <Icon name="gg:dark-mode" class="h-8 w-8 cursor-pointer" onclick="toggleDarkMode()" />
+  </div>
+</div>
+
+<script is:inline>
+  let firstScroll = true;
+  let triggerDistance = window.innerHeight * 0.45;
+  let lastScrollY = 0;
+  function toggleDarkMode() {
+    if (localStorage.theme === 'dark') {
+      localStorage.theme = 'light';
+      document.documentElement.classList.remove('dark');
+    } else {
+      localStorage.theme = 'dark';
+      document.documentElement.classList.add('dark');
+    }
+  }
+
+  const handleScroll = () => {
+    const siteHeader = document.getElementById('site-header');
+    const currentScrollY = window.scrollY;
+    const isBeyond = currentScrollY > triggerDistance;
+    if (isBeyond) {
+      siteHeader.classList.add('with-background');
+    } else {
+      siteHeader.classList.remove('with-background');
+    }
+
+    if (firstScroll) {
+      firstScroll = false;
+      return;
+    }
+    if (currentScrollY > 0) {
+      if (currentScrollY > lastScrollY) {
+        // 向下滚动
+        siteHeader.classList.add('header-hidden');
+      } else {
+        // 向上滚动
+        siteHeader.classList.remove('header-hidden');
+      }
+    }
+    lastScrollY = currentScrollY;
+  };
+
+  // 节流函数
+  function throttle(func, limit) {
+    let lastFunc;
+    let lastRan;
+    return function () {
+      const context = this;
+      const args = arguments;
+      if (!lastRan) {
+        func.apply(context, args);
+        lastRan = Date.now();
+      } else {
+        clearTimeout(lastFunc);
+        lastFunc = setTimeout(
+          function () {
+            if (Date.now() - lastRan >= limit) {
+              func.apply(context, args);
+              lastRan = Date.now();
+            }
+          },
+          limit - (Date.now() - lastRan),
+        );
+      }
+    };
+  }
+
+  window.addEventListener('scroll', throttle(handleScroll, 80), { passive: true });
+</script>

@@ -1,4 +1,4 @@
-import { microDampingPreset } from '@/constants/anim/spring';
+import { microDampingPreset } from '@constants/anim/spring';
 import { animateValue } from 'motion/react';
 
 const calculateElementTop = (el: HTMLElement) => {

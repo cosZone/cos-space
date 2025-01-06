@@ -1,0 +1,85 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+import '@fontsource/poppins';
+import '@fontsource/noto-serif-sc';
+import '@fontsource/noto-serif-jp';
+import { ClientRouter } from 'astro:transitions';
+import LoadingIndicator from 'astro-loading-indicator/component';
+import Header from '@components/layout/Header.astro';
+import '@styles/index.css';
+import { seoConfig, siteConfig } from '@constants/site-config';
+import { Tooltips } from 'astro-tooltips';
+
+const { title = seoConfig.title, description = seoConfig.description } = Astro.props;
+---
+
+<!doctype html>
+<html transition:name="root" lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <ClientRouter />
+    <LoadingIndicator color="red" />
+    <Tooltips />
+    <!-- metadata -->
+    <meta name="description" content={description} />
+    <meta name="author" content={siteConfig.author} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={siteConfig.name} />
+    <meta property="og:url" content={Astro.url} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <!-- <meta property="og:image" content="/opengraph.png?v=1" /> TODO: og image-->
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={Astro.url} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta charset="UTF-8" />
+
+    <script is:inline>
+      // 立即执行主题检查 否则会闪烁
+      if (
+        localStorage.theme === 'dark' ||
+        (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+      ) {
+        document.documentElement.classList.add('dark');
+        document.documentElement.classList.remove('light');
+      } else {
+        document.documentElement.classList.remove('dark');
+        document.documentElement.classList.add('light');
+      }
+    </script>
+    <script>
+      function checkTheme() {
+        if (
+          localStorage.theme === 'dark' ||
+          (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+        ) {
+          document.documentElement.classList.add('dark');
+          document.documentElement.classList.remove('light'); // 本来是没有 light 的，这样是为了触发 MutationObserver
+        } else {
+          document.documentElement.classList.remove('dark');
+          document.documentElement.classList.add('light');
+        }
+      }
+      // 在每次页面加载时检查
+      document.addEventListener('astro:page-load', checkTheme);
+    </script>
+  </head>
+  <body>
+    <div class="flex min-h-screen flex-col text-black dark:text-white">
+      <Header />
+      {/*  <FloatGroup /> */}
+      <main class="relative flex flex-grow flex-col">{(<slot />)}</main>
+      {/* <Footer className="mt-auto" /> */}
+    </div>
+  </body>
+</html>

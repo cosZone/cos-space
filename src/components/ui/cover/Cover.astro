@@ -1,0 +1,57 @@
+---
+import { siteConfig } from '@constants/site-config';
+import { parseDate } from '@lib/datetime';
+import { Icon } from 'astro-icon/components';
+import readingTime from 'reading-time';
+import type { BlogPost } from 'types/blog';
+import WaveSvg from './wave';
+import JSBgScript from './JSBgScript.astro';
+
+export interface CoverProps {
+  data?: BlogPost;
+}
+
+const { data } = Astro.props as CoverProps;
+
+const { date, title } = data?.data ?? {};
+
+const readState = readingTime(data?.body ?? '');
+---
+
+<div class="relative flex h-[60vh] max-h-[35rem] overflow-hidden">
+  <div class="absolute inset-0 h-full bg-black/40"></div>
+  <div class="absolute inset-0 bottom-[8vh] flex flex-col items-center justify-center px-5 text-white">
+    {
+      data ? (
+        <>
+          <h1 class="shadow-text font-noto text-4.5xl font-bold">{title}</h1>
+          <p class="mt-3 flex items-center justify-center gap-4">
+            <span class="flex items-center gap-1">
+              <Icon name="fa6-solid:calendar-days" />
+              发表于 {parseDate(date ?? '', 'YYYY-MM-DD')}
+            </span>
+            <span class="flex items-center gap-1">
+              <Icon name="fa6-solid:pen-nib" /> {readState?.words} 字
+            </span>
+            <span class="flex items-center gap-1">
+              <Icon name="fa6-solid:clock" />
+              {readState?.text}
+            </span>
+          </p>
+        </>
+      ) : (
+        <>
+          <h2 class="shadow-text font-fg text-5.5xl/[1.2]">{siteConfig?.alternate}</h2>
+          <h1 class="shadow-text mt-3 font-noto text-4.5xl/[1.2] font-bold tracking-widest">{siteConfig?.title}</h1>
+          <p class="shadow-text mt-5 text-sm">= {siteConfig?.subtitle} =</p>
+        </>
+      )
+    }
+  </div>
+  <div class="relative -z-10 h-full min-h-[15rem] w-full" transition:persist="page-cover-banner" id="banner-box">
+    <img src="https://r2.cosine.ren/i/2025/01/04/9al5e-x5.webp" alt="cover" class="h-full w-full object-cover" />
+  </div>
+  <WaveSvg transition:persist="page-cover-wave" />
+</div>
+
+{siteConfig?.enableJSGridCover && <JSBgScript />}

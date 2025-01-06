@@ -1,7 +1,8 @@
-import { delayOpenAnimVariants } from '@/lib/anim';
-import { cn } from '@/lib/utils';
-import { ClassValue } from 'clsx';
+import { delayOpenAnimVariants } from '@constants/anim/variants';
+import { cn } from '@lib/utils';
+import type { ClassValue } from 'clsx';
 import { motion } from 'motion/react';
+import type { JSX } from 'react';
 
 export type NavItemProps = {
   selected?: boolean;
@@ -24,7 +25,7 @@ function NavItem({
   layoutIdPrefix = 'header',
 }: NavItemProps) {
   return (
-    <motion.div variants={delayOpenAnimVariants} whileHover={{ scale: 1.1 }}>
+    <div>
       <div
         className={cn(
           'relative flex w-full cursor-pointer items-center justify-center text-base',
@@ -54,7 +55,7 @@ function NavItem({
           />
         )}
       </div>
-    </motion.div>
+    </div>
   );
 }
 export default NavItem;

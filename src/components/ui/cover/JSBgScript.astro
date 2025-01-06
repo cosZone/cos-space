@@ -1,0 +1,45 @@
+---
+
+---
+
+<script src="/js/GridArrayBg.min.js" is:inline></script>
+<script is:inline is:raw>
+  let lightColors = ['#ed719a', '#FFACDE', '#FBD7ED', '#EEF1F0', '#DDDDDD', '#B4B4B4'];
+  let darkColors = ['#212832', '#3F4659', '#8592A7', '#EEEFEA', '#212832', '#3F4659'];
+
+  function changeColor(mode) {
+    colorbg = new Color4Bg.GridArrayBg({
+      dom: 'banner-box',
+      colors: mode === 'light' ? lightColors : darkColors,
+      loop: true,
+    });
+  }
+  // 监听 html 的 class 属性变化 若包含 dark 则 new 一个 dark 的背景
+  new MutationObserver((mutationsList) => {
+    for (const mutation of mutationsList) {
+      if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+        console.log('change', document.documentElement.classList);
+        if (document.documentElement.classList.contains('dark')) {
+          changeColor('dark');
+        } else {
+          changeColor('light');
+        }
+      }
+    }
+  }).observe(document.documentElement, { attributes: true });
+
+  function debounce(fn, delay) {
+    let timer = null;
+    return function () {
+      clearTimeout(timer);
+      timer = setTimeout(fn, delay);
+    };
+  }
+  // 监听resize 加个防抖
+  window.addEventListener(
+    'resize',
+    debounce(() => {
+      changeColor(document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+    }, 1000),
+  );
+</script>

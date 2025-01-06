@@ -1,11 +1,4 @@
 @font-face {
-  font-display: block;
-  font-family: 'Nagoda';
-  font-style: normal;
-  src: local('Nagoda'), url('/fonts/Nagoda.ttf');
-}
-
-@font-face {
   font-family: 'Candyshop';
   src: url('https://backblaze.cosine.ren/source/fonts/candy.otf');
   font-display: swap;
