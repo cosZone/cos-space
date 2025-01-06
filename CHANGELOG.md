@@ -41,5 +41,6 @@
 
 - 原始加载器规则
 - Prettier、文档及库
+- 添加 husky 和 lint-staged
 
 <!-- 由 git-cliff 生成、 gpt 翻译润色 -->
