@@ -9,6 +9,7 @@
   body {
     overscroll-behavior-y: none;
     background: linear-gradient(to top, var(--box-bg-shadow) 0, var(--gradient-bg-start) 30%) no-repeat bottom;
+    @apply md:bg-gradient-start md:bg-none;
   }
   h1,
   h2,
@@ -74,6 +75,7 @@
 
   .shadow-box {
     box-shadow: 0 1.25rem 1rem 0.3125rem var(--box-bg-shadow);
+    @apply md:shadow-none;
   }
 
   .shadow-text {

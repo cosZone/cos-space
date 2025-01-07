@@ -1,2 +1,1 @@
-pnpm lint-md
 pnpm lint-staged

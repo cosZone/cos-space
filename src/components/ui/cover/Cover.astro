@@ -24,8 +24,8 @@ const readState = readingTime(data?.body ?? '');
     {
       data ? (
         <>
-          <h1 class="shadow-text font-noto text-4.5xl font-bold">{title}</h1>
-          <p class="mt-3 flex items-center justify-center gap-4">
+          <h1 class="shadow-text word-break text-center text-4.5xl font-bold md:text-2xl">{title}</h1>
+          <p class="mt-3 flex items-center justify-center gap-4 md:text-xs">
             <span class="flex items-center gap-1">
               <Icon name="fa6-solid:calendar-days" />
               发表于 {parseDate(date ?? '', 'YYYY-MM-DD')}

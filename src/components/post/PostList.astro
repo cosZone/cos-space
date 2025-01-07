@@ -17,7 +17,7 @@ const { posts, page, showPaginator = true } = Astro.props;
 const covers = shuffle(defaultCoverList).slice(0, 10);
 ---
 
-<div class="shadow-box flex flex-col gap-8 bg-gradient-start p-4 pt-8 md:px-1 md:py-2">
+<div class="shadow-box flex flex-col gap-8 overflow-hidden bg-gradient-start p-4 pt-8 md:px-1 md:py-2">
   <Divider>文章列表</Divider>
 
   {
@@ -32,7 +32,7 @@ const covers = shuffle(defaultCoverList).slice(0, 10);
     posts && posts?.length > 0 && (
       <>
         <div class="flex flex-col gap-8 px-5">
-          {posts.map((post, index) => (
+          {posts.slice(0, 4).map((post, index) => (
             <PostItemCard data={post} leftClip={index % 2 === 0} randomCover={covers[index]} />
           ))}
         </div>
