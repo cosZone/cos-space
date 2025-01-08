@@ -15,9 +15,9 @@ const posts = postCollections.slice(0, 5);
 <Layout title={seoConfig.title}>
   <div class="mb-20 flex flex-col">
     <Cover />
-    <div class="mx-auto flex max-w-8xl items-start justify-center overflow-hidden pr-11 md:w-full md:pr-0">
+    <div class="mx-auto flex max-w-8xl items-start justify-center pb-32 md:w-full">
       <HomeSider />
-      <div class="overflow-hiddenflex-grow flex flex-col md:w-full">
+      <div class="flex flex-grow flex-col md:w-full">
         <PostList posts={posts} showPaginator={false} />
         <div class="flex-center">
           <ButtonLink variant="gradient-shoka" url="/posts" size="lg" label="所有文章" className="mt-10 items-center">

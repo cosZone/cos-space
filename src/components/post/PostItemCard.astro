@@ -54,7 +54,7 @@ const getCategory = () => {
   </a>
   <div
     class={cn(
-      'flex w-[calc(50%+2rem)] flex-col gap-2 px-4 pb-2 pt-4 md:w-full md:pt-1',
+      'flex w-[calc(50%+2rem)] flex-col gap-2 px-4 pb-2 md:pb-4 pt-4 md:w-full md:pt-1',
       leftClip ? 'order-2' : 'order-1',
       'md:order-none',
     )}
@@ -88,14 +88,19 @@ const getCategory = () => {
         ><h3 class="truncate text-xl font-bold leading-none tracking-tight text-primary">{title}</h3>
       </a>
     </div>
-    <p class="line-clamp-3 h-15 text-sm text-muted-foreground">
+    <p class="line-clamp-3 h-15 text-sm text-muted-foreground md:h-auto md:max-h-15">
       {description ?? body?.slice(0, 150)}
     </p>
-    <div class={cn('mt-2 flex gap-2', { 'justify-end': !leftClip }, 'md:justify-start')}>
+    <div class={cn('mt-2 flex @container gap-2 ', { 'justify-end': !leftClip }, 'md:justify-start')}>
       {
         data?.data.tags?.length
-          ? data?.data.tags.map((tag: string) => (
-              <Badge className="gap-0.5 whitespace-nowrap cursor-pointer text-xs">
+          ? data?.data.tags.map((tag: string, index: number) => (
+              <Badge
+                className={cn('hidden cursor-pointer gap-0.5 whitespace-nowrap text-xs @md:flex', {
+                  '@xs:flex': index < 2,
+                  '@sm:flex': index < 3,
+                })}
+              >
                 <Icon name="fa6-solid:tags" /> {tag}
               </Badge>
             ))
@@ -109,11 +114,11 @@ const getCategory = () => {
     >
       <Button
         className={cn(
-          'rounded-2xl bg-gradient-shoka-button transition-all hover:translate-y-1 hover:scale-105',
+          'rounded-2xl bg-gradient-shoka-button transition-all hover:translate-y-1 hover:scale-105 md:h-7 md:px-2 md:py-1 md:text-xs',
           leftClip
             ? 'rounded-es-none rounded-se-none hover:translate-x-1'
             : 'rounded-ee-none rounded-ss-none hover:-translate-x-1',
-          'md:rounded-ee-2xl md:rounded-es-none md:rounded-se-none md:rounded-ss-2xl md:hover:-translate-x-1',
+          'md:rounded-ee-2xl md:rounded-es-none md:rounded-se-none md:rounded-ss-2xl md:hover:translate-x-1',
         )}
       >
         more...

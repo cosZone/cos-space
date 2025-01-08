@@ -2,7 +2,6 @@
 import { seoConfig, siteConfig } from '@constants/site-config';
 import Layout from './Layout.astro';
 import Cover from '@components/ui/cover/Cover.astro';
-import HomeSider from '@components/layout/HomeSider.astro';
 
 export interface Props {
   frontmatter: {
@@ -17,7 +16,7 @@ const { frontmatter } = Astro.props;
 <Layout title={`${frontmatter.title} | ${seoConfig.title}`}>
   <div class="mb-20 flex flex-col" transition:name="page-cover">
     <Cover />
-    <div class="mx-auto flex w-full max-w-8xl items-start justify-center pr-11 md:w-full md:pr-0">
+    <div class="mx-auto flex w-full max-w-8xl items-start justify-center md:w-full">
       <HomeSider />
       <div class="flex flex-grow flex-col">
         <div class="shadow-box mx-0 flex w-full flex-col gap-8 bg-gradient-start p-4 pt-8 md:px-3 md:py-2">

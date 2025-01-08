@@ -14,10 +14,10 @@ export default {
     screens: {
       xs: { max: '480px' },
       md: { max: '768px' },
-      lg: { max: '1024px' },
+      lg: { max: '1440px' },
       '2xl': '1440px',
-      tablet: { min: '1025px' },
-      desktop: { min: '1480px' },
+      tablet: { max: '992px' },
+      desktop: { max: '1480px' },
     },
     extend: {
       colors: {
@@ -120,5 +120,10 @@ export default {
       },
     },
   },
-  plugins: [require('tailwindcss-animate'), require('tailwind-clip-path'), require('@tailwindcss/typography')],
+  plugins: [
+    require('tailwindcss-animate'),
+    require('tailwind-clip-path'),
+    require('@tailwindcss/typography'),
+    require('@tailwindcss/container-queries'),
+  ],
 };
