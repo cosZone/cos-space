@@ -25,6 +25,9 @@ export default {
         'gradient-end': 'var(--gradient-bg-end)',
         'gradient-shoka-button-start': 'var(--gradient-shoka-button-start)',
         'gradient-shoka-button-end': 'var(--gradient-shoka-button-end)',
+        blue: {
+          DEFAULT: 'hsl(var(--shoka-blue))',
+        },
         // shadcn
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
