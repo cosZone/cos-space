@@ -6,18 +6,18 @@ import { cn } from '@lib/utils';
 
 <div class="grid w-full grid-cols-2">
   <FlippedCard>
-    <div slot="front" class="flex-center relative h-full px-2 py-4">
+    <div slot="front" class="flex-center relative h-full rounded-md px-2 py-4">
       <!-- 正面内容 -->
       <img
         src="https://r2.cosine.ren/i/2025/01/04/9al5e-x5.webp"
         alt="post"
-        class="absolute inset-0 -z-10 h-full w-full object-cover"
+        class="absolute inset-0 -z-10 h-full w-full rounded-md object-cover"
       />
-      <div class="absolute inset-0 -z-10 h-full w-full bg-shoka-card-mask opacity-25"></div>
-      <h2 class="text-2xl">随笔</h2>
-      <Badge variant="shoka-tag" className="absolute right-3 top-2.5 text-xs"> 父分类 </Badge>
+      <div class="absolute inset-0 -z-10 h-full w-full rounded-md bg-shoka-card-mask opacity-25"></div>
+      <h2 class="text-2xl text-white">随笔</h2>
+      <Badge variant="shoka-tag" className="absolute right-3 top-2.5 text-xs text-white opacity-80 shadow"> 父分类 </Badge>
     </div>
-    <div slot="back" class="relative h-full flex-col bg-card px-6 pb-4 pt-16">
+    <div slot="back" class="relative h-full flex-col rounded-md bg-card px-6 pb-4 pt-16">
       <div
         class={cn(
           'absolute -left-4 bg-gradient-to-l from-gradient-shoka-button-start to-gradient-shoka-button-end  h-8 pl-6 pr-4 top-4 inline-block max-w-[calc(100%+2rem)] rounded-r-md border',
@@ -25,7 +25,7 @@ import { cn } from '@lib/utils';
           'after:border-r-gradient-shoka-button-end',
         )}
       >
-        <a class="mt-1.5 block text-base/4 hover:animate-shake" href="/posts/category/随笔">随笔</a>
+        <a class="mt-1.5 block text-base/4 text-white hover:animate-shake" href="/posts/category/随笔">随笔</a>
       </div>
       <!-- 背面内容 -->
       <div class="grid grid-cols-2 gap-x-5 gap-y-3">

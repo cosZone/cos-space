@@ -12,7 +12,7 @@ const badgeVariants = cva(
         secondary: 'border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80',
         destructive: 'border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/80',
         outline: 'text-foreground',
-        'shoka-tag': 'bg-black/50 shadow',
+        'shoka-tag': 'bg-black/50 border-none',
       },
     },
     defaultVariants: {
