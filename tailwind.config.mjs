@@ -21,6 +21,11 @@ export default {
     },
     extend: {
       colors: {
+        'gradient-start': 'var(--gradient-bg-start)',
+        'gradient-end': 'var(--gradient-bg-end)',
+        'gradient-shoka-button-start': 'var(--gradient-shoka-button-start)',
+        'gradient-shoka-button-end': 'var(--gradient-shoka-button-end)',
+        // shadcn
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
@@ -68,7 +73,6 @@ export default {
           900: '#801b38',
           950: '#470a1a',
         },
-        'gradient-start': 'var(--gradient-bg-start)',
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -96,6 +100,7 @@ export default {
         'gradient-pink': 'var(--gradient-pink)',
         'gradient-header': 'var(--gradient-header)',
         'gradient-shoka-button': 'var(--gradient-shoka-button)',
+        'shoka-card-mask': 'linear-gradient(135deg,#434343 0,#000 100%)',
       },
       fontSize: {
         '4.5xl': '2.5rem',
@@ -118,12 +123,15 @@ export default {
       maxWidth: {
         '8xl': '87.5rem',
       },
+      borderWidth: {
+        16: '16px',
+      },
     },
   },
   plugins: [
+    require('@tailwindcss/container-queries'),
     require('tailwindcss-animate'),
     require('tailwind-clip-path'),
     require('@tailwindcss/typography'),
-    require('@tailwindcss/container-queries'),
   ],
 };

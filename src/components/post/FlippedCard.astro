@@ -1,0 +1,94 @@
+---
+export interface Props {
+  className?: string;
+  /**
+   * 翻转方向
+   * @default 'horizontal'
+   */
+  direction?: 'horizontal' | 'vertical';
+  /**
+   * 翻转动画时长(ms)
+   * @default 600
+   */
+  duration?: number;
+  /**
+   * 是否禁用翻转
+   * @default false
+   */
+  disabled?: boolean;
+}
+
+const { className, direction = 'horizontal', duration = 600, disabled = false } = Astro.props;
+---
+
+<div class:list={['flip-card h-64 p-4', className, { 'flip-card-disabled': disabled }]} data-direction={direction}>
+  <div class="flip-card-inner">
+    <div class="flip-card-front">
+      <slot name="front" />
+    </div>
+    <div class="flip-card-back">
+      <slot name="back" />
+    </div>
+  </div>
+</div>
+
+<style define:vars={{ duration }}>
+  .flip-card {
+    background-color: transparent;
+    perspective: 1000px;
+    /* width: 400px; */
+  }
+
+  .flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 600ms;
+    transform-style: preserve-3d;
+    will-change: transform;
+  }
+
+  .flip-card:not(.flip-card-disabled):hover .flip-card-inner {
+    transform: rotateY(-180deg);
+  }
+
+  .flip-card-front,
+  .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d;
+    border-radius: 0.5rem;
+  }
+
+  .flip-card-front {
+    z-index: 2;
+  }
+
+  .flip-card-back {
+    transform: rotateY(-180deg);
+  }
+
+  .flip-card-disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  /* 添加一些过渡效果 */
+  .flip-card-front,
+  .flip-card-back {
+    transition: all var(--duration) ms ease-in-out;
+  }
+
+  /* 添加阴影效果 */
+  .flip-card:not(.flip-card-disabled):hover .flip-card-front {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .flip-card:not(.flip-card-disabled):hover .flip-card-back {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+</style>
