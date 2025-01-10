@@ -15,7 +15,7 @@ const { frontmatter } = Astro.props;
 ---
 
 <Layout title={`${frontmatter.title} | ${seoConfig.title}`}>
-  <div class="mb-20 flex flex-col" transition:name="page-cover">
+  <div class="mb-20 flex flex-col">
     <Cover />
     <div class="mx-auto flex w-full max-w-8xl items-start justify-center md:w-full">
       <HomeSider />

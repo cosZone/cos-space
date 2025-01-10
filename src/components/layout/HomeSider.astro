@@ -49,10 +49,12 @@ const { countMap } = await getCategoryList();
       文章
     </p>
     <div class="mx-3 w-px bg-muted-foreground"></div>
-    <p class="flex cursor-pointer flex-col gap-2 p-1 transition hover:text-primary">
-      <span class="text-lg/5 font-bold">{Object.keys(countMap).length}</span>
-      分类
-    </p>
+    <a href="/categories" aria-label="分类" class="hover:text-blue">
+      <p class="flex cursor-pointer flex-col gap-2 p-1 transition">
+        <span class="text-lg/5 font-bold">{Object.keys(countMap).length}</span>
+        分类
+      </p>
+    </a>
     <div class="mx-3 w-px bg-muted-foreground"></div>
     <p class="flex cursor-pointer flex-col gap-2 p-1 transition hover:text-primary">
       <span class="text-lg/5 font-bold">109</span>

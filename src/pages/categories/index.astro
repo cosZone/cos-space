@@ -1,0 +1,38 @@
+---
+import HomeSider from '@components/layout/HomeSider.astro';
+import Cover from '@components/ui/cover/Cover.astro';
+import { seoConfig } from '@constants/site-config';
+import Layout from '@layouts/Layout.astro';
+import { getCategoryList } from '@lib/content';
+
+const categoryList = await getCategoryList();
+console.log(categoryList);
+---
+
+<Layout title={`全部分类 | ${seoConfig.title}`}>
+  <div class="mb-20 flex flex-col">
+    <Cover title="全部分类" />
+    <div class="mx-auto flex w-full max-w-8xl items-start justify-center md:w-full">
+      <HomeSider />
+      <div class="flex flex-grow flex-col">
+        <div class="shadow-box mx-0 flex w-full flex-col gap-8 bg-gradient-start p-4 pt-8 md:px-3 md:py-2">
+          <p class="text-2xl font-bold">category</p>
+          <div class="flex w-full flex-col gap-4">
+            {
+              categoryList.categories.map((category) => (
+                <div class="flex flex-col gap-2">
+                  <p class="text-lg font-bold">{category.name}</p>
+                  <div class="flex flex-col gap-2">
+                    {category.children?.map((child) => (
+                      <p class="text-sm text-muted-foreground">{child.name}</p>
+                    ))}
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
