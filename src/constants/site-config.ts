@@ -1,3 +1,7 @@
+import transformShokaConfig from '@scripts/transformShokaConfig';
+
+const shokaConfig = transformShokaConfig();
+
 type SiteConfig = {
   title: string; // 网站标题名称（banner 上）
   alternate?: string; // 网站英文短名
@@ -85,3 +89,6 @@ export const defaultCoverList = [
   'https://r2.cosine.ren/i/2025/01/05/102548617_p0.webp',
   'https://r2.cosine.ren/i/2025/01/05/104060648_p0.webp',
 ];
+
+// { '随笔': 'life' }
+export const categoryMap: { [name: string]: string } = shokaConfig?.categoryMap || {};

@@ -16,6 +16,7 @@
     var(--gradient-shoka-button-end) 100%
   );
   --shoka-blue: 201 69% 54%;
+  --grey-4: 0 0% 80%;
 }
 .dark {
   --gradient-bg-start: #21252b;
@@ -36,4 +37,5 @@
     var(--gradient-shoka-button-end) 100%
   );
   --shoka-blue: 201 69% 77%;
+  --grey-4: 0 0% 40%;
 }

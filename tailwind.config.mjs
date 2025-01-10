@@ -28,6 +28,9 @@ export default {
         blue: {
           DEFAULT: 'hsl(var(--shoka-blue))',
         },
+        gray: {
+          400: 'hsl(var(--grey-4))',
+        },
         // shadcn
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
@@ -121,6 +124,7 @@ export default {
         'post-img-right': 'polygon(0 0%,100% 0%,100% 100%,8% 100%)',
       },
       spacing: {
+        7.5: '1.875rem',
         15: '3.75rem',
       },
       maxWidth: {

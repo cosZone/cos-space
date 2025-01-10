@@ -41,6 +41,9 @@
   #main-markdown-render.prose {
     max-width: 100%;
   }
+  a.link {
+    @apply text-primary transition-colors duration-300 hover:text-blue;
+  }
 }
 
 /* utils */
@@ -82,6 +85,10 @@
     text-shadow: 0 0.2rem 0.3rem rgba(0, 0, 0, 0.5);
   }
 
+  .dashed-border {
+    border-bottom: 0.0625rem dashed hsl(var(--grey-4));
+  }
+
   #site-header {
     @apply translate-y-0 transition-transform duration-300;
     button {
@@ -104,5 +111,21 @@
   }
   #site-header.header-hidden {
     @apply -translate-y-full;
+  }
+
+  .shoka-decoration-circle:hover {
+    &::before {
+      @apply border-blue;
+    }
+  }
+  .shoka-decoration-circle::before {
+    content: '';
+    display: block;
+    z-index: 1;
+    transition: all 0.2s ease-in-out 0s;
+    left: 0;
+    width: 0.875rem;
+    height: 0.875rem;
+    @apply absolute top-1/2 -translate-y-1/2 rounded-full border-2 border-primary bg-gradient-start transition-colors duration-300 group-hover:border-blue;
   }
 }
