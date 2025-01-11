@@ -1,0 +1,48 @@
+---
+import { Badge } from '@components/ui/badge';
+import FlippedCard from './FlippedCard.astro';
+import { cn } from '@lib/utils';
+import { Button } from '@components/ui/button';
+---
+
+<div class="grid w-full grid-cols-2">
+  <FlippedCard>
+    <div slot="front" class="flex-center relative h-full rounded-md px-2 py-4">
+      <!-- 正面内容 -->
+      <img
+        src="https://r2.cosine.ren/i/2025/01/04/9al5e-x5.webp"
+        alt="post"
+        class="absolute inset-0 -z-10 h-full w-full rounded-md object-cover"
+      />
+      <div class="absolute inset-0 -z-10 h-full w-full rounded-md bg-shoka-card-mask opacity-25"></div>
+      <h2 class="text-2xl text-white">随笔</h2>
+      <Badge variant="shoka-tag" className="absolute right-3 top-2.5 text-xs text-white opacity-80 shadow"> 父分类 </Badge>
+    </div>
+    <div slot="back" class="relative h-full flex-col rounded-md bg-card px-6 pb-4 pt-16">
+      <!-- 背面内容 -->
+      <div
+        class={cn(
+          'absolute -left-4 bg-gradient-to-l from-gradient-shoka-button-start to-gradient-shoka-button-end  h-8 pl-6 pr-4 top-4 inline-block max-w-[calc(100%+2rem)] rounded-r-md border',
+          "after:absolute after:-left-4 after:top-full after:h-0 after:w-0 after:border-b-16 after:border-l-16 after:border-r-16 after:border-t-0 after:content-[''] after:border-transparent",
+          'after:border-r-gradient-shoka-button-end',
+        )}
+      >
+        <a class="mt-1.5 block text-base/4 text-white hover:animate-shake" href="/posts/category/随笔">随笔</a>
+      </div>
+      <div class="grid grid-cols-2 gap-x-5 gap-y-3">
+        <a href="/post/2023-life-review" class="truncate text-primary transition-colors duration-300 hover:text-blue"
+          >2023，稀松平常的一年
+        </a>
+      </div>
+      <a href="/posts/category/随笔" aria-label="more info" class="absolute bottom-0 right-0">
+        <Button
+          className={cn(
+            'rounded-2xl rounded-es-none rounded-se-none bg-gradient-shoka-button transition-all hover:translate-x-1 hover:translate-y-1 hover:scale-105 md:h-7 md:px-2 md:py-1 md:text-xs',
+          )}
+        >
+          more...
+        </Button>
+      </a>
+    </div>
+  </FlippedCard>
+</div>

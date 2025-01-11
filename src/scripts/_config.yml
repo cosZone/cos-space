@@ -1,0 +1,30 @@
+# Hexo Configuration
+## Docs: https://hexo.io/docs/configuration.html
+## Source: https://github.com/hexojs/hexo/
+
+# Category & Tag
+category_map:
+  随笔: life
+
+  笔试面经: review
+  笔试复盘: exam-record
+  面经: interview
+
+  题目记录: coding-train
+  竞赛: contest
+  字节校园: bytedance
+  剑指offer: offer
+
+  项目集锦: project
+
+  笔记: note
+  青训营笔记: bytedance-note
+  算法: algorithm
+  后端: back-end
+  前端: front-end
+  JavaScript: javascript
+  React: react
+  CS基础: cs-basics
+  数据结构: data-structure
+
+  工具: tools

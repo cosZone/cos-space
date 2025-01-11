@@ -14,13 +14,24 @@ export default {
     screens: {
       xs: { max: '480px' },
       md: { max: '768px' },
-      lg: { max: '1024px' },
+      lg: { max: '1440px' },
       '2xl': '1440px',
-      tablet: { min: '1025px' },
+      tablet: { max: '992px' },
       desktop: { min: '1480px' },
     },
     extend: {
       colors: {
+        'gradient-start': 'var(--gradient-bg-start)',
+        'gradient-end': 'var(--gradient-bg-end)',
+        'gradient-shoka-button-start': 'var(--gradient-shoka-button-start)',
+        'gradient-shoka-button-end': 'var(--gradient-shoka-button-end)',
+        blue: {
+          DEFAULT: 'hsl(var(--shoka-blue))',
+        },
+        gray: {
+          400: 'hsl(var(--grey-4))',
+        },
+        // shadcn
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
@@ -68,7 +79,6 @@ export default {
           900: '#801b38',
           950: '#470a1a',
         },
-        'gradient-start': 'var(--gradient-bg-start)',
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -96,6 +106,7 @@ export default {
         'gradient-pink': 'var(--gradient-pink)',
         'gradient-header': 'var(--gradient-header)',
         'gradient-shoka-button': 'var(--gradient-shoka-button)',
+        'shoka-card-mask': 'linear-gradient(135deg,#434343 0,#000 100%)',
       },
       fontSize: {
         '4.5xl': '2.5rem',
@@ -113,12 +124,26 @@ export default {
         'post-img-right': 'polygon(0 0%,100% 0%,100% 100%,8% 100%)',
       },
       spacing: {
+        7.5: '1.875rem',
+        8.5: '2.125rem',
+        14.5: '3.625rem',
         15: '3.75rem',
+        16.5: '4.125rem',
+        17: '4.25rem',
+        19: '4.75rem',
       },
       maxWidth: {
         '8xl': '87.5rem',
       },
+      borderWidth: {
+        16: '16px',
+      },
     },
   },
-  plugins: [require('tailwindcss-animate'), require('tailwind-clip-path'), require('@tailwindcss/typography')],
+  plugins: [
+    require('@tailwindcss/container-queries'),
+    require('tailwindcss-animate'),
+    require('tailwind-clip-path'),
+    require('@tailwindcss/typography'),
+  ],
 };

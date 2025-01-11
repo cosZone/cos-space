@@ -1,0 +1,59 @@
+---
+import { categoryMap } from '@constants/site-config';
+import { getPostsByCategory, type Category } from '@lib/content';
+import SubCategory from './SubCategory.astro';
+import { cn } from '@lib/utils';
+import { parseDate } from '@lib/datetime';
+
+interface Props {
+  categories: Category[];
+  countMap: Record<string, number>;
+  // category page
+  rootCategory: Category | null;
+}
+const { categories, countMap, rootCategory } = Astro.props;
+const posts = await getPostsByCategory(rootCategory?.name ?? '');
+---
+
+<div class="shadow-box mx-0 flex w-full flex-col bg-gradient-start p-4 pt-8 md:px-3 md:py-2">
+  <h2
+    class={cn('shoka-decoration-circle px-7.5 group relative py-5 text-2xl/9 font-bold', {
+      'has-children': posts?.length || rootCategory?.children?.length,
+    })}
+  >
+    <a href="/" class="dashed-border border-b text-muted-foreground hover:text-blue"> 首页 </a>
+    <span class="mx-2 text-xl text-gray-400">/</span>
+    <span class="text-muted-foreground">{rootCategory?.name}</span>
+    <span class="mx-2 text-xl text-gray-400">分类</span>
+  </h2>
+
+  <div class="flex w-full flex-col">
+    {
+      categories.map(
+        (category) =>
+          category?.children?.length && (
+            <div class="category-first-level-container flex flex-col">
+              {category?.children?.length &&
+                category.children.map((child) => (
+                  <SubCategory category={child} parentName={category.name} countMap={countMap} />
+                ))}
+            </div>
+          ),
+      )
+    }
+    {
+      posts?.length && (
+        <div class="category-second-level-container flex flex-col">
+          {posts.map((post) => (
+            <p class="shoka-decoration-circle group relative px-7.5 py-2 text-base/9 text-primary hover:text-blue">
+              <span class="mr-2 text-xs text-gray-400">{parseDate(post?.data?.date, 'YY-MM-DD')}</span>
+              <a href={'/post/' + post?.data?.link} class="dashed-border">
+                {post?.data?.title}
+              </a>
+            </p>
+          ))}
+        </div>
+      )
+    }
+  </div>
+</div>

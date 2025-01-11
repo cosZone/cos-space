@@ -9,35 +9,38 @@ import JSBgScript from './JSBgScript.astro';
 
 export interface CoverProps {
   data?: BlogPost;
+  title?: string;
 }
 
-const { data } = Astro.props as CoverProps;
+const { data, title } = Astro.props as CoverProps;
 
-const { date, title } = data?.data ?? {};
+const { date, title: dataTitle } = data?.data ?? {};
 
 const readState = readingTime(data?.body ?? '');
 ---
 
-<div class="relative flex h-[60vh] max-h-[35rem] overflow-hidden">
+<div transition:persist="page-cover" class="relative flex h-[60vh] max-h-[35rem] overflow-hidden">
   <div class="absolute inset-0 h-full bg-black/40"></div>
   <div class="absolute inset-0 bottom-[8vh] flex flex-col items-center justify-center px-5 text-white">
     {
-      data ? (
+      data || title ? (
         <>
-          <h1 class="shadow-text word-break text-center text-4.5xl font-bold md:text-2xl">{title}</h1>
-          <p class="mt-3 flex items-center justify-center gap-4 md:text-xs">
-            <span class="flex items-center gap-1">
-              <Icon name="fa6-solid:calendar-days" />
-              发表于 {parseDate(date ?? '', 'YYYY-MM-DD')}
-            </span>
-            <span class="flex items-center gap-1">
-              <Icon name="fa6-solid:pen-nib" /> {readState?.words} 字
-            </span>
-            <span class="flex items-center gap-1">
-              <Icon name="fa6-solid:clock" />
-              {readState?.text}
-            </span>
-          </p>
+          <h1 class="shadow-text word-break text-center text-4.5xl font-bold md:text-2xl">{dataTitle ?? title}</h1>
+          {data && (
+            <p class="mt-3 flex items-center justify-center gap-4 md:text-xs">
+              <span class="flex items-center gap-1">
+                <Icon name="fa6-solid:calendar-days" />
+                发表于 {parseDate(date ?? '', 'YYYY-MM-DD')}
+              </span>
+              <span class="flex items-center gap-1">
+                <Icon name="fa6-solid:pen-nib" /> {readState?.words} 字
+              </span>
+              <span class="flex items-center gap-1">
+                <Icon name="fa6-solid:clock" />
+                {readState?.text}
+              </span>
+            </p>
+          )}
         </>
       ) : (
         <>

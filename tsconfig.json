@@ -17,7 +17,8 @@
       "@lib/*": ["lib/*"],
       "@constants/*": ["constants/*"],
       "@hooks/*": ["hooks/*"],
-      "@store/*": ["store/*"]
+      "@store/*": ["store/*"],
+      "@scripts/*": ["scripts/*"]
     }
   }
 }

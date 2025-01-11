@@ -1,0 +1,79 @@
+.shoka-decoration-circle:hover {
+  &::before {
+    @apply border-blue;
+  }
+}
+.shoka-decoration-circle {
+  a {
+    transition: all 0.2s ease-in-out 0s;
+  }
+  &::before {
+    /* 所有圆点 */
+    content: '';
+    display: block;
+    z-index: 1;
+    transition: all 0.2s ease-in-out 0s;
+    @apply absolute left-0 top-1/2 size-3.5 -translate-y-1/2 rounded-full border-2 border-primary bg-gradient-start transition-colors duration-300 group-hover:border-blue;
+  }
+  &::after {
+    /* 竖线 */
+    content: '';
+    display: block;
+    z-index: 1;
+    transition: all 0.2s ease-in-out 0s;
+    width: 3px;
+    height: 62px;
+    @apply absolute left-1 top-11 bg-primary/70;
+  }
+}
+
+h2.shoka-decoration-circle {
+  &::before {
+    left: -1px;
+  }
+  &::after {
+    @apply hidden;
+  }
+  &.has-children {
+    &::after {
+      background-color: transparent;
+      background-image: repeating-linear-gradient(
+        to bottom,
+        rgb(237, 120, 139, 0.7) 0,
+        rgb(237, 120, 139, 0.7) 4px,
+        transparent 8px,
+        transparent 12px
+      );
+      @apply block;
+    }
+  }
+}
+h3.shoka-decoration-circle {
+  &::before {
+    @apply size-3;
+  }
+  &::after {
+    @apply left-1 top-10 h-14 last:hidden;
+  }
+
+  &:last-child > a::after {
+    @apply hidden;
+  }
+}
+
+p.shoka-decoration-circle {
+  &::before {
+    left: 2px;
+    @apply size-2 border-none bg-primary;
+  }
+  &::after {
+    height: 54px;
+    left: 5px;
+    @apply top-7 w-0.5 bg-primary/40 last:hidden;
+  }
+}
+p.shoka-decoration-circle:hover {
+  &::before {
+    @apply bg-blue;
+  }
+}

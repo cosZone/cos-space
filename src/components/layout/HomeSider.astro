@@ -9,14 +9,18 @@ import { cn } from '@lib/utils';
 
 interface Props {
   type?: HomeSiderType;
+  className?: string;
 }
 
-const { type = HomeSiderType.HOME } = Astro.props;
+const { type = HomeSiderType.HOME, className } = Astro.props;
 const postCount = await getPostCount();
 const { countMap } = await getCategoryList();
 ---
 
-<div class="sticky top-20 flex min-w-[16rem] flex-col items-center p-4 px-5 md:hidden">
+<div
+  class={cn('sticky top-20 flex flex-col min-w-[16rem] tablet:hidden items-center p-4 md:hidden', className)}
+  transition:name="page-home-sider"
+>
   {
     type !== HomeSiderType.HOME && (
       <Segmented
@@ -32,23 +36,29 @@ const { countMap } = await getCategoryList();
     )
   }
   <img
+    transition:persist="page-home-sider-avatar"
     src={siteConfig.avatar}
     alt={`${siteConfig.name}'s avatar`}
     class="shadow-card-darker h-40 w-40 rounded-full transition hover:animate-shake"
   />
+
   <p class="mt-2">{siteConfig?.name}</p>
   <p class="mt-3 text-muted-foreground">{siteConfig?.description}</p>
 
-  <div class="mt-3 flex select-none justify-center text-center text-sm/4 text-muted-foreground dark:text-white/80">
+  <div
+    class="mt-3 flex select-none justify-center whitespace-nowrap text-center text-sm/4 text-muted-foreground dark:text-white/80"
+  >
     <p class="flex cursor-pointer flex-col gap-2 p-1 transition hover:text-primary">
       <span class="text-lg/5 font-bold">{postCount}</span>
       文章
     </p>
     <div class="mx-3 w-px bg-muted-foreground"></div>
-    <p class="flex cursor-pointer flex-col gap-2 p-1 transition hover:text-primary">
-      <span class="text-lg/5 font-bold">{Object.keys(countMap).length}</span>
-      分类
-    </p>
+    <a href="/categories" aria-label="分类" class="hover:text-blue">
+      <p class="flex cursor-pointer flex-col gap-2 p-1 transition">
+        <span class="text-lg/5 font-bold">{Object.keys(countMap).length}</span>
+        分类
+      </p>
+    </a>
     <div class="mx-3 w-px bg-muted-foreground"></div>
     <p class="flex cursor-pointer flex-col gap-2 p-1 transition hover:text-primary">
       <span class="text-lg/5 font-bold">109</span>
@@ -56,14 +66,14 @@ const { countMap } = await getCategoryList();
     </p>
   </div>
 
-  <div class="mt-6 flex w-full flex-col gap-2">
+  <div class="mt-6 flex w-full flex-col items-center gap-2">
     {
       routers.map(({ name, path }) => (
         <ButtonLink
           url={path}
           label={name}
           variant="gradient-shoka"
-          className={cn('w-full transition-all duration-300', {
+          className={cn('w-40 transition-all duration-300', {
             'bg-none text-muted-foreground/80 hover:bg-muted hover:text-muted-foreground': path !== Astro.url.pathname,
           })}
         >

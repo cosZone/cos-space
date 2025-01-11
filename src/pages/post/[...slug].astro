@@ -42,10 +42,10 @@ const categoryStr = categoryArr?.length ? ` | ${categoryArr.join(' / ')}` : '';
   <script is:inline slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   <div class="mb-20 flex flex-col">
     <Cover data={post} />
-    <div class="mx-auto flex max-w-8xl items-start justify-center pr-11 md:w-auto md:pr-0">
+    <div class="mx-auto flex max-w-[90vw] items-start justify-center md:w-full desktop:max-w-8xl">
       <HomeSider />
       <div class="flex flex-grow flex-col">
-        <div class="shadow-box flex flex-col gap-8 bg-gradient-start p-4 pt-8 md:px-3 md:py-2">
+        <div class="shadow-box flex flex-col gap-8 bg-gradient-start p-4 pt-8 md:px-5 md:py-4">
           <div class="prose max-w-none dark:prose-invert"><Content /></div>
         </div>
       </div>
