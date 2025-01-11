@@ -25,7 +25,7 @@ function getCategoryLink(names: string[]): string {
 />
 {
   category.children?.length && (
-    <div class="category-second-level-container flex flex-wrap gap-6 pb-4 pl-14">
+    <div class="category-second-level-container flex max-h-11 gap-6 pb-4 pl-14">
       {category.children.map((grandChild) => (
         <a href={`/categories/${getCategoryLink([parentName, category.name, grandChild.name])}`} class="dashed-border">
           <p class="text-lg text-muted-foreground hover:text-primary">
