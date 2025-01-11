@@ -2,7 +2,6 @@
 import fs from 'fs';
 import yaml from 'js-yaml';
 import path from 'path';
-import { fileURLToPath } from 'url';
 
 type Config = {
   category_map: Record<string, string>;
@@ -10,12 +9,12 @@ type Config = {
 
 function transformShokaConfig() {
   try {
-    // 读取 _config.yml 文件
-    const currentDir = path.dirname(fileURLToPath(import.meta.url));
-    const configPath = path.join(currentDir, '_config.yml');
+    // 从项目根目录读取 _config.yml 文件
+    const configPath = path.join(process.cwd(), '_config.yml');
+
     // 添加文件存在性检查
     if (!fs.existsSync(configPath)) {
-      // console.log('旧 Shoka 配置文件不存在，使用默认配置:', configPath);
+      console.log('配置文件不存在，使用默认配置:', configPath);
       return null;
     }
     const fileContents = fs.readFileSync(configPath, 'utf8');
@@ -26,7 +25,7 @@ function transformShokaConfig() {
     if (!config) return null;
     // 提取 category_map
     const categoryMap = config.category_map || {};
-    // console.log('分类映射已成功转换:', categoryMap);
+    console.log('读取到的分类映射:', categoryMap); // 添加调试日志
     return { categoryMap };
   } catch (error) {
     console.error('转换分类配置时出错:', error);
