@@ -118,6 +118,7 @@ export function getCategoryLinks(categories?: Category[], parentLink?: string): 
 // return 前端
 // get category name by link
 export function getCategoryNameByLink(link: string): string {
+  if (!link) return '';
   const arr = link.split('/');
   const last = arr[arr.length - 1];
   const res = Object.keys(categoryMap).find((key) => categoryMap[key] === last) ?? '';
