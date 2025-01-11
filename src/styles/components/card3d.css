@@ -1,7 +1,0 @@
-.bling-mask {
-  @apply absolute inset-0 rounded-lg bg-no-repeat opacity-80 bg-blend-overlay mix-blend-color-dodge transition;
-  background-image: url('/img/effects/sparkles.gif'), url('/img/effects/holo.webp'),
-    linear-gradient(125deg, #ff008450 15%, #fca40040 30%, #ffff0030 40%, #00ff8a20 60%, #00cfff40 70%, #cc4cfa50 85%);
-  background-size: 160%;
-  background-position: 50% 50%;
-}

@@ -125,6 +125,9 @@ export default {
       },
       spacing: {
         7.5: '1.875rem',
+        8.5: '2.125rem',
+        14.5: '3.625rem',
+        16.5: '4.125rem',
         15: '3.75rem',
       },
       maxWidth: {

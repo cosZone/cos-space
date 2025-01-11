@@ -1,0 +1,39 @@
+---
+import type { Category } from '@lib/content';
+import CategoryTitle from './CategoryTitle.astro';
+import { categoryMap } from '@constants/site-config';
+
+interface Props {
+  category: Category;
+  parentName: string;
+  countMap: Record<string, number>;
+}
+
+const { category, parentName, countMap } = Astro.props;
+
+function getCategoryLink(names: string[]): string {
+  return names.map((name) => categoryMap[name]).join('/');
+}
+---
+
+<!-- <div class="flex flex-col gap-2 pl-6"> -->
+<CategoryTitle
+  title={category.name}
+  count={countMap[category.name]}
+  href={`/categories/${categoryMap[parentName]}/${categoryMap[category.name]}`}
+  level="h3"
+/>
+{
+  category.children?.length && (
+    <div class="category-second-level-container flex flex-wrap gap-6 pb-4 pl-10">
+      {category.children.map((grandChild) => (
+        <a href={`/categories/${getCategoryLink([parentName, category.name, grandChild.name])}`} class="dashed-border">
+          <p class="text-lg text-muted-foreground hover:text-primary">
+            {grandChild.name} ({countMap[grandChild.name] ?? 0})
+          </p>
+        </a>
+      ))}
+    </div>
+  )
+}
+<!-- </div> -->

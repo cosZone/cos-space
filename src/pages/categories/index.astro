@@ -1,16 +1,13 @@
 ---
 import HomeSider from '@components/layout/HomeSider.astro';
 import Cover from '@components/ui/cover/Cover.astro';
-import { categoryMap, seoConfig } from '@constants/site-config';
+import { seoConfig } from '@constants/site-config';
 import Layout from '@layouts/Layout.astro';
 import { getCategoryLinks, getCategoryList } from '@lib/content';
+import CategoryList from '@components/category/CategoryList.astro';
 
 const { categories, countMap } = await getCategoryList();
 const links = getCategoryLinks(categories, '');
-// 递归生成分类链接
-function getCategoryLink(names: string[]): string {
-  return names.map((name) => categoryMap[name]).join('/');
-}
 ---
 
 <Layout title={`全部分类 | ${seoConfig.title}`}>
@@ -19,56 +16,7 @@ function getCategoryLink(names: string[]): string {
     <div class="mx-auto flex w-full max-w-8xl items-start justify-center md:w-full">
       <HomeSider />
       <div class="flex flex-grow flex-col">
-        <div class="shadow-box mx-0 flex w-full flex-col bg-gradient-start p-4 pt-8 md:px-3 md:py-2">
-          <h2 class="shoka-decoration-circle group relative px-7.5 py-5 text-2xl/9 font-bold">
-            <a href="/" class="link dashed-border border-b group-hover:border-blue group-hover:text-blue">首页</a>
-            <span class="text-xl text-gray-400">/</span> 目前共计 {links.length ?? 0} 个分类
-          </h2>
-          <div class="flex w-full flex-col">
-            {
-              categories.map((category) => (
-                <div class="flex flex-col">
-                  <h2 class="shoka-decoration-circle group relative px-7.5 py-5 text-2xl/9 font-bold">
-                    <a
-                      href={`/categories/${categoryMap[category.name]}`}
-                      class="link dashed-border border-b group-hover:border-blue group-hover:text-blue"
-                    >
-                      {category.name}
-                    </a>
-                    <span class="text-xl text-gray-400">({countMap[category.name] ?? 0})</span>
-                  </h2>
-                  <div class="flex flex-col">
-                    {category.children?.map((child) => (
-                      <div class="flex flex-col gap-2 pl-6">
-                        <h2 class="shoka-decoration-circle group relative px-7.5 py-5 text-xl font-bold">
-                          <a
-                            href={`/categories/${categoryMap[category.name]}/${categoryMap[child.name]}`}
-                            class="dashed-border border-b text-primary/70 group-hover:border-blue group-hover:text-blue"
-                          >
-                            {child.name}
-                          </a>
-                          <span class="text-xl text-gray-400">({countMap[child.name] ?? 0})</span>
-                        </h2>
-                        <div class="flex flex-wrap gap-6 pb-4 pl-10">
-                          {child.children?.map((grandChild) => (
-                            <a
-                              href={`/categories/${getCategoryLink([category.name, child.name, grandChild.name])}`}
-                              class="dashed-border"
-                            >
-                              <p class="text-lg text-muted-foreground hover:text-primary">
-                                {grandChild.name} ({countMap[grandChild.name] ?? 0})
-                              </p>
-                            </a>
-                          ))}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              ))
-            }
-          </div>
-        </div>
+        <CategoryList categories={categories} countMap={countMap} totalCount={links.length ?? 0} />
       </div>
     </div>
   </div>
