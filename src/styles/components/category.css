@@ -73,16 +73,27 @@ h3.shoka-decoration-circle {
     top: 29px;
     left: -34px;
     width: 41px;
-    @apply absolute bg-primary/70;
+    @apply absolute hidden bg-primary/70;
   }
   &::after {
     /* 有三级分类下的 二级标题最后一个标题的竖线 */
     content: '';
     display: block;
     height: 44px;
-    top: 32px;
-    left: -34px;
+    top: 29px;
+    left: 4px;
     width: 3px;
     @apply absolute bg-primary/70;
+  }
+
+  &:last-child {
+    &::after {
+      /* 有三级分类下的 二级标题最后一个标题的竖线 */
+      top: 32px;
+      left: -34px;
+    }
+    &::before {
+      @apply block;
+    }
   }
 }
