@@ -1,19 +1,12 @@
-.dashed-bg {
-  background-image: repeating-linear-gradient(
-    to right,
-    hsl(var(--primary)) 0,
-    hsl(var(--primary)) 8px,
-    transparent 8px,
-    transparent 16px
-  );
-}
-
 .shoka-decoration-circle:hover {
   &::before {
     @apply border-blue;
   }
 }
 .shoka-decoration-circle {
+  a {
+    transition: all 0.2s ease-in-out 0s;
+  }
   &::before {
     /* 所有圆点 */
     content: '';
@@ -29,71 +22,58 @@
     z-index: 1;
     transition: all 0.2s ease-in-out 0s;
     width: 3px;
-    height: 65px;
-    @apply absolute left-1.5 top-11 bg-primary/70;
+    height: 62px;
+    @apply absolute left-1 top-11 bg-primary/70;
+  }
+}
+
+h2.shoka-decoration-circle {
+  &::before {
+    left: -1px;
+  }
+  &::after {
+    @apply hidden;
+  }
+  &.has-children {
+    &::after {
+      background-color: transparent;
+      background-image: repeating-linear-gradient(
+        to bottom,
+        rgb(237, 120, 139, 0.7) 0,
+        rgb(237, 120, 139, 0.7) 4px,
+        transparent 8px,
+        transparent 12px
+      );
+      @apply block;
+    }
   }
 }
 h3.shoka-decoration-circle {
-  &::after {
-    @apply h-14.5 left-1 top-10 last:hidden;
-  }
-  &:first-child > a::before,
-  &:last-child > a::before {
-    /* 二级标题的横线 */
-    content: '';
-    display: block;
-    height: 3px;
-    @apply -left-8.5 w-8.5 absolute top-1/2 -translate-y-1/2 bg-primary/70;
-  }
-  &:last-child > a::after {
-    /* 二级标题最后一个标题的竖线 */
-    content: '';
-    display: block;
-    width: 3px;
-    @apply -left-8.5 absolute top-9 h-16 bg-primary/70;
-  }
-}
-
-.category-first-level-container {
-  &:last-child h3.shoka-decoration-circle:last-child {
-    a::after,
-    a::before {
-      /* 隐藏 一级标题下最后一个二级标题最后一个标题的装饰 */
-      @apply hidden;
-    }
-  }
-}
-.category-second-level-container {
-  @apply relative;
   &::before {
-    /* 有三级分类下的 二级标题最后一个标题的横线 */
-    content: '';
-    display: block;
-    height: 3px;
-    top: 29px;
-    left: -34px;
-    width: 41px;
-    @apply absolute hidden bg-primary/70;
+    @apply size-3;
   }
   &::after {
-    /* 有三级分类下的 二级标题最后一个标题的竖线 */
-    content: '';
-    display: block;
-    height: 44px;
-    top: 29px;
-    left: 4px;
-    width: 3px;
-    @apply absolute bg-primary/70;
+    @apply left-1 top-10 h-14 last:hidden;
   }
 
-  &:last-child {
-    &::after {
-      /* 有三级分类下的 二级标题最后一个标题的竖线 */
-      top: 32px;
-      left: -34px;
-    }
-    &::before {
-      @apply block;
-    }
+  &:last-child > a::after {
+    @apply hidden;
+  }
+}
+
+p.shoka-decoration-circle {
+  &::before {
+    left: 2px;
+    @apply size-2 border-none bg-primary;
+  }
+  &::after {
+    height: 54px;
+    left: 5px;
+    @apply top-7 w-0.5 bg-primary/40 last:hidden;
+  }
+}
+p.shoka-decoration-circle:hover {
+  &::before {
+    @apply bg-blue;
   }
 }

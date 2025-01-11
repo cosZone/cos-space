@@ -15,7 +15,7 @@ const posts = postCollections.slice(0, 5);
 <Layout title={seoConfig.title}>
   <div class="mb-20 flex flex-col">
     <Cover />
-    <div class="mx-auto flex max-w-8xl items-start justify-center pb-32 md:w-full">
+    <div class="mx-auto flex max-w-[90vw] items-start justify-center pb-32 md:w-full desktop:max-w-8xl">
       <HomeSider />
       <div class="flex flex-grow flex-col md:w-full">
         <PostList posts={posts} showPaginator={false} />

@@ -17,7 +17,7 @@ export default {
       lg: { max: '1440px' },
       '2xl': '1440px',
       tablet: { max: '992px' },
-      desktop: { max: '1480px' },
+      desktop: { min: '1480px' },
     },
     extend: {
       colors: {

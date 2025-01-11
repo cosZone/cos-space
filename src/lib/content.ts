@@ -139,3 +139,25 @@ export function getCategoryByLink(categories: Category[], link: string): Categor
   }
   return null;
 }
+
+/**
+ * 获取分类下的所有文章
+ * @param categoryName 分类名
+ * @returns 文章列表
+ */
+export async function getPostsByCategory(categoryName: string): Promise<BlogPost[]> {
+  const posts = await getSortedPosts();
+  return posts.filter((post) => {
+    const { categories } = post.data;
+    if (!categories?.length) return false;
+
+    // 处理两种分类格式
+    if (Array.isArray(categories[0])) {
+      // ['笔记', '算法']
+      return categories[0].includes(categoryName);
+    } else {
+      // '工具'
+      return categories[0] === categoryName;
+    }
+  });
+}

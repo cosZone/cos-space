@@ -1,9 +1,11 @@
 ---
+import CategoryList from '@components/category/CategoryList.astro';
+import CategoryPostList from '@components/category/CategoryPostList.astro';
 import HomeSider from '@components/layout/HomeSider.astro';
 import Cover from '@components/ui/cover/Cover.astro';
-import { categoryMap, seoConfig } from '@constants/site-config';
+import { seoConfig } from '@constants/site-config';
 import Layout from '@layouts/Layout.astro';
-import { getCategoryList, getCategoryLinks, getCategoryByLink } from '@lib/content';
+import { getCategoryByLink, getCategoryLinks, getCategoryList, getPostsByCategory } from '@lib/content';
 
 // 获取分类页面
 export async function getStaticPaths() {
@@ -18,42 +20,20 @@ export async function getStaticPaths() {
   });
 }
 
-const { slug } = Astro.params;
 const { category } = Astro.props;
+const { categories: allCategories, countMap } = await getCategoryList();
 
-// 获取当前分类的完整路径
-const currentPath = slug.split('/');
+// 如果是子分类，只展示当前分类的内容
+const displayCategories = category ? [category] : allCategories;
 ---
 
 <Layout title={`分类 - ${category?.name} | ${seoConfig.title}`}>
   <div class="mb-20 flex flex-col">
     <Cover title={`分类于"${category?.name}"的文章`} />
-    <div class="mx-auto flex w-full max-w-8xl items-start justify-center md:w-full">
+    <div class="mx-auto flex w-full max-w-[90vw] items-start justify-center md:w-full desktop:max-w-8xl">
       <HomeSider />
-      <div class="flex flex-grow flex-col">
-        <div class="shadow-box mx-0 flex w-full flex-col gap-8 bg-gradient-start p-4 pt-8 md:px-3 md:py-2">
-          <p class="text-2xl font-bold">{category?.name}</p>
-          <div class="flex w-full flex-col gap-4">
-            {
-              category?.children &&
-                category.children.map((child) => (
-                  <div class="flex flex-col gap-2">
-                    <a href={`/categories/${[...currentPath, categoryMap[child.name]].join('/')}`}>
-                      <p class="text-lg font-bold">{child.name}</p>
-                    </a>
-                    {child.children?.map((grandChild) => (
-                      <a
-                        href={`/categories/${[...currentPath, categoryMap[child.name], categoryMap[grandChild.name]].join('/')}`}
-                        class="pl-4"
-                      >
-                        <p class="text-sm text-muted-foreground hover:text-primary">{grandChild.name}</p>
-                      </a>
-                    ))}
-                  </div>
-                ))
-            }
-          </div>
-        </div>
+      <div class="flex flex-grow flex-col gap-8">
+        <CategoryPostList rootCategory={category} categories={displayCategories} countMap={countMap} />
       </div>
     </div>
   </div>

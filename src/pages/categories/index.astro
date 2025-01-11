@@ -13,7 +13,7 @@ const links = getCategoryLinks(categories, '');
 <Layout title={`全部分类 | ${seoConfig.title}`}>
   <div class="mb-20 flex flex-col">
     <Cover title="全部分类" />
-    <div class="mx-auto flex w-full max-w-8xl items-start justify-center md:w-full">
+    <div class="mx-auto flex w-full max-w-[90vw] items-start justify-center md:w-full desktop:max-w-8xl">
       <HomeSider />
       <div class="flex flex-grow flex-col">
         <CategoryList categories={categories} countMap={countMap} totalCount={links.length ?? 0} />

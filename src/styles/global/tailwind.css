@@ -87,6 +87,7 @@
 
   .dashed-border {
     border-bottom: 0.0625rem dashed hsl(var(--grey-4));
+    @apply hover:border-blue group-hover:border-blue group-hover:text-blue;
   }
 
   #site-header {

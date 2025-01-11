@@ -17,7 +17,10 @@ const postCount = await getPostCount();
 const { countMap } = await getCategoryList();
 ---
 
-<div class={cn('sticky top-20 flex flex-col min-w-[16rem] tablet:hidden items-center p-4 md:hidden', className)}>
+<div
+  class={cn('sticky top-20 flex flex-col min-w-[16rem] tablet:hidden items-center p-4 md:hidden', className)}
+  transition:name="page-home-sider"
+>
   {
     type !== HomeSiderType.HOME && (
       <Segmented
@@ -33,6 +36,7 @@ const { countMap } = await getCategoryList();
     )
   }
   <img
+    transition:persist="page-home-sider-avatar"
     src={siteConfig.avatar}
     alt={`${siteConfig.name}'s avatar`}
     class="shadow-card-darker h-40 w-40 rounded-full transition hover:animate-shake"

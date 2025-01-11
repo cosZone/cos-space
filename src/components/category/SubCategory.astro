@@ -25,13 +25,14 @@ function getCategoryLink(names: string[]): string {
 />
 {
   category.children?.length && (
-    <div class="category-second-level-container flex max-h-11 gap-6 pb-4 pl-14">
+    <div class="category-second-level-container flex flex-col">
       {category.children.map((grandChild) => (
-        <a href={`/categories/${getCategoryLink([parentName, category.name, grandChild.name])}`} class="dashed-border">
-          <p class="text-lg text-muted-foreground hover:text-primary">
-            {grandChild.name} <span class="text-sm text-gray-400">({countMap[grandChild.name] ?? 0})</span>
-          </p>
-        </a>
+        <p class="shoka-decoration-circle relative px-7.5 py-2 text-base/9 text-primary hover:text-blue">
+          <a href={`/categories/${getCategoryLink([parentName, category.name, grandChild.name])}`} class="dashed-border">
+            {grandChild.name}
+          </a>
+          <span class="text-sm text-gray-400">({countMap[grandChild.name] ?? 0})</span>
+        </p>
       ))}
     </div>
   )
