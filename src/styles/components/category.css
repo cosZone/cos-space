@@ -7,73 +7,82 @@
     transparent 16px
   );
 }
+
 .shoka-decoration-circle:hover {
   &::before {
     @apply border-blue;
   }
 }
-.shoka-decoration-circle::before {
-  content: '';
-  display: block;
-  z-index: 1;
-  transition: all 0.2s ease-in-out 0s;
-  @apply absolute left-0 top-1/2 size-3.5 -translate-y-1/2 rounded-full border-2 border-primary bg-gradient-start transition-colors duration-300 group-hover:border-blue;
+.shoka-decoration-circle {
+  &::before {
+    /* 所有圆点 */
+    content: '';
+    display: block;
+    z-index: 1;
+    transition: all 0.2s ease-in-out 0s;
+    @apply absolute left-0 top-1/2 size-3.5 -translate-y-1/2 rounded-full border-2 border-primary bg-gradient-start transition-colors duration-300 group-hover:border-blue;
+  }
+  &::after {
+    /* 竖线 */
+    content: '';
+    display: block;
+    z-index: 1;
+    transition: all 0.2s ease-in-out 0s;
+    width: 3px;
+    height: 65px;
+    @apply absolute left-1.5 top-11 bg-primary/70;
+  }
 }
-.shoka-decoration-circle::after {
-  content: '';
-  display: block;
-  z-index: 1;
-  transition: all 0.2s ease-in-out 0s;
-  width: 3px;
-  height: 65px;
-  @apply absolute left-1.5 top-11 bg-primary/70;
-}
-h3.shoka-decoration-circle::after {
-  @apply h-14.5 left-1 top-10 last:hidden;
-}
-h3.shoka-decoration-circle:first-child > a::before {
-  content: '';
-  display: block;
-  height: 3px;
-  @apply -left-8.5 w-8.5 absolute top-1/2 -translate-y-1/2 bg-primary/70;
+h3.shoka-decoration-circle {
+  &::after {
+    @apply h-14.5 left-1 top-10 last:hidden;
+  }
+  &:first-child > a::before,
+  &:last-child > a::before {
+    /* 二级标题的横线 */
+    content: '';
+    display: block;
+    height: 3px;
+    @apply -left-8.5 w-8.5 absolute top-1/2 -translate-y-1/2 bg-primary/70;
+  }
+  &:last-child > a::after {
+    /* 二级标题最后一个标题的竖线 */
+    content: '';
+    display: block;
+    width: 3px;
+    @apply -left-8.5 absolute top-9 h-16 bg-primary/70;
+  }
 }
 
-h3.shoka-decoration-circle:last-child > a::before {
-  content: '';
-  display: block;
-  height: 3px;
-  @apply -left-8.5 w-8.5 absolute top-1/2 -translate-y-1/2 bg-primary/70;
-}
-h3.shoka-decoration-circle:last-child > a::after {
-  content: '';
-  display: block;
-  width: 3px;
-  @apply -left-8.5 absolute top-9 h-16 bg-primary/70;
-}
-.category-first-level-container:last-child h3.shoka-decoration-circle:last-child {
-  a::after,
-  a::before {
-    @apply hidden;
+.category-first-level-container {
+  &:last-child h3.shoka-decoration-circle:last-child {
+    a::after,
+    a::before {
+      /* 隐藏 一级标题下最后一个二级标题最后一个标题的装饰 */
+      @apply hidden;
+    }
   }
 }
 .category-second-level-container {
   @apply relative;
-}
-.category-second-level-container::before {
-  content: '';
-  display: block;
-  height: 3px;
-  top: 29px;
-  left: -34px;
-  width: 41px;
-  @apply absolute bg-primary/70;
-}
-.category-second-level-container::after {
-  content: '';
-  display: block;
-  height: 44px;
-  top: 32px;
-  left: -34px;
-  width: 3px;
-  @apply absolute bg-primary/70;
+  &::before {
+    /* 有三级分类下的 二级标题最后一个标题的横线 */
+    content: '';
+    display: block;
+    height: 3px;
+    top: 29px;
+    left: -34px;
+    width: 41px;
+    @apply absolute bg-primary/70;
+  }
+  &::after {
+    /* 有三级分类下的 二级标题最后一个标题的竖线 */
+    content: '';
+    display: block;
+    height: 44px;
+    top: 32px;
+    left: -34px;
+    width: 3px;
+    @apply absolute bg-primary/70;
+  }
 }
