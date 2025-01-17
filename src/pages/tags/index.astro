@@ -3,7 +3,7 @@ import HomeSider from '@components/layout/HomeSider.astro';
 import Cover from '@components/ui/cover/Cover.astro';
 import { siteConfig } from '@constants/site-config';
 import Layout from '@layouts/Layout.astro';
-import { getSortedPosts } from '@lib/content';
+import { getAllTags, getSortedPosts } from '@lib/content';
 
 const TAG_COLORS = [
   'from-blue-400/10 to-indigo-300/10 hover:from-blue-400/90 hover:to-indigo-300/90 text-blue-400/70 hover:text-blue-50',
@@ -13,16 +13,7 @@ const TAG_COLORS = [
 ];
 
 const posts = await getSortedPosts();
-const tags = posts.reduce<Record<string, number>>((acc, post) => {
-  const postTags = post.data.tags || [];
-  postTags.forEach((tag) => {
-    if (!acc[tag]) {
-      acc[tag] = 0;
-    }
-    acc[tag]++;
-  });
-  return acc;
-}, {});
+const tags = getAllTags(posts);
 
 const sortedTags = Object.entries(tags)
   .sort(([, a], [, b]) => b - a)
@@ -42,7 +33,7 @@ const sortedTags = Object.entries(tags)
               >首页</a
             >
             <span class="text-lg text-gray-400"> / </span>
-            <span class="text-muted-foreground">目前共计 {sortedTags.length} 个标签</span>
+            目前共计 {sortedTags.length} 个标签
           </h2>
           <div class="flex flex-wrap gap-3 p-4">
             {

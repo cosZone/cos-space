@@ -14,6 +14,19 @@ export async function getSortedPosts() {
   return sortedPosts;
 }
 
+export const getAllTags = (posts: BlogPost[]) => {
+  return posts.reduce<Record<string, number>>((acc, post) => {
+    const postTags = post.data.tags || [];
+    postTags.forEach((tag) => {
+      if (!acc[tag]) {
+        acc[tag] = 0;
+      }
+      acc[tag]++;
+    });
+    return acc;
+  }, {});
+};
+
 export const getPostCount = async () => {
   const posts = await getCollection('blog');
   return posts?.length ?? 0;

@@ -4,7 +4,7 @@ import Segmented from '@components/ui/segmented';
 import { HomeSiderType } from '@constants/enum';
 import { routers } from '@constants/router';
 import { siteConfig } from '@constants/site-config';
-import { getCategoryList, getPostCount } from '@lib/content';
+import { getCategoryList, getPostCount, getAllTags, getSortedPosts } from '@lib/content';
 import { cn } from '@lib/utils';
 
 interface Props {
@@ -15,6 +15,10 @@ interface Props {
 const { type = HomeSiderType.HOME, className } = Astro.props;
 const postCount = await getPostCount();
 const { countMap } = await getCategoryList();
+const posts = await getSortedPosts();
+const tags = getAllTags(posts);
+
+const allTags = Object.entries(tags).map(([tag, count]) => ({ tag, count }));
 ---
 
 <div
@@ -48,10 +52,10 @@ const { countMap } = await getCategoryList();
   <div
     class="mt-3 flex select-none justify-center whitespace-nowrap text-center text-sm/4 text-muted-foreground dark:text-white/80"
   >
-    <p class="flex cursor-pointer flex-col gap-2 p-1 transition hover:text-primary">
+    <a href="/" class="flex cursor-pointer flex-col gap-2 p-1 transition hover:text-blue">
       <span class="text-lg/5 font-bold">{postCount}</span>
       文章
-    </p>
+    </a>
     <div class="mx-3 w-px bg-muted-foreground"></div>
     <a href="/categories" aria-label="分类" class="hover:text-blue">
       <p class="flex cursor-pointer flex-col gap-2 p-1 transition">
@@ -60,10 +64,10 @@ const { countMap } = await getCategoryList();
       </p>
     </a>
     <div class="mx-3 w-px bg-muted-foreground"></div>
-    <p class="flex cursor-pointer flex-col gap-2 p-1 transition hover:text-primary">
-      <span class="text-lg/5 font-bold">109</span>
+    <a href="/tags" class="flex cursor-pointer flex-col gap-2 p-1 transition hover:text-blue">
+      <span class="text-lg/5 font-bold">{allTags?.length ?? 0}</span>
       标签
-    </p>
+    </a>
   </div>
 
   <div class="mt-6 flex w-full flex-col items-center gap-2">
