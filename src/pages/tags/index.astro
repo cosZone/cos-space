@@ -42,11 +42,8 @@ const sortedTags = Object.entries(tags)
                   class={`group relative flex items-center rounded-lg bg-gradient-to-r px-3 py-1.5 text-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg ${
                     TAG_COLORS[index % TAG_COLORS.length]
                   }`}
-                  style={`--tag-size: ${Math.max(1, Math.min(2, Math.log(count) / Math.log(10)))};`}
                 >
-                  <span class="font-medium" style="font-size: calc(var(--tag-size) * 0.875rem)">
-                    {tag}
-                  </span>
+                  <span class="font-medium">{tag}</span>
                   <span class="ml-1.5 truncate rounded-full bg-white/10 px-1.5 text-xs">{count}</span>
                 </a>
               ))
