@@ -14,6 +14,19 @@ export async function getSortedPosts() {
   return sortedPosts;
 }
 
+export const getAllTags = (posts: BlogPost[]) => {
+  return posts.reduce<Record<string, number>>((acc, post) => {
+    const postTags = post.data.tags || [];
+    postTags.forEach((tag) => {
+      if (!acc[tag]) {
+        acc[tag] = 0;
+      }
+      acc[tag]++;
+    });
+    return acc;
+  }, {});
+};
+
 export const getPostCount = async () => {
   const posts = await getCollection('blog');
   return posts?.length ?? 0;
@@ -125,6 +138,7 @@ export function getCategoryNameByLink(link: string): string {
   return res;
 }
 
+// 获取分类
 export function getCategoryByLink(categories: Category[], link: string): Category | null {
   const name = getCategoryNameByLink(link);
   if (!name || !categories?.length) return null;
@@ -161,4 +175,17 @@ export async function getPostsByCategory(categoryName: string): Promise<BlogPost
       return categories[0] === categoryName;
     }
   });
+}
+
+export function getPostLastCategory(post: BlogPost): { link: string; name: string } {
+  const { categories } = post.data;
+  if (!categories?.length) return { link: '', name: '' };
+  if (Array.isArray(categories[0])) {
+    if (!categories[0]?.length) return { link: '', name: '' };
+    const arr = categories[0];
+    const link = '/categories/' + arr.map((c) => categoryMap[c]).join('/');
+    return { link, name: arr[arr.length - 1] };
+  } else {
+    return { link: '/categories/' + categoryMap[categories[0] as string], name: categories[0] as string };
+  }
 }
