@@ -14,7 +14,6 @@ const TAG_COLORS = [
 
 const posts = await getSortedPosts();
 const tags = getAllTags(posts);
-
 const sortedTags = Object.entries(tags)
   .sort(([, a], [, b]) => b - a)
   .map(([tag, count]) => ({ tag, count }));
@@ -39,7 +38,7 @@ const sortedTags = Object.entries(tags)
             {
               sortedTags.map(({ tag, count }, index) => (
                 <a
-                  href={`/tags/${tag}`}
+                  href={`/tags/${tag.replace(/\//g, '-')}`}
                   class={`group relative flex items-center rounded-lg bg-gradient-to-r px-3 py-1.5 text-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg ${
                     TAG_COLORS[index % TAG_COLORS.length]
                   }`}
