@@ -1,0 +1,69 @@
+---
+import HomeSider from '@components/layout/HomeSider.astro';
+import Cover from '@components/ui/cover/Cover.astro';
+import { siteConfig } from '@constants/site-config';
+import Layout from '@layouts/Layout.astro';
+import { getSortedPosts } from '@lib/content';
+
+const TAG_COLORS = [
+  'from-blue-400/10 to-indigo-300/10 hover:from-blue-400/90 hover:to-indigo-300/90 text-blue-400/70 hover:text-blue-50',
+  'from-pink-300/10 to-rose-200/10 hover:from-pink-300/90 hover:to-rose-200/90 text-pink-400/70 hover:text-pink-50',
+  'from-violet-400/10 to-purple-300/10 hover:from-violet-400/90 hover:to-purple-300/90 text-violet-400/70 hover:text-violet-50',
+  'from-sky-400/10 to-blue-300/10 hover:from-sky-400/90 hover:to-blue-300/90 text-sky-400/70 hover:text-sky-50',
+];
+
+const posts = await getSortedPosts();
+const tags = posts.reduce<Record<string, number>>((acc, post) => {
+  const postTags = post.data.tags || [];
+  postTags.forEach((tag) => {
+    if (!acc[tag]) {
+      acc[tag] = 0;
+    }
+    acc[tag]++;
+  });
+  return acc;
+}, {});
+
+const sortedTags = Object.entries(tags)
+  .sort(([, a], [, b]) => b - a)
+  .map(([tag, count]) => ({ tag, count }));
+---
+
+<Layout title={`标签 | ${siteConfig.title}`} description="所有文章标签">
+  <div class="mb-20 flex flex-col">
+    <Cover title="全部标签" />
+
+    <div class="mx-auto flex w-full max-w-[90vw] items-start justify-center md:w-full desktop:max-w-8xl">
+      <HomeSider />
+      <div class="flex flex-grow flex-col">
+        <div class="shadow-box mx-0 flex w-full flex-col bg-gradient-start p-4 md:px-3 md:py-2">
+          <h2 class="shoka-decoration-circle group relative h-19 px-7.5 py-5 text-2xl/9 font-bold">
+            <a href="/" class="dashed-border border-b text-muted-foreground group-hover:border-blue group-hover:text-blue"
+              >首页</a
+            >
+            <span class="text-lg text-gray-400"> / </span>
+            <span class="text-muted-foreground">目前共计 {sortedTags.length} 个标签</span>
+          </h2>
+          <div class="flex flex-wrap gap-3 p-4">
+            {
+              sortedTags.map(({ tag, count }, index) => (
+                <a
+                  href={`/tags/${tag}`}
+                  class={`group relative flex items-center rounded-lg bg-gradient-to-r px-3 py-1.5 text-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg ${
+                    TAG_COLORS[index % TAG_COLORS.length]
+                  }`}
+                  style={`--tag-size: ${Math.max(1, Math.min(2, Math.log(count) / Math.log(10)))};`}
+                >
+                  <span class="font-medium" style="font-size: calc(var(--tag-size) * 0.875rem)">
+                    {tag}
+                  </span>
+                  <span class="ml-1.5 rounded-full bg-white/10 px-1.5 text-xs">{count}</span>
+                </a>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

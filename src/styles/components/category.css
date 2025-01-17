@@ -77,3 +77,16 @@ p.shoka-decoration-circle:hover {
     @apply bg-blue;
   }
 }
+
+@media (max-width: 768px) {
+  p.shoka-decoration-circle {
+    height: 70px;
+    &::before {
+      top: 35%;
+    }
+    &::after {
+      height: 70px;
+      top: 24px;
+    }
+  }
+}

@@ -15,7 +15,7 @@ const { categories, countMap, rootCategory } = Astro.props;
 const posts = await getPostsByCategory(rootCategory?.name ?? '');
 ---
 
-<div class="shadow-box mx-0 flex w-full flex-col bg-gradient-start p-4 pt-8 md:px-3 md:py-2">
+<div class="shadow-box mx-0 flex w-full flex-col bg-gradient-start p-4 md:px-3 md:py-2">
   <h2
     class={cn('shoka-decoration-circle px-7.5 group relative py-5 text-2xl/9 font-bold', {
       'has-children': posts?.length || rootCategory?.children?.length,
