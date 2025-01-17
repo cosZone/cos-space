@@ -50,7 +50,7 @@ const { tag, urlTag, posts } = Astro.props;
                 {posts.map((post) => {
                   const { link, name } = getPostLastCategory(post);
                   return (
-                    <p class="shoka-decoration-circle group relative truncate px-7.5 py-2 text-base/9 text-primary md:overflow-visible">
+                    <p class="shoka-decoration-circle group relative px-7.5 py-2 text-base/9 text-primary md:overflow-visible">
                       <span class="inline-block w-15 text-xs text-gray-400 md:relative md:-top-1">
                         {parseDate(post?.data?.date, 'YY-MM-DD')}
                       </span>
@@ -60,7 +60,7 @@ const { tag, urlTag, posts } = Astro.props;
                       >
                         {name}
                       </a>
-                      <a href={'/post/' + post?.data?.link} class="dashed-border md: absolute truncate md:left-7 md:top-7">
+                      <a href={'/post/' + post?.data?.link} class="dashed-border md:absolute md:left-7 md:top-7">
                         {post?.data?.title}
                       </a>
                     </p>
