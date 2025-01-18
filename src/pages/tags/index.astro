@@ -3,6 +3,7 @@ import HomeSider from '@components/layout/HomeSider.astro';
 import Cover from '@components/ui/cover/Cover.astro';
 import { siteConfig } from '@constants/site-config';
 import Layout from '@layouts/Layout.astro';
+import TwoColumnLayout from '@layouts/TwoColumnLayout.astro';
 import { getAllTags, getSortedPosts } from '@lib/content';
 
 const TAG_COLORS = [
@@ -20,40 +21,33 @@ const sortedTags = Object.entries(tags)
 ---
 
 <Layout title={`标签 | ${siteConfig.title}`} description="所有文章标签">
-  <div class="mb-20 flex flex-col">
-    <Cover title="全部标签" />
-
-    <div class="mx-auto flex w-full max-w-[90vw] items-start justify-center md:w-full desktop:max-w-8xl">
-      <HomeSider />
-      <div class="flex flex-grow flex-col">
-        <div class="shadow-box mx-0 flex w-full flex-col bg-gradient-start p-4 md:px-3 md:py-2">
-          <h2 class="shoka-decoration-circle group relative h-19 px-7.5 py-5 text-2xl/9 font-bold">
-            <a href="/" class="dashed-border border-b text-muted-foreground group-hover:border-blue group-hover:text-blue"
-              >首页</a
-            >
-            <span class="text-lg text-gray-400"> / </span>
-            目前共计 {sortedTags.length} 个标签
-          </h2>
-          <div class="flex flex-wrap gap-3 p-4">
-            {
-              sortedTags.map(({ tag, count }, index) => (
-                <div class="group relative">
-                  {/* 防止闪烁 */}
-                  <a
-                    href={`/tags/${tag.replace(/\//g, '-')}`}
-                    class={`group relative flex items-center rounded-lg bg-gradient-to-r px-3 py-1.5 text-sm transition-all duration-300 group-hover:-translate-y-0.5 group-hover:shadow-lg ${
-                      TAG_COLORS[index % TAG_COLORS.length]
-                    }`}
-                  >
-                    <span class="font-medium">{tag}</span>
-                    <span class="ml-1.5 truncate rounded-full bg-white/10 px-1.5 text-xs">{count}</span>
-                  </a>
-                </div>
-              ))
-            }
-          </div>
-        </div>
+  <TwoColumnLayout>
+    <Cover slot="cover" title="全部标签" />
+    <HomeSider slot="sider" />
+    <div class="shadow-box mx-0 flex w-full flex-col bg-gradient-start p-4 md:px-3 md:py-2">
+      <h2 class="shoka-decoration-circle group relative h-19 px-7.5 py-5 text-2xl/9 font-bold">
+        <a href="/" class="dashed-border border-b text-muted-foreground group-hover:border-blue group-hover:text-blue">首页</a>
+        <span class="text-lg text-gray-400"> / </span>
+        目前共计 {sortedTags.length} 个标签
+      </h2>
+      <div class="flex flex-wrap gap-3 p-4">
+        {
+          sortedTags.map(({ tag, count }, index) => (
+            <div class="group relative">
+              {/* 防止闪烁 */}
+              <a
+                href={`/tags/${tag.replace(/\//g, '-')}`}
+                class={`group relative flex items-center rounded-lg bg-gradient-to-r px-3 py-1.5 text-sm transition-all duration-300 group-hover:-translate-y-0.5 group-hover:shadow-lg ${
+                  TAG_COLORS[index % TAG_COLORS.length]
+                }`}
+              >
+                <span class="font-medium">{tag}</span>
+                <span class="ml-1.5 truncate rounded-full bg-white/10 px-1.5 text-xs">{count}</span>
+              </a>
+            </div>
+          ))
+        }
       </div>
     </div>
-  </div>
+  </TwoColumnLayout>
 </Layout>

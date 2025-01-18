@@ -4,6 +4,7 @@ import HomeSider from '@components/layout/HomeSider.astro';
 import Cover from '@components/ui/cover/Cover.astro';
 import { seoConfig } from '@constants/site-config';
 import Layout from '@layouts/Layout.astro';
+import TwoColumnLayout from '@layouts/TwoColumnLayout.astro';
 import { getCategoryLinks, getCategoryList } from '@lib/content';
 
 const { categories, countMap } = await getCategoryList();
@@ -11,13 +12,9 @@ const links = getCategoryLinks(categories, '');
 ---
 
 <Layout title={`全部分类 | ${seoConfig.title}`}>
-  <div class="mb-20 flex flex-col">
-    <Cover title="全部分类" />
-    <div class="mx-auto flex w-full max-w-[90vw] items-start justify-center md:w-full desktop:max-w-8xl">
-      <HomeSider />
-      <div class="flex flex-grow flex-col">
-        <CategoryList categories={categories} countMap={countMap} totalCount={links.length ?? 0} />
-      </div>
-    </div>
-  </div>
+  <TwoColumnLayout>
+    <Cover slot="cover" title="全部分类" />
+    <HomeSider slot="sider" />
+    <CategoryList categories={categories} countMap={countMap} totalCount={links.length ?? 0} />
+  </TwoColumnLayout>
 </Layout>

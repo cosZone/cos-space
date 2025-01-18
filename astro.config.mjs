@@ -1,13 +1,14 @@
 // @ts-check
 import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
+import { siteConfig } from './src/constants/site-config';
 import icon from 'astro-icon';
 import { defineConfig } from 'astro/config';
 import svgr from 'vite-plugin-svgr';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://space.cosine.ren/',
+  site: siteConfig.site,
   integrations: [
     react(),
     tailwind({

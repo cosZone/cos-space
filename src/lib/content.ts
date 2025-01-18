@@ -1,4 +1,4 @@
-import { categoryMap } from '@constants/site-config';
+import { categoryMap } from '@constants/category';
 import { getCollection, type CollectionEntry } from 'astro:content';
 
 import type { BlogPost } from 'types/blog';

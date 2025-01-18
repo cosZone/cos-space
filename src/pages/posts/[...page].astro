@@ -4,6 +4,7 @@ import PostList from '@components/post/PostList.astro';
 import Cover from '@components/ui/cover/Cover.astro';
 import { seoConfig } from '@constants/site-config';
 import Layout from '@layouts/Layout.astro';
+import TwoColumnLayout from '@layouts/TwoColumnLayout.astro';
 import { getSortedPosts } from '@lib/content';
 import type { PaginateFunction } from 'astro';
 
@@ -16,11 +17,9 @@ const { page } = Astro.props;
 ---
 
 <Layout title={seoConfig.title}>
-  <div class="mb-20 flex flex-col">
-    <Cover />
-    <div class="mx-auto flex max-w-[90vw] items-start justify-center md:w-full desktop:max-w-8xl">
-      <HomeSider className="md:hidden" />
-      <PostList posts={page.data} page={page} />
-    </div>
-  </div>
+  <TwoColumnLayout>
+    <Cover slot="cover" />
+    <HomeSider slot="sider" />
+    <PostList posts={page.data} page={page} />
+  </TwoColumnLayout>
 </Layout>

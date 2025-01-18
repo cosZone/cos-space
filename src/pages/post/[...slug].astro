@@ -3,6 +3,7 @@ import HomeSider from '@components/layout/HomeSider.astro';
 import Cover from '@components/ui/cover/Cover.astro';
 import { siteConfig } from '@constants/site-config';
 import Layout from '@layouts/Layout.astro';
+import TwoColumnLayout from '@layouts/TwoColumnLayout.astro';
 import { getCategoryArr, getSortedPosts } from '@lib/content';
 import { parseDate } from '@lib/datetime';
 
@@ -40,15 +41,11 @@ const categoryStr = categoryArr?.length ? ` | ${categoryArr.join(' / ')}` : '';
 
 <Layout title={`${post.data.title}${categoryStr} | ${siteConfig.title}`} description={description}>
   <script is:inline slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
-  <div class="mb-20 flex flex-col">
-    <Cover data={post} />
-    <div class="mx-auto flex max-w-[90vw] items-start justify-center md:w-full desktop:max-w-8xl">
-      <HomeSider />
-      <div class="flex flex-grow flex-col">
-        <div class="shadow-box flex flex-col gap-8 bg-gradient-start p-4 pt-8 md:px-5 md:py-4">
-          <div class="prose max-w-none dark:prose-invert"><Content /></div>
-        </div>
-      </div>
+  <TwoColumnLayout>
+    <Cover slot="cover" data={post} />
+    <HomeSider slot="sider" />
+    <div class="shadow-box flex flex-col gap-8 bg-gradient-start p-4 pt-8 md:px-5 md:py-4">
+      <div class="prose max-w-none dark:prose-invert"><Content /></div>
     </div>
-  </div>
+  </TwoColumnLayout>
 </Layout>

@@ -16,7 +16,7 @@ export async function GET(context: APIContext) {
   if (!site) {
     throw new Error('Missing site metadata');
   }
-  const res = rss({
+  return rss({
     title: siteConfig.title,
     description: siteConfig.subtitle || 'No description',
     site,
@@ -39,6 +39,4 @@ export async function GET(context: APIContext) {
       })
       .slice(0, 20),
   });
-  console.log(res);
-  return res;
 }

@@ -1,7 +1,3 @@
-import transformShokaConfig from '@scripts/transformShokaConfig';
-
-const shokaConfig = transformShokaConfig();
-
 type SiteConfig = {
   title: string; // 网站标题名称（banner 上）
   alternate?: string; // 网站英文短名
@@ -13,6 +9,7 @@ type SiteConfig = {
   author?: string; // 文章作者
   // theme
   enableJSGridCover?: boolean; // 是否启用 color4bg 的背景 (写了不舍得扔)
+  site: string; // 站点线上域名 用于 RSS 生成等
 };
 
 // TODO: change to backend
@@ -29,6 +26,7 @@ export const siteConfig: SiteConfig = {
   author: 'cos', // 作者名称
 
   enableJSGridCover: false, // 是否启用 color4bg 的背景
+  site: 'https://space.cosine.ren/',
 };
 const { title, alternate, subtitle } = siteConfig;
 export const seoConfig = {
@@ -89,6 +87,3 @@ export const defaultCoverList = [
   'https://r2.cosine.ren/i/2025/01/05/102548617_p0.webp',
   'https://r2.cosine.ren/i/2025/01/05/104060648_p0.webp',
 ];
-
-// { '随笔': 'life' }
-export const categoryMap: { [name: string]: string } = shokaConfig?.categoryMap || {};
