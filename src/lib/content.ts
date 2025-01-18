@@ -1,9 +1,9 @@
 import { categoryMap } from '@constants/site-config';
-import { getCollection } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 
 import type { BlogPost } from 'types/blog';
 
-export async function getSortedPosts() {
+export async function getSortedPosts(): Promise<CollectionEntry<'blog'>[]> {
   const posts = await getCollection('blog');
 
   // 按日期排序
@@ -17,7 +17,7 @@ export async function getSortedPosts() {
 export const getAllTags = (posts: BlogPost[]) => {
   return posts.reduce<Record<string, number>>((acc, post) => {
     const postTags = post.data.tags || [];
-    postTags.forEach((tag) => {
+    postTags.forEach((tag: string) => {
       if (!acc[tag]) {
         acc[tag] = 0;
       }

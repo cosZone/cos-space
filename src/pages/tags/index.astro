@@ -6,10 +6,10 @@ import Layout from '@layouts/Layout.astro';
 import { getAllTags, getSortedPosts } from '@lib/content';
 
 const TAG_COLORS = [
-  'from-blue-400/10 to-indigo-300/10 hover:from-blue-400/90 hover:to-indigo-300/90 text-blue-400/70 hover:text-blue-50',
-  'from-pink-300/10 to-rose-200/10 hover:from-pink-300/90 hover:to-rose-200/90 text-pink-400/70 hover:text-pink-50',
-  'from-violet-400/10 to-purple-300/10 hover:from-violet-400/90 hover:to-purple-300/90 text-violet-400/70 hover:text-violet-50',
-  'from-sky-400/10 to-blue-300/10 hover:from-sky-400/90 hover:to-blue-300/90 text-sky-400/70 hover:text-sky-50',
+  'from-blue-400/10 to-indigo-300/10 hover:from-blue-400/80 hover:to-indigo-300/80 text-blue-400/70 hover:text-blue-50',
+  'from-pink-300/10 to-rose-200/10 hover:from-pink-300/80 hover:to-rose-200/80 text-pink-400/70 hover:text-pink-50',
+  'from-violet-400/10 to-purple-300/10 hover:from-violet-400/80 hover:to-purple-300/80 text-violet-400/70 hover:text-violet-50',
+  'from-sky-400/10 to-blue-300/10 hover:from-sky-400/80 hover:to-blue-300/80 text-sky-400/70 hover:text-sky-50',
 ];
 
 const posts = await getSortedPosts();
@@ -37,15 +37,18 @@ const sortedTags = Object.entries(tags)
           <div class="flex flex-wrap gap-3 p-4">
             {
               sortedTags.map(({ tag, count }, index) => (
-                <a
-                  href={`/tags/${tag.replace(/\//g, '-')}`}
-                  class={`group relative flex items-center rounded-lg bg-gradient-to-r px-3 py-1.5 text-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg ${
-                    TAG_COLORS[index % TAG_COLORS.length]
-                  }`}
-                >
-                  <span class="font-medium">{tag}</span>
-                  <span class="ml-1.5 truncate rounded-full bg-white/10 px-1.5 text-xs">{count}</span>
-                </a>
+                <div class="group relative">
+                  {/* 防止闪烁 */}
+                  <a
+                    href={`/tags/${tag.replace(/\//g, '-')}`}
+                    class={`group relative flex items-center rounded-lg bg-gradient-to-r px-3 py-1.5 text-sm transition-all duration-300 group-hover:-translate-y-0.5 group-hover:shadow-lg ${
+                      TAG_COLORS[index % TAG_COLORS.length]
+                    }`}
+                  >
+                    <span class="font-medium">{tag}</span>
+                    <span class="ml-1.5 truncate rounded-full bg-white/10 px-1.5 text-xs">{count}</span>
+                  </a>
+                </div>
               ))
             }
           </div>

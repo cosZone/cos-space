@@ -7,6 +7,7 @@ import svgr from 'vite-plugin-svgr';
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://space.cosine.ren/',
   integrations: [
     react(),
     tailwind({
