@@ -12,6 +12,31 @@ type SiteConfig = {
   site: string; // 站点线上域名 用于 RSS 生成等
 };
 
+// 社交媒体配置类型
+type SocialPlatform = {
+  url: string;
+  icon: string;
+  color: string; // default bg-primary/20
+};
+
+type SocialConfig = {
+  github?: SocialPlatform;
+  google?: SocialPlatform;
+  twitter?: SocialPlatform;
+  zhihu?: SocialPlatform;
+  music?: SocialPlatform;
+  weibo?: SocialPlatform;
+  about?: SocialPlatform;
+  email?: SocialPlatform;
+  facebook?: SocialPlatform;
+  stackoverflow?: SocialPlatform;
+  youtube?: SocialPlatform;
+  instagram?: SocialPlatform;
+  skype?: SocialPlatform;
+  douban?: SocialPlatform;
+  rss?: SocialPlatform;
+};
+
 // TODO: change to backend
 
 // https://shoka.lostyu.me/computer-science/note/theme-shoka-doc/config/
@@ -28,6 +53,51 @@ export const siteConfig: SiteConfig = {
   enableJSGridCover: false, // 是否启用 color4bg 的背景
   site: 'https://space.cosine.ren/',
 };
+
+// 社交媒体配置
+// https://icon-sets.iconify.design/ri/
+export const socialConfig: SocialConfig = {
+  github: {
+    url: 'https://github.com/yusixian',
+    icon: 'ri:github-fill',
+    color: '#191717',
+  },
+  zhihu: {
+    url: 'https://www.zhihu.com/people/qi-jiu-en',
+    icon: 'ri:zhihu-fill',
+    color: '#1e88e5',
+  },
+  music: {
+    url: 'https://music.163.com/#/user/home?id=361029804',
+    icon: 'ri:netease-cloud-music-line',
+    color: '#e60026',
+  },
+  email: {
+    url: 'mailto:cosine_yu@qq.com',
+    icon: 'ri:mail-line',
+    color: '#55acd5',
+  },
+  twitter: {
+    url: 'https://x.com/_cosine_x',
+    icon: 'ri:twitter-x-line',
+    color: '#000000',
+  },
+  rss: {
+    url: '/rss.xml',
+    icon: 'ri:rss-line',
+    color: '#ff6600',
+  },
+  // #google: https://plus.google.com/yourname || google
+  // # about: https://about.me/amehime || address-card || "#3b5998"
+  // #facebook: https://www.facebook.com/yourname || facebook
+  // #stackoverflow: https://stackoverflow.com/yourname || stack-overflow
+  // #youtube: https://youtube.com/yourname || youtube
+  // #instagram: https://instagram.com/yourname || instagram
+  // #skype: skype:yourname?call|chat || skype
+  // #douban: https://www.douban.com/people/yourname/ || douban
+  // # weibo: https://weibo.com/amehime || weibo || "#ea716e"
+};
+
 const { title, alternate, subtitle } = siteConfig;
 export const seoConfig = {
   title: `${alternate ? alternate + ' = ' : ''}${title}${subtitle ? ' = ' + subtitle : ''}`,
