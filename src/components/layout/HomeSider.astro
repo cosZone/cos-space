@@ -71,20 +71,56 @@ const allTags = Object.entries(tags).map(([tag, count]) => ({ tag, count }));
       标签
     </a>
   </div>
-  <div class="mt-6 flex w-full flex-col items-center gap-2">
+  <div class="mt-6 flex w-full flex-col items-center gap-2.5">
     {
-      routers.map(({ name, path }) => (
-        <ButtonLink
-          url={path}
-          label={name}
-          variant="gradient-shoka"
-          className={cn('w-40 rounded-2xl transition-all duration-300', {
-            'bg-none text-muted-foreground/80 hover:bg-muted-foreground/10': path !== Astro.url.pathname,
-          })}
-        >
-          {name}
-        </ButtonLink>
-      ))
+      routers.map(({ name, path, icon, children }) => {
+        if (children?.length) {
+          return (
+            <div class="flex flex-col rounded-xl bg-foreground/10 opacity-75 transition-all duration-300 hover:opacity-100">
+              <div class="flex-center h-12">
+                {icon && <Icon name={icon} class="mr-1.5" />}
+                {name}
+              </div>
+              <div class="flex flex-col gap-2.5">
+                {children.map(({ name, path, icon }) => (
+                  <ButtonLink
+                    url={path}
+                    label={name}
+                    variant="gradient-shoka"
+                    className={cn(
+                      'shoka-button-shadow h-12 w-40 rounded-xl text-base tracking-wider transition-all duration-300',
+                      {
+                        'bg-none text-muted-foreground/80 shadow-none hover:bg-muted-foreground/10 hover:shadow-none':
+                          path !== Astro.url.pathname,
+                      },
+                    )}
+                  >
+                    {icon && <Icon name={icon} class="mr-1.5" />}
+                    {name}
+                  </ButtonLink>
+                ))}
+              </div>
+            </div>
+          );
+        }
+        return (
+          <ButtonLink
+            url={path}
+            label={name}
+            variant="gradient-shoka"
+            className={cn(
+              'shoka-button-shadow h-12 w-40 rounded-xl text-base tracking-wider opacity-75 transition-all duration-300 hover:opacity-100',
+              {
+                'bg-none text-muted-foreground/80 shadow-none hover:bg-muted-foreground/10 hover:shadow-none':
+                  path !== Astro.url.pathname,
+              },
+            )}
+          >
+            {icon && <Icon name={icon} class="mr-1.5" />}
+            {name}
+          </ButtonLink>
+        );
+      })
     }
   </div>
 </div>

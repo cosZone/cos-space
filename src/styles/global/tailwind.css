@@ -118,4 +118,11 @@
   #site-header.header-hidden {
     @apply -translate-y-full;
   }
+
+  .shoka-button-shadow {
+    box-shadow: 0 0 0.75rem var(--color-pink-a3);
+    &:hover {
+      box-shadow: 0 0 0.75rem var(--color-pink);
+    }
+  }
 }

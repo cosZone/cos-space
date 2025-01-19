@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import { type Router } from '@constants/router';
-import { cn } from '@lib/utils';
-import { Icon } from '@iconify/react';
 import Popover from '@components/ui/popover';
+import { type Router } from '@constants/router';
+import { Icon } from '@iconify/react';
+import { cn } from '@lib/utils';
+import { useState } from 'react';
 
 interface DropdownNavProps {
   item: Router;
@@ -12,7 +12,6 @@ interface DropdownNavProps {
 export default function DropdownNav({ item, className }: DropdownNavProps) {
   const [isOpen, setIsOpen] = useState(false);
   const { name, icon, children } = item;
-
   return (
     <Popover
       open={isOpen}
@@ -31,6 +30,7 @@ export default function DropdownNav({ item, className }: DropdownNavProps) {
                   {
                     'rounded-ss-2xl': index === 0,
                     'rounded-ee-2xl': index === children.length - 1,
+                    'bg-gradient-shoka-button text-muted': window.location.pathname === child.path,
                   },
                 )}
               >
