@@ -3,25 +3,31 @@ import ButtonLink from '@components/control/ButtonLink.astro';
 import { routers } from '@constants/router';
 import { cn } from '@lib/utils';
 import { Icon } from 'astro-icon/components';
+import DropdownNav from './DropdownNav';
 ---
 
 <div class="flex flex-grow items-center">
   <div class="flex flex-grow items-center">
     {
-      routers.map(({ name, path }) => {
+      routers.map((item) => {
+        if (item.children?.length) {
+          return <DropdownNav client:load item={item} />;
+        }
         return (
           <ButtonLink
-            url={path}
-            label={name}
+            url={item.path}
+            label={item.name}
             variant="unstyle"
             className={cn(
-              'relative w-full text-base after:absolute after:bottom-1 after:left-1/2 after:h-0.5 after:w-0 after:-translate-x-1/2 after:transition-all after:content-[""] hover:after:w-9/12',
+              'relative text-base tracking-wider after:absolute after:bottom-1 after:left-1/2 after:h-0.5 after:w-0 after:-translate-x-1/2 after:transition-all after:duration-300 after:content-[""]',
               {
-                'after:w-9/12': path === Astro.url.pathname,
+                'hover:after:w-9/12': true,
+                'after:w-9/12': item.path === Astro.url.pathname,
               },
             )}
           >
-            {name}
+            {item.icon && <Icon name={item.icon} class="mr-1.5" />}
+            {item.name}
           </ButtonLink>
         );
       })

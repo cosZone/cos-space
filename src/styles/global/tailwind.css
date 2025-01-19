@@ -92,17 +92,22 @@
 
   #site-header {
     @apply translate-y-0 transition-transform duration-300;
-    button {
+    button,
+    a {
       @apply shadow-text;
       &::after {
         transition-duration: 400ms;
         @apply bg-white;
       }
     }
+    .nav-dropdown a {
+      text-shadow: none;
+    }
   }
   #site-header.with-background {
     @apply border-b border-border bg-gradient-header text-foreground;
-    button {
+    button,
+    a {
       text-shadow: none;
       &::after {
         transition-duration: 400ms;
@@ -112,5 +117,12 @@
   }
   #site-header.header-hidden {
     @apply -translate-y-full;
+  }
+
+  .shoka-button-shadow {
+    box-shadow: 0 0 0.75rem var(--color-pink-a3);
+    &:hover {
+      box-shadow: 0 0 0.75rem var(--color-pink);
+    }
   }
 }

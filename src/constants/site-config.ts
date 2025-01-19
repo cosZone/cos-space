@@ -34,6 +34,7 @@ type SocialConfig = {
   instagram?: SocialPlatform;
   skype?: SocialPlatform;
   douban?: SocialPlatform;
+  bilibili?: SocialPlatform;
   rss?: SocialPlatform;
 };
 
@@ -62,10 +63,15 @@ export const socialConfig: SocialConfig = {
     icon: 'ri:github-fill',
     color: '#191717',
   },
-  zhihu: {
-    url: 'https://www.zhihu.com/people/qi-jiu-en',
-    icon: 'ri:zhihu-fill',
-    color: '#1e88e5',
+  // zhihu: {
+  //   url: 'https://www.zhihu.com/people/qi-jiu-en',
+  //   icon: 'ri:zhihu-fill',
+  //   color: '#1e88e5',
+  // },
+  bilibili: {
+    url: 'https://space.bilibili.com/10730895',
+    icon: 'ri:bilibili-fill',
+    color: '#da708a',
   },
   music: {
     url: 'https://music.163.com/#/user/home?id=361029804',
@@ -79,8 +85,8 @@ export const socialConfig: SocialConfig = {
   },
   twitter: {
     url: 'https://x.com/_cosine_x',
-    icon: 'ri:twitter-x-line',
-    color: '#000000',
+    icon: 'ri:twitter-fill',
+    color: '#4b9ae4',
   },
   rss: {
     url: '/rss.xml',
