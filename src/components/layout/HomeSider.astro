@@ -24,7 +24,7 @@ const allTags = Object.entries(tags).map(([tag, count]) => ({ tag, count }));
 ---
 
 <div
-  class={cn('sticky top-20 flex flex-col min-w-[16rem] tablet:hidden items-center p-4', className)}
+  class={cn('sticky top-0  flex flex-col min-w-[16rem] tablet:hidden items-center p-4', className)}
   transition:name="page-home-sider"
 >
   {
@@ -78,8 +78,8 @@ const allTags = Object.entries(tags).map(([tag, count]) => ({ tag, count }));
           url={path}
           label={name}
           variant="gradient-shoka"
-          className={cn('w-40 transition-all duration-300', {
-            'bg-none text-muted-foreground/80 hover:bg-muted hover:text-muted-foreground': path !== Astro.url.pathname,
+          className={cn('w-40 rounded-2xl transition-all duration-300', {
+            'bg-none text-muted-foreground/80 hover:bg-muted-foreground/10': path !== Astro.url.pathname,
           })}
         >
           {name}

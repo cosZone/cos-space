@@ -1,7 +1,10 @@
-type Router = {
+export type Router = {
   name?: string;
-  path: string;
+  path?: string;
+  icon?: string;
+  children?: Router[];
 };
+
 export enum Routes {
   Home = '/',
   About = '/about',
@@ -11,11 +14,18 @@ export enum Routes {
   Post = '/post',
   // Dashboard = '/dashboard',
 }
+
 export const routers: Router[] = [
-  { name: '首页', path: Routes.Home },
-  { name: '分类', path: Routes.Categories },
-  { name: '关于', path: Routes.About },
-  { name: '标签', path: Routes.Tags },
+  { name: '首页', path: Routes.Home, icon: 'fa6-solid:house-chimney' },
+  {
+    name: '文章',
+    icon: 'ri:quill-pen-ai-fill',
+    children: [
+      { name: '分类', path: Routes.Categories, icon: 'ri:grid-fill' },
+      { name: '标签', path: Routes.Tags, icon: 'fa6-solid:tags' },
+    ],
+  },
+  { name: '关于', path: Routes.About, icon: 'fa6-regular:circle-user' },
   // { name: '展示柜', path: Routes.Gallery },
   // { name: '仪表盘', path: Routes.Dashboard, needOwner: true },
 ];

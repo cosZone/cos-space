@@ -5,16 +5,16 @@ import { Icon } from 'astro-icon/components';
 import { capitalize } from 'es-toolkit';
 ---
 
-<div class="flex-center mt-2 flex-wrap gap-2">
+<div transition:persist="page-social" class="mt-2 grid grid-cols-3 gap-2">
   {
     Object.entries(socialConfig).map(([key, config]) => {
       const { url, icon, color } = config;
       return (
         <div>
           <a
-            class={cn('social-link flex-center relative rounded-full p-1 transition-all duration-300', {
-              'bg-primary/20 text-primary hover:bg-primary/30': !color,
-            })}
+            class={cn(
+              'social-link flex-center group relative overflow-hidden rounded-xl px-1.5 py-1 transition-all duration-300 group-hover:scale-105',
+            )}
             style={color ? `--link-color: ${color}` : ''}
             data-platform={key}
             href={url}
@@ -22,7 +22,8 @@ import { capitalize } from 'es-toolkit';
             data-tooltip-placement="top"
             aria-label={capitalize(key)}
           >
-            <Icon name={icon} class="inline-block size-5" />
+            <Icon name={icon} class="inline-block size-6" />
+            <span class="absolute inset-0 -z-10 -translate-x-full translate-y-full rounded-xl transition-transform duration-300 group-hover:translate-x-0 group-hover:translate-y-0" />
           </a>
         </div>
       );
@@ -32,23 +33,18 @@ import { capitalize } from 'es-toolkit';
 
 <style>
   .social-link {
-    background-color: color-mix(in srgb, var(--link-color) 20%, transparent);
+    /* background-color: color-mix(in srgb, var(--link-color) 20%, transparent); */
     color: var(--link-color);
   }
-  .social-link:hover {
+  .social-link span {
     background-color: var(--link-color);
+  }
+  .social-link:hover {
     color: white;
   }
 
   /* 暗色模式下的特殊处理 */
-  :global(.dark) .social-link[data-platform='github'],
-  :global(.dark) .social-link[data-platform='twitter'] {
-    background-color: color-mix(in srgb, #fff 20%, transparent);
+  :global(.dark) .social-link[data-platform='github'] {
     color: #fff;
-  }
-  :global(.dark) .social-link[data-platform='github']:hover,
-  :global(.dark) .social-link[data-platform='twitter']:hover {
-    background-color: #fff;
-    color: #000000;
   }
 </style>

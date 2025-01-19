@@ -1,10 +1,8 @@
-import { Button } from '@components/ui/button';
 import { routers } from '@constants/router';
 // import dynamic from 'next/dynamic';
 import { useMemo } from 'react';
 import { AiFillGithub } from 'react-icons/ai';
 import { CgDarkMode } from 'react-icons/cg';
-import { FaUserAlt, FaUserCircle } from 'react-icons/fa';
 // import { useToggleTheme } from './theme';
 
 // const SignedIn = dynamic(() => import('@clerk/nextjs').then((mod) => mod.SignedIn));
@@ -24,7 +22,6 @@ export const useNavItems = () => {
       {
         key: 'CgDarkMode',
         icon: <CgDarkMode className="h-8 w-8 cursor-pointer" />,
-        // onClick: toggleTheme,
       },
       {
         key: 'User',

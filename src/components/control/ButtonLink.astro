@@ -36,11 +36,11 @@ type Props = {
   className?: string;
 } & VariantProps<typeof buttonVariants>;
 
-const { url, label, variant, size, className } = Astro.props;
+const { url, label, variant, size, className, ...rest } = Astro.props;
+const Element = url ? 'a' : 'button';
+const attrs = url ? { href: url, 'aria-label': label } : {};
 ---
 
-<a href={url} aria-label={label}>
-  <button class:list={cn(buttonVariants({ variant, size }), className)}>
-    <slot />
-  </button>
-</a>
+<Element {...attrs} class:list={cn(buttonVariants({ variant, size }), className)} {...rest}>
+  <slot />
+</Element>
