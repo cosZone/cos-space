@@ -44,6 +44,8 @@ const { title = seoConfig.title, description = seoConfig.description } = Astro.p
     <meta name="twitter:description" content={description} />
     <meta charset="UTF-8" />
 
+    <link rel="alternate" type="application/rss+xml" title={siteConfig.title} href={`${Astro.site}rss.xml`} />
+
     <script src="https://cdn.jsdelivr.net/npm/es-toolkit@%5E1"></script>
     <script is:inline>
       // 立即执行主题检查 否则会闪烁

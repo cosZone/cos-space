@@ -21,7 +21,7 @@ const { posts, page, showPaginator = true } = Astro.props;
 const covers = shuffle(defaultCoverList).slice(0, 10);
 ---
 
-<div class="shadow-box flex flex-col gap-4 overflow-hidden bg-gradient-start p-4 pt-8 md:px-1 md:py-2">
+<div class="shadow-box flex flex-col gap-4 overflow-hidden bg-gradient-start p-4 pt-8 md:px-1 md:py-2 tablet:shadow-none">
   <Divider>文章列表</Divider>
 
   {

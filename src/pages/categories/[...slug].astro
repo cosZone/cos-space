@@ -4,6 +4,7 @@ import HomeSider from '@components/layout/HomeSider.astro';
 import Cover from '@components/ui/cover/Cover.astro';
 import { seoConfig } from '@constants/site-config';
 import Layout from '@layouts/Layout.astro';
+import TwoColumnLayout from '@layouts/TwoColumnLayout.astro';
 import { getCategoryByLink, getCategoryLinks, getCategoryList } from '@lib/content';
 
 // 获取分类页面
@@ -27,13 +28,9 @@ const displayCategories = category ? [category] : allCategories;
 ---
 
 <Layout title={`分类 - ${category?.name} | ${seoConfig.title}`}>
-  <div class="mb-20 flex flex-col">
-    <Cover title={`分类于"${category?.name}"的文章`} />
-    <div class="mx-auto flex w-full max-w-[90vw] items-start justify-center md:w-full desktop:max-w-8xl">
-      <HomeSider />
-      <div class="flex flex-grow flex-col gap-8">
-        <CategoryPostList rootCategory={category} categories={displayCategories} countMap={countMap} />
-      </div>
-    </div>
-  </div>
+  <TwoColumnLayout>
+    <Cover slot="cover" title={`分类于"${category?.name}"的文章`} />
+    <HomeSider slot="sider" />
+    <CategoryPostList rootCategory={category} categories={displayCategories} countMap={countMap} />
+  </TwoColumnLayout>
 </Layout>

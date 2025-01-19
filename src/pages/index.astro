@@ -5,6 +5,7 @@ import PostList from '@components/post/PostList.astro';
 import Cover from '@components/ui/cover/Cover.astro';
 import { seoConfig } from '@constants/site-config';
 import Layout from '@layouts/Layout.astro';
+import TwoColumnLayout from '@layouts/TwoColumnLayout.astro';
 import { getSortedPosts } from '@lib/content';
 import { Icon } from 'astro-icon/components';
 
@@ -13,19 +14,15 @@ const posts = postCollections.slice(0, 5);
 ---
 
 <Layout title={seoConfig.title}>
-  <div class="mb-20 flex flex-col">
-    <Cover />
-    <div class="mx-auto flex max-w-[90vw] items-start justify-center pb-32 md:w-full desktop:max-w-8xl">
-      <HomeSider />
-      <div class="flex flex-grow flex-col md:w-full">
-        <PostList posts={posts} showPaginator={false} />
-        <div class="flex w-full flex-col items-center">
-          <ButtonLink variant="gradient-shoka" url="/posts" size="lg" label="所有文章" className="mt-10 items-center">
-            所有文章
-            <Icon name="gg:format-justify" />
-          </ButtonLink>
-        </div>
-      </div>
+  <TwoColumnLayout>
+    <Cover slot="cover" />
+    <HomeSider slot="sider" />
+    <PostList posts={posts} showPaginator={false} />
+    <div class="flex w-full flex-col items-center">
+      <ButtonLink variant="gradient-shoka" url="/posts" size="lg" label="所有文章" className="mt-10 items-center">
+        所有文章
+        <Icon name="gg:format-justify" />
+      </ButtonLink>
     </div>
-  </div>
+  </TwoColumnLayout>
 </Layout>
