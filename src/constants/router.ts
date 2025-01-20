@@ -12,6 +12,7 @@ export enum Routes {
   Tags = '/tags',
   // Gallery = '/gallery',
   Post = '/post',
+  Archives = '/archives',
   // Dashboard = '/dashboard',
 }
 
@@ -23,6 +24,7 @@ export const routers: Router[] = [
     children: [
       { name: '分类', path: Routes.Categories, icon: 'ri:grid-fill' },
       { name: '标签', path: Routes.Tags, icon: 'fa6-solid:tags' },
+      { name: '归档', path: Routes.Archives, icon: 'ri:archive-2-fill' },
     ],
   },
   { name: '关于', path: Routes.About, icon: 'fa6-regular:circle-user' },

@@ -31,7 +31,7 @@ function getCategoryLink(names: string[]): string {
           <a href={`/categories/${getCategoryLink([parentName, category.name, grandChild.name])}`} class="dashed-border">
             {grandChild.name}
           </a>
-          <span class="text-sm text-gray-400">({countMap[grandChild.name] ?? 0})</span>
+          <span class="text-sm text-muted-foreground">({countMap[grandChild.name] ?? 0})</span>
         </p>
       ))}
     </div>
