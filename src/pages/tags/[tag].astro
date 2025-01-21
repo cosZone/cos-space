@@ -32,15 +32,15 @@ const { tag, posts } = Astro.props;
   <TwoColumnLayout>
     <Cover slot="cover" title={`包含标签"${tag}"的文章`} />
     <HomeSider slot="sider" />
-    <div class="shadow-box mx-0 flex w-full flex-col bg-gradient-start p-4 md:px-3 md:py-2">
+    <div class="shadow-box mx-0 flex w-full flex-col bg-gradient-start px-6 py-4 md:px-3 md:py-2">
       <h2 class="shoka-decoration-circle has-children group relative h-19 px-7.5 py-5 text-2xl/9 font-bold">
         <a
           href={Astro.url.origin + '/tags'}
           class="dashed-border border-b text-muted-foreground group-hover:border-blue group-hover:text-blue">全部</a
         >
-        <span class="text-lg text-gray-400"> / </span>
+        <span class="text-lg text-muted-foreground"> / </span>
         <span class="text-muted-foreground">{tag}</span>
-        <span class="text-lg text-gray-400">({posts.length} 篇文章)</span>
+        <span class="text-lg text-muted-foreground">({posts.length} 篇文章)</span>
       </h2>
       {
         posts?.length && (
@@ -49,7 +49,7 @@ const { tag, posts } = Astro.props;
               const { link, name } = getPostLastCategory(post);
               return (
                 <p class="shoka-decoration-circle group relative px-7.5 py-2 text-base/9 text-primary md:overflow-visible">
-                  <span class="inline-block w-15 text-xs text-gray-400 md:relative md:-top-1">
+                  <span class="inline-block w-15 text-xs text-muted-foreground md:relative md:-top-1">
                     {parseDate(post?.data?.date, 'YY-MM-DD')}
                   </span>
                   <a

@@ -12,10 +12,10 @@ interface Props {
 const { categories, countMap, totalCount } = Astro.props;
 ---
 
-<div class="shadow-box mx-0 flex w-full flex-col bg-gradient-start p-4 md:px-3 md:py-2">
+<div class="shadow-box mx-0 flex w-full flex-col bg-gradient-start px-6 py-4 md:px-3 md:py-2">
   <h2 class="shoka-decoration-circle group relative px-7.5 py-5 text-2xl/9 font-bold">
     <a href="/" class="dashed-border border-b text-muted-foreground group-hover:border-blue group-hover:text-blue"> 首页 </a>
-    <span class="text-xl text-gray-400">/</span> 目前共计 {totalCount} 个分类
+    <span class="text-xl text-muted-foreground">/</span> 目前共计 {totalCount} 个分类
   </h2>
 
   <div class="flex w-full flex-col">

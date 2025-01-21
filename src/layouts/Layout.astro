@@ -12,6 +12,7 @@ import Header from '@components/layout/Header.astro';
 import '@styles/index.css';
 import { seoConfig, siteConfig } from '@constants/site-config';
 import { Tooltips } from 'astro-tooltips';
+import FloatingGroup from '@components/layout/FloatingGroup.astro';
 
 const { title = seoConfig.title, description = seoConfig.description } = Astro.props;
 ---
@@ -80,9 +81,9 @@ const { title = seoConfig.title, description = seoConfig.description } = Astro.p
   <body>
     <div class="flex min-h-screen flex-col text-black dark:text-white">
       <Header />
-      {/*  <FloatGroup /> */}
       <main class="relative flex flex-grow flex-col">{(<slot />)}</main>
       {/* <Footer className="mt-auto" /> */}
+      <FloatingGroup />
     </div>
   </body>
 </html>

@@ -1,0 +1,166 @@
+---
+import { Icon } from 'astro-icon/components';
+import { throttle } from 'es-toolkit';
+---
+
+<div id="floating-nav" class="fixed bottom-4 right-4 z-50 flex flex-col gap-2 text-primary">
+  <div id="nav-content" class="flex scale-y-100 flex-col gap-2 opacity-100">
+    <button
+      id="scroll-to-top"
+      class="rounded-full bg-background/80 p-2 shadow-lg backdrop-blur transition-colors duration-200 hover:bg-background"
+      aria-label="回到顶部"
+      title="回到顶部"
+      data-tooltip-interactive="false"
+      data-tooltip-placement="left"
+    >
+      <Icon name="ri:arrow-up-s-line" class="h-5 w-5" />
+    </button>
+    <button
+      id="scroll-to-bottom"
+      class="rounded-full bg-background/80 p-2 shadow-lg backdrop-blur transition-colors duration-200 hover:bg-background"
+      aria-label="滚到底部"
+      title="滚到底部"
+      data-tooltip-interactive="false"
+      data-tooltip-placement="left"
+    >
+      <Icon name="ri:arrow-down-s-line" class="h-5 w-5" />
+    </button>
+  </div>
+
+  <button
+    id="toggle-nav"
+    class="flex-center size-9 rounded-full bg-background/80 shadow-lg backdrop-blur transition-colors duration-200 hover:bg-background"
+    aria-label="展开/收起工具栏"
+    title="展开/收起工具栏"
+    data-tooltip-interactive="false"
+    data-tooltip-placement="left"
+  >
+    <Icon name="ri:magic-fill" class="menu-nav-icon hidden size-4 transition-transform duration-300" />
+    <Icon name="ri:close-large-fill" class="close-nav-icon size-4 transition-transform duration-300" />
+  </button>
+</div>
+
+<script>
+  import { throttle } from 'es-toolkit';
+
+  function initFloatingNav() {
+    const scrollToTop = document.getElementById('scroll-to-top');
+    const scrollToBottom = document.getElementById('scroll-to-bottom');
+    const floatingNav = document.getElementById('floating-nav');
+    const navContent = document.getElementById('nav-content');
+    const toggleNav = document.getElementById('toggle-nav');
+    const menuNavIcon = toggleNav?.querySelector('.menu-nav-icon');
+    const closeNavIcon = toggleNav?.querySelector('.close-nav-icon');
+
+    let isExpanded = true; // 默认展开
+
+    // 展开/收起功能
+    const handleToggleNav = () => {
+      isExpanded = !isExpanded;
+      if (isExpanded) {
+        navContent?.classList.add('translate-y-0', 'opacity-100');
+        navContent?.classList.remove('translate-y-[150%]', 'opacity-0');
+        menuNavIcon?.classList.add('hidden');
+        closeNavIcon?.classList.remove('hidden');
+      } else {
+        navContent?.classList.add('translate-y-[150%]', 'opacity-0');
+        navContent?.classList.remove('translate-y-0', 'opacity-100');
+        menuNavIcon?.classList.remove('hidden');
+        closeNavIcon?.classList.add('hidden');
+      }
+    };
+
+    toggleNav?.addEventListener('click', handleToggleNav);
+
+    // 控制导航栏显示/隐藏
+    let lastScrollY = window.scrollY;
+    let ticking = false;
+
+    const updateNav = () => {
+      if (window.scrollY > 100) {
+        floatingNav?.classList.remove('translate-y-[150%]');
+        floatingNav?.classList.add('translate-y-0');
+      } else {
+        floatingNav?.classList.add('translate-y-[150%]');
+        floatingNav?.classList.remove('translate-y-0');
+      }
+      ticking = false;
+    };
+
+    const throttledScroll = throttle(() => {
+      lastScrollY = window.scrollY;
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          updateNav();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, 300);
+
+    window.addEventListener('scroll', throttledScroll);
+
+    // 回到顶部
+    const throttledScrollToTop = throttle(() => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+    }, 300);
+
+    scrollToTop?.addEventListener('click', throttledScrollToTop);
+
+    // 滚动到底部
+    const throttledScrollToBottom = throttle(() => {
+      window.scrollTo({
+        top: document.documentElement.scrollHeight,
+        behavior: 'smooth',
+      });
+    }, 300);
+
+    scrollToBottom?.addEventListener('click', throttledScrollToBottom);
+
+    // 清理函数
+    return () => {
+      window.removeEventListener('scroll', throttledScroll);
+      scrollToTop?.removeEventListener('click', throttledScrollToTop);
+      scrollToBottom?.removeEventListener('click', throttledScrollToBottom);
+      toggleNav?.removeEventListener('click', handleToggleNav);
+    };
+  }
+
+  // 初始化时执行
+  let cleanup = initFloatingNav();
+
+  // 在每次页面加载时重新初始化
+  document.addEventListener('astro:page-load', () => {
+    if (cleanup) cleanup();
+    cleanup = initFloatingNav();
+  });
+
+  // 在页面卸载时清理
+  document.addEventListener('astro:before-preparation', () => {
+    if (cleanup) cleanup();
+  });
+</script>
+
+<style>
+  #floating-nav {
+    transition: transform 0.3s ease-in-out;
+    /* transform: translateY(200%); */
+  }
+
+  #nav-content {
+    transform-origin: bottom;
+    transition: all 0.15s ease-in-out;
+  }
+
+  button {
+    opacity: 0.8;
+    transition: opacity 0.2s ease-in-out;
+  }
+
+  button:hover {
+    opacity: 1;
+  }
+</style>

@@ -22,8 +22,8 @@ const Tag = level;
     className,
   )}
 >
-  <a href={href} class="dashed-border border-b text-muted-foreground group-hover:border-blue group-hover:text-blue">
+  <a href={href} class="dashed-border border-b group-hover:border-blue group-hover:text-blue">
     {title}
   </a>
-  <span class="text-lg text-gray-400">({count})</span>
+  <span class={cn('text-[0.8em] text-muted-foreground')}>({count})</span>
 </Tag>

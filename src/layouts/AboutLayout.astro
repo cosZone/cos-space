@@ -3,6 +3,7 @@ import HomeSider from '@components/layout/HomeSider.astro';
 import Cover from '@components/ui/cover/Cover.astro';
 import { seoConfig } from '@constants/site-config';
 import Layout from './Layout.astro';
+import TwoColumnLayout from './TwoColumnLayout.astro';
 
 export interface Props {
   frontmatter: {
@@ -15,17 +16,13 @@ const { frontmatter } = Astro.props;
 ---
 
 <Layout title={`${frontmatter.title} | ${seoConfig.title}`}>
-  <div class="mb-20 flex flex-col">
-    <Cover />
-    <div class="mx-auto flex w-full max-w-[90vw] items-start justify-center md:w-full desktop:max-w-8xl">
-      <HomeSider />
-      <div class="flex flex-grow flex-col">
-        <div class="shadow-box mx-0 flex w-full flex-col gap-8 bg-gradient-start p-4 pt-8 md:px-3 md:py-2">
-          <div class="prose max-w-none dark:prose-invert">
-            <slot />
-          </div>
-        </div>
+  <TwoColumnLayout>
+    <Cover slot="cover" />
+    <HomeSider slot="sider" />
+    <div class="shadow-box mx-0 flex w-full flex-col gap-8 bg-gradient-start p-4 pt-8 md:px-3 md:py-2">
+      <div class="prose max-w-none dark:prose-invert">
+        <slot />
       </div>
     </div>
-  </div>
+  </TwoColumnLayout>
 </Layout>
