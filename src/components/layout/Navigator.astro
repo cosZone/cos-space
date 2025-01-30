@@ -6,8 +6,9 @@ import { Icon } from 'astro-icon/components';
 import DropdownNav from './DropdownNav';
 ---
 
-<div class="flex flex-grow items-center">
-  <div class="flex flex-grow items-center">
+<div class="flex flex-grow items-center tablet:flex-grow-0">
+  <!-- 导航菜单 -->
+  <div class="flex flex-grow items-center tablet:hidden">
     {
       routers.map((item) => {
         if (item.children?.length) {
@@ -19,7 +20,7 @@ import DropdownNav from './DropdownNav';
             label={item.name}
             variant="unstyle"
             className={cn(
-              'relative text-base tracking-wider after:absolute after:bottom-1 after:left-1/2 after:h-0.5 after:w-0 after:-translate-x-1/2 after:transition-all after:duration-300 after:content-[""]',
+              'relative text-base tracking-wider after:absolute after:bottom-1 after:left-1/2 after:block after:h-0.5 after:w-0 after:-translate-x-1/2 after:transition-all after:duration-300',
               {
                 'hover:after:w-9/12': true,
                 'after:w-9/12': item.path === Astro.url.pathname,
@@ -33,7 +34,8 @@ import DropdownNav from './DropdownNav';
       })
     }
   </div>
-  <div class="ml-auto flex items-center gap-4">
+
+  <div class="ml-auto flex items-center gap-4 tablet:gap-2">
     <a class="cursor-pointer" href="https://github.com/cosZone/cos-space" target="_blank">
       <Icon name="ri:github-fill" class="h-8 w-8" onclick="backToTop()" />
     </a>
@@ -45,6 +47,7 @@ import DropdownNav from './DropdownNav';
   let firstScroll = true;
   let triggerDistance = window.innerHeight * 0.45;
   let lastScrollY = 0;
+
   function toggleDarkMode() {
     if (localStorage.theme === 'dark') {
       localStorage.theme = 'light';

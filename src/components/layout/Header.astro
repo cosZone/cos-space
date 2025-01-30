@@ -2,12 +2,21 @@
 import LogoSvg from '@assets/svg/logo.svg?react';
 import { siteConfig } from 'constants/site-config';
 import Navigator from './Navigator.astro';
+import { Icon } from 'astro-icon/components';
+import { MenuIcon } from '@components/ui/MenuIcon';
 
 const { alternate, title, showLogo } = siteConfig;
 ---
 
-<div id="site-header" class="shadow-text fixed inset-x-0 top-0 z-10 select-none gap-4 px-5 py-2.5 text-white md:py-2">
-  <div class="mx-auto flex max-w-[90vw] items-center justify-between md:w-full md:pr-0 desktop:max-w-8xl">
+<div
+  id="site-header"
+  class="shadow-text fixed inset-x-0 top-0 z-10 select-none gap-4 px-4 py-2.5 text-white md:py-2 tablet:px-0"
+>
+  <div class="mx-auto flex items-center justify-between px-5 md:w-full md:px-2 desktop:max-w-8xl desktop:px-0">
+    <!-- 移动端菜单按钮 -->
+    <div id="mobile-menu-container" class="hidden tablet:block">
+      <MenuIcon client:load />
+    </div>
     <a
       transition:persist="page-header-avatar"
       class="-my-4 mr-4 flex cursor-pointer items-center justify-center gap-1 whitespace-nowrap text-sm font-bold"
