@@ -10,6 +10,12 @@ type SiteConfig = {
   // theme
   enableJSGridCover?: boolean; // 是否启用 color4bg 的背景 (写了不舍得扔)
   site: string; // 站点线上域名 用于 RSS 生成等
+
+  featuredCategories?: {
+    name: string;
+    image: string;
+    description?: string;
+  }[];
 };
 
 // 社交媒体配置类型
@@ -53,6 +59,18 @@ export const siteConfig: SiteConfig = {
 
   enableJSGridCover: false, // 是否启用 color4bg 的背景
   site: 'https://space.cosine.ren/',
+  featuredCategories: [
+    {
+      name: '随笔',
+      image: 'https://r2.cosine.ren/i/2025/01/04/9al5e-x5.webp',
+      description: '生活记录、年度总结等...',
+    },
+    {
+      name: '笔记',
+      image: 'https://r2.cosine.ren/i/2025/01/05/100483120_p0.webp',
+      description: '技术笔记、学习笔记等...',
+    },
+  ],
 };
 
 // 社交媒体配置

@@ -1,17 +1,14 @@
 import { Routes } from '@constants/router';
+import type { BlogPost } from 'types/blog';
 
-type PostParam = {
-  id?: number | string;
-  link?: string;
-};
-export type RouteParams<T extends Routes> = T extends Routes.Post ? PostParam : undefined;
+export type RouteParams<T extends Routes> = T extends Routes.Post ? BlogPost | undefined : undefined;
 
 export function routeBuilder<T extends Routes>(route: T, param: RouteParams<typeof route>) {
   let href: string = route;
-  if (typeof param === 'undefined') return href;
+  if (!param) return href;
   switch (route) {
     case Routes.Post:
-      href += `/${param?.link ?? param?.id}`;
+      href += `/${param?.data?.link ?? param?.slug}`;
       break;
     default:
       break;

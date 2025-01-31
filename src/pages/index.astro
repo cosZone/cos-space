@@ -17,7 +17,9 @@ const posts = postCollections.slice(0, 5);
   <TwoColumnLayout>
     <Cover slot="cover" />
     <HomeSider slot="sider" />
-    <PostList posts={posts} showPaginator={false} />
+    <div class="shadow-box flex flex-col gap-4 overflow-hidden bg-gradient-start p-4 pt-8 md:px-1 md:py-2 tablet:shadow-none">
+      <PostList posts={posts} showPaginator={false} />
+    </div>
     <div class="flex w-full flex-col items-center">
       <ButtonLink variant="gradient-shoka" url="/posts" size="lg" label="所有文章" className="mt-10 items-center">
         所有文章

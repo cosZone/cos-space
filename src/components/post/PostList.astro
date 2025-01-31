@@ -1,15 +1,13 @@
 ---
-import type { BlogPost } from 'types/blog';
-import Divider from '@components/ui/divider';
 import EmptySvg from '@components/svg/EmptySvg';
+import Divider from '@components/ui/divider';
+import { defaultCoverList } from '@constants/site-config';
 import type { Page } from 'astro';
+import { shuffle } from 'es-toolkit';
+import type { BlogPost } from 'types/blog';
+import CategoryCards from './CategoryCards.astro';
 import Paginator from './Paginator.astro';
 import PostItemCard from './PostItemCard.astro';
-import { defaultCoverList } from '@constants/site-config';
-import { shuffle } from 'es-toolkit';
-import FlippedCard from './FlippedCard.astro';
-import { Badge } from '@components/ui/badge';
-import CategoryCards from './CategoryCards.astro';
 
 interface Props {
   posts?: BlogPost[];
@@ -21,32 +19,28 @@ const { posts, page, showPaginator = true } = Astro.props;
 const covers = shuffle(defaultCoverList).slice(0, 10);
 ---
 
-<div class="shadow-box flex flex-col gap-4 overflow-hidden bg-gradient-start p-4 pt-8 md:px-1 md:py-2 tablet:shadow-none">
-  <Divider>文章列表</Divider>
-
-  {
-    !posts?.length && (
-      <div class="flex flex-col items-center gap-2 text-foreground/30">
-        <EmptySvg className="fill-foreground/20" />
-        <span>还没有发表文章哦～</span>
+<Divider>文章列表</Divider>
+{
+  !posts?.length && (
+    <div class="flex flex-col items-center gap-2 text-foreground/30">
+      <EmptySvg className="fill-foreground/20" />
+      <span>还没有发表文章哦～</span>
+    </div>
+  )
+}
+{
+  posts && posts?.length > 0 && (
+    <>
+      <div class="flex flex-col">
+        {posts.map((post, index) => (
+          <div class="p-4">
+            <PostItemCard data={post} leftClip={index % 2 === 0} randomCover={covers[index]} />
+          </div>
+        ))}
       </div>
-    )
-  }
-  {
-    posts && posts?.length > 0 && (
-      <>
-        <div class="flex flex-col">
-          {posts.map((post, index) => (
-            <div class="p-4">
-              <PostItemCard data={post} leftClip={index % 2 === 0} randomCover={covers[index]} />
-            </div>
-          ))}
-        </div>
-        {showPaginator && page && <Paginator page={page} />}
-      </>
-    )
-  }
-
-  <Divider>精选分类</Divider>
-  <CategoryCards />
-</div>
+      {showPaginator && page && <Paginator page={page} />}
+    </>
+  )
+}
+<Divider>精选分类</Divider>
+<CategoryCards />
