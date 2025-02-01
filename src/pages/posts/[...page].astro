@@ -20,6 +20,8 @@ const { page } = Astro.props;
   <TwoColumnLayout>
     <Cover slot="cover" />
     <HomeSider slot="sider" />
-    <PostList posts={page.data} page={page} />
+    <div class="shadow-box flex flex-col gap-4 overflow-hidden bg-gradient-start p-4 pt-8 md:px-1 md:py-2 tablet:shadow-none">
+      <PostList posts={page.data} page={page} />
+    </div>
   </TwoColumnLayout>
 </Layout>

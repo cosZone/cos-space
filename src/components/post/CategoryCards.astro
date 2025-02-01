@@ -1,48 +1,130 @@
 ---
 import { Badge } from '@components/ui/badge';
-import FlippedCard from './FlippedCard.astro';
-import { cn } from '@lib/utils';
 import { Button } from '@components/ui/button';
+import { categoryMap } from '@constants/category';
+import { Routes } from '@constants/router';
+import { siteConfig } from '@constants/site-config';
+import { getCategoryByLink, getCategoryList, getParentCategory, getPostsByCategory, type Category } from '@lib/content';
+import { routeBuilder } from '@lib/route';
+import { cn } from '@lib/utils';
+import type { CollectionEntry } from 'astro:content';
+import FlippedCard from './FlippedCard.astro';
+import { Icon } from 'astro-icon/components';
+
+interface CategoryWithPosts {
+  link: string;
+  label?: string;
+  image: string;
+  posts: CollectionEntry<'blog'>[];
+  category: Category | null;
+  parentCategory: Category | null;
+}
+
+const { categories } = await getCategoryList();
+
+const categoryPosts: CategoryWithPosts[] = await Promise.all(
+  siteConfig.featuredCategories?.map(async (category) => {
+    const categoryInfo = getCategoryByLink(categories, category?.link);
+    const posts = await getPostsByCategory(categoryInfo?.name ?? '');
+    return {
+      link: category.link,
+      label: category?.label,
+      image: category.image,
+      category: categoryInfo,
+      parentCategory: getParentCategory(categoryInfo, categories),
+      posts: posts,
+    };
+  }) || [],
+);
 ---
 
-<div class="grid w-full grid-cols-2">
-  <FlippedCard>
-    <div slot="front" class="flex-center relative h-full rounded-md px-2 py-4">
-      <!-- 正面内容 -->
-      <img
-        src="https://r2.cosine.ren/i/2025/01/04/9al5e-x5.webp"
-        alt="post"
-        class="absolute inset-0 -z-10 h-full w-full rounded-md object-cover"
-      />
-      <div class="absolute inset-0 -z-10 h-full w-full rounded-md bg-shoka-card-mask opacity-25"></div>
-      <h2 class="text-2xl text-white">随笔</h2>
-      <Badge variant="shoka-tag" className="absolute right-3 top-2.5 text-xs text-white opacity-80 shadow"> 父分类 </Badge>
-    </div>
-    <div slot="back" class="relative h-full flex-col rounded-md bg-card px-6 pb-4 pt-16">
-      <!-- 背面内容 -->
-      <div
-        class={cn(
-          'absolute -left-4 bg-gradient-to-l from-gradient-shoka-button-start to-gradient-shoka-button-end  h-8 pl-6 pr-4 top-4 inline-block max-w-[calc(100%+2rem)] rounded-r-md border',
-          "after:absolute after:-left-4 after:top-full after:h-0 after:w-0 after:border-b-16 after:border-l-16 after:border-r-16 after:border-t-0 after:content-[''] after:border-transparent",
-          'after:border-r-gradient-shoka-button-end',
-        )}
-      >
-        <a class="mt-1.5 block text-base/4 text-white hover:animate-shake" href="/posts/category/随笔">随笔</a>
-      </div>
-      <div class="grid grid-cols-2 gap-x-5 gap-y-3">
-        <a href="/post/2023-life-review" class="truncate text-primary transition-colors duration-300 hover:text-blue"
-          >2023，稀松平常的一年
-        </a>
-      </div>
-      <a href="/posts/category/随笔" aria-label="more info" class="absolute bottom-0 right-0">
-        <Button
-          className={cn(
-            'rounded-2xl rounded-es-none rounded-se-none bg-gradient-shoka-button transition-all hover:translate-x-1 hover:translate-y-1 hover:scale-105 md:h-7 md:px-2 md:py-1 md:text-xs',
-          )}
-        >
-          more...
-        </Button>
-      </a>
-    </div>
-  </FlippedCard>
+<div class="grid w-full grid-cols-2 gap-4 md:grid-cols-1">
+  {
+    categoryPosts.map((category, idx) => {
+      const parentCategory = category?.parentCategory;
+      const parentCategoryLink = parentCategory
+        ? Routes.Categories + '/' + (category?.link.split('/').slice(0, -1).join('/') ?? '')
+        : '';
+      const categoryInfo = category?.category;
+      const categoryLink = Routes.Categories + '/' + (category?.link ?? '');
+      const childrenLen = categoryInfo?.children?.length ?? 0;
+      const posts = category?.posts?.slice(0, 6 - (childrenLen ?? 0));
+      return (
+        <FlippedCard>
+          <div slot="front" class="flex-center relative h-full rounded-md px-2 py-4">
+            <img
+              src={category.image}
+              alt={category.label}
+              class="absolute inset-0 -z-10 h-full w-full rounded-md object-cover"
+            />
+            <div class="absolute inset-0 -z-10 h-full w-full rounded-md bg-shoka-card-mask opacity-25" />
+            <h2 class="text-2xl text-white">{category?.label ?? categoryInfo?.name}</h2>
+            {parentCategory?.name ? (
+              <Badge variant="shoka-tag" className="absolute right-3 top-2.5 text-xs text-white opacity-80 shadow">
+                {parentCategory.name}
+              </Badge>
+            ) : null}
+          </div>
+          <div slot="back" class="relative h-full flex-col rounded-md bg-card px-6 pb-4 pt-16">
+            <div
+              class={cn(
+                'absolute -left-4 top-4 inline-block h-8 max-w-[calc(100%+2rem)] rounded-r-md border bg-gradient-to-l from-gradient-shoka-button-start to-gradient-shoka-button-end pl-6 pr-4',
+                "after:absolute after:-left-4 after:top-full after:h-0 after:w-0 after:border-b-16 after:border-l-16 after:border-r-16 after:border-t-0 after:border-transparent after:content-['']",
+                'after:border-r-gradient-shoka-button-end',
+              )}
+            >
+              <a class="mt-1.5 block text-base/4 text-white hover:animate-shake" href={categoryLink}>
+                {category?.label || categoryInfo?.name}
+              </a>
+            </div>
+            <div class="grid grid-cols-2 gap-x-5 gap-y-3">
+              {categoryInfo?.children?.length
+                ? categoryInfo.children.map((child) => (
+                    <a
+                      href={categoryLink + '/' + categoryMap[child?.name]}
+                      class="truncate text-left text-primary transition-colors duration-300 hover:text-blue"
+                    >
+                      {child.name}
+                    </a>
+                  ))
+                : null}
+              {posts.map((post) => (
+                <a
+                  href={routeBuilder(Routes.Post, post)}
+                  class="truncate text-left text-primary transition-colors duration-300 hover:text-blue"
+                >
+                  {post.data.title}
+                </a>
+              ))}
+            </div>
+            <p class="absolute bottom-4 left-6 flex items-center text-sm text-muted-foreground">
+              {parentCategory?.name ? (
+                <a
+                  href={parentCategoryLink}
+                  class="group mr-1 flex cursor-pointer items-center transition duration-300 hover:text-blue"
+                >
+                  <Icon name="ri:flag-fill" class="mr-0.5 text-base" />
+                  <span class="mr-2">{parentCategory.name}</span>
+                </a>
+              ) : null}
+              <>
+                <Icon name="gg:loadbar-doc" class="mr-0.5 text-base" />
+                {categoryInfo?.children?.length ? `${categoryInfo.children.length} 个子分类，` : ''}
+                {category.posts?.length} 篇文章
+              </>
+            </p>
+            <a href={categoryLink} aria-label="more info" class="absolute bottom-0 right-0">
+              <Button
+                className={cn(
+                  'rounded-2xl rounded-es-none rounded-se-none bg-gradient-shoka-button transition-all hover:translate-x-1 hover:translate-y-1 hover:scale-105 md:h-7 md:px-2 md:py-1 md:text-xs',
+                )}
+              >
+                more...
+              </Button>
+            </a>
+          </div>
+        </FlippedCard>
+      );
+    })
+  }
 </div>

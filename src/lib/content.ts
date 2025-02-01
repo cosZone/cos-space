@@ -139,8 +139,8 @@ export function getCategoryNameByLink(link: string): string {
 }
 
 // 获取分类
-export function getCategoryByLink(categories: Category[], link: string): Category | null {
-  const name = getCategoryNameByLink(link);
+export function getCategoryByLink(categories: Category[], link?: string): Category | null {
+  const name = getCategoryNameByLink(link ?? '');
   if (!name || !categories?.length) return null;
   for (let i = 0; i < categories.length; ++i) {
     const category = categories[i];
@@ -188,4 +188,27 @@ export function getPostLastCategory(post: BlogPost): { link: string; name: strin
   } else {
     return { link: '/categories/' + categoryMap[categories[0] as string], name: categories[0] as string };
   }
+}
+
+// 获取分类的父分类（递归查找）
+export function getParentCategory(category: Category | null, categories: Category[]): Category | null {
+  if (!categories?.length || !category) return null;
+
+  for (const c of categories) {
+    if (!c.children?.length) continue;
+
+    // 直接检查当前层级
+    if (c.children.some((child) => child.name === category.name)) {
+      return c;
+    }
+
+    // 递归检查子分类
+    for (const child of c.children) {
+      if (child.children?.length) {
+        const result = getParentCategory(category, [child]);
+        if (result) return result;
+      }
+    }
+  }
+  return null;
 }

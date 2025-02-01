@@ -12,19 +12,19 @@ import readingTime from 'reading-time';
 import type { BlogPost } from 'types/blog';
 
 export interface PostItemCardProps {
-  data?: BlogPost;
+  data: BlogPost;
   leftClip?: boolean;
   randomCover: string;
 }
 
 const { randomCover, data, leftClip = true } = Astro.props as PostItemCardProps;
 
-const { cover, date, catalog, categories, title, description, link } = data?.data ?? {};
-const { id, body, rendered } = data ?? {};
+const { cover, date, catalog, categories, title, description } = data?.data ?? {};
+const { body } = data ?? {};
 
 const readState = readingTime(body ?? '');
 const finalCover = cover ?? randomCover ?? defaultCoverList[0];
-const href = routeBuilder(Routes.Post, { id, link: (rendered?.metadata?.link as string) ?? link });
+const href = routeBuilder(Routes.Post, data as BlogPost);
 
 const getCategory = () => {
   if (!catalog || !categories?.length) return '';
