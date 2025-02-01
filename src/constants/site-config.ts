@@ -12,8 +12,9 @@ type SiteConfig = {
   site: string; // 站点线上域名 用于 RSS 生成等
 
   featuredCategories?: {
-    name: string;
+    link: string;
     image: string;
+    label?: string;
     description?: string;
   }[];
 };
@@ -61,14 +62,52 @@ export const siteConfig: SiteConfig = {
   site: 'https://space.cosine.ren/',
   featuredCategories: [
     {
-      name: '随笔',
+      link: 'life',
+      label: '随笔',
       image: 'https://r2.cosine.ren/i/2025/01/04/9al5e-x5.webp',
-      description: '生活记录、年度总结等...',
+      description: '生活记录、年度总结等',
     },
     {
-      name: '笔记',
-      image: 'https://r2.cosine.ren/i/2025/01/05/100483120_p0.webp',
-      description: '技术笔记、学习笔记等...',
+      link: 'note/front-end',
+      label: '前端笔记',
+      image: 'https://r2.cosine.ren/i/2025/01/04/9aorb-dz.webp',
+      description: '前端相关的笔记',
+    },
+    {
+      link: 'project',
+      label: '项目集锦',
+      image: 'https://r2.cosine.ren/i/2025/01/04/9aorj-k5.webp',
+      description: '项目集锦',
+    },
+    {
+      link: 'note',
+      label: '笔记',
+      image: 'https://r2.cosine.ren/i/2025/01/04/9aore-8n.webp',
+      description: '技术笔记、学习笔记等',
+    },
+    {
+      link: 'tools',
+      label: '工具',
+      image: 'https://r2.cosine.ren/i/2025/01/04/9aorh-ms.webp',
+      description: '工具使用、软件推荐等',
+    },
+    {
+      link: 'note/algorithm',
+      label: '题目记录',
+      image: 'https://r2.cosine.ren/i/2025/01/04/9aorg-cc.webp',
+      description: '曾经的刷题记录等',
+    },
+    {
+      link: 'note/bytedance-note',
+      label: '青训营笔记',
+      image: 'https://r2.cosine.ren/i/2025/01/04/9aor9-be.webp',
+      description: '初学前端时的笔记',
+    },
+    {
+      link: 'note/cs-basics',
+      label: 'CS基础',
+      image: 'https://r2.cosine.ren/i/2025/01/04/9aorc-q4.webp',
+      description: '大学时期的 CS 基础笔记',
     },
   ],
 };
