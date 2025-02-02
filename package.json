@@ -32,6 +32,7 @@
     "@radix-ui/react-slot": "^1.1.1",
     "@types/react": "^19.0.2",
     "@types/react-dom": "^19.0.2",
+    "@yeskunall/astro-umami": "0.0.4",
     "astro": "^5.1.1",
     "astro-icon": "^1.1.5",
     "astro-loading-indicator": "^0.7.0",

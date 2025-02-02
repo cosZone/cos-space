@@ -5,6 +5,7 @@ import { siteConfig } from './src/constants/site-config';
 import icon from 'astro-icon';
 import { defineConfig } from 'astro/config';
 import svgr from 'vite-plugin-svgr';
+import umami from '@yeskunall/astro-umami';
 
 // https://astro.build/config
 export default defineConfig({
@@ -23,6 +24,11 @@ export default defineConfig({
         'fa6-solid': ['*'],
         ri: ['*'],
       },
+    }),
+    umami({
+      id: '8c54da69-94b0-417e-ad3b-0b737dc28937',
+      endpointUrl: 'https://stats.cosine.ren',
+      hostUrl: 'https://stats.cosine.ren',
     }),
   ],
   devToolbar: {
