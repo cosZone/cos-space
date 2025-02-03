@@ -140,10 +140,5 @@ export default {
       },
     },
   },
-  plugins: [
-    require('@tailwindcss/container-queries'),
-    require('tailwindcss-animate'),
-    require('tailwind-clip-path'),
-    require('@tailwindcss/typography'),
-  ],
+  plugins: [require('@tailwindcss/container-queries'), require('tailwindcss-animate'), require('@tailwindcss/typography')],
 };
