@@ -24,10 +24,10 @@ const sortedTags = Object.entries(tags)
   <TwoColumnLayout>
     <Cover slot="cover" title="全部标签" />
     <HomeSider slot="sider" />
-    <div class="shadow-box mx-0 flex w-full flex-col bg-gradient-start px-6 py-4 md:px-3 md:py-2">
+    <div class="shadow-box bg-gradient-start mx-0 flex w-full flex-col px-6 py-4 md:px-3 md:py-2">
       <h2 class="shoka-decoration-circle group relative h-19 px-7.5 py-5 text-2xl/9 font-bold">
-        <a href="/" class="dashed-border border-b text-muted-foreground group-hover:border-blue group-hover:text-blue">首页</a>
-        <span class="text-lg text-muted-foreground"> / </span>
+        <a href="/" class="dashed-border text-muted-foreground group-hover:border-blue group-hover:text-blue border-b">首页</a>
+        <span class="text-muted-foreground text-lg"> / </span>
         目前共计 {sortedTags.length} 个标签
       </h2>
       <div class="flex flex-wrap gap-3 p-4">
@@ -37,7 +37,7 @@ const sortedTags = Object.entries(tags)
               {/* 防止闪烁 */}
               <a
                 href={`/tags/${tag.replace(/\//g, '-')}`}
-                class={`group relative flex items-center rounded-lg bg-gradient-to-r px-3 py-1.5 text-sm transition-all duration-300 group-hover:-translate-y-0.5 group-hover:shadow-lg ${
+                class={`group relative flex items-center rounded-lg bg-linear-to-r px-3 py-1.5 text-sm transition-all duration-300 group-hover:-translate-y-0.5 group-hover:shadow-lg ${
                   TAG_COLORS[index % TAG_COLORS.length]
                 }`}
               >

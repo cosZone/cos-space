@@ -1,8 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   darkMode: ['class'],
-  content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
-  prefix: '',
   theme: {
     container: {
       center: true,
@@ -140,10 +138,5 @@ export default {
       },
     },
   },
-  plugins: [
-    require('@tailwindcss/container-queries'),
-    require('tailwindcss-animate'),
-    require('tailwind-clip-path'),
-    require('@tailwindcss/typography'),
-  ],
+  plugins: [require('@tailwindcss/container-queries'), require('tailwindcss-animate'), require('@tailwindcss/typography')],
 };

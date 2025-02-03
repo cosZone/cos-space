@@ -26,7 +26,7 @@ export default function DropdownNav({ item, className }: DropdownNavProps) {
                 key={child.path}
                 href={child.path}
                 className={cn(
-                  'group px-4 py-2 text-base outline-none transition-colors duration-300 hover:bg-gradient-shoka-button',
+                  'group hover:bg-gradient-shoka-button px-4 py-2 text-base outline-hidden transition-colors duration-300',
                   {
                     'rounded-ss-2xl': index === 0,
                     'rounded-ee-2xl': index === children.length - 1,
@@ -34,7 +34,7 @@ export default function DropdownNav({ item, className }: DropdownNavProps) {
                   },
                 )}
               >
-                <div className="flex items-center gap-2 transition-all duration-300 group-hover:translate-x-0.5 group-hover:text-muted">
+                <div className="group-hover:text-muted flex items-center gap-2 transition-all duration-300 group-hover:translate-x-0.5">
                   {child.icon && <Icon icon={child.icon} className="size-4" />}
                   {child.name}
                 </div>

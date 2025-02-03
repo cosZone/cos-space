@@ -6,9 +6,9 @@ import { Icon } from 'astro-icon/components';
 import DropdownNav from './DropdownNav';
 ---
 
-<div class="flex flex-grow items-center tablet:flex-grow-0">
+<div class="tablet:grow-0 tablet:order-1 flex grow items-center">
   <!-- 导航菜单 -->
-  <div class="flex flex-grow items-center tablet:hidden">
+  <div class="tablet:hidden flex grow items-center">
     {
       routers.map((item) => {
         if (item.children?.length) {
@@ -35,7 +35,7 @@ import DropdownNav from './DropdownNav';
     }
   </div>
 
-  <div class="ml-auto flex items-center gap-4 tablet:gap-2">
+  <div class="tablet:gap-2 ml-auto flex items-center gap-4">
     <a class="cursor-pointer" href="https://github.com/cosZone/cos-space" target="_blank">
       <Icon name="ri:github-fill" class="h-8 w-8" onclick="backToTop()" />
     </a>

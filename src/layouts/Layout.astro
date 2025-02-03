@@ -82,7 +82,7 @@ const { title = seoConfig.title, description = seoConfig.description } = Astro.p
   <body>
     <div class="flex min-h-screen flex-col text-black dark:text-white">
       <Header />
-      <main class="relative flex flex-grow flex-col">{(<slot />)}</main>
+      <main class="relative flex grow flex-col">{(<slot />)}</main>
       {/* <Footer className="mt-auto" /> */}
       <FloatingGroup />
       <MobileDrawer />

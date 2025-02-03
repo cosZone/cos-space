@@ -4,22 +4,19 @@ import { siteConfig } from 'constants/site-config';
 import Navigator from './Navigator.astro';
 import { Icon } from 'astro-icon/components';
 import { MenuIcon } from '@components/ui/MenuIcon';
+import { FloatingPortal } from '@floating-ui/react';
 
 const { alternate, title, showLogo } = siteConfig;
 ---
 
 <div
   id="site-header"
-  class="shadow-text fixed inset-x-0 top-0 z-10 select-none gap-4 px-4 py-2.5 text-white md:py-2 tablet:px-0"
+  class="shadow-text tablet:px-0 fixed inset-x-0 top-0 z-10 gap-4 px-4 py-2.5 text-white select-none md:py-2"
 >
-  <div class="mx-auto flex items-center justify-between px-5 md:w-full md:px-2 desktop:max-w-8xl desktop:px-0">
-    <!-- 移动端菜单按钮 -->
-    <div id="mobile-menu-container" class="hidden tablet:block">
-      <MenuIcon client:load />
-    </div>
+  <div class="desktop:max-w-8xl desktop:px-0 mx-auto flex items-center justify-between px-5 md:w-full md:px-2">
     <a
       transition:persist="page-header-avatar"
-      class="-my-4 mr-4 flex cursor-pointer items-center justify-center gap-1 whitespace-nowrap text-sm font-bold"
+      class="tablet:order-2 -my-4 mr-4 flex cursor-pointer items-center justify-center gap-1 text-sm font-bold whitespace-nowrap"
       href="/"
       target="_self"
     >
@@ -27,10 +24,19 @@ const { alternate, title, showLogo } = siteConfig;
         showLogo ? (
           <LogoSvg className="h-8" />
         ) : (
-          <p class="logo-text text-2xl font-light capitalize tracking-widest text-primary">{alternate || title}</p>
+          <p class="logo-text text-primary text-2xl font-light tracking-widest capitalize">{alternate || title}</p>
         )
       }
     </a>
     <Navigator transition:name="page-header" />
+    <!-- 移动端菜单按钮 占位符 -->
+    <div class="tablet:order-3 tablet:block hidden size-11">
+      <!-- PlaceHolder -->
+    </div>
   </div>
+</div>
+
+<!-- 移动端菜单按钮 -->
+<div id="mobile-menu-container" class="tablet:order-3 tablet:block fixed top-2 right-4 z-50 hidden">
+  <MenuIcon client:load />
 </div>

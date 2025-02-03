@@ -57,23 +57,23 @@ const categoryPosts: CategoryWithPosts[] = await Promise.all(
               alt={category.label}
               class="absolute inset-0 -z-10 h-full w-full rounded-md object-cover"
             />
-            <div class="absolute inset-0 -z-10 h-full w-full rounded-md bg-shoka-card-mask opacity-25" />
+            <div class="bg-shoka-card-mask absolute inset-0 -z-10 h-full w-full rounded-md opacity-25" />
             <h2 class="text-2xl text-white">{category?.label ?? categoryInfo?.name}</h2>
             {parentCategory?.name ? (
-              <Badge variant="shoka-tag" className="absolute right-3 top-2.5 text-xs text-white opacity-80 shadow">
+              <Badge variant="shoka-tag" className="absolute right-3 top-2.5 text-xs text-white opacity-80 shadow-sm">
                 {parentCategory.name}
               </Badge>
             ) : null}
           </div>
-          <div slot="back" class="relative h-full flex-col rounded-md bg-card px-6 pb-4 pt-16">
+          <div slot="back" class="bg-card relative h-full flex-col rounded-md px-6 pt-16 pb-4">
             <div
               class={cn(
-                'absolute -left-4 top-4 inline-block h-8 max-w-[calc(100%+2rem)] rounded-r-md border bg-gradient-to-l from-gradient-shoka-button-start to-gradient-shoka-button-end pl-6 pr-4',
-                "after:absolute after:-left-4 after:top-full after:h-0 after:w-0 after:border-b-16 after:border-l-16 after:border-r-16 after:border-t-0 after:border-transparent after:content-['']",
+                'from-gradient-shoka-button-start to-gradient-shoka-button-end absolute top-4 -left-4 inline-block h-8 max-w-[calc(100%+2rem)] rounded-r-md border bg-linear-to-l pr-4 pl-6',
+                "after:absolute after:top-full after:-left-4 after:h-0 after:w-0 after:border-t-0 after:border-r-16 after:border-b-16 after:border-l-16 after:border-transparent after:content-['']",
                 'after:border-r-gradient-shoka-button-end',
               )}
             >
-              <a class="mt-1.5 block text-base/4 text-white hover:animate-shake" href={categoryLink}>
+              <a class="hover:animate-shake mt-1.5 block text-base/4 text-white" href={categoryLink}>
                 {category?.label || categoryInfo?.name}
               </a>
             </div>
@@ -82,7 +82,7 @@ const categoryPosts: CategoryWithPosts[] = await Promise.all(
                 ? categoryInfo.children.map((child) => (
                     <a
                       href={categoryLink + '/' + categoryMap[child?.name]}
-                      class="truncate text-left text-primary transition-colors duration-300 hover:text-blue"
+                      class="text-primary hover:text-blue truncate text-left transition-colors duration-300"
                     >
                       {child.name}
                     </a>
@@ -91,17 +91,17 @@ const categoryPosts: CategoryWithPosts[] = await Promise.all(
               {posts.map((post) => (
                 <a
                   href={routeBuilder(Routes.Post, post)}
-                  class="truncate text-left text-primary transition-colors duration-300 hover:text-blue"
+                  class="text-primary hover:text-blue truncate text-left transition-colors duration-300"
                 >
                   {post.data.title}
                 </a>
               ))}
             </div>
-            <p class="absolute bottom-4 left-6 flex items-center text-sm text-muted-foreground">
+            <p class="text-muted-foreground absolute bottom-4 left-6 flex items-center text-sm">
               {parentCategory?.name ? (
                 <a
                   href={parentCategoryLink}
-                  class="group mr-1 flex cursor-pointer items-center transition duration-300 hover:text-blue"
+                  class="group hover:text-blue mr-1 flex cursor-pointer items-center transition duration-300"
                 >
                   <Icon name="ri:flag-fill" class="mr-0.5 text-base" />
                   <span class="mr-2">{parentCategory.name}</span>
@@ -113,10 +113,10 @@ const categoryPosts: CategoryWithPosts[] = await Promise.all(
                 {category.posts?.length} 篇文章
               </>
             </p>
-            <a href={categoryLink} aria-label="more info" class="absolute bottom-0 right-0">
+            <a href={categoryLink} aria-label="more info" class="absolute right-0 bottom-0">
               <Button
                 className={cn(
-                  'rounded-2xl rounded-es-none rounded-se-none bg-gradient-shoka-button transition-all hover:translate-x-1 hover:translate-y-1 hover:scale-105 md:h-7 md:px-2 md:py-1 md:text-xs',
+                  'bg-gradient-shoka-button rounded-2xl rounded-se-none rounded-es-none transition-all hover:translate-x-1 hover:translate-y-1 hover:scale-105 md:h-7 md:px-2 md:py-1 md:text-xs',
                 )}
               >
                 more...

@@ -92,7 +92,7 @@ export const siteConfig: SiteConfig = {
       description: '工具使用、软件推荐等',
     },
     {
-      link: 'note/algorithm',
+      link: 'coding-train',
       label: '题目记录',
       image: 'https://r2.cosine.ren/i/2025/01/04/9aorg-cc.webp',
       description: '曾经的刷题记录等',

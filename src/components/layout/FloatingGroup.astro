@@ -3,11 +3,11 @@ import { Icon } from 'astro-icon/components';
 import { throttle } from 'es-toolkit';
 ---
 
-<div id="floating-nav" class="fixed bottom-4 right-4 z-50 flex flex-col gap-2 text-primary">
+<div id="floating-nav" class="text-primary fixed right-4 bottom-4 z-50 flex flex-col gap-2">
   <div id="nav-content" class="flex scale-y-100 flex-col gap-2 opacity-100">
     <button
       id="scroll-to-top"
-      class="rounded-full bg-background/80 p-2 shadow-lg backdrop-blur transition-colors duration-200 hover:bg-background"
+      class="bg-background/80 hover:bg-background rounded-full p-2 shadow-lg backdrop-blur-sm transition-colors duration-200"
       aria-label="回到顶部"
       title="回到顶部"
       data-tooltip-interactive="false"
@@ -17,7 +17,7 @@ import { throttle } from 'es-toolkit';
     </button>
     <button
       id="scroll-to-bottom"
-      class="rounded-full bg-background/80 p-2 shadow-lg backdrop-blur transition-colors duration-200 hover:bg-background"
+      class="bg-background/80 hover:bg-background rounded-full p-2 shadow-lg backdrop-blur-sm transition-colors duration-200"
       aria-label="滚到底部"
       title="滚到底部"
       data-tooltip-interactive="false"
@@ -29,7 +29,7 @@ import { throttle } from 'es-toolkit';
 
   <button
     id="toggle-nav"
-    class="flex-center size-9 rounded-full bg-background/80 shadow-lg backdrop-blur transition-colors duration-200 hover:bg-background"
+    class="flex-center bg-background/80 hover:bg-background size-9 rounded-full shadow-lg backdrop-blur-sm transition-colors duration-200"
     aria-label="展开/收起工具栏"
     title="展开/收起工具栏"
     data-tooltip-interactive="false"

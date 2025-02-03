@@ -77,7 +77,7 @@ function Popover({
         {isOpen && (
           <FloatingFocusManager context={context} modal={false}>
             <motion.div
-              className={cn('z-10 rounded-ee-2xl rounded-ss-2xl bg-black/30 backdrop-blur', className)}
+              className={cn('z-10 rounded-ss-2xl rounded-ee-2xl bg-black/30 backdrop-blur-sm', className)}
               initial={{ opacity: 0, scale: 0.85 }}
               animate={{ opacity: 1, scale: 1, originY: 0 }}
               exit={{ opacity: 0, scale: 0.85 }}

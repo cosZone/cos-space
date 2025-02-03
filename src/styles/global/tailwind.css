@@ -1,7 +1,77 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
+@config '../../../tailwind.config.mjs';
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+}
+
+@utility font-default {
+  font-family:
+    'Poppins',
+    -apple-system,
+    'PingFang SC',
+    'Microsoft YaHei',
+    sans-serif;
+}
+@utility flex-center {
+  @apply flex items-center justify-center;
+}
+@utility flex-center-x {
+  @apply flex flex-row items-center justify-center;
+}
+@utility flex-center-y {
+  @apply flex flex-col items-center justify-center;
+}
+@utility shadow-card {
+  box-shadow: 0 0.625rem 1.875rem -0.9375rem var(--box-bg-shadow);
+}
+@utility shadow-card-darker {
+  box-shadow: 0 0 2rem var(--box-bg-shadow);
+}
+@utility shadow-box {
+  box-shadow: 0 1.25rem 1rem 0.3125rem var(--box-bg-shadow);
+  @apply md:shadow-none;
+}
+@utility shadow-text {
+  text-shadow: 0 0.2rem 0.3rem rgba(0, 0, 0, 0.5);
+}
+@utility dashed-border {
+  border-bottom: 0.0625rem dashed hsl(var(--grey-4));
+  @apply hover:border-blue group-hover:border-blue group-hover:text-blue;
+}
+@utility with-background {
+  &#site-header {
+    @apply border-border bg-gradient-header text-foreground border-b;
+    button,
+    a {
+      text-shadow: none;
+      &::after {
+        transition-duration: 400ms;
+        @apply bg-foreground;
+      }
+    }
+  }
+}
+@utility header-hidden {
+  &#site-header {
+    @apply -translate-y-full;
+  }
+}
 @layer base {
   @view-transition {
     navigation: auto; /* enabled! */
@@ -42,54 +112,18 @@
     max-width: 100%;
   }
   a.link {
-    @apply text-primary transition-colors duration-300 hover:text-blue;
+    @apply text-primary hover:text-blue transition-colors duration-300;
   }
 }
 
 /* utils */
 @layer components {
-  .font-default {
-    font-family:
-      'Poppins',
-      -apple-system,
-      'PingFang SC',
-      'Microsoft YaHei',
-      sans-serif;
+  .shoka-button-shadow {
+    box-shadow: 0 0 0.75rem var(--color-pink-a3);
+    &:hover {
+      box-shadow: 0 0 0.75rem var(--color-pink);
+    }
   }
-  .flex-center {
-    @apply flex items-center justify-center;
-  }
-
-  .flex-center-x {
-    @apply flex flex-row items-center justify-center;
-  }
-
-  .flex-center-y {
-    @apply flex flex-col items-center justify-center;
-  }
-
-  .shadow-card {
-    box-shadow: 0 0.625rem 1.875rem -0.9375rem var(--box-bg-shadow);
-  }
-
-  .shadow-card-darker {
-    box-shadow: 0 0 2rem var(--box-bg-shadow);
-  }
-
-  .shadow-box {
-    box-shadow: 0 1.25rem 1rem 0.3125rem var(--box-bg-shadow);
-    @apply md:shadow-none;
-  }
-
-  .shadow-text {
-    text-shadow: 0 0.2rem 0.3rem rgba(0, 0, 0, 0.5);
-  }
-
-  .dashed-border {
-    border-bottom: 0.0625rem dashed hsl(var(--grey-4));
-    @apply hover:border-blue group-hover:border-blue group-hover:text-blue;
-  }
-
   #site-header {
     @apply translate-y-0 transition-transform duration-300;
     button,
@@ -104,25 +138,13 @@
       text-shadow: none;
     }
   }
-  #site-header.with-background {
-    @apply border-b border-border bg-gradient-header text-foreground;
-    button,
-    a {
-      text-shadow: none;
-      &::after {
-        transition-duration: 400ms;
-        @apply bg-foreground;
-      }
-    }
+  .clip-path-none {
+    clip-path: none;
   }
-  #site-header.header-hidden {
-    @apply -translate-y-full;
+  .clip-path-post-img-left {
+    clip-path: polygon(0 0, 92% 0%, 100% 100%, 0% 100%);
   }
-
-  .shoka-button-shadow {
-    box-shadow: 0 0 0.75rem var(--color-pink-a3);
-    &:hover {
-      box-shadow: 0 0 0.75rem var(--color-pink);
-    }
+  .clip-path-post-img-right {
+    clip-path: polygon(0 0%, 100% 0%, 100% 100%, 8% 100%);
   }
 }
