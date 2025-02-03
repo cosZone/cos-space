@@ -44,8 +44,10 @@ const categoryStr = categoryArr?.length ? ` | ${categoryArr.join(' / ')}` : '';
   <TwoColumnLayout>
     <Cover slot="cover" data={post} />
     <HomeSider slot="sider" />
-    <div class="shadow-box flex flex-col gap-8 bg-gradient-start p-4 pt-8 md:px-5 md:py-4">
-      <div class="prose max-w-none dark:prose-invert"><Content /></div>
+    <div class="shadow-box bg-gradient-start flex flex-col gap-8 p-4 pt-8 md:px-5 md:py-4">
+      <div class="prose dark:prose-invert tablet:max-w-[calc(100vw-2.5rem)] tablet:w-auto w-[calc(100vw-20rem)] max-w-5xl">
+        <Content />
+      </div>
     </div>
   </TwoColumnLayout>
 </Layout>
