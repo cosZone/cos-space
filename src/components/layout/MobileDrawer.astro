@@ -13,7 +13,7 @@ const currentPath = Astro.url.pathname;
 <!-- 移动端抽屉导航 -->
 <div
   id="mobile-drawer"
-  class="bg-gradient-start fixed inset-y-0 right-0 z-50 h-screen w-64 translate-x-full transform p-4 shadow-lg backdrop-blur-sm transition-transform duration-300"
+  class="bg-gradient-start fixed inset-y-0 left-0 z-50 h-screen w-64 -translate-x-full transform p-4 shadow-lg backdrop-blur-sm transition-transform duration-300"
   role="dialog"
   aria-label="导航菜单"
   aria-modal="true"
@@ -21,7 +21,7 @@ const currentPath = Astro.url.pathname;
   <div class="flex h-full flex-col">
     <header class="flex items-center justify-between">
       <h2 class="text-lg font-semibold">菜单</h2>
-      <button id="close-drawer" aria-label="关闭菜单" class="hover:bg-foreground/10 rounded-lg p-1 transition-colors">
+      <button id="close-drawer" aria-label="关闭菜单" class="invisible">
         <Icon name="ri:close-line" class="h-6 w-6" />
       </button>
     </header>
@@ -83,7 +83,7 @@ const currentPath = Astro.url.pathname;
 
   const DRAWER_CLASSES = {
     hidden: 'hidden',
-    translateX: 'translate-x-full',
+    translateX: '-translate-x-full',
   } as const;
 
   const DRAWER_EVENTS = {
