@@ -14,9 +14,13 @@ const { alternate, title, showLogo } = siteConfig;
   class="shadow-text tablet:px-0 fixed inset-x-0 top-0 z-10 gap-4 px-4 py-2.5 text-white select-none md:py-2"
 >
   <div class="desktop:max-w-8xl desktop:px-0 mx-auto flex items-center justify-between px-5 md:w-full md:px-2">
+    <!-- 移动端菜单按钮 占位符 -->
+    <div class="tablet:block hidden size-11">
+      <!-- PlaceHolder -->
+    </div>
     <a
       transition:persist="page-header-avatar"
-      class="tablet:order-2 -my-4 mr-4 flex cursor-pointer items-center justify-center gap-1 text-sm font-bold whitespace-nowrap"
+      class="-my-4 mr-4 flex cursor-pointer items-center justify-center gap-1 text-sm font-bold whitespace-nowrap"
       href="/"
       target="_self"
     >
@@ -29,14 +33,10 @@ const { alternate, title, showLogo } = siteConfig;
       }
     </a>
     <Navigator transition:name="page-header" />
-    <!-- 移动端菜单按钮 占位符 -->
-    <div class="tablet:order-3 tablet:block hidden size-11">
-      <!-- PlaceHolder -->
-    </div>
   </div>
 </div>
 
 <!-- 移动端菜单按钮 -->
-<div id="mobile-menu-container" class="tablet:order-3 tablet:block fixed top-2 right-4 z-50 hidden">
+<div id="mobile-menu-container" class="tablet:block fixed top-2 left-4 z-52 hidden">
   <MenuIcon client:load />
 </div>
