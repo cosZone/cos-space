@@ -60,6 +60,7 @@ import DropdownNav from './DropdownNav';
 
   const handleScroll = () => {
     const siteHeader = document.getElementById('site-header');
+    const mobileMenuContainer = document.getElementById('mobile-menu-container');
     const currentScrollY = window.scrollY;
     const isBeyond = currentScrollY > triggerDistance;
     if (isBeyond) {
@@ -75,10 +76,12 @@ import DropdownNav from './DropdownNav';
     if (currentScrollY > 0) {
       if (currentScrollY > lastScrollY) {
         // 向下滚动
-        siteHeader.classList.add('header-hidden');
+        siteHeader.classList.add('-translate-y-full');
+        mobileMenuContainer.classList.add('-translate-y-full');
       } else {
         // 向上滚动
-        siteHeader.classList.remove('header-hidden');
+        siteHeader.classList.remove('-translate-y-full');
+        mobileMenuContainer.classList.remove('-translate-y-full');
       }
     }
     lastScrollY = currentScrollY;

@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import type { Variants } from 'motion/react';
 import { motion, useAnimation } from 'motion/react';
+import { cn } from '@lib/utils';
 
 const lineVariants: Variants = {
   closed: {
@@ -22,7 +23,7 @@ const lineVariants: Variants = {
   }),
 };
 
-const MenuIcon = () => {
+const MenuIcon = ({ className, id }: { className?: string; id?: string }) => {
   const [isOpen, setIsOpen] = useState(false);
   const controls = useAnimation();
 
@@ -50,7 +51,11 @@ const MenuIcon = () => {
 
   return (
     <div
-      className="flex cursor-pointer select-none items-center justify-center rounded-md p-2 transition-colors duration-200 hover:bg-foreground/10"
+      className={cn(
+        'hover:bg-foreground/10 text-primary flex-center cursor-pointer rounded-md transition-colors duration-200 select-none dark:text-white',
+        className,
+      )}
+      id={id}
       onClick={toggleMenu}
       role="button"
       aria-label={isOpen ? '关闭菜单' : '打开菜单'}

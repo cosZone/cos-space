@@ -67,11 +67,6 @@
     }
   }
 }
-@utility header-hidden {
-  &#site-header {
-    @apply -translate-y-full;
-  }
-}
 @layer base {
   @view-transition {
     navigation: auto; /* enabled! */

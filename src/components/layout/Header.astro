@@ -1,10 +1,8 @@
 ---
 import LogoSvg from '@assets/svg/logo.svg?react';
+import { MenuIcon } from '@components/ui/MenuIcon';
 import { siteConfig } from 'constants/site-config';
 import Navigator from './Navigator.astro';
-import { Icon } from 'astro-icon/components';
-import { MenuIcon } from '@components/ui/MenuIcon';
-import { FloatingPortal } from '@floating-ui/react';
 
 const { alternate, title, showLogo } = siteConfig;
 ---
@@ -37,6 +35,8 @@ const { alternate, title, showLogo } = siteConfig;
 </div>
 
 <!-- 移动端菜单按钮 -->
-<div id="mobile-menu-container" class="tablet:block fixed top-2 left-4 z-52 hidden">
-  <MenuIcon client:load />
-</div>
+<MenuIcon
+  client:load
+  className="tablet:flex fixed top-0 left-4 z-52 hidden h-15 transition-transform"
+  id="mobile-menu-container"
+/>
