@@ -111,6 +111,12 @@ export function getCategoryArr(categories?: string[] | string) {
   } else return [categories as string];
 }
 
+/**
+ * 获取分类完整链接
+ * @param categories 分类
+ * @param parentLink 父分类链接
+ * @returns 分类链接
+ */
 export function getCategoryLinks(categories?: Category[], parentLink?: string): string[] {
   if (!categories?.length) return [];
   // console.log('parentLink:', parentLink + ' categories:', categories.length);
@@ -211,4 +217,10 @@ export function getParentCategory(category: Category | null, categories: Categor
     }
   }
   return null;
+}
+
+// 传入 getCategoryArr 返回的数组, 返回分类链接
+export async function getCategoryLink(categories: string[]): Promise<string> {
+  if (!categories?.length) return '';
+  return '/categories/' + categories.map((c) => categoryMap[c]).join('/');
 }

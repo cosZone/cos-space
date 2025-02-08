@@ -4,6 +4,7 @@ import { Badge } from '@components/ui/badge';
 import { Button } from '@components/ui/button';
 import { Routes } from '@constants/router';
 import { defaultCoverList } from '@constants/site-config';
+import { getCategoryArr, getCategoryLink } from '@lib/content';
 import { parseDate } from '@lib/datetime';
 import { routeBuilder } from '@lib/route';
 import { cn } from '@lib/utils';
@@ -26,15 +27,13 @@ const readState = readingTime(body ?? '');
 const finalCover = cover ?? randomCover ?? defaultCoverList[0];
 const href = routeBuilder(Routes.Post, data as BlogPost);
 
-const getCategory = () => {
-  if (!catalog || !categories?.length) return '';
-  if (Array.isArray(categories[0])) return categories[0].join(' / ');
-  return categories[0];
-};
+const categoryArr = getCategoryArr(categories?.[0]);
+const categoryLink = await getCategoryLink(categoryArr);
+const categoryStr = categoryArr?.length ? categoryArr[categoryArr.length - 1] : '';
 ---
 
 <div
-  class="hover:shadow-card-darker group relative flex gap-2 rounded-lg text-card-foreground shadow-card transition-shadow md:flex-col"
+  class="hover:shadow-card-darker group text-card-foreground shadow-card relative flex gap-2 rounded-lg transition-shadow md:flex-col"
 >
   <a
     aria-label="post-link"
@@ -49,7 +48,7 @@ const getCategory = () => {
       src={finalCover}
       loading="lazy"
       alt="post"
-      class="h-full w-full cursor-pointer object-cover transition duration-500 group-hover:rotate-3 group-hover:scale-110"
+      class="h-full w-full cursor-pointer object-cover transition duration-500 group-hover:scale-110 group-hover:rotate-3"
     />
   </a>
   <div
@@ -60,11 +59,15 @@ const getCategory = () => {
     )}
   >
     <div class="flex w-full justify-between">
-      <div class="flex-center text-xs text-muted-foreground">
-        <Icon name="gg:flag" />
-        {getCategory()}
-      </div>
-      <div class="flex justify-end gap-4 text-xs text-muted-foreground">
+      {
+        catalog === false ? null : (
+          <a href={categoryLink} class="flex-center hover:text-blue text-muted-foreground text-xs transition duration-300">
+            <Icon name="gg:flag" />
+            {categoryStr}
+          </a>
+        )
+      }
+      <div class="text-muted-foreground flex justify-end gap-4 text-xs">
         {
           date ? (
             <p class="flex-center gap-1">
@@ -86,13 +89,13 @@ const getCategory = () => {
     <div class="mt-1 flex flex-col space-y-1.5 p-0">
       <a href={href} aria-label="post-link"
         ><h3
-          class="truncate text-xl font-bold leading-none tracking-tight text-primary transition-colors duration-300 hover:text-blue"
+          class="text-primary hover:text-blue truncate text-xl leading-none font-bold tracking-tight transition-colors duration-300"
         >
           {title}
         </h3>
       </a>
     </div>
-    <p class="line-clamp-3 h-15 text-sm text-muted-foreground md:h-auto md:max-h-15">
+    <p class="text-muted-foreground line-clamp-3 h-15 text-sm md:h-auto md:max-h-15">
       {description ?? body?.slice(0, 150)}
     </p>
     <div class={cn('mt-2 flex @container gap-2 ', { 'justify-end': !leftClip }, 'md:justify-start')}>
@@ -100,7 +103,7 @@ const getCategory = () => {
         data?.data.tags?.length
           ? data?.data.tags.map((tag: string, index: number) => (
               <Badge
-                className={cn('hidden cursor-pointer gap-0.5 whitespace-nowrap text-xs @md:flex', {
+                className={cn('hidden cursor-pointer gap-0.5 text-xs whitespace-nowrap @md:flex', {
                   '@xs:flex': index < 2,
                   '@sm:flex': index < 3,
                 })}
@@ -118,11 +121,11 @@ const getCategory = () => {
     >
       <Button
         className={cn(
-          'rounded-2xl bg-gradient-shoka-button transition-all hover:translate-y-1 hover:scale-105 md:h-7 md:px-2 md:py-1 md:text-xs',
+          'bg-gradient-shoka-button rounded-2xl transition-all hover:translate-y-1 hover:scale-105 md:h-7 md:px-2 md:py-1 md:text-xs',
           leftClip
-            ? 'rounded-es-none rounded-se-none hover:translate-x-1'
-            : 'rounded-ee-none rounded-ss-none hover:-translate-x-1',
-          'md:rounded-ee-2xl md:rounded-es-none md:rounded-se-none md:rounded-ss-2xl md:hover:translate-x-1',
+            ? 'rounded-se-none rounded-es-none hover:translate-x-1'
+            : 'rounded-ss-none rounded-ee-none hover:-translate-x-1',
+          'md:rounded-ss-2xl md:rounded-se-none md:rounded-ee-2xl md:rounded-es-none md:hover:translate-x-1',
         )}
       >
         more...
