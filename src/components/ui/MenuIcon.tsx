@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import type { Variants } from 'motion/react';
 import { motion, useAnimation } from 'motion/react';
 import { cn } from '@lib/utils';
+import { useIsMounted } from '@hooks/useIsMounted';
 
 const lineVariants: Variants = {
   closed: {
@@ -26,6 +27,7 @@ const lineVariants: Variants = {
 const MenuIcon = ({ className, id }: { className?: string; id?: string }) => {
   const [isOpen, setIsOpen] = useState(false);
   const controls = useAnimation();
+  const isMounted = useIsMounted();
 
   useEffect(() => {
     const handleDrawerStateChange = (e: CustomEvent) => {
@@ -49,10 +51,11 @@ const MenuIcon = ({ className, id }: { className?: string; id?: string }) => {
     document.dispatchEvent(event);
   };
 
+  if (!isMounted) return null;
   return (
     <div
       className={cn(
-        'hover:bg-foreground/10 text-primary flex-center cursor-pointer rounded-md transition-colors duration-200 select-none dark:text-white',
+        'hover:bg-foreground/10 text-primary flex-center cursor-pointer rounded-md duration-200 select-none dark:text-white',
         className,
       )}
       id={id}

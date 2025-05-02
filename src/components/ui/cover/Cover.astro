@@ -19,13 +19,13 @@ const { date, title: dataTitle } = data?.data ?? {};
 const readState = readingTime(data?.body ?? '');
 ---
 
-<div transition:name="page-cover" class="relative flex h-[60vh] max-h-[35rem] overflow-hidden">
+<div class="relative flex h-[60vh] max-h-[35rem] overflow-hidden">
   <div class="absolute inset-0 h-full bg-black/40"></div>
   <div class="absolute inset-0 bottom-[8vh] flex flex-col items-center justify-center px-5 text-white">
     {
       data || title ? (
         <>
-          <h1 class="shadow-text word-break text-center text-4.5xl font-bold md:text-2xl">{dataTitle ?? title}</h1>
+          <h1 class="shadow-text word-break text-4.5xl text-center font-bold md:text-2xl">{dataTitle ?? title}</h1>
           {data && (
             <p class="mt-3 flex items-center justify-center gap-4 md:text-xs">
               <span class="flex items-center gap-1">
@@ -45,7 +45,7 @@ const readState = readingTime(data?.body ?? '');
       ) : (
         <>
           <h2 class="shadow-text font-fg text-5.5xl/[1.2]">{siteConfig?.alternate}</h2>
-          <h1 class="shadow-text mt-3 font-noto text-4.5xl/[1.2] font-bold tracking-widest">{siteConfig?.title}</h1>
+          <h1 class="shadow-text font-noto text-4.5xl/[1.2] mt-3 font-bold tracking-widest">{siteConfig?.title}</h1>
           <p class="shadow-text mt-5 text-sm">= {siteConfig?.subtitle} =</p>
         </>
       )
@@ -54,7 +54,7 @@ const readState = readingTime(data?.body ?? '');
   <div class="relative -z-10 h-full min-h-[15rem] w-full" transition:persist="page-cover-banner" id="banner-box">
     <img src="https://r2.cosine.ren/i/2025/01/04/9al5e-x5.webp" alt="cover" class="h-full w-full object-cover" />
   </div>
-  <WaveSvg transition:persist="page-cover-wave" />
+  <WaveSvg />
 </div>
 
 {siteConfig?.enableJSGridCover && <JSBgScript />}

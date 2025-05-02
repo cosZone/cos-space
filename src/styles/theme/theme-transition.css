@@ -2,6 +2,7 @@
 :root {
   --x: 50%;
   --y: 50%;
+  --theme-transition-duration: 0.5s;
 }
 
 @keyframes reveal-in {
@@ -22,19 +23,29 @@
   }
 }
 
-::view-transition-new(root) {
-  animation: reveal-in 0.3s ease-in-out forwards;
+/* 只在主题切换时应用特殊的圆形过渡效果 */
+html.theme-transition::view-transition-new(root) {
+  animation: reveal-in var(--theme-transition-duration) ease-in-out forwards;
   z-index: 1;
   mix-blend-mode: normal;
 }
 
-::view-transition-old(root) {
-  animation: reveal-out 0.3s ease-in-out forwards;
-  animation-delay: 0.3s;
+html.theme-transition::view-transition-old(root) {
+  animation: reveal-out var(--theme-transition-duration) ease-in-out forwards;
+  animation-delay: var(--theme-transition-duration);
   z-index: 0;
   mix-blend-mode: normal;
 }
 
-::view-transition-image-pair(root) {
+html.theme-transition::view-transition-image-pair(root) {
   isolation: isolate;
-} 
+}
+
+/* 保留原始的视图过渡，但不应用特殊效果，除非有theme-transition类 */
+::view-transition-new(root) {
+  z-index: 1;
+}
+
+::view-transition-old(root) {
+  z-index: 0;
+}
