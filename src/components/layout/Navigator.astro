@@ -4,6 +4,7 @@ import { routers } from '@constants/router';
 import { cn } from '@lib/utils';
 import { Icon } from 'astro-icon/components';
 import DropdownNav from './DropdownNav';
+import ThemeToggle from '@components/theme/ThemeToggle.astro';
 ---
 
 <div class="tablet:grow-0 flex grow items-center">
@@ -37,9 +38,11 @@ import DropdownNav from './DropdownNav';
 
   <div class="tablet:gap-2 ml-auto flex items-center gap-4">
     <a class="cursor-pointer" href="https://github.com/cosZone/cos-space" target="_blank">
-      <Icon name="ri:github-fill" class="h-8 w-8" onclick="backToTop()" />
+      <Icon name="ri:github-fill" class="size-8 transition duration-300 hover:scale-125" onclick="backToTop()" />
     </a>
-    <Icon name="gg:dark-mode" class="h-8 w-8 cursor-pointer" onclick="toggleDarkMode()" />
+    <ThemeToggle>
+      <Icon name="gg:dark-mode" class="size-8 transition duration-300 hover:scale-125" />
+    </ThemeToggle>
   </div>
 </div>
 
@@ -48,40 +51,34 @@ import DropdownNav from './DropdownNav';
   let triggerDistance = window.innerHeight * 0.45;
   let lastScrollY = 0;
 
-  function toggleDarkMode() {
-    if (localStorage.theme === 'dark') {
-      localStorage.theme = 'light';
-      document.documentElement.classList.remove('dark');
-    } else {
-      localStorage.theme = 'dark';
-      document.documentElement.classList.add('dark');
-    }
-  }
-
   const handleScroll = () => {
     const siteHeader = document.getElementById('site-header');
     const mobileMenuContainer = document.getElementById('mobile-menu-container');
     const currentScrollY = window.scrollY;
     const isBeyond = currentScrollY > triggerDistance;
-    if (isBeyond) {
-      siteHeader.classList.add('with-background');
-    } else {
-      siteHeader.classList.remove('with-background');
+
+    if (siteHeader) {
+      if (isBeyond) {
+        siteHeader.classList.add('with-background');
+      } else {
+        siteHeader.classList.remove('with-background');
+      }
     }
 
     if (firstScroll) {
       firstScroll = false;
       return;
     }
+
     if (currentScrollY > 0) {
       if (currentScrollY > lastScrollY) {
         // 向下滚动
-        siteHeader.classList.add('-translate-y-full');
-        mobileMenuContainer.classList.add('-translate-y-full');
+        if (siteHeader) siteHeader.classList.add('-translate-y-full');
+        if (mobileMenuContainer) mobileMenuContainer.classList.add('-translate-y-full');
       } else {
         // 向上滚动
-        siteHeader.classList.remove('-translate-y-full');
-        mobileMenuContainer.classList.remove('-translate-y-full');
+        if (siteHeader) siteHeader.classList.remove('-translate-y-full');
+        if (mobileMenuContainer) mobileMenuContainer.classList.remove('-translate-y-full');
       }
     }
     lastScrollY = currentScrollY;

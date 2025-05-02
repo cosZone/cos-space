@@ -1,0 +1,98 @@
+<!-- inspired by https://codepen.io/aaroniker/pen/raaMMGx -->
+<div class="theme-toggle cursor-pointer" id="theme-toggle-btn">
+  <slot />
+</div>
+
+<script>
+  function setupThemeToggle() {
+    const toggleBtn = document.getElementById('theme-toggle-btn');
+    if (!toggleBtn) return;
+
+    // 检查按钮是否已经绑定过事件，防止重复绑定
+    if (toggleBtn.dataset.listenerAttached === 'true') return;
+
+    const rootElement = document.documentElement;
+
+    // 切换主题的函数
+    function toggleTheme() {
+      const isDark = !rootElement.classList.contains('dark');
+
+      // 获取切换按钮的位置作为动画起点
+      const toggleElement = document.querySelector('.theme-toggle');
+      let x = window.innerWidth / 2;
+      let y = window.innerHeight / 2;
+
+      if (toggleElement) {
+        const rect = toggleElement.getBoundingClientRect();
+        x = rect.left + rect.width / 2;
+        y = rect.top + rect.height / 2;
+      }
+
+      // 添加特定的主题切换类，用于区分页面切换和主题切换的过渡效果
+      rootElement.classList.add('theme-transition');
+
+      // 使用 View Transitions API 创建过渡动画
+      if (!document.startViewTransition) {
+        // 浏览器不支持 View Transitions API 时降级处理
+        applyTheme(isDark);
+        // 移除主题过渡类
+        setTimeout(() => {
+          rootElement.classList.remove('theme-transition');
+        }, 100);
+        return;
+      }
+
+      const transition = document.startViewTransition(() => {
+        applyTheme(isDark);
+      });
+
+      transition.ready
+        .then(() => {
+          rootElement.style.setProperty('--x', `${x}px`);
+          rootElement.style.setProperty('--y', `${y}px`);
+        })
+        .catch((error) => {
+          console.error('过渡动画设置错误:', error);
+        });
+
+      // 过渡完成后移除主题过渡类
+      transition.finished
+        .then(() => {
+          rootElement.classList.remove('theme-transition');
+        })
+        .catch(() => {
+          rootElement.classList.remove('theme-transition');
+        });
+    }
+
+    // 应用主题
+    function applyTheme(isDark: boolean): void {
+      if (isDark) {
+        rootElement.classList.add('dark');
+        rootElement.classList.remove('light');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        rootElement.classList.remove('dark');
+        rootElement.classList.add('light');
+        localStorage.setItem('theme', 'light');
+      }
+    }
+
+    // 监听切换事件
+    toggleBtn.addEventListener('click', toggleTheme);
+    // 标记按钮已绑定事件
+    toggleBtn.dataset.listenerAttached = 'true';
+  }
+
+  // 首次加载时运行
+  setupThemeToggle();
+
+  // 在每次Astro页面加载后运行 (处理客户端路由)
+  document.addEventListener('astro:page-load', setupThemeToggle);
+</script>
+
+<style>
+  .theme-toggle {
+    z-index: 10;
+  }
+</style>

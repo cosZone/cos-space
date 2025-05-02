@@ -1,0 +1,5 @@
+.prose {
+  a {
+    @apply text-primary hover:text-blue no-underline transition-colors duration-300 hover:underline;
+  }
+}
