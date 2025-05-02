@@ -18,6 +18,9 @@
   ::file-selector-button {
     border-color: var(--color-gray-200, currentColor);
   }
+  button {
+    @apply cursor-pointer;
+  }
 }
 
 @utility font-default {
@@ -67,6 +70,10 @@
     }
   }
 }
+@utility clip-path-none {
+  clip-path: none;
+}
+
 @layer base {
   @view-transition {
     navigation: auto; /* enabled! */
@@ -129,9 +136,6 @@
     .nav-dropdown a {
       text-shadow: none;
     }
-  }
-  .clip-path-none {
-    clip-path: none;
   }
   .clip-path-post-img-left {
     clip-path: polygon(0 0, 92% 0%, 100% 100%, 0% 100%);

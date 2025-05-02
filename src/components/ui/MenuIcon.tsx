@@ -53,32 +53,29 @@ const MenuIcon = ({ className, id }: { className?: string; id?: string }) => {
 
   if (!isMounted) return null;
   return (
-    <div
-      className={cn(
-        'hover:bg-foreground/10 text-primary flex-center cursor-pointer rounded-md duration-200 select-none dark:text-white',
-        className,
-      )}
-      id={id}
-      onClick={toggleMenu}
-      role="button"
-      aria-label={isOpen ? '关闭菜单' : '打开菜单'}
-      aria-expanded={isOpen}
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="28"
-        height="28"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
+    <div className={cn('flex-center', className)} id={id}>
+      <div
+        className="text-primary flex-center border-primary size-10 cursor-pointer rounded-full border bg-white/20 backdrop-blur select-none"
+        onClick={toggleMenu}
+        role="button"
+        aria-label={isOpen ? '关闭菜单' : '打开菜单'}
+        aria-expanded={isOpen}
       >
-        <motion.line x1="4" y1="6" x2="20" y2="6" variants={lineVariants} animate={controls} custom={1} />
-        <motion.line x1="4" y1="12" x2="20" y2="12" variants={lineVariants} animate={controls} custom={2} />
-        <motion.line x1="4" y1="18" x2="20" y2="18" variants={lineVariants} animate={controls} custom={3} />
-      </svg>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="size-6"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <motion.line x1="4" y1="6" x2="20" y2="6" variants={lineVariants} animate={controls} custom={1} />
+          <motion.line x1="4" y1="12" x2="20" y2="12" variants={lineVariants} animate={controls} custom={2} />
+          <motion.line x1="4" y1="18" x2="20" y2="18" variants={lineVariants} animate={controls} custom={3} />
+        </svg>
+      </div>
     </div>
   );
 };
