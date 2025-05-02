@@ -4,6 +4,7 @@ import { routers } from '@constants/router';
 import { cn } from '@lib/utils';
 import { Icon } from 'astro-icon/components';
 import DropdownNav from './DropdownNav';
+import ThemeToggle from '@components/theme/ThemeToggle.astro';
 ---
 
 <div class="tablet:grow-0 flex grow items-center">
@@ -39,7 +40,9 @@ import DropdownNav from './DropdownNav';
     <a class="cursor-pointer" href="https://github.com/cosZone/cos-space" target="_blank">
       <Icon name="ri:github-fill" class="h-8 w-8" onclick="backToTop()" />
     </a>
-    <Icon name="gg:dark-mode" class="h-8 w-8 cursor-pointer" onclick="toggleDarkMode()" />
+    <ThemeToggle>
+      <Icon name="gg:dark-mode" class="h-8 w-8" />
+    </ThemeToggle>
   </div>
 </div>
 
@@ -47,16 +50,6 @@ import DropdownNav from './DropdownNav';
   let firstScroll = true;
   let triggerDistance = window.innerHeight * 0.45;
   let lastScrollY = 0;
-
-  function toggleDarkMode() {
-    if (localStorage.theme === 'dark') {
-      localStorage.theme = 'light';
-      document.documentElement.classList.remove('dark');
-    } else {
-      localStorage.theme = 'dark';
-      document.documentElement.classList.add('dark');
-    }
-  }
 
   const handleScroll = () => {
     const siteHeader = document.getElementById('site-header');

@@ -1,0 +1,40 @@
+/* 主题过渡动画样式 */
+:root {
+  --x: 50%;
+  --y: 50%;
+}
+
+@keyframes reveal-in {
+  from {
+    clip-path: circle(0% at var(--x) var(--y));
+  }
+  to {
+    clip-path: circle(150% at var(--x) var(--y));
+  }
+}
+
+@keyframes reveal-out {
+  from {
+    clip-path: circle(150% at var(--x) var(--y));
+  }
+  to {
+    clip-path: circle(0% at var(--x) var(--y));
+  }
+}
+
+::view-transition-new(root) {
+  animation: reveal-in 0.3s ease-in-out forwards;
+  z-index: 1;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  animation: reveal-out 0.3s ease-in-out forwards;
+  animation-delay: 0.3s;
+  z-index: 0;
+  mix-blend-mode: normal;
+}
+
+::view-transition-image-pair(root) {
+  isolation: isolate;
+} 

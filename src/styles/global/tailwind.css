@@ -103,9 +103,6 @@
     @apply bg-background;
     border-radius: 0.5rem;
   }
-  #main-markdown-render.prose {
-    max-width: 100%;
-  }
   a.link {
     @apply text-primary hover:text-blue transition-colors duration-300;
   }
