@@ -59,6 +59,7 @@
 }
 @utility with-background {
   &#site-header {
+    color: currentColor;
     @apply border-border bg-gradient-header text-foreground border-b;
     button,
     a {
@@ -70,6 +71,7 @@
     }
   }
 }
+
 @utility clip-path-none {
   clip-path: none;
 }
@@ -124,7 +126,7 @@
     }
   }
   #site-header {
-    @apply translate-y-0 transition-transform duration-300;
+    @apply translate-y-0 text-white transition-transform duration-300;
     button,
     a {
       @apply shadow-text;
