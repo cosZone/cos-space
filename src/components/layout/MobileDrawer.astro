@@ -1,6 +1,6 @@
 ---
-import HomeSider from '@components/layout/HomeSider.astro';
 import { Icon } from 'astro-icon/components';
+import HomeSider from './HomeSider.astro';
 ---
 
 <!-- 遮罩层 -->
@@ -15,11 +15,10 @@ import { Icon } from 'astro-icon/components';
   aria-modal="true"
 >
   <div class="flex h-full flex-col">
-    <!-- <h2 class="text-lg font-semibold">菜单</h2> -->
     <button id="close-drawer" aria-label="关闭菜单" class="invisible">
       <Icon name="ri:close-line" class="h-6 w-6" />
     </button>
-    <HomeSider className="tablet:flex min-w-full p-0" />
+    <HomeSider className="tablet:flex min-w-full p-0" isDrawer />
   </div>
 </div>
 

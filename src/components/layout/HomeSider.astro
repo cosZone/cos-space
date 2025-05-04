@@ -12,9 +12,10 @@ import Social from './Social.astro';
 interface Props {
   type?: HomeSiderType;
   className?: string;
+  isDrawer?: boolean;
 }
 
-const { type = HomeSiderType.HOME, className } = Astro.props;
+const { type = HomeSiderType.HOME, className, isDrawer = false } = Astro.props;
 const postCount = await getPostCount();
 const { countMap } = await getCategoryList();
 const posts = await getSortedPosts();
@@ -25,7 +26,7 @@ const allTags = Object.entries(tags).map(([tag, count]) => ({ tag, count }));
 
 <div
   class={cn('sticky top-0 flex flex-col min-w-[16rem] tablet:hidden items-center p-4', className)}
-  transition:name="page-home-sider"
+  transition:name={isDrawer ? 'page-home-sider-drawer' : 'page-home-sider'}
 >
   {
     type !== HomeSiderType.HOME && (
