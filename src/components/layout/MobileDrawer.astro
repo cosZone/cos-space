@@ -1,9 +1,6 @@
 ---
-import { routers } from '@constants/router';
-import { cn } from '@lib/utils';
+import HomeSider from '@components/layout/HomeSider.astro';
 import { Icon } from 'astro-icon/components';
-
-const currentPath = Astro.url.pathname;
 ---
 
 <!-- 遮罩层 -->
@@ -18,52 +15,11 @@ const currentPath = Astro.url.pathname;
   aria-modal="true"
 >
   <div class="flex h-full flex-col">
-    <header class="flex items-center justify-center">
-      <!-- <h2 class="text-lg font-semibold">菜单</h2> -->
-      <button id="close-drawer" aria-label="关闭菜单" class="invisible">
-        <Icon name="ri:close-line" class="h-6 w-6" />
-      </button>
-    </header>
-
-    <nav class="mt-4 flex flex-col gap-4" role="navigation">
-      {
-        routers.map((item) =>
-          item.children?.length ? (
-            <div class="flex flex-col gap-2">
-              <div class="flex items-center gap-2 text-lg font-medium" role="heading" aria-level={2}>
-                {item.icon && <Icon name={item.icon} class="h-5 w-5" aria-hidden="true" />}
-                {item.name}
-              </div>
-              <div class="ml-4 flex flex-col gap-2">
-                {item.children.map((child) => (
-                  <a
-                    href={child.path ?? '#'}
-                    class={cn('hover:bg-foreground/10 flex items-center gap-2 rounded-lg p-2 transition-colors', {
-                      'bg-foreground/10': child.path === currentPath,
-                    })}
-                    aria-current={child.path === currentPath ? 'page' : undefined}
-                  >
-                    {child.icon && <Icon name={child.icon} class="h-5 w-5" aria-hidden="true" />}
-                    {child.name}
-                  </a>
-                ))}
-              </div>
-            </div>
-          ) : (
-            <a
-              href={item.path ?? '#'}
-              class={cn('hover:bg-foreground/10 flex items-center gap-2 rounded-lg p-2 transition-colors', {
-                'bg-foreground/10': item.path === currentPath,
-              })}
-              aria-current={item.path === currentPath ? 'page' : undefined}
-            >
-              {item.icon && <Icon name={item.icon} class="h-5 w-5" aria-hidden="true" />}
-              {item.name}
-            </a>
-          ),
-        )
-      }
-    </nav>
+    <!-- <h2 class="text-lg font-semibold">菜单</h2> -->
+    <button id="close-drawer" aria-label="关闭菜单" class="invisible">
+      <Icon name="ri:close-line" class="h-6 w-6" />
+    </button>
+    <HomeSider className="tablet:flex min-w-full p-0" />
   </div>
 </div>
 
