@@ -13,18 +13,14 @@
             </head>
             <body class="page-background">
                 <nav class="container feed-nav content-body">
-                    <p class="feed-notice">
-                        <strong>This is a web feed,</strong> also known as an RSS feed. <strong>
-                        Subscribe</strong> by copying the URL from the address bar into your
-                        newsreader. </p>
-                    <p class="text-subtle"> Visit <a href="https://aboutfeeds.com">About Feeds</a>
-                        to get started with newsreaders and subscribing. It's free. </p>
+                    <p class="feed-notice"> 本页面是 Atom 订阅源，可直接被订阅。 </p>
+                    <p class="text-subtle"> 访问 <a href="https://aboutfeeds.com">About Feeds</a>
+                        获取更多信息，推荐使用 <a href="https://follow.is/" target="_blank">Follow</a> 订阅。 </p>
                 </nav>
                 <div class="container feed-content main-container">
                     <header class="feed-header">
                         <h1 class="header-title">
-                            <!-- https://commons.wikimedia.org/wiki/File:Feed-icon.svg -->
-              <svg xmlns="http://www.w3.org/2000/svg"
+                            <svg xmlns="http://www.w3.org/2000/svg"
                                 version="1.1"
                                 class="rss-icon" id="RSSicon" viewBox="0 0 256 256">
                                 <defs>
@@ -53,17 +49,19 @@
                                     fill="#FFF" />
                             </svg> Web Feed
                             Preview </h1>
-                        <h2>
-                            <xsl:value-of select="/rss/channel/title" />
-                        </h2>
-                        <p>
-                            <xsl:value-of select="/rss/channel/description" />
-                        </p>
+                        <div class="title-desc-container">
+                            <h2>
+                                <xsl:value-of select="/rss/channel/title" />
+                            </h2>
+                            <p class="feed-description">
+                                <xsl:value-of select="/rss/channel/description" />
+                            </p>
+                        </div>
                         <a class="primary-button" target="_blank">
                             <xsl:attribute name="href">
                                 <xsl:value-of select="/rss/channel/link" />
                             </xsl:attribute>
-                            Visit Website &#x2192; </a>
+                            查看站点 &#x2192; </a>
                     </header>
                     <h2>Recent Items</h2>
                     <xsl:for-each select="/rss/channel/item">
@@ -83,6 +81,12 @@
                             </small>
                         </div>
                     </xsl:for-each>
+                    <div class="acknowledgement">
+                        <h3>致谢</h3>
+                        <p>感谢 <a href="https://chinese-font.netlify.app/zh-cn/cdn/" target="_blank">字图
+                            CDN</a> 提供的中文字体公益 CDN 服务</p>
+                        <p>使用字体为寒蝉全圆体（hcqyt）</p>
+                    </div>
                 </div>
             </body>
         </html>
