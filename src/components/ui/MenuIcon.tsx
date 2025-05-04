@@ -55,11 +55,14 @@ const MenuIcon = ({ className, id }: { className?: string; id?: string }) => {
   return (
     <div className={cn('flex-center', className)} id={id}>
       <div
-        className="text-primary flex-center border-primary size-10 cursor-pointer rounded-full border bg-white/20 backdrop-blur select-none"
+        className="flex-center size-10 cursor-pointer rounded-full border border-[#E95469] bg-white/20 text-[#E95469] backdrop-blur select-none"
         onClick={toggleMenu}
         role="button"
         aria-label={isOpen ? '关闭菜单' : '打开菜单'}
         aria-expanded={isOpen}
+        style={{
+          viewTransitionName: 'menu-icon',
+        }}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
