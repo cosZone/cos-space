@@ -1,27 +1,27 @@
+import type { HomeSiderSegmentType } from '@constants/enum';
 import { cn } from '@lib/utils';
+import { homeSiderSegmentType } from '@store/app';
 import { motion } from 'motion/react';
 import React, { useCallback, useEffect, useState } from 'react';
 
 export type OptionType = {
   label?: string;
-  value: string | number;
+  value: HomeSiderSegmentType;
 } | null;
 
 type SegmentedProps = {
   options: OptionType[]; // 选项
-  defaultValue?: string | number; // 默认值
-  onChange?: (value: string | number) => void;
+  defaultValue?: HomeSiderSegmentType; // 默认值
   className?: string;
   indicateClass?: string;
   itemClass?: string;
   id?: string;
-  value?: string | number; // 受控
+  value?: HomeSiderSegmentType; // 受控
 };
 
-export const Segmented = ({
+export const HomeSiderSegmented = ({
   options,
   defaultValue,
-  onChange,
   className,
   id,
   indicateClass,
@@ -31,22 +31,26 @@ export const Segmented = ({
   const [_value, setValue] = useState(() => value ?? defaultValue ?? options[0]?.value ?? '');
 
   const select = useCallback(
-    (value: string | number) => {
+    (value: HomeSiderSegmentType) => {
       setValue(value);
-      onChange?.(value);
+      homeSiderSegmentType.set(value);
+      console.log('value', { value, _value, homeSiderType: homeSiderSegmentType.get() });
     },
-    [setValue, onChange],
+    [setValue],
   );
   const isSelected = useCallback((selectedValue: string | number) => _value === selectedValue, [_value]);
 
   useEffect(() => {
-    if (value) setValue(value);
+    if (value) {
+      setValue(value);
+      homeSiderSegmentType.set(value);
+    }
   }, [value]);
 
   return (
     <div
       className={cn(
-        'bg-muted flex w-fit cursor-pointer rounded-sm p-1 text-xs font-semibold backdrop-blur-lg select-none',
+        'flex w-fit cursor-pointer rounded-sm bg-black/[0.08] p-1 text-xs font-semibold backdrop-blur-lg select-none',
         className,
       )}
     >
@@ -77,5 +81,5 @@ export const Segmented = ({
     </div>
   );
 };
-
-export default React.memo(Segmented);
+HomeSiderSegmented.displayName = 'HomeSiderSegmented';
+export default React.memo(HomeSiderSegmented);

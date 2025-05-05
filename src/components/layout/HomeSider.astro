@@ -1,13 +1,9 @@
 ---
-import ButtonLink from '@components/control/ButtonLink.astro';
-import Segmented from '@components/ui/segmented';
-import { HomeSiderType } from '@constants/enum';
-import { routers } from '@constants/router';
-import { siteConfig } from '@constants/site-config';
-import { getCategoryList, getPostCount, getAllTags, getSortedPosts } from '@lib/content';
+import { HomeSiderType, HomeSiderSegmentType } from '@constants/enum';
 import { cn } from '@lib/utils';
-import { Icon } from 'astro-icon/components';
-import Social from './Social.astro';
+import HomeInfo from './HomeInfo.astro';
+import { TableOfContents } from './TableOfContents';
+import HomeSiderSegmented from '@components/ui/segmented/HomeSiderSegmented';
 
 interface Props {
   type?: HomeSiderType;
@@ -16,112 +12,104 @@ interface Props {
 }
 
 const { type = HomeSiderType.HOME, className, isDrawer = false } = Astro.props;
-const postCount = await getPostCount();
-const { countMap } = await getCategoryList();
-const posts = await getSortedPosts();
-const tags = getAllTags(posts);
-
-const allTags = Object.entries(tags).map(([tag, count]) => ({ tag, count }));
+const defaultSegmentType = type === HomeSiderType.POST ? HomeSiderSegmentType.DIRECTORY : HomeSiderSegmentType.INFO;
 ---
 
 <div
-  class={cn('sticky top-0 flex flex-col min-w-[16rem] tablet:hidden items-center p-4', className)}
+  class={cn('page-home-sider sticky top-0 flex max-w-[16rem] min-w-[16rem] flex-col tablet:hidden items-center p-4', className)}
   transition:name={isDrawer ? 'page-home-sider-drawer' : 'page-home-sider'}
 >
   {
     type !== HomeSiderType.HOME && (
-      <Segmented
-        className="mb-4 flex w-full justify-between text-lg"
+      <HomeSiderSegmented
+        client:load
+        className="mb-5 flex w-full justify-between text-sm/6"
         itemClass="grow"
         options={[
-          { label: 'Home', value: HomeSiderType.HOME },
-          { label: 'Post', value: HomeSiderType.POST },
+          { label: '站点概览', value: HomeSiderSegmentType.INFO },
+          { label: '文章目录', value: HomeSiderSegmentType.DIRECTORY },
         ]}
-        defaultValue={type}
+        defaultValue={defaultSegmentType}
         id="inner-home-sider"
       />
     )
   }
-  <img
-    transition:persist="page-home-sider-avatar"
-    src={siteConfig.avatar}
-    alt={`${siteConfig.name}'s avatar`}
-    class="shadow-card-darker hover:animate-shake h-40 w-40 rounded-full transition"
-  />
 
-  <p class="mt-2">{siteConfig?.name}</p>
-  <p class="text-muted-foreground mt-3">{siteConfig?.description}</p>
-  <Social />
-  <div
-    class="text-muted-foreground mt-3 flex justify-center text-center text-sm/4 whitespace-nowrap select-none dark:text-white/80"
-  >
-    <a href="/" class="hover:text-blue flex cursor-pointer flex-col gap-2 p-1 transition">
-      <span class="text-lg/5 font-bold">{postCount}</span>
-      文章
-    </a>
-    <div class="bg-muted-foreground mx-3 w-px"></div>
-    <a href="/categories" aria-label="分类" class="hover:text-blue">
-      <p class="flex cursor-pointer flex-col gap-2 p-1 transition">
-        <span class="text-lg/5 font-bold">{Object.keys(countMap).length}</span>
-        分类
-      </p>
-    </a>
-    <div class="bg-muted-foreground mx-3 w-px"></div>
-    <a href="/tags" class="hover:text-blue flex cursor-pointer flex-col gap-2 p-1 transition">
-      <span class="text-lg/5 font-bold">{allTags?.length ?? 0}</span>
-      标签
-    </a>
-  </div>
-  <div class="mt-6 flex w-full flex-col items-center gap-2.5">
-    {
-      routers.map(({ name, path, icon, children }) => {
-        if (children?.length) {
-          return (
-            <div class="bg-foreground/10 flex flex-col rounded-xl opacity-75 transition-all duration-300 hover:opacity-100">
-              <div class="flex-center h-12">
-                {icon && <Icon name={icon} class="mr-1.5" />}
-                {name}
-              </div>
-              <div class="flex flex-col gap-2.5">
-                {children.map(({ name, path, icon }) => (
-                  <ButtonLink
-                    url={path}
-                    label={name}
-                    variant="gradient-shoka"
-                    className={cn(
-                      'shoka-button-shadow h-12 w-40 rounded-xl text-base tracking-wider transition-all duration-300',
-                      {
-                        'text-muted-foreground/80 hover:bg-muted-foreground/10 bg-none shadow-none hover:shadow-none':
-                          path !== Astro.url.pathname,
-                      },
-                    )}
-                  >
-                    {icon && <Icon name={icon} class="mr-1.5" />}
-                    {name}
-                  </ButtonLink>
-                ))}
-              </div>
-            </div>
-          );
-        }
-        return (
-          <ButtonLink
-            url={path}
-            label={name}
-            variant="gradient-shoka"
-            className={cn(
-              'shoka-button-shadow h-12 w-40 rounded-xl text-base tracking-wider opacity-75 transition-all duration-300 hover:opacity-100',
-              {
-                'text-muted-foreground/80 hover:bg-muted-foreground/10 bg-none shadow-none hover:shadow-none':
-                  path !== Astro.url.pathname,
-              },
-            )}
-          >
-            {icon && <Icon name={icon} class="mr-1.5" />}
-            {name}
-          </ButtonLink>
-        );
-      })
-    }
-  </div>
+  <sider-content class="w-full overflow-auto" data-type={type} data-default-type={defaultSegmentType}>
+    <div slot="info">
+      <HomeInfo />
+    </div>
+    <div slot="directory">
+      {type === HomeSiderType.POST && <TableOfContents client:load />}
+    </div>
+  </sider-content>
 </div>
+
+<script>
+  import { HomeSiderType, HomeSiderSegmentType } from '@constants/enum';
+  import { homeSiderSegmentType } from '@store/app';
+
+  // 定义SiderContent自定义元素
+  class SiderContent extends HTMLElement {
+    // 私有属性定义
+    private infoContent: HTMLElement | null = null;
+    private directoryContent: HTMLElement | null = null;
+    private pageType: string | null = null;
+    private defaultType: string | null = null;
+
+    constructor() {
+      super();
+
+      // 保存最初的内容片段
+      this.infoContent = this.querySelector('[slot="info"]');
+      this.directoryContent = this.querySelector('[slot="directory"]');
+
+      // 从HTML属性中获取当前页面类型和默认分段类型
+      this.pageType = this.getAttribute('data-type');
+      this.defaultType = this.getAttribute('data-default-type');
+
+      // 初始化
+      this.init();
+    }
+
+    init() {
+      // 确保DOM已准备好
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => this.initContent());
+      } else {
+        this.initContent();
+      }
+    }
+
+    initContent() {
+      // 首页直接显示HomeInfo
+      if (this.pageType === HomeSiderType.HOME) {
+        this.showContent(HomeSiderSegmentType.INFO);
+      } else {
+        // 设置初始值
+        const initialType = (this.defaultType as HomeSiderSegmentType) || HomeSiderSegmentType.INFO;
+        homeSiderSegmentType.set(initialType);
+        this.showContent(initialType);
+
+        // 监听状态变化
+        homeSiderSegmentType.listen((value) => {
+          this.showContent(value);
+        });
+      }
+    }
+
+    showContent(type: HomeSiderSegmentType) {
+      // 根据类型显示对应内容
+      if (type === HomeSiderSegmentType.DIRECTORY) {
+        this.infoContent?.classList.add('hidden');
+        this.directoryContent?.classList.remove('hidden');
+      } else {
+        this.infoContent?.classList.remove('hidden');
+        this.directoryContent?.classList.add('hidden');
+      }
+    }
+  }
+
+  // 注册自定义元素
+  customElements.define('sider-content', SiderContent);
+</script>

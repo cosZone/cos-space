@@ -15,3 +15,5 @@ export function routeBuilder<T extends Routes>(route: T, param: RouteParams<type
   }
   return href;
 }
+
+export const showDirRoutes = [Routes.Post];

@@ -121,7 +121,7 @@ a:hover {
   color: var(--hover-color);
 }
 
-a:not(.primary-button):hover::after {
+a:not(.primary-button)::after {
   content: '';
   position: absolute;
   left: 0;
@@ -130,8 +130,13 @@ a:not(.primary-button):hover::after {
   height: 2px;
   background: var(--accent-color);
   border-radius: 4px;
-  transform: scaleX(1);
+  transform: scaleX(0);
   transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+a:not(.primary-button):hover::after {
+  transform: scaleX(1);
 }
 
 a:focus-visible {

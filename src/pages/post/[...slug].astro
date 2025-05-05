@@ -1,6 +1,7 @@
 ---
 import HomeSider from '@components/layout/HomeSider.astro';
 import Cover from '@components/ui/cover/Cover.astro';
+import { HomeSiderType } from '@constants/enum';
 import { siteConfig } from '@constants/site-config';
 import Layout from '@layouts/Layout.astro';
 import TwoColumnLayout from '@layouts/TwoColumnLayout.astro';
@@ -43,7 +44,7 @@ const categoryStr = categoryArr?.length ? ` | ${categoryArr.join(' / ')}` : '';
   <script is:inline slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   <TwoColumnLayout>
     <Cover slot="cover" data={post} />
-    <HomeSider slot="sider" />
+    <HomeSider slot="sider" type={HomeSiderType.POST} />
     <div class="shadow-box bg-gradient-start flex flex-col gap-8 p-4 pt-8 md:px-5 md:py-4">
       <article
         class="prose md:prose-sm dark:prose-invert tablet:max-w-[calc(100vw-2.5rem)] tablet:w-auto w-[calc(100vw-20rem)] max-w-5xl"

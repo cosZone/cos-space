@@ -10,9 +10,7 @@ const { className } = Astro.props;
 
 <div class="mb-20 flex flex-col">
   <slot name="cover" />
-  <div
-    class={cn('mx-auto md:mx-0 flex w-full items-start justify-center md:w-full desktop:max-w-8xl overflow-hidden', className)}
-  >
+  <div class={cn('mx-auto md:mx-0 flex w-full items-start justify-center md:w-full desktop:max-w-8xl', className)}>
     <slot name="sider" />
     <div class="tablet:pr-0 flex grow flex-col pr-9 md:w-full">
       <slot />

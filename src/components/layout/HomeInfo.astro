@@ -1,0 +1,109 @@
+---
+import ButtonLink from '@components/control/ButtonLink.astro';
+import { HomeSiderType } from '@constants/enum';
+import { routers } from '@constants/router';
+import { siteConfig } from '@constants/site-config';
+import { getAllTags, getCategoryList, getPostCount, getSortedPosts } from '@lib/content';
+import { cn } from '@lib/utils';
+import { Icon } from 'astro-icon/components';
+import Social from './Social.astro';
+
+interface Props {
+  type?: HomeSiderType;
+  className?: string;
+  isDrawer?: boolean;
+  frontmatter?: any; // 添加frontmatter属性用于传递文章数据
+}
+
+const postCount = await getPostCount();
+const { countMap } = await getCategoryList();
+const posts = await getSortedPosts();
+const tags = getAllTags(posts);
+
+const allTags = Object.entries(tags).map(([tag, count]) => ({ tag, count }));
+---
+
+<div class="flex flex-col items-center">
+  <img
+    transition:persist="page-home-sider-avatar"
+    src={siteConfig.avatar}
+    alt={`${siteConfig.name}'s avatar`}
+    class="shadow-card-darker hover:animate-shake h-40 w-40 rounded-full transition"
+  />
+
+  <p class="mt-2">{siteConfig?.name}</p>
+  <p class="text-muted-foreground mt-3">{siteConfig?.description}</p>
+  <Social />
+  <div
+    class="text-muted-foreground mt-3 flex justify-center text-center text-sm/4 whitespace-nowrap select-none dark:text-white/80"
+  >
+    <a href="/" class="hover:text-blue flex cursor-pointer flex-col gap-2 p-1 transition">
+      <span class="text-lg/5 font-bold">{postCount}</span>
+      文章
+    </a>
+    <div class="bg-muted-foreground mx-3 w-px"></div>
+    <a href="/categories" aria-label="分类" class="hover:text-blue">
+      <p class="flex cursor-pointer flex-col gap-2 p-1 transition">
+        <span class="text-lg/5 font-bold">{Object.keys(countMap).length}</span>
+        分类
+      </p>
+    </a>
+    <div class="bg-muted-foreground mx-3 w-px"></div>
+    <a href="/tags" class="hover:text-blue flex cursor-pointer flex-col gap-2 p-1 transition">
+      <span class="text-lg/5 font-bold">{allTags?.length ?? 0}</span>
+      标签
+    </a>
+  </div>
+  <div class="mt-6 flex w-full flex-col items-center gap-2.5">
+    {
+      routers.map(({ name, path, icon, children }) => {
+        if (children?.length) {
+          return (
+            <div class="bg-foreground/10 flex flex-col rounded-xl opacity-75 transition-all duration-300 hover:opacity-100">
+              <div class="flex-center h-12">
+                {icon && <Icon name={icon} class="mr-1.5" />}
+                {name}
+              </div>
+              <div class="flex flex-col gap-2.5">
+                {children.map(({ name, path, icon }) => (
+                  <ButtonLink
+                    url={path}
+                    label={name}
+                    variant="gradient-shoka"
+                    className={cn(
+                      'shoka-button-shadow h-12 w-40 rounded-xl text-base tracking-wider transition-all duration-300',
+                      {
+                        'text-muted-foreground/80 hover:bg-muted-foreground/10 bg-none shadow-none hover:shadow-none':
+                          path !== Astro.url.pathname,
+                      },
+                    )}
+                  >
+                    {icon && <Icon name={icon} class="mr-1.5" />}
+                    {name}
+                  </ButtonLink>
+                ))}
+              </div>
+            </div>
+          );
+        }
+        return (
+          <ButtonLink
+            url={path}
+            label={name}
+            variant="gradient-shoka"
+            className={cn(
+              'shoka-button-shadow h-12 w-40 rounded-xl text-base tracking-wider opacity-75 transition-all duration-300 hover:opacity-100',
+              {
+                'text-muted-foreground/80 hover:bg-muted-foreground/10 bg-none shadow-none hover:shadow-none':
+                  path !== Astro.url.pathname,
+              },
+            )}
+          >
+            {icon && <Icon name={icon} class="mr-1.5" />}
+            {name}
+          </ButtonLink>
+        );
+      })
+    }
+  </div>
+</div>

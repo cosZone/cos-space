@@ -1,6 +1,7 @@
 ---
 import { Icon } from 'astro-icon/components';
 import HomeSider from './HomeSider.astro';
+import { HomeSiderType } from '@constants/enum';
 ---
 
 <!-- 遮罩层 -->
@@ -9,16 +10,16 @@ import HomeSider from './HomeSider.astro';
 <!-- 移动端抽屉导航 -->
 <div
   id="mobile-drawer"
-  class="bg-gradient-start fixed inset-y-0 left-0 z-50 h-screen w-64 -translate-x-full transform p-4 pt-6 shadow-lg backdrop-blur-sm transition-transform duration-300"
+  class="bg-gradient-start tablet:flex fixed inset-y-0 left-0 z-50 hidden h-screen w-[70vw] min-w-64 -translate-x-full transform p-4 pt-6 shadow-lg backdrop-blur-sm transition-transform duration-300"
   role="dialog"
   aria-label="导航菜单"
   aria-modal="true"
 >
-  <div class="flex h-full flex-col">
+  <div class="flex h-full w-full flex-col overflow-auto">
     <button id="close-drawer" aria-label="关闭菜单" class="invisible">
       <Icon name="ri:close-line" class="h-6 w-6" />
     </button>
-    <HomeSider className="tablet:flex min-w-full p-0" isDrawer />
+    <HomeSider className="tablet:flex mt-4 hidden w-full min-w-full p-0" isDrawer type={HomeSiderType.POST} />
   </div>
 </div>
 
