@@ -18,8 +18,8 @@ const lineVariants: Variants = {
     opacity: custom === 2 ? 0 : 1,
     transition: {
       type: 'spring',
-      stiffness: 260,
-      damping: 20,
+      stiffness: 300,
+      damping: 25,
     },
   }),
 };
@@ -74,9 +74,15 @@ const MenuIcon = ({ className, id }: { className?: string; id?: string }) => {
           strokeLinecap="round"
           strokeLinejoin="round"
         >
-          <motion.line x1="4" y1="6" x2="20" y2="6" variants={lineVariants} animate={controls} custom={1} />
-          <motion.line x1="4" y1="12" x2="20" y2="12" variants={lineVariants} animate={controls} custom={2} />
-          <motion.line x1="4" y1="18" x2="20" y2="18" variants={lineVariants} animate={controls} custom={3} />
+          <motion.g variants={lineVariants} animate={controls} custom={1} style={{ transformOrigin: '12px 12px' }}>
+            <line x1="3" y1="6" x2="21" y2="6" />
+          </motion.g>
+          <motion.g variants={lineVariants} animate={controls} custom={2} style={{ transformOrigin: '12px 12px' }}>
+            <line x1="3" y1="12" x2="21" y2="12" />
+          </motion.g>
+          <motion.g variants={lineVariants} animate={controls} custom={3} style={{ transformOrigin: '12px 12px' }}>
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </motion.g>
         </svg>
       </div>
     </div>
