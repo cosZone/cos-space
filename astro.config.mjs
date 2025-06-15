@@ -5,10 +5,29 @@ import { defineConfig } from 'astro/config';
 import svgr from 'vite-plugin-svgr';
 import umami from '@yeskunall/astro-umami';
 import tailwindcss from '@tailwindcss/vite';
+import rehypeSlug from 'rehype-slug';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 
 // https://astro.build/config
 export default defineConfig({
   site: siteConfig.site,
+  markdown: {
+    // Enable GitHub Flavored Markdown
+    gfm: true,
+    // Configure rehype plugins for automatic heading IDs and anchor links
+    rehypePlugins: [
+      rehypeSlug,
+      [
+        rehypeAutolinkHeadings,
+        {
+          behavior: 'append',
+          properties: {
+            className: ['anchor-link'],
+          },
+        },
+      ],
+    ],
+  },
   integrations: [
     react(),
     icon({

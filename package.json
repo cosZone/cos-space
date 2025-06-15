@@ -50,6 +50,8 @@
     "react-icons": "^5.4.0",
     "react-responsive": "^10.0.0",
     "reading-time": "^1.5.0",
+    "rehype-autolink-headings": "^7.1.0",
+    "rehype-slug": "^6.0.0",
     "sanitize-html": "^2.14.0",
     "tailwind-clip-path": "^1.0.0",
     "tailwind-merge": "^2.5.5",

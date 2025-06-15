@@ -1,0 +1,45 @@
+/* TableOfContents 组件样式 */
+.toc-container {
+  /* 自定义滚动条样式 */
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--primary) / 0.3) transparent;
+}
+
+.toc-container::-webkit-scrollbar {
+  width: 4px;
+}
+
+.toc-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.toc-container::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary) / 0.3);
+  border-radius: 2px;
+}
+
+.toc-container::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary) / 0.5);
+}
+
+/* 目录项的平滑过渡动画 */
+.toc-item {
+  position: relative;
+  overflow: hidden;
+}
+
+.toc-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 0;
+  background: hsl(var(--primary) / 0.1);
+  transition: width 0.2s ease;
+  z-index: -1;
+}
+
+.toc-item:hover::before {
+  width: 100%;
+}

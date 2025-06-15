@@ -83,6 +83,7 @@
   body {
     overscroll-behavior-y: none;
     background: linear-gradient(to top, var(--box-bg-shadow) 0, var(--gradient-bg-start) 30%) no-repeat bottom;
+    scroll-behavior: smooth;
     @apply tablet:bg-gradient-start tablet:bg-none;
   }
   h1,

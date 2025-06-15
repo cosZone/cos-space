@@ -1,0 +1,59 @@
+---
+import type { ContentConfig } from '@constants/content-config';
+import { defaultContentConfig } from '@constants/content-config';
+
+interface Props {
+  Content: any;
+  config?: Partial<ContentConfig>;
+}
+
+const { Content, config = {} } = Astro.props;
+const finalConfig = Object.assign(defaultContentConfig, config);
+---
+
+<div class="custom-content" data-config={JSON.stringify(finalConfig)}>
+  <Content />
+</div>
+
+<script>
+  import type { ContentConfig } from '@constants/content-config';
+
+  // Custom content enhancement script
+  function enhanceContent() {
+    const contentContainer = document.querySelector('.custom-content');
+    if (!contentContainer) return;
+
+    // Get configuration from data attribute
+    const configData = contentContainer.getAttribute('data-config');
+    const config: ContentConfig = configData
+      ? JSON.parse(configData)
+      : {
+          addBlankTarget: true,
+        };
+
+    // Add target="_blank" to external links
+    if (config.addBlankTarget) {
+      const links = contentContainer.querySelectorAll('a[href]');
+      links.forEach((link: Element) => {
+        const anchor = link as HTMLAnchorElement;
+        const href = anchor.getAttribute('href') || '';
+
+        // Check if it's an external link (starts with http/https or is absolute)
+        if (href.startsWith('http') || href.startsWith('//')) {
+          anchor.setAttribute('target', '_blank');
+          anchor.setAttribute('rel', 'noopener noreferrer');
+        }
+      });
+    }
+  }
+
+  // Run on page load
+  document.addEventListener('astro:page-load', enhanceContent);
+
+  // Run immediately if already loaded
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', enhanceContent);
+  } else {
+    enhanceContent();
+  }
+</script>
