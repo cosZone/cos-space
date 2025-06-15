@@ -29,6 +29,7 @@ const finalConfig = Object.assign(defaultContentConfig, config);
       ? JSON.parse(configData)
       : {
           addBlankTarget: true,
+          smoothScroll: true,
         };
 
     // Add target="_blank" to external links
@@ -43,6 +44,32 @@ const finalConfig = Object.assign(defaultContentConfig, config);
           anchor.setAttribute('target', '_blank');
           anchor.setAttribute('rel', 'noopener noreferrer');
         }
+      });
+    }
+
+    // Add smooth scroll to anchor links
+    if (config.smoothScroll) {
+      const anchorLinks = contentContainer.querySelectorAll('a.anchor-link[href^="#"]');
+      anchorLinks.forEach((link: Element) => {
+        const anchor = link as HTMLAnchorElement;
+
+        anchor.addEventListener('click', (e) => {
+          e.preventDefault();
+
+          const targetId = anchor.getAttribute('href')?.substring(1);
+          if (!targetId) return;
+
+          const targetElement = document.getElementById(targetId);
+          if (targetElement) {
+            targetElement.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start',
+            });
+
+            // Update URL hash without jumping
+            history.pushState(null, '', `#${targetId}`);
+          }
+        });
       });
     }
   }
