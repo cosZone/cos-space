@@ -2,6 +2,12 @@
 import { Icon } from 'astro-icon/components';
 import HomeSider from './HomeSider.astro';
 import { HomeSiderType } from '@constants/enum';
+
+interface Props {
+  type?: HomeSiderType;
+}
+
+const { type = HomeSiderType.HOME } = Astro.props;
 ---
 
 <!-- 遮罩层 -->
@@ -19,7 +25,7 @@ import { HomeSiderType } from '@constants/enum';
     <button id="close-drawer" aria-label="关闭菜单" class="invisible">
       <Icon name="ri:close-line" class="h-6 w-6" />
     </button>
-    <HomeSider className="tablet:flex mt-4 hidden w-full min-w-full p-0" isDrawer type={HomeSiderType.POST} />
+    <HomeSider className="tablet:flex mt-4 hidden w-full min-w-full p-0" isDrawer type={type} />
   </div>
 </div>
 

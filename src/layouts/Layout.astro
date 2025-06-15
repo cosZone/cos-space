@@ -1,8 +1,12 @@
 ---
+import { HomeSiderType } from '@constants/enum';
+
 interface Props {
   title: string;
   description?: string;
+  siderType?: HomeSiderType;
 }
+
 import '@fontsource/poppins';
 import '@fontsource/noto-serif-sc';
 import '@fontsource/noto-serif-jp';
@@ -15,7 +19,8 @@ import { Tooltips } from 'astro-tooltips';
 import FloatingGroup from '@components/layout/FloatingGroup.astro';
 import MobileDrawer from '@components/layout/MobileDrawer.astro';
 
-const { title = seoConfig.title, description = seoConfig.description } = Astro.props;
+const { title = seoConfig.title, description = seoConfig.description, siderType } = Astro.props;
+// TODO: siderType should be custom in router file, not in layout
 ---
 
 <!doctype html>
@@ -85,7 +90,7 @@ const { title = seoConfig.title, description = seoConfig.description } = Astro.p
       <main class="relative flex grow flex-col">{(<slot />)}</main>
       {/* <Footer className="mt-auto" /> */}
       <FloatingGroup />
-      <MobileDrawer />
+      <MobileDrawer type={siderType} />
     </div>
   </body>
 </html>

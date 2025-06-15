@@ -40,7 +40,11 @@ const categoryArr = getCategoryArr(categories?.[0]);
 const categoryStr = categoryArr?.length ? ` | ${categoryArr.join(' / ')}` : '';
 ---
 
-<Layout title={`${post.data.title}${categoryStr} | ${siteConfig.title}`} description={description}>
+<Layout
+  title={`${post.data.title}${categoryStr} | ${siteConfig.title}`}
+  description={description}
+  siderType={HomeSiderType.POST}
+>
   <script is:inline slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   <TwoColumnLayout>
     <Cover slot="cover" data={post} />
