@@ -11,7 +11,6 @@ tags:
   - NodeJS
   - 工程化
   - CSS
-  - JavaScript
   - AI
 categories:
   - 周刊
