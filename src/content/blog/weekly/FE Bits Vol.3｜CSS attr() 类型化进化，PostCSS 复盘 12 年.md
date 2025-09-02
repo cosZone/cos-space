@@ -14,7 +14,7 @@ categories:
 ---
 
 > 本周刊更新时间期望是在每周天，网站在建设中……
-> 目前推荐使用 [Folo](https://folo.is/) 订阅本周刊的 [Quality RSS](https://quaily.com/cosine/feed/atom)。
+> 目前推荐使用 [Folo](https://folo.is/) 订阅本周刊的 [Quaily RSS](https://quaily.com/cosine/feed/atom)。
 > 公众号 前端周周谈 FE Bits，点击阅读原文链接可查看原文。
 > 建了个 QQ 讨论小群 598022684 欢迎加入，日常讨论前端技术 & 生活，也可在群里投稿自己的文章，随意加入，比较偏向粉丝群的性质～
 > 本周刊同时也开源在 [fe-bits-weekly](https://github.com/yusixian/fe-bits-weekly)，欢迎关注。

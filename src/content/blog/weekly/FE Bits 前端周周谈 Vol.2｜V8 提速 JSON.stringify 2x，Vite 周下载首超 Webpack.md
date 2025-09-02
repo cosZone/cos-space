@@ -276,7 +276,7 @@ PIFE？于是又翻了翻，翻到了这个 PR
 感谢观看～
 
 > 更新时间期望是在每周天，若本周内容少，则可能合并到下一期作为双周刊。
-> 推荐使用 [Folo](https://folo.is/) 订阅本周刊的 [Quality RSS](https://quaily.com/cosine/feed/atom)。
+> 推荐使用 [Folo](https://folo.is/) 订阅本周刊的 [Quaily RSS](https://quaily.com/cosine/feed/atom)。
 > 公众号 前端周周谈 FE Bits，点击阅读原文链接可查看原文。
 > 建了个 QQ 讨论小群 598022684 欢迎加入，日常讨论前端技术 & 生活，也可在群里投稿自己的文章~ 随意加入，比较偏向粉丝群的性质，前期群聊不活跃也很正常。
 > 本周刊同时也开源在 [fe-bits-weekly](https://github.com/yusixian/fe-bits-weekly)，欢迎关注。

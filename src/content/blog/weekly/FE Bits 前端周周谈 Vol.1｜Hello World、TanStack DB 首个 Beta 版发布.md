@@ -33,7 +33,7 @@ categories:
 
 我希望这个周刊不那么严肃，更自然一些，但是还在摸索阶段，暂时是我一个人维护，所以很依赖 AI 和自动化，相对的就少了些人味儿，非常欢迎评论反馈。
 
-更新时间期望是在每周天，若本周内容少，则可能合并到下一期作为双周刊～推荐使用 [Folo](https://folo.is/) 订阅本周刊的 [Quality RSS](https://quaily.com/cosine/feed/atom)。
+更新时间期望是在每周天，若本周内容少，则可能合并到下一期作为双周刊～推荐使用 [Folo](https://folo.is/) 订阅本周刊的 [Quaily RSS](https://quaily.com/cosine/feed/atom)。
 
 本周刊同时也开源在 [fe-bits-weekly](https://github.com/yusixian/fe-bits-weekly)，欢迎关注
 
@@ -508,6 +508,6 @@ https://guangzhengli.com/blog/zh/indie-hacker-poor-stack
 
 感谢观看～
 
-> 推荐使用 [Folo](https://folo.is/) 订阅本周刊的 [Quality RSS](https://quaily.com/cosine/feed/atom)。
+> 推荐使用 [Folo](https://folo.is/) 订阅本周刊的 [Quaily RSS](https://quaily.com/cosine/feed/atom)。
 > 公开群聊评论区：[@cosine_public](https://t.me/cosine_public) 欢迎加入，也可在群里投稿自己的文章~
 > 本周刊同时也开源在 [fe-bits-weekly](https://github.com/yusixian/fe-bits-weekly)，欢迎关注
