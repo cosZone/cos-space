@@ -9,6 +9,7 @@ import TwoColumnLayout from '@layouts/TwoColumnLayout.astro';
 import { getCategoryArr, getSortedPosts, getCategoryLink } from '@lib/content';
 import { parseDate } from '@lib/datetime';
 import { Icon } from 'astro-icon/components';
+import Remark from '@components/common/Remark.astro';
 
 export async function getStaticPaths() {
   const postCollections = await getSortedPosts();
@@ -95,6 +96,7 @@ if (categoryArr?.length) {
       >
         <CustomContent Content={Content} />
       </article>
+      <Remark />
     </div>
   </TwoColumnLayout>
 </Layout>

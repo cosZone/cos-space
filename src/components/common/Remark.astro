@@ -1,0 +1,128 @@
+---
+declare global {
+  interface Window {
+    remark_config: {
+      host: string;
+      site_id: string;
+      components: string[];
+      max_shown_comments: number;
+      theme: string;
+      locale: string;
+      show_email_subscription: boolean;
+      simple_view: boolean;
+    };
+    REMARK42: {
+      createInstance: (config: {
+        node: HTMLElement;
+        host: string;
+        site_id: string;
+        max_shown_comments: number;
+        theme: string;
+        locale: string;
+        show_email_subscription: boolean;
+        simple_view: boolean;
+      }) => Remark42Instance;
+      ready: boolean;
+    };
+  }
+
+  // Type for Remark42 instance
+  interface Remark42Instance {
+    destroy: () => void;
+  }
+}
+
+export interface Props {
+  noMarginTop?: boolean;
+}
+---
+
+<div class="comments" class="mx-auto w-full px-4 pb-12">
+  <div id="remark42" class="mx-auto max-w-3xl"></div>
+</div>
+
+<script>
+  // Type for Remark42 instance
+  interface Remark42Instance {
+    destroy: () => void;
+  }
+
+  let remark42Instance: Remark42Instance | null = null;
+  // Configuration for Remark42
+  window.remark_config = {
+    host: 'https://comment.cosine.ren',
+    site_id: 'cos-space',
+    components: ['embed', 'counter'],
+    max_shown_comments: 100,
+    theme: localStorage.getItem('theme') || 'light',
+    locale: 'en',
+    show_email_subscription: false,
+    simple_view: true,
+  };
+
+  // Initialize Remark42 instance
+  function initRemark42() {
+    if (window.REMARK42) {
+      // Destroy previous instance if exists
+      if (remark42Instance) {
+        remark42Instance.destroy();
+      }
+
+      // Create new instance
+      const node = document.getElementById('remark42');
+      if (node) {
+        remark42Instance = window.REMARK42.createInstance({
+          node,
+          host: window.remark_config.host,
+          site_id: window.remark_config.site_id,
+          max_shown_comments: window.remark_config.max_shown_comments,
+          theme: window.remark_config.theme,
+          locale: window.remark_config.locale,
+          show_email_subscription: window.remark_config.show_email_subscription,
+          simple_view: window.remark_config.simple_view,
+        });
+      }
+    }
+  }
+
+  // Load Remark42 scripts
+  (function (components, doc) {
+    for (let i = 0; i < components.length; i++) {
+      const script = doc.createElement('script') as HTMLScriptElement;
+      const extension = 'noModule' in script ? '.mjs' : '.js';
+
+      if ('noModule' in script) {
+        script.type = 'module';
+      } else {
+        (script as HTMLScriptElement).async = true;
+        (script as HTMLScriptElement).defer = true;
+      }
+
+      script.src = `${window.remark_config.host}/web/${components[i]}${extension}`;
+      (doc.head || doc.body).appendChild(script);
+    }
+  })(window.remark_config.components || ['embed'], document);
+
+  // Initialize when Remark42 is ready or wait for it to be ready
+  document.addEventListener('DOMContentLoaded', () => {
+    if (window.REMARK42) {
+      initRemark42();
+    } else {
+      window.addEventListener('REMARK42::ready', () => {
+        initRemark42();
+      });
+    }
+  });
+
+  // Handle Astro page transitions
+  document.addEventListener('astro:page-load', () => {
+    initRemark42();
+  });
+
+  // Clean up before page transitions
+  document.addEventListener('astro:before-swap', () => {
+    if (remark42Instance) {
+      remark42Instance.destroy();
+    }
+  });
+</script>
