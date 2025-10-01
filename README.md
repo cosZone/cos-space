@@ -39,3 +39,7 @@ pnpm dev
 - [yfi.moe](https://github.com/yy4382/yfi.moe)
 - [4ark.me](https://github.com/gd4Ark/gd4Ark.github.io)
 - ...
+
+## 注
+
+因为初衷是想很喜欢 Shoka 的主题，但又觉得 hexo 性能太差了，所以使用 astro 尝试复刻，我也有想过这么多的分类是否应该保留，想了想觉得应该是要保留的。
