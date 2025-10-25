@@ -23,6 +23,7 @@ declare global {
         simple_view: boolean;
       }) => Remark42Instance;
       ready: boolean;
+      changeTheme?: (theme: 'light' | 'dark') => void;
     };
   }
 
@@ -38,7 +39,8 @@ export interface Props {
 ---
 
 <div class="comments" class="mx-auto w-full px-4 pb-12">
-  <div id="remark42" class="mx-auto max-w-3xl"></div>
+  <p class="text-muted-foreground text-center text-sm">先使用 Remark42 作为临时评论系统，样式等有待优化</p>
+  <div id="remark42" class="mx-auto"></div>
 </div>
 
 <script>
@@ -124,5 +126,55 @@ export interface Props {
     if (remark42Instance) {
       remark42Instance.destroy();
     }
+  });
+
+  // Theme synchronization: Watch for theme changes and update Remark42
+  function setupThemeSync() {
+    let themeChangeTimeout: ReturnType<typeof setTimeout> | null = null;
+
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+          // Clear previous timeout to debounce rapid changes
+          if (themeChangeTimeout) {
+            clearTimeout(themeChangeTimeout);
+          }
+
+          // Wait for theme transition animation to complete before updating Remark42
+          // This prevents flickering during the view transition animation
+          themeChangeTimeout = setTimeout(() => {
+            const isDark = document.documentElement.classList.contains('dark');
+            const newTheme = isDark ? 'dark' : 'light';
+
+            // Update Remark42 theme if the changeTheme method is available
+            if (window.REMARK42?.changeTheme) {
+              window.REMARK42.changeTheme(newTheme);
+            }
+          }, 50); // Wait 50ms for the theme transition animation to complete
+        }
+      });
+    });
+
+    // Observe class changes on documentElement
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class'],
+    });
+  }
+
+  // Set up theme synchronization after Remark42 is loaded
+  document.addEventListener('DOMContentLoaded', () => {
+    if (window.REMARK42) {
+      setupThemeSync();
+    } else {
+      window.addEventListener('REMARK42::ready', () => {
+        setupThemeSync();
+      });
+    }
+  });
+
+  // Re-setup theme sync on page transitions
+  document.addEventListener('astro:page-load', () => {
+    setupThemeSync();
   });
 </script>

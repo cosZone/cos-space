@@ -3,7 +3,7 @@ import { Icon } from 'astro-icon/components';
 import { throttle } from 'es-toolkit';
 ---
 
-<div id="floating-nav" class="text-primary fixed right-4 bottom-4 z-50 flex flex-col gap-2">
+<div id="floating-nav" class="text-primary fixed right-4 bottom-4 z-50 flex flex-col gap-2" data-expanded="true">
   <div id="nav-content" class="flex scale-y-100 flex-col gap-2 opacity-100">
     <button
       id="scroll-to-top"
@@ -47,58 +47,29 @@ import { throttle } from 'es-toolkit';
     const scrollToTop = document.getElementById('scroll-to-top');
     const scrollToBottom = document.getElementById('scroll-to-bottom');
     const floatingNav = document.getElementById('floating-nav');
-    const navContent = document.getElementById('nav-content');
     const toggleNav = document.getElementById('toggle-nav');
     const menuNavIcon = toggleNav?.querySelector('.menu-nav-icon');
     const closeNavIcon = toggleNav?.querySelector('.close-nav-icon');
 
     let isExpanded = true; // 默认展开
 
+    const syncToggleState = () => {
+      if (!floatingNav) return;
+      floatingNav.setAttribute('data-expanded', String(isExpanded));
+      toggleNav?.setAttribute('aria-expanded', String(isExpanded));
+      menuNavIcon?.classList.toggle('hidden', isExpanded);
+      closeNavIcon?.classList.toggle('hidden', !isExpanded);
+    };
+
     // 展开/收起功能
     const handleToggleNav = () => {
       isExpanded = !isExpanded;
-      if (isExpanded) {
-        navContent?.classList.add('translate-y-0', 'opacity-100');
-        navContent?.classList.remove('translate-y-[150%]', 'opacity-0');
-        menuNavIcon?.classList.add('hidden');
-        closeNavIcon?.classList.remove('hidden');
-      } else {
-        navContent?.classList.add('translate-y-[150%]', 'opacity-0');
-        navContent?.classList.remove('translate-y-0', 'opacity-100');
-        menuNavIcon?.classList.remove('hidden');
-        closeNavIcon?.classList.add('hidden');
-      }
+      syncToggleState();
     };
+
+    syncToggleState();
 
     toggleNav?.addEventListener('click', handleToggleNav);
-
-    // 控制导航栏显示/隐藏
-    let lastScrollY = window.scrollY;
-    let ticking = false;
-
-    const updateNav = () => {
-      if (window.scrollY > 100) {
-        floatingNav?.classList.remove('translate-y-[150%]');
-        floatingNav?.classList.add('translate-y-0');
-      } else {
-        floatingNav?.classList.add('translate-y-[150%]');
-        floatingNav?.classList.remove('translate-y-0');
-      }
-      ticking = false;
-    };
-
-    const throttledScroll = throttle(() => {
-      lastScrollY = window.scrollY;
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          updateNav();
-          ticking = false;
-        });
-        ticking = true;
-      }
-    }, 300);
-
-    window.addEventListener('scroll', throttledScroll);
 
     // 回到顶部
     const throttledScrollToTop = throttle(() => {
@@ -122,7 +93,6 @@ import { throttle } from 'es-toolkit';
 
     // 清理函数
     return () => {
-      window.removeEventListener('scroll', throttledScroll);
       scrollToTop?.removeEventListener('click', throttledScrollToTop);
       scrollToBottom?.removeEventListener('click', throttledScrollToBottom);
       toggleNav?.removeEventListener('click', handleToggleNav);
@@ -153,6 +123,17 @@ import { throttle } from 'es-toolkit';
   #nav-content {
     transform-origin: bottom;
     transition: all 0.15s ease-in-out;
+  }
+
+  #floating-nav[data-expanded='false'] #nav-content {
+    transform: translateY(150%);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  #floating-nav[data-expanded='true'] #nav-content {
+    transform: translateY(0);
+    opacity: 1;
   }
 
   button {
