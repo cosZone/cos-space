@@ -1,5 +1,6 @@
 ---
 import HomeSider from '@components/layout/HomeSider.astro';
+import PostFooter from '@components/post/PostFooter.astro';
 import PostList from '@components/post/PostList.astro';
 import Cover from '@components/ui/cover/Cover.astro';
 import { seoConfig } from '@constants/site-config';
@@ -20,8 +21,9 @@ const { page } = Astro.props;
   <TwoColumnLayout>
     <Cover slot="cover" />
     <HomeSider slot="sider" />
-    <div class="shadow-box flex flex-col gap-4 overflow-hidden bg-gradient-start p-4 pt-8 md:px-1 md:py-2 tablet:shadow-none">
+    <div class="shadow-box bg-gradient-start tablet:shadow-none flex flex-col gap-4 overflow-hidden p-4 pt-8 md:px-1 md:py-2">
       <PostList posts={page.data} page={page} />
     </div>
+    <PostFooter />
   </TwoColumnLayout>
 </Layout>

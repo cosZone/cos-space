@@ -13,16 +13,18 @@ interface Props {
   posts?: BlogPost[];
   page?: Page<BlogPost>;
   showPaginator?: boolean;
+  baseUrl?: string; // 分页基础路径
+  isHomePage?: boolean; // 是否是首页
 }
 
-const { posts, page, showPaginator = true } = Astro.props;
+const { posts, page, showPaginator = true, baseUrl, isHomePage = false } = Astro.props;
 const covers = shuffle(defaultCoverList).slice(0, 10);
 ---
 
 <Divider>文章列表</Divider>
 {
   !posts?.length && (
-    <div class="flex flex-col items-center gap-2 text-foreground/30">
+    <div class="text-foreground/30 flex flex-col items-center gap-2">
       <EmptySvg className="fill-foreground/20" />
       <span>还没有发表文章哦～</span>
     </div>
@@ -38,7 +40,7 @@ const covers = shuffle(defaultCoverList).slice(0, 10);
           </div>
         ))}
       </div>
-      {showPaginator && page && <Paginator page={page} />}
+      {showPaginator && page && <Paginator page={page} baseUrl={baseUrl} isHomePage={isHomePage} />}
     </>
   )
 }

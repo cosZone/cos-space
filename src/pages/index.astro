@@ -1,17 +1,34 @@
 ---
-import ButtonLink from '@components/control/ButtonLink.astro';
 import HomeSider from '@components/layout/HomeSider.astro';
+import PostFooter from '@components/post/PostFooter.astro';
 import PostList from '@components/post/PostList.astro';
 import Cover from '@components/ui/cover/Cover.astro';
-import { HomeSiderType } from '@constants/enum';
 import { seoConfig } from '@constants/site-config';
 import Layout from '@layouts/Layout.astro';
 import TwoColumnLayout from '@layouts/TwoColumnLayout.astro';
 import { getSortedPosts } from '@lib/content';
-import { Icon } from 'astro-icon/components';
+import type { Page } from 'astro';
+import type { BlogPost } from 'types/blog';
 
-const postCollections = await getSortedPosts();
-const posts = postCollections.slice(0, 5);
+const allPosts = await getSortedPosts();
+const posts = allPosts.slice(0, 10); // 首页显示前10篇
+
+const page: Page<BlogPost> = {
+  data: posts,
+  start: 0,
+  end: Math.min(9, posts.length - 1),
+  size: 10,
+  total: allPosts.length,
+  currentPage: 1,
+  lastPage: Math.ceil(allPosts.length / 10),
+  url: {
+    current: '/',
+    prev: undefined,
+    next: allPosts.length > 10 ? '/posts/2' : undefined,
+    first: '/',
+    last: `/posts/${Math.ceil(allPosts.length / 10)}`,
+  },
+};
 ---
 
 <Layout title={seoConfig.title}>
@@ -19,13 +36,8 @@ const posts = postCollections.slice(0, 5);
     <Cover slot="cover" />
     <HomeSider slot="sider" />
     <div class="shadow-box bg-gradient-start tablet:shadow-none flex flex-col gap-4 overflow-hidden p-4 pt-8 md:px-1 md:py-2">
-      <PostList posts={posts} showPaginator={false} />
+      <PostList posts={posts} page={page} showPaginator={true} baseUrl="/posts" isHomePage={true} />
     </div>
-    <div class="flex w-full flex-col items-center">
-      <ButtonLink variant="gradient-shoka" url="/posts" size="lg" label="所有文章" className="mt-10 items-center">
-        所有文章
-        <Icon name="gg:format-justify" />
-      </ButtonLink>
-    </div>
+    <PostFooter />
   </TwoColumnLayout>
 </Layout>

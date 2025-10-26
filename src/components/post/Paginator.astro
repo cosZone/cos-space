@@ -6,9 +6,21 @@ import type { BlogPost } from 'types/blog';
 
 interface Props {
   page: Page<BlogPost>;
+  baseUrl?: string; // 分页基础路径，默认为 '/posts'
+  isHomePage?: boolean; // 是否是首页
 }
 
-const { page } = Astro.props;
+const { page, baseUrl = '/posts', isHomePage = false } = Astro.props;
+
+// 生成页面链接的辅助函数
+const getPageUrl = (pageNum: number) => {
+  // 如果是首页模式，第1页指向 '/'，其他页指向 '/posts/x'
+  if (isHomePage) {
+    return pageNum === 1 ? '/' : `${baseUrl}/${pageNum}`;
+  }
+  // 普通模式：第1页是 baseUrl，其他页是 baseUrl/2 等
+  return pageNum === 1 ? baseUrl : `${baseUrl}/${pageNum}`;
+};
 ---
 
 <div class="flex-center gap-1 font-bold">
@@ -20,7 +32,7 @@ const { page } = Astro.props;
 
   {
     page.currentPage !== 1 && page.currentPage - 1 !== 1 && (
-      <a href="/posts">
+      <a href={getPageUrl(1)}>
         <Button variant="ghost">1</Button>
       </a>
     )
@@ -28,7 +40,7 @@ const { page } = Astro.props;
   {page.currentPage > 2 && <span class="mx-1">...</span>}
   {
     page.currentPage !== 1 && (
-      <a href={page.currentPage - 1 === 1 ? '/posts' : `/posts/${page.currentPage - 1}`}>
+      <a href={getPageUrl(page.currentPage - 1)}>
         <Button variant="ghost">{page.currentPage - 1}</Button>
       </a>
     )
@@ -40,7 +52,7 @@ const { page } = Astro.props;
 
   {
     page.currentPage !== page.lastPage && (
-      <a href={page.currentPage + 1 === 1 ? '/posts' : `/posts/${page.currentPage + 1}`}>
+      <a href={getPageUrl(page.currentPage + 1)}>
         <Button variant="ghost">{page.currentPage + 1}</Button>
       </a>
     )
@@ -48,7 +60,7 @@ const { page } = Astro.props;
   {page.currentPage < page.lastPage - 2 && <span class="mx-1">...</span>}
   {
     page.currentPage !== page.lastPage && page.currentPage + 1 !== page.lastPage && (
-      <a href={`/posts/${page.lastPage}`}>
+      <a href={getPageUrl(page.lastPage)}>
         <Button variant="ghost">{page.lastPage}</Button>
       </a>
     )

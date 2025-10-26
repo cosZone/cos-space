@@ -224,3 +224,14 @@ export async function getCategoryLink(categories: string[]): Promise<string> {
   if (!categories?.length) return '';
   return '/categories/' + categories.map((c) => categoryMap[c]).join('/');
 }
+
+/**
+ * 获取随机文章
+ * @param count 文章数量
+ * @returns 随机文章列表
+ */
+export async function getRandomPosts(count: number = 10): Promise<BlogPost[]> {
+  const posts = await getSortedPosts();
+  const shuffled = [...posts].sort(() => Math.random() - 0.5);
+  return shuffled.slice(0, Math.min(count, posts.length));
+}
