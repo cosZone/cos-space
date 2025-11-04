@@ -1,9 +1,10 @@
 ---
 import type { ContentConfig } from '@constants/content-config';
+import type { AstroComponentFactory } from 'astro/runtime/server/index.js';
 import { defaultContentConfig } from '@constants/content-config';
 
 interface Props {
-  Content: any;
+  Content: AstroComponentFactory;
   config?: Partial<ContentConfig>;
 }
 

@@ -1,5 +1,5 @@
 ---
-title: FE Bits Vol.13 ｜TypeScript 首次成为 GitHub 最常用语言、VoidZero A 轮融资 1250 万美元
+title: FE Bits Vol.13｜TypeScript 首次成为 GitHub 最常用语言、VoidZero A 轮融资 1250 万美元
 description: Chrome 142 上线，GitHub 年度报告 TypeScript 登顶与 AI 成标配，Vercel 支持 Bun，VoidZero 获 A 轮，ViteConf/React Conf 重磅更新，CSS Typed Arithmetic 与锚点定位等实用精选。
 link: weekly-13
 catalog: true

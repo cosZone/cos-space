@@ -2,23 +2,23 @@ import { cn } from '@lib/utils';
 import { motion } from 'motion/react';
 import React, { useCallback, useEffect, useState } from 'react';
 
-export type OptionType = {
+export type OptionType<T extends string | number = string | number> = {
   label?: string;
-  value: string | number;
+  value: T;
 } | null;
 
-type SegmentedProps = {
-  options: OptionType[]; // 选项
-  defaultValue?: string | number; // 默认值
-  onChange?: (value: string | number) => void;
+type SegmentedProps<T extends string | number = string | number> = {
+  options: OptionType<T>[]; // 选项
+  defaultValue?: T; // 默认值
+  onChange?: (value: T) => void;
   className?: string;
   indicateClass?: string;
   itemClass?: string;
   id?: string;
-  value?: string | number; // 受控
+  value?: T; // 受控
 };
 
-export const Segmented = ({
+export const Segmented = <T extends string | number = string | number>({
   options,
   defaultValue,
   onChange,
@@ -27,17 +27,17 @@ export const Segmented = ({
   indicateClass,
   itemClass,
   value,
-}: SegmentedProps) => {
-  const [_value, setValue] = useState(() => value ?? defaultValue ?? options[0]?.value ?? '');
+}: SegmentedProps<T>) => {
+  const [_value, setValue] = useState<T>(() => (value ?? defaultValue ?? options[0]?.value ?? '') as T);
 
   const select = useCallback(
-    (value: string | number) => {
+    (value: T) => {
       setValue(value);
       onChange?.(value);
     },
     [setValue, onChange],
   );
-  const isSelected = useCallback((selectedValue: string | number) => _value === selectedValue, [_value]);
+  const isSelected = useCallback((selectedValue: T) => _value === selectedValue, [_value]);
 
   useEffect(() => {
     if (value) setValue(value);

@@ -1,5 +1,10 @@
 import { useEffect, useState } from 'react';
 
+// Constants
+const SCROLL_OFFSET_TOP = 120; // Offset for header height when detecting active heading
+const INDENT_BASE = 0.75; // Base left padding in rem
+const INDENT_PER_LEVEL = 1; // Additional padding per nesting level in rem
+
 interface Heading {
   id: string;
   text: string;
@@ -254,7 +259,7 @@ export function TableOfContents({ defaultExpanded = false }: TableOfContentsProp
       for (const heading of headingElements) {
         const rect = heading.getBoundingClientRect();
         // Check if heading is in viewport or above it (with some offset for header)
-        if (rect.top <= 120) {
+        if (rect.top <= SCROLL_OFFSET_TOP) {
           current = heading.id;
         } else {
           break;
@@ -356,7 +361,7 @@ export function TableOfContents({ defaultExpanded = false }: TableOfContentsProp
                 : 'text-muted-foreground hover:border-l-primary/40 hover:border-l-2'
             } `}
             style={{
-              paddingLeft: `${0.75 + depth * 1}rem`,
+              paddingLeft: `${INDENT_BASE + depth * INDENT_PER_LEVEL}rem`,
               paddingRight: hasChildren ? '0.5rem' : '0.75rem',
             }}
             aria-label={heading.text}
