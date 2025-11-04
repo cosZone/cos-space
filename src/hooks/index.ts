@@ -23,3 +23,13 @@ export {
   usePrefersColorSchemeDark,
   usePrefersReducedMotion,
 } from './useMediaQuery';
+
+// TableOfContents-specific hooks
+export { useHeadingTree, findHeadingById, getParentIds, getSiblingIds, type Heading } from './useHeadingTree';
+
+export { useActiveHeading, type UseActiveHeadingOptions } from './useActiveHeading';
+
+export { useExpandedState, type UseExpandedStateOptions, type UseExpandedStateReturn } from './useExpandedState';
+
+// Utility hooks
+export { useIsMounted } from './useIsMounted';

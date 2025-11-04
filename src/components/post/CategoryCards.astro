@@ -77,7 +77,7 @@ const categoryPosts: CategoryWithPosts[] = await Promise.all(
                 {category?.label || categoryInfo?.name}
               </a>
             </div>
-            <div class="grid grid-cols-2 gap-x-5 gap-y-3">
+            <div class="grid max-h-24 grid-cols-2 gap-x-5 gap-y-3 overflow-auto">
               {categoryInfo?.children?.length
                 ? categoryInfo.children.map((child) => (
                     <a
