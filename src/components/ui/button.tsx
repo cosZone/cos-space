@@ -1,3 +1,31 @@
+/**
+ * Button Component
+ *
+ * A flexible button component with multiple variants and sizes.
+ * Supports Radix UI Slot pattern for rendering as a child element.
+ *
+ * @example
+ * ```tsx
+ * // Basic usage
+ * <Button variant="default" size="md">
+ *   Click me
+ * </Button>
+ *
+ * // With custom styling
+ * <Button variant="outline" className="mt-4">
+ *   Outlined Button
+ * </Button>
+ *
+ * // As a child (renders as Link but with Button styles)
+ * <Button asChild>
+ *   <Link href="/about">About</Link>
+ * </Button>
+ *
+ * // Disabled state
+ * <Button disabled>Disabled</Button>
+ * ```
+ */
+
 import * as React from 'react';
 import { Slot } from '@radix-ui/react-slot';
 import { cva, type VariantProps } from 'class-variance-authority';
@@ -32,6 +60,13 @@ const buttonVariants = cva(
 );
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof buttonVariants> {
+  /**
+   * When true, renders the Button as a Slot component,
+   * allowing it to be used as a wrapper for other elements
+   * (e.g., Next.js Link, Astro anchor) while inheriting button styles.
+   *
+   * @default false
+   */
   asChild?: boolean;
 }
 
