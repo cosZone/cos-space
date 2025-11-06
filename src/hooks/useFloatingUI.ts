@@ -2,12 +2,13 @@
  * useFloatingUI Hook
  *
  * Shared Floating UI configuration for consistent popover/tooltip positioning.
- * Wraps @floating-ui/react with sensible defaults.
+ * Wraps @floating-ui/react with sensible defaults and optional state management.
  *
  * @example
  * ```tsx
- * function Popover({ children, content }) {
- *   const { refs, floatingStyles, context } = useFloatingUI({
+ * // Simple positioning only
+ * function SimpleTooltip({ children, content }) {
+ *   const { refs, floatingStyles } = useFloatingUI({
  *     placement: 'bottom',
  *     offset: 8
  *   });
@@ -21,10 +22,24 @@
  *     </>
  *   );
  * }
+ *
+ * // With state management for interactions
+ * function InteractivePopover({ open, onOpenChange }) {
+ *   const { refs, floatingStyles, context } = useFloatingUI({
+ *     open,
+ *     onOpenChange,
+ *     placement: 'bottom'
+ *   });
+ *
+ *   const click = useClick(context);
+ *   const dismiss = useDismiss(context);
+ *   // ... use interactions
+ * }
  * ```
  */
 
 import {
+  arrow,
   autoUpdate,
   flip,
   offset as offsetMiddleware,
@@ -33,7 +48,7 @@ import {
   useFloating as useFloatingBase,
   type UseFloatingReturn,
 } from '@floating-ui/react';
-import { useMemo } from 'react';
+import { type RefObject, useMemo } from 'react';
 
 export interface UseFloatingUIOptions {
   /** Placement of floating element relative to reference */
@@ -46,13 +61,23 @@ export interface UseFloatingUIOptions {
   enableShift?: boolean;
   /** Whether to use autoUpdate for positioning */
   autoUpdate?: boolean;
+  /** Open state for stateful floating elements (popovers, tooltips) */
+  open?: boolean;
+  /** Callback when open state changes */
+  onOpenChange?: (open: boolean) => void;
+  /** Disable transform CSS for better compatibility */
+  transform?: boolean;
+  /** Flip fallback direction */
+  flipFallbackDirection?: 'start' | 'end';
+  /** Arrow element ref for tooltip arrows */
+  arrowRef?: RefObject<HTMLElement>;
 }
 
 /**
  * Hook for Floating UI with sensible defaults
  *
  * @param options - Floating UI options
- * @returns Floating UI instance
+ * @returns Floating UI instance with refs, styles, and context
  */
 export function useFloatingUI({
   placement = 'bottom',
@@ -60,27 +85,40 @@ export function useFloatingUI({
   enableFlip = true,
   enableShift = true,
   autoUpdate: enableAutoUpdate = true,
+  open,
+  onOpenChange,
+  transform = true,
+  flipFallbackDirection = 'end',
+  arrowRef,
 }: UseFloatingUIOptions = {}): UseFloatingReturn {
   // Build middleware array
   const middleware = useMemo(() => {
     const middlewares = [offsetMiddleware(offset)];
 
-    if (enableFlip) {
-      middlewares.push(flip());
-    }
-
     if (enableShift) {
       middlewares.push(shift({ padding: 8 }));
     }
 
+    // Arrow must come before flip for correct positioning
+    if (arrowRef) {
+      middlewares.push(arrow({ element: arrowRef }));
+    }
+
+    if (enableFlip) {
+      middlewares.push(flip({ fallbackAxisSideDirection: flipFallbackDirection }));
+    }
+
     return middlewares;
-  }, [offset, enableFlip, enableShift]);
+  }, [offset, enableFlip, enableShift, flipFallbackDirection, arrowRef]);
 
   // Configure floating
   const floating = useFloatingBase({
     placement,
     middleware,
     whileElementsMounted: enableAutoUpdate ? autoUpdate : undefined,
+    open,
+    onOpenChange,
+    transform,
   });
 
   return floating;

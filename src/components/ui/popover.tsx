@@ -1,20 +1,17 @@
 import {
   FloatingFocusManager,
-  autoUpdate,
-  flip,
-  offset,
-  shift,
   useClick,
   useDismiss,
-  useFloating,
   useHover,
   useInteractions,
   useRole,
   type Placement,
 } from '@floating-ui/react';
+import { useControlledState } from '@hooks/useControlledState';
+import { useFloatingUI } from '@hooks/useFloatingUI';
 import { cn } from '@lib/utils';
 import { AnimatePresence, motion, type MotionProps } from 'motion/react';
-import React, { cloneElement, useEffect, useState } from 'react';
+import React, { cloneElement } from 'react';
 
 type PopoverProps = {
   open?: boolean;
@@ -35,31 +32,27 @@ function Popover({
   placement,
   onOpenChange,
   className,
-  offset: offsetNum,
+  offset: offsetNum = 10,
   motionProps,
   trigger = 'click',
 }: React.PropsWithChildren<PopoverProps>) {
-  const [isOpen, setIsOpen] = useState(passedOpen);
-
-  useEffect(() => {
-    if (passedOpen === undefined) return;
-    setIsOpen(passedOpen);
-  }, [passedOpen]);
-
-  const onChange = (status: boolean) => {
-    setIsOpen(status);
-    onOpenChange?.(status);
-  };
-
-  const { refs, floatingStyles, context } = useFloating({
-    open: isOpen,
-    transform: false,
-    onOpenChange: onChange,
-    placement,
-    middleware: [offset(offsetNum ?? 10), flip({ fallbackAxisSideDirection: 'end' }), shift()],
-    whileElementsMounted: autoUpdate,
+  // Use useControlledState for open/close state management
+  const [isOpen, setIsOpen] = useControlledState({
+    value: passedOpen,
+    defaultValue: false,
+    onChange: onOpenChange,
   });
 
+  // Use useFloatingUI for positioning logic
+  const { refs, floatingStyles, context } = useFloatingUI({
+    open: isOpen,
+    onOpenChange: setIsOpen,
+    placement,
+    offset: offsetNum,
+    transform: false,
+  });
+
+  // Configure interaction hooks based on trigger type
   const hover = useHover(context, {
     enabled: trigger === 'hover',
     delay: { open: 0, close: 150 },
@@ -86,7 +79,7 @@ function Popover({
               {...motionProps}
               {...getFloatingProps({ ref: refs.setFloating })}
             >
-              {render({ close: () => onChange(false) })}
+              {render({ close: () => setIsOpen(false) })}
             </motion.div>
           </FloatingFocusManager>
         )}
