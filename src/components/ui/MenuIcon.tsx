@@ -18,6 +18,7 @@ import { useStore } from '@nanostores/react';
 import { cn } from '@lib/utils';
 import { useIsMounted } from '@hooks/index';
 import { drawerOpen, toggleDrawer } from '@store/ui';
+import { animation } from '@constants/design-tokens';
 
 const lineVariants: Variants = {
   closed: {
@@ -25,16 +26,18 @@ const lineVariants: Variants = {
     y: 0,
     opacity: 1,
   },
-  opened: (custom: number) => ({
-    rotate: custom === 1 ? 45 : custom === 3 ? -45 : 0,
-    y: custom === 1 ? 6 : custom === 3 ? -6 : 0,
-    opacity: custom === 2 ? 0 : 1,
-    transition: {
-      type: 'spring',
-      stiffness: 300,
-      damping: 25,
-    },
-  }),
+  opened: (lineIndex: number) => {
+    switch (lineIndex) {
+      case 1:
+        return { rotate: 45, y: 6, opacity: 1, transition: animation.spring.menu };
+      case 2:
+        return { rotate: 0, y: 0, opacity: 0, transition: animation.spring.menu };
+      case 3:
+        return { rotate: -45, y: -6, opacity: 1, transition: animation.spring.menu };
+      default:
+        return { rotate: 0, y: 0, opacity: 1, transition: animation.spring.menu };
+    }
+  },
 };
 
 interface MenuIconProps {

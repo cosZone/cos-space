@@ -3,15 +3,17 @@ import { type Router } from '@constants/router';
 import { useToggle } from '@hooks/useToggle';
 import { Icon } from '@iconify/react';
 import { cn } from '@lib/utils';
+import { withFloatingErrorBoundary } from '@components/common/FloatingErrorBoundary';
 
 interface DropdownNavProps {
   item: Router;
   className?: string;
 }
 
-export default function DropdownNav({ item, className }: DropdownNavProps) {
+function DropdownNav({ item, className }: DropdownNavProps) {
   const { isOpen, setIsOpen } = useToggle({ defaultOpen: false });
   const { name, icon, children } = item;
+
   return (
     <Popover
       open={isOpen}
@@ -63,3 +65,8 @@ export default function DropdownNav({ item, className }: DropdownNavProps) {
     </Popover>
   );
 }
+
+// Wrap with error boundary for graceful error handling
+const DropdownNavWithErrorBoundary = withFloatingErrorBoundary(DropdownNav, 'DropdownNav');
+
+export default DropdownNavWithErrorBoundary;

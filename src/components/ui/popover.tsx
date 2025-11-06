@@ -12,6 +12,8 @@ import { useFloatingUI } from '@hooks/useFloatingUI';
 import { cn } from '@lib/utils';
 import { AnimatePresence, motion, type MotionProps } from 'motion/react';
 import React, { cloneElement } from 'react';
+import { animation } from '@constants/design-tokens';
+import { withFloatingErrorBoundary } from '@components/common/FloatingErrorBoundary';
 
 type PopoverProps = {
   open?: boolean;
@@ -55,7 +57,7 @@ function Popover({
   // Configure interaction hooks based on trigger type
   const hover = useHover(context, {
     enabled: trigger === 'hover',
-    delay: { open: 0, close: 150 },
+    delay: { open: 0, close: animation.duration.fast },
   });
   const click = useClick(context, {
     enabled: trigger === 'click',
@@ -74,7 +76,7 @@ function Popover({
               initial={{ opacity: 0, scale: 0.85 }}
               animate={{ opacity: 1, scale: 1, originY: 0 }}
               exit={{ opacity: 0, scale: 0.85 }}
-              transition={{ type: 'spring', damping: 20, stiffness: 300 }}
+              transition={animation.spring.popoverContent}
               style={{ ...floatingStyles }}
               {...motionProps}
               {...getFloatingProps({ ref: refs.setFloating })}
@@ -88,4 +90,7 @@ function Popover({
   );
 }
 
-export default React.memo(Popover);
+// Wrap with error boundary for graceful error handling
+const PopoverWithErrorBoundary = withFloatingErrorBoundary(Popover, 'Popover');
+
+export default React.memo(PopoverWithErrorBoundary);

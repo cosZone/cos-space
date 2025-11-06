@@ -4,6 +4,8 @@ import { useControlledState } from '@hooks/useControlledState';
 import { useFloatingUI } from '@hooks/useFloatingUI';
 // import { fontVariants } from '@constants/font';
 import { cn } from '@lib/utils';
+import { zIndex } from '@constants/design-tokens';
+import { withFloatingErrorBoundary } from '@components/common/FloatingErrorBoundary';
 
 type TooltipProps = {
   open?: boolean;
@@ -15,15 +17,7 @@ type TooltipProps = {
   className?: string;
 };
 
-export default function Tooltip({
-  children,
-  title,
-  placement = 'top',
-  offsetX = 5,
-  className,
-  open: passedOpen,
-  onOpenChange,
-}: TooltipProps) {
+function Tooltip({ children, title, placement = 'top', offsetX = 5, className, open: passedOpen, onOpenChange }: TooltipProps) {
   const isBrowser = typeof window !== 'undefined';
 
   // Use useControlledState for open/close state management
@@ -71,7 +65,7 @@ export default function Tooltip({
             ref={refs.setFloating}
             style={{
               position: strategy,
-              zIndex: 100,
+              zIndex: zIndex.tooltip,
               top: y ?? 0,
               left: x ?? 0,
             }}
@@ -84,3 +78,8 @@ export default function Tooltip({
     </>
   );
 }
+
+// Wrap with error boundary for graceful error handling
+const TooltipWithErrorBoundary = withFloatingErrorBoundary(Tooltip, 'Tooltip');
+
+export default TooltipWithErrorBoundary;

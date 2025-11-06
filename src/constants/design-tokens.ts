@@ -49,6 +49,12 @@ export const colors = {
     dark: '#D63F55',
   },
 
+  // Theme toggle colors
+  themeToggle: {
+    sun: '#ffbb52',
+    moon: '#17181c',
+  },
+
   // UI colors
   muted: {
     DEFAULT: 'hsl(var(--muted))',
@@ -230,9 +236,12 @@ export const animation = {
   // Duration in milliseconds
   duration: {
     fast: 150,
+    tween: 200, // Between fast and normal
     normal: 250,
+    ui: 300, // Common UI interaction
     slow: 350,
     slower: 500,
+    flipCard: 600, // Card flip animation
   },
 
   // Easing functions
@@ -293,6 +302,19 @@ export const animation = {
       stiffness: 200,
       damping: 9,
     },
+
+    // Component-specific springs
+    menu: {
+      type: 'spring' as const,
+      stiffness: 300,
+      damping: 25,
+    },
+
+    popoverContent: {
+      type: 'spring' as const,
+      stiffness: 300,
+      damping: 20,
+    },
   },
 
   // Transition objects for CSS transitions
@@ -330,6 +352,25 @@ export const zIndex = {
   modal: 1050,
   popover: 1060,
   tooltip: 1070,
+} as const;
+
+/**
+ * Color Palettes
+ *
+ * Multi-color arrays for gradients and backgrounds.
+ */
+export const gridBackground = {
+  light: ['#ed719a', '#FFACDE', '#FBD7ED', '#EEF1F0', '#DDDDDD', '#B4B4B4'],
+  dark: ['#212832', '#3F4659', '#8592A7', '#EEEFEA', '#212832', '#3F4659'],
+} as const;
+
+/**
+ * 3D Perspective Values
+ *
+ * For 3D transforms and card flip effects.
+ */
+export const perspective = {
+  card3d: '1000px',
 } as const;
 
 /**

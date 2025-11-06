@@ -5,12 +5,12 @@
  * Handles the recursive rendering logic for nested headings.
  */
 
-import type { HeadingNode } from '@types/content';
+import type { Heading } from '@hooks/useHeadingTree';
 import { HeadingTreeItem } from './HeadingTreeItem';
 
 interface HeadingListProps {
   /** Array of heading nodes to render */
-  headings: HeadingNode[];
+  headings: Heading[];
   /** Current nesting depth (0 for top level) */
   depth?: number;
   /** ID of the currently active heading */
@@ -28,7 +28,7 @@ export function HeadingList({ headings, depth = 0, activeId, expandedIds, onHead
   /**
    * Recursively render child headings
    */
-  const renderChildren = (children: HeadingNode[], childDepth: number): React.ReactElement[] => {
+  const renderChildren = (children: Heading[], childDepth: number): React.ReactElement[] => {
     return children.map((child) => (
       <HeadingTreeItem
         key={child.id}

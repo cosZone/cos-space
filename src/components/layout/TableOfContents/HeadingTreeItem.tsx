@@ -5,7 +5,7 @@
  * Supports nesting, active state highlighting, and recursive rendering of children.
  */
 
-import type { HeadingNode } from '@types/content';
+import type { Heading } from '@hooks/useHeadingTree';
 
 // Constants
 const INDENT_BASE = 0.75; // Base left padding in rem
@@ -13,7 +13,7 @@ const INDENT_PER_LEVEL = 1; // Additional padding per nesting level in rem
 
 interface HeadingTreeItemProps {
   /** The heading node to render */
-  heading: HeadingNode;
+  heading: Heading;
   /** Current nesting depth (0 for top level) */
   depth?: number;
   /** Whether this heading is currently active */
@@ -23,7 +23,7 @@ interface HeadingTreeItemProps {
   /** Callback when heading is clicked */
   onHeadingClick: (id: string) => void;
   /** Recursively render children if expanded */
-  renderChildren?: (headings: HeadingNode[], depth: number) => React.ReactElement[];
+  renderChildren?: (headings: Heading[], depth: number) => React.ReactElement[];
 }
 
 /**
