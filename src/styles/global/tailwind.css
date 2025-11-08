@@ -32,6 +32,9 @@
 @utility flex-center-y {
   @apply flex flex-col items-center justify-center;
 }
+@utility shadow-home-sider {
+  box-shadow: var(--box-bg-shadow) 10px -10px 30px -6px;
+}
 @utility shadow-card {
   box-shadow: 0 0.625rem 1.875rem -0.9375rem var(--box-bg-shadow);
 }
@@ -39,7 +42,7 @@
   box-shadow: 0 0 2rem var(--box-bg-shadow);
 }
 @utility shadow-box {
-  box-shadow: 0 1.25rem 1rem 0.3125rem var(--box-bg-shadow);
+  box-shadow: var(--box-bg-shadow) 0px 25px 20px -20px;
   @apply md:shadow-none;
 }
 @utility shadow-text {
@@ -74,7 +77,7 @@
   }
   body {
     overscroll-behavior-y: none;
-    background: linear-gradient(to top, var(--box-bg-shadow) 0, var(--gradient-bg-start) 30%) no-repeat bottom;
+    background: linear-gradient(to top, var(--gradient-bg-end) 0, var(--gradient-bg-start) 30%) no-repeat bottom;
     scroll-behavior: smooth;
     @apply tablet:bg-gradient-start tablet:bg-none;
   }
