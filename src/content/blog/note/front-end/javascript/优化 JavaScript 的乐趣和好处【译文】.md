@@ -2,7 +2,6 @@
 title: 优化 JavaScript 的乐趣和好处【译文】
 link: optimizing-javascript-translate
 catalog: true
-sticky: true
 date: 2024-03-28 15:10:00
 tags:
   - 前端

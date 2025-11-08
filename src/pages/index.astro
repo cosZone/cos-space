@@ -6,27 +6,28 @@ import { CONTENT_PADDING } from '@constants/layout';
 import { seoConfig } from '@constants/site-config';
 import Layout from '@layouts/Layout.astro';
 import TwoColumnLayout from '@layouts/TwoColumnLayout.astro';
-import { getSortedPosts } from '@lib/content';
+import { getPostsBySticky } from '@lib/content';
 import type { Page } from 'astro';
 import type { BlogPost } from 'types/blog';
 
-const allPosts = await getSortedPosts();
-const posts = allPosts.slice(0, 10); // 首页显示前10篇
+// 获取置顶文章和普通文章
+const { stickyPosts, nonStickyPosts: allNonStickyPosts } = await getPostsBySticky();
+const posts = allNonStickyPosts.slice(0, 10); // 首页显示前10篇普通文章
 
 const page: Page<BlogPost> = {
   data: posts,
   start: 0,
   end: Math.min(9, posts.length - 1),
   size: 10,
-  total: allPosts.length,
+  total: allNonStickyPosts.length,
   currentPage: 1,
-  lastPage: Math.ceil(allPosts.length / 10),
+  lastPage: Math.ceil(allNonStickyPosts.length / 10),
   url: {
     current: '/',
     prev: undefined,
-    next: allPosts.length > 10 ? '/posts/2' : undefined,
+    next: allNonStickyPosts.length > 10 ? '/posts/2' : undefined,
     first: '/',
-    last: `/posts/${Math.ceil(allPosts.length / 10)}`,
+    last: `/posts/${Math.ceil(allNonStickyPosts.length / 10)}`,
   },
 };
 ---
@@ -38,6 +39,7 @@ const page: Page<BlogPost> = {
     <div
       class={`bg-gradient-start shadow-box tablet:shadow-none flex flex-col gap-4 overflow-hidden  ${CONTENT_PADDING.standard}`}
     >
+      {stickyPosts.length > 0 && <PostList posts={stickyPosts} showPaginator={false} isSticky={true} />}
       <PostList posts={posts} page={page} showPaginator={true} baseUrl="/posts" isHomePage={true} />
     </div>
   </TwoColumnLayout>

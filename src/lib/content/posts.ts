@@ -22,6 +22,30 @@ export async function getSortedPosts(): Promise<CollectionEntry<'blog'>[]> {
 }
 
 /**
+ * Get posts separated by sticky status
+ * @returns Object containing sticky and non-sticky posts, both sorted by date (newest first)
+ */
+export async function getPostsBySticky(): Promise<{
+  stickyPosts: CollectionEntry<'blog'>[];
+  nonStickyPosts: CollectionEntry<'blog'>[];
+}> {
+  const posts = await getSortedPosts();
+
+  const stickyPosts: CollectionEntry<'blog'>[] = [];
+  const nonStickyPosts: CollectionEntry<'blog'>[] = [];
+
+  for (const post of posts) {
+    if (post.data?.sticky) {
+      stickyPosts.push(post);
+    } else {
+      nonStickyPosts.push(post);
+    }
+  }
+
+  return { stickyPosts, nonStickyPosts };
+}
+
+/**
  * Get post count
  */
 export async function getPostCount() {

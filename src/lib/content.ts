@@ -21,7 +21,14 @@ export {
 } from './content/categories';
 
 // Export post utilities
-export { getPostCount, getPostLastCategory, getPostsByCategory, getRandomPosts, getSortedPosts } from './content/posts';
+export {
+  getPostCount,
+  getPostLastCategory,
+  getPostsByCategory,
+  getPostsBySticky,
+  getRandomPosts,
+  getSortedPosts,
+} from './content/posts';
 
 // Export tag utilities
 export { getAllTags } from './content/tags';

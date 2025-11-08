@@ -1,7 +1,6 @@
 ---
 title: 2023，稀松平常的一年
 link: 2023-life-review
-sticky: true
 catalog: true
 lang: cn
 date: 2023-12-31 04:32:09

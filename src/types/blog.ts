@@ -20,4 +20,5 @@ export interface BlogSchema {
   categories?: string[] | string[][];
   subtitle?: string; // 文章副标题
   catalog?: boolean; // 是否分离
+  sticky?: boolean; // 是否置顶
 }

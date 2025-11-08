@@ -4,7 +4,6 @@ link: nest-learn-project-1
 catalog: true
 lang: cn
 date: 2023-09-23 23:28:03
-sticky: true
 tags:
   - nestjs
   - 后端

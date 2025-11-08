@@ -5,7 +5,6 @@ catalog: true
 subtitle: 红宝书读书笔记 第八章 p205
 date: 2022-03-14 16:50:52
 cover: img/header_img/galaxy-ngc-3190-wallpaper-for-2880x1800-60-653.jpg
-sticky: true
 tags:
   - 前端
   - JavaScript

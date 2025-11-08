@@ -15,13 +15,14 @@ interface Props {
   showPaginator?: boolean;
   baseUrl?: string; // 分页基础路径
   isHomePage?: boolean; // 是否是首页
+  isSticky?: boolean; // 是否是置顶文章列表
 }
 
-const { posts, page, showPaginator = true, baseUrl, isHomePage = false } = Astro.props;
+const { posts, page, showPaginator = true, baseUrl, isHomePage = false, isSticky = false } = Astro.props;
 const covers = shuffle(defaultCoverList).slice(0, 10);
 ---
 
-<Divider>文章列表</Divider>
+<Divider>{isSticky ? '置顶文章' : '文章列表'}</Divider>
 {
   !posts?.length && (
     <div class="text-foreground/30 flex flex-col items-center gap-2">
@@ -44,5 +45,11 @@ const covers = shuffle(defaultCoverList).slice(0, 10);
     </>
   )
 }
-<Divider>精选分类</Divider>
-<CategoryCards />
+{
+  !isSticky && (
+    <>
+      <Divider>精选分类</Divider>
+      <CategoryCards />
+    </>
+  )
+}

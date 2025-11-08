@@ -4,7 +4,6 @@ link: note/front-end/bytedance-note/typescript-introduction
 catalog: true
 date: 2022-01-28 14:30:17
 subtitle: 这节课老师讲了TypeScript的用处与基本语法、高级类型的应用、类型保护与类型守卫
-# sticky: true
 lang: cn
 tags:
   - 前端
