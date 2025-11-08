@@ -27,7 +27,7 @@ function Tooltip({ children, title, placement = 'top', offsetX = 5, className, o
     onChange: onOpenChange,
   });
 
-  const arrowRef = useRef<HTMLImageElement>(null);
+  const arrowRef = useRef<HTMLElement>(null);
 
   // Use useFloatingUI with arrow support
   const { refs, context, middlewareData, x, y, strategy } = useFloatingUI({

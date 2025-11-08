@@ -70,7 +70,7 @@ export interface UseFloatingUIOptions {
   /** Flip fallback direction */
   flipFallbackDirection?: 'start' | 'end';
   /** Arrow element ref for tooltip arrows */
-  arrowRef?: RefObject<HTMLElement>;
+  arrowRef?: RefObject<HTMLElement | null>;
 }
 
 /**

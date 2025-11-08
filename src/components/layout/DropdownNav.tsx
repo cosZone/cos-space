@@ -52,6 +52,9 @@ function DropdownNav({ item, className }: DropdownNavProps) {
           'after:-translate-x-1/2 after:bg-white after:transition-all after:duration-300 after:content-[""]',
           className,
         )}
+        aria-expanded={isOpen}
+        aria-haspopup="true"
+        aria-label={`${name}菜单`}
       >
         {icon && <Icon icon={icon} className="mr-1.5" />}
         {name}

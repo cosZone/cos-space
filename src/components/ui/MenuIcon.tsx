@@ -63,12 +63,12 @@ const MenuIcon = ({ className, id }: MenuIconProps) => {
 
   return (
     <div className={cn('flex-center', className)} id={id}>
-      <div
+      <button
         className="flex-center border-shoka text-shoka size-10 cursor-pointer rounded-full border bg-white/20 backdrop-blur select-none"
         onClick={handleToggle}
-        role="button"
         aria-label={isOpen ? '关闭菜单' : '打开菜单'}
         aria-expanded={isOpen}
+        type="button"
         style={{
           viewTransitionName: 'menu-icon',
         }}
@@ -93,7 +93,7 @@ const MenuIcon = ({ className, id }: MenuIconProps) => {
             <line x1="3" y1="18" x2="21" y2="18" />
           </motion.g>
         </svg>
-      </div>
+      </button>
     </div>
   );
 };
