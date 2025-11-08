@@ -6,6 +6,7 @@ import readingTime from 'reading-time';
 import type { BlogPost } from 'types/blog';
 import WaveSvg from './wave';
 import JSBgScript from './JSBgScript.astro';
+import { MAX_WIDTH } from '@/constants/layout';
 
 export interface CoverProps {
   data?: BlogPost;
@@ -25,7 +26,9 @@ const readState = readingTime(data?.body ?? '');
     {
       data || title ? (
         <>
-          <h1 class="shadow-text word-break text-4.5xl text-center font-bold md:text-2xl">{dataTitle ?? title}</h1>
+          <h1 class={`shadow-text word-break text-4.5xl text-center font-bold md:text-2xl ${MAX_WIDTH.content}`}>
+            {dataTitle ?? title}
+          </h1>
           {data && (
             <p class="mt-3 flex items-center justify-center gap-4 md:text-xs">
               <span class="flex items-center gap-1">

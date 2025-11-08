@@ -87,3 +87,45 @@ export async function getRandomPosts(count: number = 10): Promise<BlogPost[]> {
   const shuffled = [...posts].sort(() => Math.random() - 0.5);
   return shuffled.slice(0, Math.min(count, posts.length));
 }
+
+/**
+ * 获取文章所属系列的所有文章（基于最深层分类）
+ * @param post 当前文章
+ * @returns 系列文章列表（按日期排序，最新的在前）
+ */
+export async function getSeriesPosts(post: BlogPost): Promise<BlogPost[]> {
+  const lastCategory = getPostLastCategory(post);
+  if (!lastCategory.name) return [];
+
+  return await getPostsByCategory(lastCategory.name);
+}
+
+/**
+ * 获取文章的上一篇和下一篇（在同一系列中）
+ * @param currentPost 当前文章
+ * @returns 上一篇和下一篇文章
+ */
+export async function getAdjacentSeriesPosts(currentPost: BlogPost): Promise<{
+  prevPost: BlogPost | null;
+  nextPost: BlogPost | null;
+}> {
+  const seriesPosts = await getSeriesPosts(currentPost);
+
+  if (seriesPosts.length === 0) {
+    return { prevPost: null, nextPost: null };
+  }
+
+  const currentIndex = seriesPosts.findIndex((post) => post.slug === currentPost.slug);
+
+  if (currentIndex === -1) {
+    return { prevPost: null, nextPost: null };
+  }
+
+  // 因为文章是按日期降序排列的（最新的在前）
+  // prevPost 是更新的文章（索引 - 1）
+  // nextPost 是更旧的文章（索引 + 1）
+  const prevPost = currentIndex > 0 ? seriesPosts[currentIndex - 1] : null;
+  const nextPost = currentIndex < seriesPosts.length - 1 ? seriesPosts[currentIndex + 1] : null;
+
+  return { prevPost, nextPost };
+}
