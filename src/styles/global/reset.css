@@ -14,11 +14,6 @@
   }
 
   h1,
-  h2 {
-    font-weight: 900;
-    letter-spacing: -0.02rem;
-  }
-  h1,
     h2,
     h3,
     h4,
@@ -73,7 +68,6 @@
   }
   textarea {
     field-sizing: content;
-    min-block-size: 5lh;
     inline-size: 100%;
     max-inline-size: 100%;
   }
@@ -106,7 +100,6 @@
     white-space: pre-wrap;
     background: CanvasText;
     color: Canvas;
-    padding: 1.5rem;
   }
 
   hr {
@@ -131,8 +124,6 @@
     td,
     th {
       word-break: normal;
-      border: 1px solid gray;
-      padding: 0.5rem;
     }
   }
   [role='region'][aria-labelledby][tabindex] {

@@ -4,20 +4,33 @@ import { cn } from '@lib/utils';
 import HomeInfo from './HomeInfo.astro';
 import { TableOfContents } from './TableOfContents/index';
 import HomeSiderSegmented from '@components/ui/segmented/HomeSiderSegmented';
+import { SeriesPostList } from '@components/post/SeriesPostList';
+import { SeriesNavigation } from '@components/post/SeriesNavigation';
+import { getSeriesPosts, getAdjacentSeriesPosts } from '@lib/content/posts';
+import type { BlogPost } from 'types/blog';
 
 interface Props {
   type?: HomeSiderType;
   className?: string;
   isDrawer?: boolean;
+  post?: BlogPost;
 }
 
-const { type = HomeSiderType.HOME, className, isDrawer = false } = Astro.props;
+const { type = HomeSiderType.HOME, className, isDrawer = false, post } = Astro.props;
 const defaultSegmentType = type === HomeSiderType.POST ? HomeSiderSegmentType.DIRECTORY : HomeSiderSegmentType.INFO;
+
+// 获取系列文章
+const seriesPosts = post && type === HomeSiderType.POST ? await getSeriesPosts(post) : [];
+
+// 获取上一篇和下一篇
+const { prevPost, nextPost } =
+  post && type === HomeSiderType.POST ? await getAdjacentSeriesPosts(post) : { prevPost: null, nextPost: null };
 ---
 
 <div
   class={cn(
-    'page-home-sider shadow-home-sider sticky top-0 self-start flex min-w-[16rem] flex-col tablet:hidden items-center px-4 py-18',
+    'page-home-sider shadow-home-sider sticky top-0 self-start flex min-w-64 max-w-[16rem] flex-col tablet:hidden overflow-auto h-screen items-center px-4 pb-',
+    type === HomeSiderType.HOME ? 'py-18' : 'py-4',
     className,
   )}
   transition:name={isDrawer ? 'page-home-sider-drawer' : 'page-home-sider'}
@@ -28,24 +41,29 @@ const defaultSegmentType = type === HomeSiderType.POST ? HomeSiderSegmentType.DI
         client:load
         className="mb-5 flex w-full justify-between text-sm/6"
         itemClass="grow"
-        options={[
-          { label: '站点概览', value: HomeSiderSegmentType.INFO },
-          { label: '文章目录', value: HomeSiderSegmentType.DIRECTORY },
-        ]}
         defaultValue={defaultSegmentType}
         id="inner-home-sider"
       />
     )
   }
 
-  <sider-content class="w-full overflow-auto" data-type={type} data-default-type={defaultSegmentType}>
+  <sider-content class="w-full flex-1 overflow-auto" data-type={type} data-default-type={defaultSegmentType}>
     <div slot="info">
       <HomeInfo />
     </div>
     <div slot="directory">
       {type === HomeSiderType.POST && <TableOfContents client:load />}
     </div>
+    <div slot="series">
+      {type === HomeSiderType.POST && <SeriesPostList client:load posts={seriesPosts} currentPostSlug={post?.slug} />}
+    </div>
   </sider-content>
+
+  {
+    type === HomeSiderType.POST && (
+      <SeriesNavigation client:load prevPost={prevPost} nextPost={nextPost} className="w-full px-2" />
+    )
+  }
 </div>
 
 <script>
@@ -57,6 +75,7 @@ const defaultSegmentType = type === HomeSiderType.POST ? HomeSiderSegmentType.DI
     // 私有属性定义
     private infoContent: HTMLElement | null = null;
     private directoryContent: HTMLElement | null = null;
+    private seriesContent: HTMLElement | null = null;
     private pageType: string | null = null;
     private defaultType: string | null = null;
 
@@ -66,6 +85,7 @@ const defaultSegmentType = type === HomeSiderType.POST ? HomeSiderSegmentType.DI
       // 保存最初的内容片段
       this.infoContent = this.querySelector('[slot="info"]');
       this.directoryContent = this.querySelector('[slot="directory"]');
+      this.seriesContent = this.querySelector('[slot="series"]');
 
       // 从HTML属性中获取当前页面类型和默认分段类型
       this.pageType = this.getAttribute('data-type');
@@ -102,13 +122,18 @@ const defaultSegmentType = type === HomeSiderType.POST ? HomeSiderSegmentType.DI
     }
 
     showContent(type: HomeSiderSegmentType) {
+      // 隐藏所有内容
+      this.infoContent?.classList.add('hidden');
+      this.directoryContent?.classList.add('hidden');
+      this.seriesContent?.classList.add('hidden');
+
       // 根据类型显示对应内容
       if (type === HomeSiderSegmentType.DIRECTORY) {
-        this.infoContent?.classList.add('hidden');
         this.directoryContent?.classList.remove('hidden');
+      } else if (type === HomeSiderSegmentType.SERIES) {
+        this.seriesContent?.classList.remove('hidden');
       } else {
         this.infoContent?.classList.remove('hidden');
-        this.directoryContent?.classList.add('hidden');
       }
     }
   }

@@ -6,4 +6,5 @@ export enum HomeSiderType {
 export enum HomeSiderSegmentType {
   INFO = 'info',
   DIRECTORY = 'directory',
+  SERIES = 'series',
 }
