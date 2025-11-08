@@ -41,11 +41,11 @@ import { capitalize } from 'es-toolkit';
     background-color: var(--link-color);
   }
   .social-link:hover {
-    color: white;
+    color: hsl(var(--background));
   }
 
   /* 暗色模式下的特殊处理 */
   :global(.dark) .social-link[data-platform='github'] {
-    color: #fff;
+    color: hsl(var(--foreground));
   }
 </style>

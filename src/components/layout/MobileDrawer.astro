@@ -30,6 +30,8 @@ const { type = HomeSiderType.HOME } = Astro.props;
 </div>
 
 <script>
+  import { drawerOpen, closeDrawer } from '@store/ui';
+
   interface DrawerElements {
     drawer: HTMLElement | null;
     closeBtn: HTMLElement | null;
@@ -47,19 +49,15 @@ const { type = HomeSiderType.HOME } = Astro.props;
     translateX: '-translate-x-full',
   } as const;
 
-  const DRAWER_EVENTS = {
-    toggle: 'toggleDrawer',
-    stateChange: 'drawerStateChange',
-  } as const;
-
   class DrawerController {
     private elements: DrawerElements;
-    private isOpen = false;
+    private unsubscribe: (() => void) | null = null;
 
     constructor() {
       this.elements = this.initElements();
       if (this.validateElements()) {
         this.bindEvents();
+        this.subscribeToStore();
       }
     }
 
@@ -84,56 +82,63 @@ const { type = HomeSiderType.HOME } = Astro.props;
     }
 
     private bindEvents(): void {
-      document.addEventListener(DRAWER_EVENTS.toggle, this.handleToggle);
       document.addEventListener('keydown', this.handleKeyDown);
-
-      this.elements.closeBtn?.addEventListener('click', this.close);
-      this.elements.overlay?.addEventListener('click', this.close);
+      this.elements.closeBtn?.addEventListener('click', this.handleClose);
+      this.elements.overlay?.addEventListener('click', this.handleClose);
     }
 
-    private handleToggle = (e: Event): void => {
-      const { isOpen } = (e as CustomEvent<{ isOpen: boolean }>).detail;
-      isOpen ? this.open() : this.close();
-    };
+    /**
+     * Subscribe to Nanostores drawerOpen state
+     */
+    private subscribeToStore(): void {
+      this.unsubscribe = drawerOpen.subscribe((isOpen) => {
+        if (isOpen) {
+          this.open();
+        } else {
+          this.close();
+        }
+      });
+    }
 
     private handleKeyDown = (e: KeyboardEvent): void => {
-      if (e.key === 'Escape' && this.isOpen) {
-        this.close();
+      if (e.key === 'Escape' && drawerOpen.get()) {
+        closeDrawer();
       }
     };
 
-    private open = (): void => {
+    private handleClose = (): void => {
+      closeDrawer();
+    };
+
+    private open(): void {
       const { drawer, overlay, closeBtn } = this.elements;
       if (!drawer || !overlay) return;
 
-      this.isOpen = true;
       drawer.classList.remove(DRAWER_CLASSES.translateX);
       overlay.classList.remove(DRAWER_CLASSES.hidden);
       document.body.style.overflow = 'hidden';
       closeBtn?.focus();
-    };
+    }
 
-    private close = (): void => {
+    private close(): void {
       const { drawer, overlay } = this.elements;
       if (!drawer || !overlay) return;
 
-      this.isOpen = false;
       drawer.classList.add(DRAWER_CLASSES.translateX);
       overlay.classList.add(DRAWER_CLASSES.hidden);
       document.body.style.overflow = '';
-
-      document.dispatchEvent(
-        new CustomEvent(DRAWER_EVENTS.stateChange, {
-          detail: { isOpen: false },
-        }),
-      );
-    };
+    }
 
     public destroy(): void {
-      document.removeEventListener(DRAWER_EVENTS.toggle, this.handleToggle);
       document.removeEventListener('keydown', this.handleKeyDown);
-      this.elements.closeBtn?.removeEventListener('click', this.close);
-      this.elements.overlay?.removeEventListener('click', this.close);
+      this.elements.closeBtn?.removeEventListener('click', this.handleClose);
+      this.elements.overlay?.removeEventListener('click', this.handleClose);
+
+      // Unsubscribe from nanostore
+      if (this.unsubscribe) {
+        this.unsubscribe();
+        this.unsubscribe = null;
+      }
     }
   }
 

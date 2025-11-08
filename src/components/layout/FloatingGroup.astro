@@ -42,6 +42,7 @@ import { throttle } from 'es-toolkit';
 
 <script>
   import { throttle } from 'es-toolkit';
+  import { drawerOpen } from '@store/ui';
 
   function initFloatingNav() {
     const scrollToTop = document.getElementById('scroll-to-top');
@@ -71,6 +72,21 @@ import { throttle } from 'es-toolkit';
 
     toggleNav?.addEventListener('click', handleToggleNav);
 
+    // Subscribe to drawer state - hide FloatingGroup when drawer is open
+    const unsubscribe = drawerOpen.subscribe((isDrawerOpen) => {
+      if (!floatingNav) return;
+      // Hide floating nav when mobile drawer is open to prevent UI conflicts
+      if (isDrawerOpen) {
+        floatingNav.style.transform = 'translateX(200%)';
+        floatingNav.style.opacity = '0';
+        floatingNav.style.pointerEvents = 'none';
+      } else {
+        floatingNav.style.transform = '';
+        floatingNav.style.opacity = '';
+        floatingNav.style.pointerEvents = '';
+      }
+    });
+
     // 回到顶部
     const throttledScrollToTop = throttle(() => {
       window.scrollTo({
@@ -96,6 +112,7 @@ import { throttle } from 'es-toolkit';
       scrollToTop?.removeEventListener('click', throttledScrollToTop);
       scrollToBottom?.removeEventListener('click', throttledScrollToBottom);
       toggleNav?.removeEventListener('click', handleToggleNav);
+      unsubscribe(); // Unsubscribe from drawer state
     };
   }
 

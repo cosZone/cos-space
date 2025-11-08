@@ -2,12 +2,11 @@
 import LatestComments from '@components/comment/LatestComments.astro';
 import { getRandomPosts } from '@lib/content';
 import RandomPostList from './RandomPostList.astro';
-import { cn } from '@lib/utils';
 
 const randomPosts = await getRandomPosts(10);
 ---
 
-<div class="tablet:grid-cols-1 grid grid-cols-2 gap-4 px-8 pt-8">
+<div class="tablet:grid-cols-1 desktop:px-3 grid grid-cols-2 gap-4 px-6 pt-8">
   <RandomPostList posts={randomPosts} />
   <LatestComments />
 </div>

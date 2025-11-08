@@ -1,5 +1,7 @@
 ---
 import { cn } from '@lib/utils';
+import { LAYOUT_SPACING, MAX_WIDTH } from '@constants/layout';
+import PostFooter from '@/components/post/PostFooter.astro';
 
 interface Props {
   className?: string;
@@ -10,10 +12,18 @@ const { className } = Astro.props;
 
 <div class="mb-20 flex flex-col">
   <slot name="cover" />
-  <div class={cn('mx-auto md:mx-0 flex w-full items-start justify-center md:w-full desktop:max-w-8xl', className)}>
+  <div
+    class={cn(
+      'mx-auto md:mx-0 flex w-full items-start justify-center md:w-full',
+      MAX_WIDTH.content,
+      LAYOUT_SPACING.twoColumnGap,
+      className,
+    )}
+  >
     <slot name="sider" />
-    <div class="tablet:pr-0 flex grow flex-col pr-9 md:w-full">
+    <div class="flex min-w-0 grow flex-col md:w-full">
       <slot />
+      <PostFooter />
     </div>
   </div>
 </div>

@@ -1,0 +1,81 @@
+/**
+ * HeadingTreeItem Component
+ *
+ * Renders a single heading item in the table of contents tree.
+ * Supports nesting, active state highlighting, and recursive rendering of children.
+ */
+
+import { memo } from 'react';
+import type { Heading } from '@hooks/useHeadingTree';
+
+// Constants
+const INDENT_BASE = 0.75; // Base left padding in rem
+const INDENT_PER_LEVEL = 1; // Additional padding per nesting level in rem
+
+interface HeadingTreeItemProps {
+  /** The heading node to render */
+  heading: Heading;
+  /** Current nesting depth (0 for top level) */
+  depth?: number;
+  /** Whether this heading is currently active */
+  isActive?: boolean;
+  /** Whether this heading's children are expanded */
+  isExpanded?: boolean;
+  /** Callback when heading is clicked */
+  onHeadingClick: (id: string) => void;
+  /** Recursively render children if expanded */
+  renderChildren?: (headings: Heading[], depth: number) => React.ReactElement[];
+}
+
+/**
+ * HeadingTreeItem - A single item in the table of contents tree
+ */
+const HeadingTreeItemComponent = ({
+  heading,
+  depth = 0,
+  isActive = false,
+  isExpanded = false,
+  onHeadingClick,
+  renderChildren,
+}: HeadingTreeItemProps) => {
+  const hasChildren = heading.children.length > 0;
+
+  return (
+    <>
+      <div key={heading.id} className="relative">
+        <a
+          href={`#${heading.id}`}
+          onClick={(e) => {
+            e.preventDefault();
+            onHeadingClick(heading.id);
+          }}
+          className={`group hover:bg-muted/60 hover:text-foreground relative flex items-center rounded-md py-2 text-sm transition-all duration-200 ${
+            isActive
+              ? 'bg-primary/10 text-primary border-l-primary hover:text-primary hover:bg-primary/10 border-l-2 font-medium'
+              : 'text-muted-foreground hover:border-l-primary/40 hover:border-l-2'
+          } `}
+          style={{
+            paddingLeft: `${INDENT_BASE + depth * INDENT_PER_LEVEL}rem`,
+            paddingRight: hasChildren ? '0.5rem' : '0.75rem',
+          }}
+          aria-label={heading.text}
+          aria-current={isActive ? 'location' : undefined}
+        >
+          {/* Heading text */}
+          <span className="block flex-1 truncate leading-relaxed">{heading.text}</span>
+          {/* Active state indicator */}
+          {isActive && <span className="text-primary ml-2 text-xs">•</span>}
+        </a>
+      </div>
+
+      {/* Render children if expanded */}
+      {hasChildren && isExpanded && renderChildren && renderChildren(heading.children, depth + 1)}
+    </>
+  );
+};
+
+/**
+ * Memoized HeadingTreeItem for performance optimization
+ * Prevents unnecessary re-renders when props haven't changed
+ */
+export const HeadingTreeItem = memo(HeadingTreeItemComponent);

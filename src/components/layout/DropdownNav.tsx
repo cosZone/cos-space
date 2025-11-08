@@ -1,17 +1,20 @@
+import { memo } from 'react';
 import Popover from '@components/ui/popover';
 import { type Router } from '@constants/router';
+import { useToggle } from '@hooks/useToggle';
 import { Icon } from '@iconify/react';
 import { cn } from '@lib/utils';
-import { useState } from 'react';
+import { withFloatingErrorBoundary } from '@components/common/FloatingErrorBoundary';
 
 interface DropdownNavProps {
   item: Router;
   className?: string;
 }
 
-export default function DropdownNav({ item, className }: DropdownNavProps) {
-  const [isOpen, setIsOpen] = useState(false);
+const DropdownNavComponent = ({ item, className }: DropdownNavProps) => {
+  const { isOpen, setIsOpen } = useToggle({ defaultOpen: false });
   const { name, icon, children } = item;
+
   return (
     <Popover
       open={isOpen}
@@ -50,6 +53,9 @@ export default function DropdownNav({ item, className }: DropdownNavProps) {
           'after:-translate-x-1/2 after:bg-white after:transition-all after:duration-300 after:content-[""]',
           className,
         )}
+        aria-expanded={isOpen}
+        aria-haspopup="true"
+        aria-label={`${name}菜单`}
       >
         {icon && <Icon icon={icon} className="mr-1.5" />}
         {name}
@@ -62,4 +68,12 @@ export default function DropdownNav({ item, className }: DropdownNavProps) {
       </button>
     </Popover>
   );
-}
+};
+
+// Memoize component for performance
+const DropdownNav = memo(DropdownNavComponent);
+
+// Wrap with error boundary for graceful error handling
+const DropdownNavWithErrorBoundary = withFloatingErrorBoundary(DropdownNav, 'DropdownNav');
+
+export default DropdownNavWithErrorBoundary;

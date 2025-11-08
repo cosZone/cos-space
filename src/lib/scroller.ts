@@ -25,7 +25,7 @@ export const springScrollTo = (y: number | 'bottom') => {
   const scrollHeight =
     // FIXME latest version framer will ignore keyframes value `0`
     document.documentElement.scrollHeight || document.body.scrollHeight;
-  // console.log('=======scroll', { scrollTop, y });
+
   const stopSpringScrollHandler = () => {
     animation.stop();
   };

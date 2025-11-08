@@ -4,7 +4,7 @@ import { Badge } from '@components/ui/badge';
 import { Button } from '@components/ui/button';
 import { Routes } from '@constants/router';
 import { defaultCoverList } from '@constants/site-config';
-import { getCategoryArr, getCategoryLink } from '@lib/content';
+import { buildCategoryPath, getCategoryArr } from '@lib/content';
 import { parseDate } from '@lib/datetime';
 import { routeBuilder } from '@lib/route';
 import { cn } from '@lib/utils';
@@ -28,7 +28,7 @@ const finalCover = cover ?? randomCover ?? defaultCoverList[0];
 const href = routeBuilder(Routes.Post, data as BlogPost);
 
 const categoryArr = getCategoryArr(categories?.[0]);
-const categoryLink = await getCategoryLink(categoryArr);
+const categoryLink = await buildCategoryPath(categoryArr);
 const categoryStr = categoryArr?.length ? categoryArr[categoryArr.length - 1] : '';
 ---
 

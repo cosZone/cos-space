@@ -1,3 +1,27 @@
+/**
+ * Badge Component
+ *
+ * A small visual indicator for labels, tags, categories, or status.
+ * Typically used to highlight important information or metadata.
+ *
+ * @example
+ * ```tsx
+ * // Basic usage
+ * <Badge>New</Badge>
+ *
+ * // With variants
+ * <Badge variant="secondary">Beta</Badge>
+ * <Badge variant="destructive">Error</Badge>
+ * <Badge variant="outline">Pending</Badge>
+ *
+ * // With custom styling
+ * <Badge className="uppercase">Featured</Badge>
+ *
+ * // As a tag (Shoka theme style)
+ * <Badge variant="shoka-tag">React</Badge>
+ * ```
+ */
+
 import * as React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 
@@ -23,8 +47,9 @@ const badgeVariants = cva(
 
 export interface BadgeProps extends React.HTMLAttributes<HTMLDivElement>, VariantProps<typeof badgeVariants> {}
 
-function Badge({ className, variant, ...props }: BadgeProps) {
-  return <div className={cn(badgeVariants({ variant }), className)} {...props} />;
-}
+const Badge = React.forwardRef<HTMLDivElement, BadgeProps>(({ className, variant, ...props }, ref) => {
+  return <div ref={ref} className={cn(badgeVariants({ variant }), className)} {...props} />;
+});
+Badge.displayName = 'Badge';
 
 export { Badge, badgeVariants };

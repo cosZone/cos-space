@@ -1,5 +1,5 @@
 ---
-import { categoryMap } from '@constants/category';
+import { CONTENT_PADDING } from '@constants/layout';
 import { getPostsByCategory, type Category } from '@lib/content';
 import SubCategory from './SubCategory.astro';
 import { cn } from '@lib/utils';
@@ -15,16 +15,16 @@ const { categories, countMap, rootCategory } = Astro.props;
 const posts = await getPostsByCategory(rootCategory?.name ?? '');
 ---
 
-<div class="shadow-box mx-0 flex w-full flex-col bg-gradient-start px-6 py-4 md:px-3 md:py-2">
+<div class={`shadow-box mx-0 flex w-full flex-col bg-gradient-start ${CONTENT_PADDING.normal}`}>
   <h2
-    class={cn('shoka-decoration-circle px-7.5 group relative py-5 text-2xl/9 font-bold', {
+    class={cn('shoka-decoration-circle px-6 group relative py-5 text-2xl/9 font-bold', {
       'has-children': posts?.length || rootCategory?.children?.length,
     })}
   >
-    <a href="/" class="dashed-border border-b text-muted-foreground hover:text-blue"> 首页 </a>
-    <span class="mx-2 text-xl text-muted-foreground">/</span>
+    <a href="/" class="dashed-border text-muted-foreground hover:text-blue border-b"> 首页 </a>
+    <span class="text-muted-foreground mx-2 text-xl">/</span>
     <span class="text-muted-foreground">{rootCategory?.name}</span>
-    <span class="mx-2 text-xl text-muted-foreground">分类</span>
+    <span class="text-muted-foreground mx-2 text-xl">分类</span>
   </h2>
 
   <div class="flex w-full flex-col">
@@ -45,8 +45,8 @@ const posts = await getPostsByCategory(rootCategory?.name ?? '');
       posts?.length && (
         <div class="category-second-level-container flex flex-col">
           {posts.map((post) => (
-            <p class="shoka-decoration-circle group relative px-7.5 py-2 text-base/9 text-primary hover:text-blue">
-              <span class="mr-2 text-xs text-muted-foreground">{parseDate(post?.data?.date, 'YY-MM-DD')}</span>
+            <p class="shoka-decoration-circle group text-primary hover:text-blue relative px-6 py-2 text-base/9">
+              <span class="text-muted-foreground mr-2 text-xs">{parseDate(post?.data?.date, 'YY-MM-DD')}</span>
               <a href={'/post/' + post?.data?.link} class="dashed-border">
                 {post?.data?.title}
               </a>
