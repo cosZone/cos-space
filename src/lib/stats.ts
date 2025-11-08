@@ -1,0 +1,47 @@
+/**
+ * Site statistics utilities
+ */
+
+import { getCollection } from 'astro:content';
+import readingTime from 'reading-time';
+
+/**
+ * Calculate total word count and reading time for all posts
+ */
+export async function getSiteStats() {
+  const posts = await getCollection('blog');
+
+  let totalWords = 0;
+  let totalMinutes = 0;
+
+  for (const post of posts) {
+    const content = post.body || '';
+    const stats = readingTime(content);
+
+    totalWords += stats.words;
+    totalMinutes += Math.ceil(stats.minutes);
+  }
+
+  // Format word count (e.g., 871k)
+  const formatWordCount = (count: number): string => {
+    if (count >= 1000) {
+      return `${Math.floor(count / 1000)}k`;
+    }
+    return count.toString();
+  };
+
+  // Format reading time (e.g., 13:12 for 13 hours 12 minutes)
+  const formatReadingTime = (minutes: number): string => {
+    const hours = Math.floor(minutes / 60);
+    const mins = minutes % 60;
+    return `${hours}:${mins.toString().padStart(2, '0')}`;
+  };
+
+  return {
+    totalWords,
+    totalMinutes,
+    formattedWords: formatWordCount(totalWords),
+    formattedTime: formatReadingTime(totalMinutes),
+    postCount: posts.length,
+  };
+}

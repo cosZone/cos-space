@@ -2,7 +2,7 @@ type SiteConfig = {
   title: string; // 网站标题名称（banner 上）
   alternate?: string; // 网站英文短名
   subtitle?: string; // 副标题
-  name: string; // 作者名称
+  name: string; // 站点作者
   description?: string; // 站点简介（一段话）
   avatar?: string; // 站点头像 logo.png or url
   showLogo?: boolean; // 是否显示 logo，否则用 alternate 当·logo
@@ -10,6 +10,7 @@ type SiteConfig = {
   // theme
   enableJSGridCover?: boolean; // 是否启用 color4bg 的背景 (写了不舍得扔)
   site: string; // 站点线上域名 用于 RSS 生成等
+  startYear?: number; // 站点创建年份
 
   featuredCategories?: {
     link: string;
@@ -57,9 +58,9 @@ export const siteConfig: SiteConfig = {
   avatar: 'https://ysx.cosine.ren/img/avatar.jpg', // 站点头像 logo.png or url
   showLogo: true, // 是否显示 logo 否则用 title
   author: 'cos', // 作者名称
-
   enableJSGridCover: false, // 是否启用 color4bg 的背景
   site: 'https://space.cosine.ren/',
+  startYear: 2020,
   featuredCategories: [
     {
       link: 'life',

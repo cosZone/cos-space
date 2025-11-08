@@ -13,6 +13,7 @@ import '@fontsource/noto-serif-jp';
 import { ClientRouter } from 'astro:transitions';
 import LoadingIndicator from 'astro-loading-indicator/component';
 import Header from '@components/layout/Header.astro';
+import Footer from '@components/layout/Footer.astro';
 import '@styles/index.css';
 import { seoConfig, siteConfig } from '@constants/site-config';
 import { Tooltips } from 'astro-tooltips';
@@ -88,7 +89,7 @@ const { title = seoConfig.title, description = seoConfig.description, siderType 
     <div class="flex min-h-screen flex-col text-black dark:text-white">
       <Header />
       <main class="relative flex grow flex-col">{(<slot />)}</main>
-      {/* <Footer className="mt-auto" /> */}
+      <Footer className="mt-auto" />
       <FloatingGroup />
       <MobileDrawer type={siderType} />
     </div>
