@@ -1,6 +1,7 @@
+@import './reset.css';
 @import 'tailwindcss';
-
 @config '../../../tailwind.config.mjs';
+@import './utils.css';
 
 /*
   The default border color has changed to `currentColor` in Tailwind CSS v4,
@@ -22,55 +23,6 @@
     @apply cursor-pointer;
   }
 }
-
-@utility flex-center {
-  @apply flex items-center justify-center;
-}
-@utility flex-center-x {
-  @apply flex flex-row items-center justify-center;
-}
-@utility flex-center-y {
-  @apply flex flex-col items-center justify-center;
-}
-@utility shadow-home-sider {
-  box-shadow: var(--box-bg-shadow) 50px -10px 30px -50px;
-}
-@utility shadow-card {
-  box-shadow: 0 0.625rem 1.875rem -0.9375rem var(--box-bg-shadow);
-}
-@utility shadow-card-darker {
-  box-shadow: 0 0 2rem var(--box-bg-shadow);
-}
-@utility shadow-box {
-  box-shadow: var(--box-bg-shadow) 0px 50px 50px -50px;
-  @apply md:shadow-none;
-}
-@utility shadow-text {
-  text-shadow: 0 0.2rem 0.3rem rgba(0, 0, 0, 0.5);
-}
-@utility dashed-border {
-  border-bottom: 0.0625rem dashed hsl(var(--grey-4));
-  @apply hover:border-blue group-hover:border-blue group-hover:text-blue;
-}
-@utility with-background {
-  &#site-header {
-    color: currentColor;
-    @apply border-border bg-gradient-header text-foreground border-b;
-    button,
-    a {
-      text-shadow: none;
-      &::after {
-        transition-duration: 400ms;
-        @apply bg-foreground;
-      }
-    }
-  }
-}
-
-@utility clip-path-none {
-  clip-path: none;
-}
-
 @layer base {
   @view-transition {
     navigation: auto;

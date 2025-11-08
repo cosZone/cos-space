@@ -1,0 +1,167 @@
+@layer reset {
+  html {
+    color-scheme: light dark;
+    tab-size: 2;
+    hanging-punctuation: first allow-end last;
+    word-break: break-word;
+    text-autospace: normal;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  h1,
+  h2 {
+    font-weight: 900;
+    letter-spacing: -0.02rem;
+  }
+  h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 /* FUTURE :heading */ {
+    text-wrap: balance;
+    margin-block-start: 0;
+  }
+
+  p,
+  li,
+  dd {
+    text-wrap: pretty;
+  }
+
+  sub,
+  sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+  }
+  sub {
+    inset-block-end: -0.25em;
+  }
+  sup {
+    inset-block-start: -0.5em;
+  }
+
+  img,
+  video,
+  iframe {
+    display: block;
+    max-inline-size: 100%;
+    border-style: none;
+  }
+
+  figure {
+    inline-size: fit-content;
+    margin-inline: auto;
+  }
+  figcaption {
+    contain: inline-size;
+    font-size: 90%;
+  }
+
+  label {
+    display: block;
+  }
+  input:not(:where([type='submit'], [type='checkbox'], [type='radio'], [type='button'], [type='reset'])) {
+    inline-size: 100%;
+  }
+  textarea {
+    field-sizing: content;
+    min-block-size: 5lh;
+    inline-size: 100%;
+    max-inline-size: 100%;
+  }
+
+  pre,
+  code,
+  kbd,
+  samp {
+    font-family: ui-monospace, SFMono-Regular, monospace;
+  }
+
+  svg {
+    fill: currentColor;
+  }
+
+  [aria-disabled='true' i],
+  [disabled] {
+    cursor: not-allowed;
+  }
+  [disabled],
+  label:has(input[disabled]) {
+    opacity: 0.5;
+
+    [disabled] {
+      opacity: 1;
+    }
+  }
+
+  pre {
+    white-space: pre-wrap;
+    background: CanvasText;
+    color: Canvas;
+    padding: 1.5rem;
+  }
+
+  hr {
+    border-style: solid;
+    border-width: 1px 0 0;
+    color: inherit;
+    height: 0;
+    overflow: visible;
+    margin-block: 2.5rem;
+  }
+
+  :target {
+    scroll-margin: 3rlh;
+  }
+
+  table {
+    caption-side: bottom;
+    border-collapse: collapse;
+    td {
+      font-size: 90%;
+    }
+    td,
+    th {
+      word-break: normal;
+      border: 1px solid gray;
+      padding: 0.5rem;
+    }
+  }
+  [role='region'][aria-labelledby][tabindex] {
+    overflow: auto;
+  }
+
+  .screenreader-only:not(:focus):not(:active) {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+  :focus-visible {
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    @view-transition {
+      navigation: auto;
+    }
+
+    html {
+      interpolate-size: allow-keywords;
+      &:focus-within {
+        scroll-behavior: smooth;
+      }
+    }
+  }
+}

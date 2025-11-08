@@ -89,7 +89,7 @@ const categoryStr = categoryArr?.length ? categoryArr[categoryArr.length - 1] : 
     <div class="mt-1 flex flex-col space-y-1.5 p-0">
       <a href={href} aria-label="post-link"
         ><h3
-          class="text-primary hover:text-blue truncate text-xl leading-none font-bold tracking-tight transition-colors duration-300"
+          class="text-primary hover:text-blue line-clamp-1 truncate text-xl font-bold tracking-tight transition-colors duration-300"
         >
           {title}
         </h3>
@@ -98,7 +98,7 @@ const categoryStr = categoryArr?.length ? categoryArr[categoryArr.length - 1] : 
     <p class="text-muted-foreground line-clamp-3 h-15 text-sm md:h-auto md:max-h-15">
       {description ?? body?.slice(0, 150)}
     </p>
-    <div class={cn('mt-2 flex @container gap-2 ', { 'justify-end': !leftClip }, 'md:justify-start')}>
+    <div class={cn('mt-1 flex @container gap-2', { 'justify-end': !leftClip }, 'md:justify-start')}>
       {
         data?.data.tags?.length
           ? data?.data.tags.map((tag: string, index: number) => (
