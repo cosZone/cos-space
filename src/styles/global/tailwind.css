@@ -42,7 +42,7 @@
   box-shadow: 0 0 2rem var(--box-bg-shadow);
 }
 @utility shadow-box {
-  box-shadow: var(--box-bg-shadow) 0px 25px 20px -20px;
+  box-shadow: var(--box-bg-shadow) 0px 50px 50px -50px;
   @apply md:shadow-none;
 }
 @utility shadow-text {

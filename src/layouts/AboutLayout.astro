@@ -5,6 +5,7 @@ import { CONTENT_PADDING } from '@constants/layout';
 import { seoConfig } from '@constants/site-config';
 import Layout from './Layout.astro';
 import TwoColumnLayout from './TwoColumnLayout.astro';
+import Remark from '@/components/common/Remark.astro';
 
 export interface Props {
   frontmatter: {
@@ -24,6 +25,7 @@ const { frontmatter } = Astro.props;
       <div class=`prose md:prose-sm dark:prose-invert`>
         <slot />
       </div>
+      <Remark />
     </div>
   </TwoColumnLayout>
 </Layout>

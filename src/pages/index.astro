@@ -1,10 +1,9 @@
 ---
 import HomeSider from '@components/layout/HomeSider.astro';
-import PostFooter from '@components/post/PostFooter.astro';
 import PostList from '@components/post/PostList.astro';
 import Cover from '@components/ui/cover/Cover.astro';
-import { seoConfig } from '@constants/site-config';
 import { CONTENT_PADDING } from '@constants/layout';
+import { seoConfig } from '@constants/site-config';
 import Layout from '@layouts/Layout.astro';
 import TwoColumnLayout from '@layouts/TwoColumnLayout.astro';
 import { getSortedPosts } from '@lib/content';
@@ -41,6 +40,5 @@ const page: Page<BlogPost> = {
     >
       <PostList posts={posts} page={page} showPaginator={true} baseUrl="/posts" isHomePage={true} />
     </div>
-    <PostFooter />
   </TwoColumnLayout>
 </Layout>
