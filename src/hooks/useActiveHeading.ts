@@ -65,8 +65,9 @@ export function useActiveHeading({ offsetTop = 120, throttleDelay = 100 }: UseAc
           }
         }
 
-        if (current && current !== activeId) {
-          setActiveId(current);
+        // Use functional update to avoid dependency on activeId
+        if (current) {
+          setActiveId((prev) => (prev !== current ? current : prev));
         }
 
         timeoutId = null;
@@ -85,7 +86,7 @@ export function useActiveHeading({ offsetTop = 120, throttleDelay = 100 }: UseAc
         clearTimeout(timeoutId);
       }
     };
-  }, [activeId, offsetTop, throttleDelay]);
+  }, [offsetTop, throttleDelay]); // Removed activeId from dependencies
 
   return activeId;
 }

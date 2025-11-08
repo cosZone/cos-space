@@ -104,9 +104,16 @@ export function getCategoryLinks(categories?: Category[], parentLink?: string): 
  */
 export function getCategoryNameByLink(link: string): string {
   if (!link) return '';
-  const arr = link.split('/');
-  const last = arr[arr.length - 1];
-  const res = Object.keys(categoryMap).find((key) => categoryMap[key] === last) ?? '';
+
+  // Remove leading/trailing slashes and split
+  const cleanLink = link.replace(/^\/+|\/+$/g, '');
+  if (!cleanLink) return '';
+
+  const segments = cleanLink.split('/').filter(Boolean); // Filter out empty segments
+  if (segments.length === 0) return '';
+
+  const lastSegment = segments[segments.length - 1];
+  const res = Object.keys(categoryMap).find((key) => categoryMap[key] === lastSegment) ?? '';
   return res;
 }
 
