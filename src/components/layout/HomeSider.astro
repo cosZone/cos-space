@@ -48,16 +48,34 @@ const { prevPost, nextPost } =
   }
 
   <sider-content class="w-full flex-1 overflow-auto" data-type={type} data-default-type={defaultSegmentType}>
-    <div slot="info">
+    <div slot="info" class="sider-slot" data-slot-type="info">
       <HomeInfo />
     </div>
-    <div slot="directory">
+    <div slot="directory" class="sider-slot" data-slot-type="directory">
       {type === HomeSiderType.POST && <TableOfContents client:load />}
     </div>
-    <div slot="series">
+    <div slot="series" class="sider-slot" data-slot-type="series">
       {type === HomeSiderType.POST && <SeriesPostList client:load posts={seriesPosts} currentPostSlug={post?.slug} />}
     </div>
   </sider-content>
+
+  <!-- 内联脚本：在 DOM 解析后立即隐藏不需要的内容，避免闪烁 -->
+  <script is:inline data-astro-rerun>
+    (function () {
+      const container = document.querySelector('sider-content');
+      if (!container) return;
+
+      const defaultType = container.getAttribute('data-default-type') || 'info';
+      const slots = container.querySelectorAll('.sider-slot');
+
+      slots.forEach((slot) => {
+        const slotType = slot.getAttribute('data-slot-type');
+        if (slotType !== defaultType) {
+          slot.classList.add('hidden');
+        }
+      });
+    })();
+  </script>
 
   {
     type === HomeSiderType.POST && (
@@ -105,35 +123,69 @@ const { prevPost, nextPost } =
     }
 
     initContent() {
-      // 首页直接显示HomeInfo
+      // 首页直接显示HomeInfo（无动画）
       if (this.pageType === HomeSiderType.HOME) {
-        this.showContent(HomeSiderSegmentType.INFO);
+        this.showContent(HomeSiderSegmentType.INFO, true);
       } else {
-        // 设置初始值
+        // 设置初始值（无动画）
         const initialType = (this.defaultType as HomeSiderSegmentType) || HomeSiderSegmentType.INFO;
         homeSiderSegmentType.set(initialType);
-        this.showContent(initialType);
+        this.showContent(initialType, true);
 
-        // 监听状态变化
+        // 监听状态变化（有动画）
         homeSiderSegmentType.listen((value) => {
-          this.showContent(value);
+          this.showContent(value, false);
         });
       }
     }
 
-    showContent(type: HomeSiderSegmentType) {
-      // 隐藏所有内容
-      this.infoContent?.classList.add('hidden');
-      this.directoryContent?.classList.add('hidden');
-      this.seriesContent?.classList.add('hidden');
-
-      // 根据类型显示对应内容
+    showContent(type: HomeSiderSegmentType, skipAnimation = false) {
+      // 确定目标内容
+      let targetContent: HTMLElement | null = null;
       if (type === HomeSiderSegmentType.DIRECTORY) {
-        this.directoryContent?.classList.remove('hidden');
+        targetContent = this.directoryContent;
       } else if (type === HomeSiderSegmentType.SERIES) {
-        this.seriesContent?.classList.remove('hidden');
+        targetContent = this.seriesContent;
       } else {
-        this.infoContent?.classList.remove('hidden');
+        targetContent = this.infoContent;
+      }
+
+      // 如果是初始化或者跳过动画，直接切换
+      if (skipAnimation) {
+        // 先隐藏所有
+        [this.infoContent, this.directoryContent, this.seriesContent].forEach((content) => {
+          content?.classList.add('hidden');
+        });
+        // 再显示目标
+        targetContent?.classList.remove('hidden');
+        return;
+      }
+
+      // 如果已经在显示目标内容，直接返回
+      if (targetContent && !targetContent.classList.contains('hidden')) {
+        return;
+      }
+
+      // 隐藏其他内容（添加退出动画）
+      [this.infoContent, this.directoryContent, this.seriesContent].forEach((content) => {
+        if (content && content !== targetContent && !content.classList.contains('hidden')) {
+          content.classList.add('exiting');
+          setTimeout(() => {
+            content.classList.add('hidden');
+            content.classList.remove('exiting');
+          }, 200);
+        }
+      });
+
+      // 显示目标内容（添加进入动画）
+      if (targetContent) {
+        targetContent.classList.remove('hidden');
+        requestAnimationFrame(() => {
+          targetContent?.classList.add('entering');
+          setTimeout(() => {
+            targetContent?.classList.remove('entering');
+          }, 200);
+        });
       }
     }
   }
@@ -141,3 +193,37 @@ const { prevPost, nextPost } =
   // 注册自定义元素
   customElements.define('sider-content', SiderContent);
 </script>
+
+<style>
+  sider-content {
+    position: relative;
+  }
+
+  .sider-slot {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+
+  .sider-slot.hidden {
+    display: none;
+  }
+
+  /* 默认无动画，适用于 prefers-reduced-motion: reduce */
+  .sider-slot.entering,
+  .sider-slot.exiting {
+    animation: none;
+  }
+
+  /* 只在用户未设置 reduce-motion 时应用动画 */
+  @media (prefers-reduced-motion: no-preference) {
+    .sider-slot.entering {
+      animation: slide-in-from-right 0.2s ease-in-out;
+    }
+
+    .sider-slot.exiting {
+      animation: slide-out-to-left 0.2s ease-in-out;
+    }
+  }
+</style>

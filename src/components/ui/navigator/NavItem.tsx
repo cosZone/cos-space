@@ -1,4 +1,3 @@
-import { delayOpenAnimVariants } from '@constants/anim/variants';
 import { cn } from '@lib/utils';
 import type { ClassValue } from 'clsx';
 import { motion } from 'motion/react';
@@ -43,9 +42,9 @@ function NavItem({
         {selected && (
           <motion.div
             className={cn(
-              'absolute inset-x-0 -bottom-1.5 border-t-2 border-primary',
+              'border-primary absolute inset-x-0 -bottom-1.5 border-t-2',
               {
-                'inset-0 -z-10 rounded-lg border-none bg-gradient-pink': type === 'sider',
+                'bg-gradient-pink inset-0 -z-10 rounded-lg border-none': type === 'sider',
               },
               indicatorClass,
             )}
