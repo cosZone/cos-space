@@ -23,14 +23,6 @@
   }
 }
 
-@utility font-default {
-  font-family:
-    'Poppins',
-    -apple-system,
-    'PingFang SC',
-    'Microsoft YaHei',
-    sans-serif;
-}
 @utility flex-center {
   @apply flex items-center justify-center;
 }
@@ -78,7 +70,7 @@
 
 @layer base {
   @view-transition {
-    navigation: auto; /* enabled! */
+    navigation: auto;
   }
   body {
     overscroll-behavior-y: none;

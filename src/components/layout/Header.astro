@@ -2,6 +2,7 @@
 import LogoSvg from '@assets/svg/logo.svg?react';
 import { MenuIcon } from '@components/ui/MenuIcon';
 import { siteConfig } from 'constants/site-config';
+import { HEADER_SPACING, MAX_WIDTH } from '@constants/layout';
 import Navigator from './Navigator.astro';
 
 const { alternate, title, showLogo } = siteConfig;
@@ -9,10 +10,10 @@ const { alternate, title, showLogo } = siteConfig;
 
 <div
   id="site-header"
-  class="shadow-text tablet:px-0 fixed inset-x-0 top-0 z-10 gap-4 px-4 py-2.5 text-white select-none md:py-2"
+  class={`shadow-text fixed inset-x-0 top-0 z-10 gap-4 py-2.5 text-white select-none md:py-2 ${HEADER_SPACING.outer}`}
   transition:name="site-header"
 >
-  <div class="desktop:max-w-8xl desktop:px-0 mx-auto flex items-center justify-between px-5 md:w-full md:px-2">
+  <div class={`mx-auto flex items-center justify-between md:w-full ${MAX_WIDTH.content} ${HEADER_SPACING.inner}`}>
     <!-- 移动端菜单按钮 占位符 -->
     <div class="tablet:block hidden size-11">
       <!-- PlaceHolder -->
@@ -38,6 +39,6 @@ const { alternate, title, showLogo } = siteConfig;
 <!-- 移动端菜单按钮 -->
 <MenuIcon
   client:load
-  className="tablet:flex fixed top-0 left-4 z-52 hidden h-15 transition-transform"
+  className="tablet:flex fixed top-0 left-3 z-52 hidden h-15 transition-transform"
   id="mobile-menu-container"
 />

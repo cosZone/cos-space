@@ -1,6 +1,7 @@
 ---
 import HomeSider from '@components/layout/HomeSider.astro';
 import Cover from '@components/ui/cover/Cover.astro';
+import { CONTENT_PADDING } from '@constants/layout';
 import { seoConfig } from '@constants/site-config';
 import Layout from './Layout.astro';
 import TwoColumnLayout from './TwoColumnLayout.astro';
@@ -19,8 +20,8 @@ const { frontmatter } = Astro.props;
   <TwoColumnLayout>
     <Cover slot="cover" />
     <HomeSider slot="sider" />
-    <div class="shadow-box bg-gradient-start mx-0 flex w-full flex-col gap-8 p-4 pt-8 md:px-3 md:py-2">
-      <div class="prose dark:prose-invert tablet:max-w-[calc(100vw-2.5rem)] tablet:w-auto w-[calc(100vw-20rem)] max-w-5xl">
+    <div class={`shadow-box bg-gradient-start mx-0 flex w-full flex-col gap-8 ${CONTENT_PADDING.standard}`}>
+      <div class="prose dark:prose-invert w-full max-w-5xl">
         <slot />
       </div>
     </div>

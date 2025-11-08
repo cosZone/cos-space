@@ -4,6 +4,7 @@ import PostFooter from '@components/post/PostFooter.astro';
 import PostList from '@components/post/PostList.astro';
 import Cover from '@components/ui/cover/Cover.astro';
 import { seoConfig } from '@constants/site-config';
+import { CONTENT_PADDING } from '@constants/layout';
 import Layout from '@layouts/Layout.astro';
 import TwoColumnLayout from '@layouts/TwoColumnLayout.astro';
 import { getSortedPosts } from '@lib/content';
@@ -21,7 +22,9 @@ const { page } = Astro.props;
   <TwoColumnLayout>
     <Cover slot="cover" />
     <HomeSider slot="sider" />
-    <div class="shadow-box bg-gradient-start tablet:shadow-none flex flex-col gap-4 overflow-hidden p-4 pt-8 md:px-1 md:py-2">
+    <div
+      class={`shadow-box bg-gradient-start tablet:shadow-none flex flex-col gap-4 overflow-hidden ${CONTENT_PADDING.standard}`}
+    >
       <PostList posts={page.data} page={page} />
     </div>
     <PostFooter />

@@ -4,6 +4,7 @@ import Remark from '@components/common/Remark.astro';
 import HomeSider from '@components/layout/HomeSider.astro';
 import Cover from '@components/ui/cover/Cover.astro';
 import { HomeSiderType } from '@constants/enum';
+import { CONTENT_PADDING } from '@constants/layout';
 import { siteConfig } from '@constants/site-config';
 import Layout from '@layouts/Layout.astro';
 import TwoColumnLayout from '@layouts/TwoColumnLayout.astro';
@@ -65,7 +66,7 @@ if (categoryArr?.length) {
   <TwoColumnLayout>
     <Cover slot="cover" data={post} />
     <HomeSider slot="sider" type={HomeSiderType.POST} />
-    <div class="shadow-box bg-gradient-start flex flex-col gap-2 p-4 pt-6 md:px-5 md:py-4">
+    <div class={`shadow-box bg-gradient-start flex flex-col gap-2 ${CONTENT_PADDING.standard}`}>
       <!-- Breadcrumb Navigation -->
       <nav class="text-muted-foreground flex items-center gap-2 text-sm">
         <div class="flex items-center gap-1">
@@ -91,9 +92,7 @@ if (categoryArr?.length) {
           ))
         }
       </nav>
-      <article
-        class="prose md:prose-sm dark:prose-invert tablet:max-w-[calc(100vw-2.5rem)] tablet:w-auto w-[calc(100vw-20rem)] max-w-5xl"
-      >
+      <article class="prose md:prose-sm dark:prose-invert w-full max-w-5xl">
         <CustomContent Content={Content} />
       </article>
       <Remark />
