@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import Popover from '@components/ui/popover';
 import { type Router } from '@constants/router';
 import { useToggle } from '@hooks/useToggle';
@@ -10,7 +11,7 @@ interface DropdownNavProps {
   className?: string;
 }
 
-function DropdownNav({ item, className }: DropdownNavProps) {
+const DropdownNavComponent = ({ item, className }: DropdownNavProps) => {
   const { isOpen, setIsOpen } = useToggle({ defaultOpen: false });
   const { name, icon, children } = item;
 
@@ -67,7 +68,10 @@ function DropdownNav({ item, className }: DropdownNavProps) {
       </button>
     </Popover>
   );
-}
+};
+
+// Memoize component for performance
+const DropdownNav = memo(DropdownNavComponent);
 
 // Wrap with error boundary for graceful error handling
 const DropdownNavWithErrorBoundary = withFloatingErrorBoundary(DropdownNav, 'DropdownNav');

@@ -11,9 +11,9 @@ export type { Category, CategoryListResult } from './content/types';
 // Export category utilities
 export {
   addCategoryRecursively,
+  buildCategoryPath,
   getCategoryArr,
   getCategoryByLink,
-  getCategoryLink,
   getCategoryLinks,
   getCategoryList,
   getCategoryNameByLink,

@@ -155,11 +155,18 @@ export function getParentCategory(category: Category | null, categories: Categor
 }
 
 /**
- * 传入 getCategoryArr 返回的数组, 返回分类链接
+ * Build category path from category names
+ * @param categoryNames Array of category names or single category name
+ * @returns Category path like "/categories/note/front-end"
  */
-export async function getCategoryLink(categories: string[]): Promise<string> {
-  if (!categories?.length) return '';
-  return '/categories/' + categories.map((c) => categoryMap[c]).join('/');
+export function buildCategoryPath(categoryNames: string | string[]): string {
+  if (!categoryNames) return '';
+
+  const names = Array.isArray(categoryNames) ? categoryNames : [categoryNames];
+  if (names.length === 0) return '';
+
+  const slugs = names.map((name) => categoryMap[name]);
+  return '/categories/' + slugs.join('/');
 }
 
 /**

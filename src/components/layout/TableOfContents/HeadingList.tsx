@@ -5,6 +5,7 @@
  * Handles the recursive rendering logic for nested headings.
  */
 
+import { memo, useCallback } from 'react';
 import type { Heading } from '@hooks/useHeadingTree';
 import { HeadingTreeItem } from './HeadingTreeItem';
 
@@ -24,23 +25,27 @@ interface HeadingListProps {
 /**
  * HeadingList - Renders a recursive list of table of contents headings
  */
-export function HeadingList({ headings, depth = 0, activeId, expandedIds, onHeadingClick }: HeadingListProps) {
+const HeadingListComponent = ({ headings, depth = 0, activeId, expandedIds, onHeadingClick }: HeadingListProps) => {
   /**
    * Recursively render child headings
+   * Memoized to prevent recreation on every render
    */
-  const renderChildren = (children: Heading[], childDepth: number): React.ReactElement[] => {
-    return children.map((child) => (
-      <HeadingTreeItem
-        key={child.id}
-        heading={child}
-        depth={childDepth}
-        isActive={activeId === child.id}
-        isExpanded={expandedIds.has(child.id)}
-        onHeadingClick={onHeadingClick}
-        renderChildren={renderChildren}
-      />
-    ));
-  };
+  const renderChildren = useCallback(
+    (children: Heading[], childDepth: number): React.ReactElement[] => {
+      return children.map((child) => (
+        <HeadingTreeItem
+          key={child.id}
+          heading={child}
+          depth={childDepth}
+          isActive={activeId === child.id}
+          isExpanded={expandedIds.has(child.id)}
+          onHeadingClick={onHeadingClick}
+          renderChildren={renderChildren}
+        />
+      ));
+    },
+    [activeId, expandedIds, onHeadingClick],
+  );
 
   return (
     <>
@@ -57,4 +62,10 @@ export function HeadingList({ headings, depth = 0, activeId, expandedIds, onHead
       ))}
     </>
   );
-}
+};
+
+/**
+ * Memoized HeadingList for performance optimization
+ * Prevents unnecessary re-renders when props haven't changed
+ */
+export const HeadingList = memo(HeadingListComponent);

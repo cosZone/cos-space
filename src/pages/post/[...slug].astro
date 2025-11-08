@@ -1,15 +1,15 @@
 ---
+import CustomContent from '@components/common/CustomContent.astro';
+import Remark from '@components/common/Remark.astro';
 import HomeSider from '@components/layout/HomeSider.astro';
 import Cover from '@components/ui/cover/Cover.astro';
-import CustomContent from '@components/common/CustomContent.astro';
 import { HomeSiderType } from '@constants/enum';
 import { siteConfig } from '@constants/site-config';
 import Layout from '@layouts/Layout.astro';
 import TwoColumnLayout from '@layouts/TwoColumnLayout.astro';
-import { getCategoryArr, getSortedPosts, getCategoryLink } from '@lib/content';
+import { buildCategoryPath, getCategoryArr, getSortedPosts } from '@lib/content';
 import { parseDate } from '@lib/datetime';
 import { Icon } from 'astro-icon/components';
-import Remark from '@components/common/Remark.astro';
 
 export async function getStaticPaths() {
   const postCollections = await getSortedPosts();
@@ -47,7 +47,7 @@ const breadcrumbCategories = [];
 if (categoryArr?.length) {
   for (let i = 0; i < categoryArr.length; i++) {
     const partialCategories = categoryArr.slice(0, i + 1);
-    const link = await getCategoryLink(partialCategories);
+    const link = await buildCategoryPath(partialCategories);
     breadcrumbCategories.push({
       name: categoryArr[i],
       link: link,

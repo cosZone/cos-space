@@ -2,10 +2,10 @@
  * Post-related utility functions
  */
 
-import { categoryMap } from '@constants/category';
 import { getCollection, type CollectionEntry } from 'astro:content';
 
 import type { BlogPost } from 'types/blog';
+import { buildCategoryPath } from './categories';
 
 /**
  * Get all posts sorted by date (newest first)
@@ -63,10 +63,15 @@ export function getPostLastCategory(post: BlogPost): { link: string; name: strin
   const firstCategory = categories[0];
   if (Array.isArray(firstCategory)) {
     if (!firstCategory.length) return { link: '', name: '' };
-    const link = '/categories/' + firstCategory.map((c) => categoryMap[c]).join('/');
-    return { link, name: firstCategory[firstCategory.length - 1] };
+    return {
+      link: buildCategoryPath(firstCategory),
+      name: firstCategory[firstCategory.length - 1],
+    };
   } else if (typeof firstCategory === 'string') {
-    return { link: '/categories/' + categoryMap[firstCategory], name: firstCategory };
+    return {
+      link: buildCategoryPath(firstCategory),
+      name: firstCategory,
+    };
   }
 
   return { link: '', name: '' };

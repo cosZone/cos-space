@@ -5,6 +5,7 @@
  * Supports nesting, active state highlighting, and recursive rendering of children.
  */
 
+import { memo } from 'react';
 import type { Heading } from '@hooks/useHeadingTree';
 
 // Constants
@@ -29,14 +30,14 @@ interface HeadingTreeItemProps {
 /**
  * HeadingTreeItem - A single item in the table of contents tree
  */
-export function HeadingTreeItem({
+const HeadingTreeItemComponent = ({
   heading,
   depth = 0,
   isActive = false,
   isExpanded = false,
   onHeadingClick,
   renderChildren,
-}: HeadingTreeItemProps) {
+}: HeadingTreeItemProps) => {
   const hasChildren = heading.children.length > 0;
 
   return (
@@ -71,4 +72,10 @@ export function HeadingTreeItem({
       {hasChildren && isExpanded && renderChildren && renderChildren(heading.children, depth + 1)}
     </>
   );
-}
+};
+
+/**
+ * Memoized HeadingTreeItem for performance optimization
+ * Prevents unnecessary re-renders when props haven't changed
+ */
+export const HeadingTreeItem = memo(HeadingTreeItemComponent);
