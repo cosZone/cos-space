@@ -33,7 +33,7 @@
   @apply flex flex-col items-center justify-center;
 }
 @utility shadow-home-sider {
-  box-shadow: var(--box-bg-shadow) 10px -10px 30px -6px;
+  box-shadow: var(--box-bg-shadow) 50px -10px 30px -50px;
 }
 @utility shadow-card {
   box-shadow: 0 0.625rem 1.875rem -0.9375rem var(--box-bg-shadow);

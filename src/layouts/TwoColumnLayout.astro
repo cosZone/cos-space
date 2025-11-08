@@ -13,7 +13,7 @@ const { className } = Astro.props;
   <slot name="cover" />
   <div
     class={cn(
-      'mx-auto md:mx-0 flex w-full items-start justify-center md:w-full overflow-x-hidden',
+      'mx-auto md:mx-0 flex w-full items-start justify-center md:w-full',
       MAX_WIDTH.content,
       LAYOUT_SPACING.twoColumnGap,
       className,
