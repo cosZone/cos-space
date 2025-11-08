@@ -76,14 +76,6 @@ export default {
           from: { opacity: '1', transform: 'translateX(0)' },
           to: { opacity: '0', transform: 'translateX(-12px)' },
         },
-        'fade-in': {
-          from: { opacity: '0' },
-          to: { opacity: '1' },
-        },
-        'fade-out': {
-          from: { opacity: '1' },
-          to: { opacity: '0' },
-        },
       },
       animation: {
         shake: 'shake 2s ease',
@@ -92,8 +84,6 @@ export default {
         'accordion-up': 'accordion-up 0.2s ease-out',
         'slide-in-from-right': 'slide-in-from-right 0.2s ease-in-out',
         'slide-out-to-left': 'slide-out-to-left 0.2s ease-in-out',
-        'fade-in': 'fade-in 0.05s ease-in-out',
-        'fade-out': 'fade-out 0.05s ease-in-out',
       },
       transitionDuration: {
         fast: `${animationTokens.duration.fast}ms`,
