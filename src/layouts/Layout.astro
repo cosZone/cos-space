@@ -88,8 +88,10 @@ const { title = seoConfig.title, description = seoConfig.description, siderType 
   <body>
     <div class="flex min-h-screen flex-col text-black dark:text-white">
       <Header />
-      <main class="relative flex grow flex-col">{(<slot />)}</main>
-      <Footer className="mt-auto" />
+      <main class="relative flex grow flex-col gap-4">
+        {(<slot />)}
+        <Footer />
+      </main>
       <FloatingGroup />
       <MobileDrawer type={siderType} />
     </div>

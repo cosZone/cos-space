@@ -17,8 +17,8 @@ const currentYear = new Date().getFullYear();
 const startYear = siteConfig?.startYear ?? currentYear;
 ---
 
-<footer class={cn('mt-auto py-8 md:py-6', className)}>
-  <div class={cn('mx-auto flex flex-col items-center gap-4 px-6 md:px-3', MAX_WIDTH.content)}>
+<footer class={cn('mt-auto py-6 md:py-4', className)}>
+  <div class={cn('mx-auto flex flex-col items-center gap-3 px-6 md:px-3', MAX_WIDTH.content)}>
     <!-- Site Stats -->
     <div class="text-muted-foreground flex flex-wrap items-center justify-center gap-6 text-sm md:gap-4">
       <span class="flex items-center gap-2 opacity-75 transition-opacity duration-300 hover:opacity-100" title="站点总字数">

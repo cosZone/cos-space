@@ -6,6 +6,7 @@ import { TableOfContents } from './TableOfContents/index';
 import HomeSiderSegmented from '@components/ui/segmented/HomeSiderSegmented';
 import { SeriesPostList } from '@components/post/SeriesPostList';
 import { SeriesNavigation } from '@components/post/SeriesNavigation';
+import { ScrollProgress } from './ScrollProgress';
 import { getSeriesPosts, getAdjacentSeriesPosts } from '@lib/content/posts';
 import type { BlogPost } from 'types/blog';
 
@@ -30,7 +31,7 @@ const { prevPost, nextPost } =
 <div
   class={cn(
     'page-home-sider shadow-home-sider sticky top-0 self-start flex min-w-64 max-w-[16rem] flex-col tablet:hidden overflow-auto h-screen items-center px-4 pb-',
-    type === HomeSiderType.HOME ? 'py-18' : 'py-4',
+    type === HomeSiderType.HOME ? 'pt-18' : 'pt-4',
     className,
   )}
   transition:name={isDrawer ? 'page-home-sider-drawer' : 'page-home-sider'}
@@ -82,6 +83,8 @@ const { prevPost, nextPost } =
       <SeriesNavigation client:load prevPost={prevPost} nextPost={nextPost} className="w-full px-2" />
     )
   }
+
+  <ScrollProgress client:load className="mt-auto w-full rounded-full pt-4" />
 </div>
 
 <script>
