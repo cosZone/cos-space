@@ -1,5 +1,6 @@
 import {
   FloatingFocusManager,
+  FloatingPortal,
   useClick,
   useDismiss,
   useHover,
@@ -70,20 +71,22 @@ function Popover({
       {cloneElement(children, getReferenceProps({ ref: refs.setReference, ...children.props }))}
       <AnimatePresence>
         {isOpen && (
-          <FloatingFocusManager context={context} modal={false}>
-            <motion.div
-              className={cn('z-10 rounded-ss-2xl rounded-ee-2xl bg-black/30 backdrop-blur-sm', className)}
-              initial={{ opacity: 0, scale: 0.85 }}
-              animate={{ opacity: 1, scale: 1, originY: 0 }}
-              exit={{ opacity: 0, scale: 0.85 }}
-              transition={animation.spring.popoverContent}
-              style={{ ...floatingStyles }}
-              {...motionProps}
-              {...getFloatingProps({ ref: refs.setFloating })}
-            >
-              {render({ close: () => setIsOpen(false) })}
-            </motion.div>
-          </FloatingFocusManager>
+          <FloatingPortal>
+            <FloatingFocusManager context={context} modal={false}>
+              <motion.div
+                className={cn('z-10 rounded-ss-2xl rounded-ee-2xl bg-black/30 backdrop-blur-sm', className)}
+                initial={{ opacity: 0, scale: 0.85 }}
+                animate={{ opacity: 1, scale: 1, originY: 0 }}
+                exit={{ opacity: 0, scale: 0.85 }}
+                transition={animation.spring.popoverContent}
+                style={{ ...floatingStyles }}
+                {...motionProps}
+                {...getFloatingProps({ ref: refs.setFloating })}
+              >
+                {render({ close: () => setIsOpen(false) })}
+              </motion.div>
+            </FloatingFocusManager>
+          </FloatingPortal>
         )}
       </AnimatePresence>
     </>
