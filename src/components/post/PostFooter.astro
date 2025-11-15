@@ -6,7 +6,7 @@ import RandomPostList from './RandomPostList.astro';
 const randomPosts = await getRandomPosts(10);
 ---
 
-<div class="tablet:grid-cols-1 desktop:px-3 grid grid-cols-2 gap-4 px-6 pt-8">
+<div class="tablet:grid-cols-1 desktop:px-3 grid grid-cols-2 gap-4 px-6">
   <RandomPostList posts={randomPosts} />
   <LatestComments />
 </div>

@@ -2,6 +2,7 @@
 import { cn } from '@lib/utils';
 import { LAYOUT_SPACING, MAX_WIDTH } from '@constants/layout';
 import PostFooter from '@/components/post/PostFooter.astro';
+import Footer from '@/components/layout/Footer.astro';
 
 interface Props {
   className?: string;
@@ -21,9 +22,10 @@ const { className } = Astro.props;
     )}
   >
     <slot name="sider" />
-    <div class="flex min-w-0 grow flex-col md:w-full">
+    <div class="flex min-w-0 grow flex-col gap-8 md:w-full">
       <slot />
       <PostFooter />
+      <Footer />
     </div>
   </div>
 </div>
