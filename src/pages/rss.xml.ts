@@ -4,11 +4,8 @@ import { siteConfig } from '@constants/site-config';
 import { getSortedPosts } from '@lib/content';
 import { getSanitizeHtml } from '@lib/utils';
 import type { APIContext } from 'astro';
-import MarkdownIt from 'markdown-it';
 import sanitizeHtml from 'sanitize-html';
 import type { BlogPost } from 'types/blog';
-
-const parser = new MarkdownIt();
 
 // 用于生成纯文本摘要的函数
 const generateTextSummary = (html?: string, length: number = 150): string => {

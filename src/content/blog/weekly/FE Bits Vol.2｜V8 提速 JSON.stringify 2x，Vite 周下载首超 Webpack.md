@@ -1,5 +1,5 @@
 ---
-title: FE Bits 前端周周谈 Vol.2｜V8 提速 JSON.stringify 2x，Vite 周下载首超 Webpack
+title: FE Bits Vol.2｜V8 提速 JSON.stringify 2x，Vite 周下载首超 Webpack
 description: 本期周刊聚焦生态与社区动态，亮点包括 V8 引擎提升 JSON.stringify 性能两倍，Vite npm 周下载量首超 Webpack，Vite 生态如 Rolldown 启动提速和 Oxlint 类型检查进展。内容涵盖 npm、Deno 社区新闻、新发布 CSS 特性、深度文章（如 Tree Shaking、RAG、字符编码）及 AwesomeIndex、Kibo UI 等工具库更新。
 link: weekly-2
 catalog: true

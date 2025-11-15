@@ -18,6 +18,23 @@ type SiteConfig = {
     label?: string;
     description?: string;
   }[];
+
+  // 首页特殊系列配置
+  featuredSeries?: {
+    categoryName: string; // 分类名（如 '周刊'）
+    label?: string; // 显示名称（如 '前端周刊'）
+    enabled?: boolean; // 是否启用，默认 true
+    // 周刊详细信息
+    fullName?: string; // 完整名称
+    description?: string; // 描述
+    cover?: string; // 封面图
+    links?: {
+      github?: string; // GitHub 仓库
+      rss?: string; // RSS 订阅链接
+      chrome?: string; // Chrome 商店链接
+      docs?: string; // 文档链接
+    };
+  };
 };
 
 // 社交媒体配置类型
@@ -111,6 +128,27 @@ export const siteConfig: SiteConfig = {
       description: '大学时期的 CS 基础笔记',
     },
   ],
+  featuredSeries: {
+    categoryName: '周刊',
+    label: 'FE Bits',
+    fullName: 'FE Bits 前端周周谈',
+    description: `之前在自己的频道经常进行一些输出，想将其记录下来，于是有了这个周刊！
+
+部分总结有使用我自己开发的 MoeCopy AI 浏览器插件，欢迎尝试~ 喜欢的话可以给个 star！
+
+> 随性更新，捡拾那些值得细品的泛前端圈子的新鲜事，不争高低，只作播报，把最新、最好玩的技术，第一时间分享给同样好奇的你～
+> 这里没什么大新闻推送，也不卷热点，就聊聊最近前端和技术圈的那些有趣小事。
+
+更新时间期望是在每周天，若本周内容少，则可能合并到下一期作为双周刊～`,
+    cover: '/img/weekly_header.webp',
+    enabled: true,
+    links: {
+      github: 'https://github.com/yusixian/fe-bits-weekly',
+      rss: 'https://quaily.com/cosine/feed/atom',
+      chrome: 'https://chromewebstore.google.com/detail/moe-copy-ai/dfmlcfckmfgabpgbaobgapdfmjiihnck',
+      docs: 'https://moe.cosine.ren/docs',
+    },
+  },
 };
 
 // 社交媒体配置
@@ -171,4 +209,4 @@ export const seoConfig = {
   url: 'https://space.cosine.ren/',
 };
 
-export const defaultCoverList = Array.from({ length: 12 }, (_, index) => index + 1).map((item) => `/img/cover/${item}.webp`);
+export const defaultCoverList = Array.from({ length: 13 }, (_, index) => index + 1).map((item) => `/img/cover/${item}.webp`);

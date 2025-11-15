@@ -5,7 +5,6 @@ import { defaultCoverList } from '@constants/site-config';
 import type { Page } from 'astro';
 import { shuffle } from 'es-toolkit';
 import type { BlogPost } from 'types/blog';
-import CategoryCards from './CategoryCards.astro';
 import Paginator from './Paginator.astro';
 import PostItemCard from './PostItemCard.astro';
 
@@ -15,14 +14,13 @@ interface Props {
   showPaginator?: boolean;
   baseUrl?: string; // 分页基础路径
   isHomePage?: boolean; // 是否是首页
-  isSticky?: boolean; // 是否是置顶文章列表
+  isSimple?: boolean; // 是否隐藏封面
 }
 
-const { posts, page, showPaginator = true, baseUrl, isHomePage = false, isSticky = false } = Astro.props;
+const { posts, page, showPaginator = true, baseUrl, isHomePage = false, isSimple = false } = Astro.props;
 const covers = shuffle(defaultCoverList);
 ---
 
-<Divider>{isSticky ? '置顶文章' : '文章列表'}</Divider>
 {
   !posts?.length && (
     <div class="text-foreground/30 flex flex-col items-center gap-2">
@@ -34,22 +32,20 @@ const covers = shuffle(defaultCoverList);
 {
   posts && posts?.length > 0 && (
     <>
-      <div class="flex flex-col">
+      <div class="flex flex-col gap-4">
         {posts.map((post, index) => (
-          <div class="p-4">
-            <PostItemCard data={post} leftClip={index % 2 === 0} randomCover={covers[index % covers.length]} />
-          </div>
+          <PostItemCard
+            key={post.id}
+            data={post}
+            showTags={!isSimple}
+            leftClip={index % 2 === 0}
+            randomCover={covers[index % covers.length]}
+            hideCover={isSimple}
+            isSimple={isSimple}
+          />
         ))}
       </div>
       {showPaginator && page && <Paginator page={page} baseUrl={baseUrl} isHomePage={isHomePage} />}
-    </>
-  )
-}
-{
-  !isSticky && (
-    <>
-      <Divider>精选分类</Divider>
-      <CategoryCards />
     </>
   )
 }

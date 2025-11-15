@@ -1,33 +1,64 @@
 ---
+import CategoryCards from '@/components/post/CategoryCards.astro';
+import Divider from '@/components/ui/divider';
 import HomeSider from '@components/layout/HomeSider.astro';
 import PostList from '@components/post/PostList.astro';
 import Cover from '@components/ui/cover/Cover.astro';
 import { CONTENT_PADDING } from '@constants/layout';
-import { seoConfig } from '@constants/site-config';
+import { seoConfig, siteConfig } from '@constants/site-config';
 import Layout from '@layouts/Layout.astro';
 import TwoColumnLayout from '@layouts/TwoColumnLayout.astro';
-import { getPostsBySticky } from '@lib/content';
+import { getPostsBySticky, getPostsByCategory } from '@lib/content';
 import type { Page } from 'astro';
 import type { BlogPost } from 'types/blog';
 
 // 获取置顶文章和普通文章
-const { stickyPosts, nonStickyPosts: allNonStickyPosts } = await getPostsBySticky();
-const posts = allNonStickyPosts.slice(0, 10); // 首页显示前10篇普通文章
+const { stickyPosts: normalStickyPosts, nonStickyPosts: allNonStickyPosts } = await getPostsBySticky();
+
+// 获取特殊系列文章（如周刊）- 只取最新一期
+const featuredSeriesConfig = siteConfig.featuredSeries;
+let latestWeeklyPost: BlogPost | null = null;
+
+if (featuredSeriesConfig?.enabled && featuredSeriesConfig.categoryName) {
+  const allSeriesPosts = await getPostsByCategory(featuredSeriesConfig.categoryName);
+  latestWeeklyPost = allSeriesPosts[0] ?? null; // 只取最新一篇
+}
+
+const stickyPosts = latestWeeklyPost ? [latestWeeklyPost, ...normalStickyPosts] : normalStickyPosts;
+
+// 从普通文章中过滤掉周刊分类的文章
+const filteredNonStickyPosts =
+  featuredSeriesConfig?.enabled && featuredSeriesConfig.categoryName
+    ? allNonStickyPosts.filter((post) => {
+        const { categories } = post.data;
+        if (!categories?.length) return true;
+
+        const firstCategory = categories[0];
+        if (Array.isArray(firstCategory)) {
+          return !firstCategory.includes(featuredSeriesConfig.categoryName);
+        } else if (typeof firstCategory === 'string') {
+          return firstCategory !== featuredSeriesConfig.categoryName;
+        }
+        return true;
+      })
+    : allNonStickyPosts;
+
+const posts = filteredNonStickyPosts.slice(0, 10); // 首页显示前10篇普通文章（不含周刊）
 
 const page: Page<BlogPost> = {
   data: posts,
   start: 0,
   end: Math.min(9, posts.length - 1),
   size: 10,
-  total: allNonStickyPosts.length,
+  total: filteredNonStickyPosts.length,
   currentPage: 1,
-  lastPage: Math.ceil(allNonStickyPosts.length / 10),
+  lastPage: Math.ceil(filteredNonStickyPosts.length / 10),
   url: {
     current: '/',
     prev: undefined,
-    next: allNonStickyPosts.length > 10 ? '/posts/2' : undefined,
+    next: filteredNonStickyPosts.length > 10 ? '/posts/2' : undefined,
     first: '/',
-    last: `/posts/${Math.ceil(allNonStickyPosts.length / 10)}`,
+    last: `/posts/${Math.ceil(filteredNonStickyPosts.length / 10)}`,
   },
 };
 ---
@@ -39,8 +70,12 @@ const page: Page<BlogPost> = {
     <div
       class={`bg-gradient-start shadow-box tablet:shadow-none flex flex-col gap-4 overflow-hidden  ${CONTENT_PADDING.standard}`}
     >
-      {stickyPosts.length > 0 && <PostList posts={stickyPosts} showPaginator={false} isSticky={true} />}
+      <Divider>置顶文章</Divider>
+      {stickyPosts.length > 0 && <PostList posts={stickyPosts} showPaginator={false} />}
+      <Divider>文章列表</Divider>
       <PostList posts={posts} page={page} showPaginator={true} baseUrl="/posts" isHomePage={true} />
+      <Divider>精选分类</Divider>
+      <CategoryCards />
     </div>
   </TwoColumnLayout>
 </Layout>

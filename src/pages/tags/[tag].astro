@@ -33,7 +33,7 @@ const { tag, posts } = Astro.props;
   <TwoColumnLayout>
     <Cover slot="cover" title={`包含标签"${tag}"的文章`} />
     <HomeSider slot="sider" />
-    <div class={`shadow-box mx-0 flex w-full flex-col bg-gradient-start ${CONTENT_PADDING.normal}`}>
+    <div class={`shadow-box mx-0 flex w-full flex-col bg-gradient-start ${CONTENT_PADDING.standard}`}>
       <h2 class="shoka-decoration-circle has-children group relative h-19 px-6 py-5 text-2xl/9 font-bold">
         <a
           href={Astro.url.origin + '/tags'}

@@ -1,4 +1,5 @@
 ---
+import Divider from '@/components/ui/divider';
 import HomeSider from '@components/layout/HomeSider.astro';
 import PostList from '@components/post/PostList.astro';
 import Cover from '@components/ui/cover/Cover.astro';
@@ -24,6 +25,7 @@ const { page } = Astro.props;
     <div
       class={`shadow-box bg-gradient-start tablet:shadow-none flex flex-col gap-4 overflow-hidden ${CONTENT_PADDING.standard}`}
     >
+      <Divider>文章列表</Divider>
       <PostList posts={page.data} page={page} />
     </div>
   </TwoColumnLayout>

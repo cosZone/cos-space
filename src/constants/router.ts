@@ -10,6 +10,7 @@ export enum Routes {
   About = '/about',
   Categories = '/categories',
   Tags = '/tags',
+  Weekly = '/weekly',
   // Gallery = '/gallery',
   Post = '/post',
   Archives = '/archives',
@@ -18,6 +19,7 @@ export enum Routes {
 
 export const routers: Router[] = [
   { name: '首页', path: Routes.Home, icon: 'fa6-solid:house-chimney' },
+  { name: '周刊', path: Routes.Weekly, icon: 'ri:newspaper-line' },
   {
     name: '文章',
     icon: 'ri:quill-pen-ai-fill',

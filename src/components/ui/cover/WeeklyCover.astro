@@ -1,0 +1,95 @@
+---
+import { siteConfig } from '@constants/site-config';
+import { Icon } from 'astro-icon/components';
+import WaveSvg from './wave';
+import { MAX_WIDTH } from '@/constants/layout';
+import { marked } from 'marked';
+
+const weeklyConfig = siteConfig.featuredSeries;
+
+// 将 Markdown 转换为 HTML
+const descriptionHtml = weeklyConfig?.description ? marked.parse(weeklyConfig.description) : '';
+---
+
+<div class="relative flex max-h-[50rem] min-h-[70dvh] justify-center overflow-hidden pb-6">
+  <div class="absolute inset-0 h-full bg-black/40"></div>
+  <!-- 周刊封面图 -->
+  {
+    weeklyConfig?.cover && (
+      <div class="absolute inset-0 -z-10 h-full w-full">
+        <img src={weeklyConfig.cover} alt={weeklyConfig.fullName ?? weeklyConfig.label} class="h-full w-full object-cover" />
+      </div>
+    )
+  }
+
+  <!-- 主要内容区域 -->
+  <div class={`relative z-10 flex flex-col items-center justify-center px-5 py-4 text-white ${MAX_WIDTH.content}`}>
+    <!-- 标题 -->
+    <h1 class="shadow-text text-center text-5xl font-bold md:text-3xl">
+      {weeklyConfig?.fullName ?? weeklyConfig?.label ?? '周刊'}
+    </h1>
+
+    <!-- 链接按钮组 -->
+    {
+      weeklyConfig?.links && (
+        <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
+          {weeklyConfig.links.github && (
+            <a
+              href={weeklyConfig.links.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm backdrop-blur-sm transition-all hover:scale-105 hover:bg-white/20"
+            >
+              <Icon name="ri:github-fill" class="h-5 w-5" />
+              <span>GitHub</span>
+            </a>
+          )}
+          {weeklyConfig.links.rss && (
+            <a
+              href={weeklyConfig.links.rss}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm backdrop-blur-sm transition-all hover:scale-105 hover:bg-white/20"
+            >
+              <Icon name="ri:rss-line" class="h-5 w-5" />
+              <span>RSS 订阅</span>
+            </a>
+          )}
+          {weeklyConfig.links.chrome && (
+            <a
+              href={weeklyConfig.links.chrome}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm backdrop-blur-sm transition-all hover:scale-105 hover:bg-white/20"
+            >
+              <Icon name="ri:chrome-fill" class="h-5 w-5" />
+              <span>Chrome 插件</span>
+            </a>
+          )}
+          {weeklyConfig.links.docs && (
+            <a
+              href={weeklyConfig.links.docs}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm backdrop-blur-sm transition-all hover:scale-105 hover:bg-white/20"
+            >
+              <Icon name="ri:book-open-line" class="h-5 w-5" />
+              <span>文档</span>
+            </a>
+          )}
+        </div>
+      )
+    }
+
+    <!-- 描述信息 -->
+    {
+      weeklyConfig?.description && (
+        <div class="shadow-text mt-8 max-w-3xl text-center">
+          <div class="prose prose-invert mx-auto text-sm leading-relaxed md:text-xs" set:html={descriptionHtml} />
+        </div>
+      )
+    }
+  </div>
+
+  <WaveSvg />
+</div>

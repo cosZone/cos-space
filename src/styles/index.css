@@ -1,3 +1,4 @@
+@import './theme/font.css';
 @import './global/tailwind.css';
 @import './global/shadcn.css';
 @import './global/animate.css';
@@ -5,6 +6,5 @@
 @import './components/category.css';
 @import './components/post.css';
 @import './theme/index.css';
-@import './theme/font.css';
 @import './theme/theme-transition.css';
 @import './theme/markdown.css';

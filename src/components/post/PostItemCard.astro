@@ -16,9 +16,19 @@ export interface PostItemCardProps {
   data: BlogPost;
   leftClip?: boolean;
   randomCover: string;
+  showTags?: boolean;
+  hideCover?: boolean; // 隐藏图片，让内容铺满
+  isSimple?: boolean; // 是否简单模式
 }
 
-const { randomCover, data, leftClip = true } = Astro.props as PostItemCardProps;
+const {
+  randomCover,
+  data,
+  leftClip = true,
+  hideCover = false,
+  showTags = true,
+  isSimple = false,
+} = Astro.props as PostItemCardProps;
 
 const { cover, date, catalog, categories, title, description } = data?.data ?? {};
 const { body } = data ?? {};
@@ -35,30 +45,35 @@ const categoryStr = categoryArr?.length ? categoryArr[categoryArr.length - 1] : 
 <div
   class="hover:shadow-card-darker group text-card-foreground shadow-card relative flex gap-2 rounded-lg transition-shadow md:flex-col"
 >
-  <a
-    aria-label="post-link"
-    href={href}
-    class={cn(
-      'relative h-[11.625rem] max-h-[11.625rem] w-[calc(50%-2rem)] overflow-hidden rounded-lg md:w-auto md:clip-path-none',
-      leftClip ? ' order-1 clip-path-post-img-left' : 'order-2 clip-path-post-img-right',
-      'md:order-none md:clip-path-none',
-    )}
-  >
-    <img
-      src={finalCover}
-      loading="lazy"
-      alt="post"
-      class="h-full w-full cursor-pointer object-cover transition duration-500 group-hover:scale-110 group-hover:rotate-3"
-    />
-  </a>
+  {
+    !hideCover && (
+      <a
+        aria-label="post-link"
+        href={href}
+        class={cn(
+          'md:clip-path-none relative h-[11.625rem] max-h-[11.625rem] w-[calc(50%-2rem)] overflow-hidden rounded-lg md:w-auto',
+          leftClip ? 'clip-path-post-img-left order-1' : 'clip-path-post-img-right order-2',
+          'md:clip-path-none md:order-none',
+        )}
+      >
+        <img
+          src={finalCover}
+          loading="lazy"
+          alt="post"
+          class="h-full w-full cursor-pointer object-cover transition duration-500 group-hover:scale-110 group-hover:rotate-3"
+        />
+      </a>
+    )
+  }
   <div
     class={cn(
-      'flex w-[calc(50%+2rem)] flex-col gap-2 px-4 pb-2 md:pb-4 pt-4 md:w-full md:pt-1',
-      leftClip ? 'order-2' : 'order-1',
+      'flex flex-col gap-2 px-4 pb-2 md:pb-4 pt-4 md:pt-1',
+      hideCover ? 'w-full' : 'w-[calc(50%+2rem)] md:w-full',
+      !hideCover && (leftClip ? 'order-2' : 'order-1'),
       'md:order-none',
     )}
   >
-    <div class="flex w-full justify-between">
+    <div class={cn('flex w-full justify-between', { 'order-2 justify-start gap-4 pb-3': isSimple })}>
       {
         catalog === false ? null : (
           <a href={categoryLink} class="flex-center hover:text-blue text-muted-foreground text-xs transition duration-300">
@@ -93,36 +108,50 @@ const categoryStr = categoryArr?.length ? categoryArr[categoryArr.length - 1] : 
         </h3>
       </a>
     </div>
-    <p class="text-muted-foreground line-clamp-3 h-15 text-sm md:h-auto md:max-h-15">
+    <p
+      class={cn('text-muted-foreground line-clamp-3 h-15 text-sm md:h-auto md:max-h-15', {
+        'line-clamp-2 h-10 md:max-h-10': isSimple,
+      })}
+    >
       {description ?? body?.slice(0, 150)}
     </p>
-    <div class={cn('mt-1 flex @container gap-2', { 'justify-end': !leftClip }, 'md:justify-start')}>
-      {
-        data?.data.tags?.length
-          ? data?.data.tags.map((tag: string, index: number) => (
-              <Badge
-                className={cn('hidden cursor-pointer gap-0.5 text-xs whitespace-nowrap @md:flex', {
-                  '@xs:flex': index < 2,
-                  '@sm:flex': index < 3,
-                })}
-              >
-                <Icon name="fa6-solid:tags" /> {tag}
-              </Badge>
-            ))
-          : null
-      }
-    </div>
+    {
+      showTags && (
+        <div
+          class={cn(
+            '@container mt-1 flex gap-2',
+            hideCover ? 'justify-start' : { 'justify-end': !leftClip },
+            'md:justify-start',
+          )}
+        >
+          {data?.data.tags?.length
+            ? data?.data.tags.map((tag: string, index: number) => (
+                <Badge
+                  className={cn('hidden cursor-pointer gap-0.5 text-xs whitespace-nowrap @md:flex', {
+                    '@xs:flex': index < 2,
+                    '@sm:flex': index < 3,
+                  })}
+                >
+                  <Icon name="fa6-solid:tags" /> {tag}
+                </Badge>
+              ))
+            : null}
+        </div>
+      )
+    }
     <a
       href={href}
       aria-label="more info"
-      class={cn('absolute bottom-0', leftClip ? 'right-0' : 'left-0', 'md:left-auto md:right-0')}
+      class={cn('absolute bottom-0', hideCover ? 'right-0' : leftClip ? 'right-0' : 'left-0', 'md:left-auto md:right-0')}
     >
       <Button
         className={cn(
           'bg-gradient-shoka-button rounded-2xl transition-all hover:translate-y-1 hover:scale-105 md:h-7 md:px-2 md:py-1 md:text-xs',
-          leftClip
+          hideCover
             ? 'rounded-se-none rounded-es-none hover:translate-x-1'
-            : 'rounded-ss-none rounded-ee-none hover:-translate-x-1',
+            : leftClip
+              ? 'rounded-se-none rounded-es-none hover:translate-x-1'
+              : 'rounded-ss-none rounded-ee-none hover:-translate-x-1',
           'md:rounded-ss-2xl md:rounded-se-none md:rounded-ee-2xl md:rounded-es-none md:hover:translate-x-1',
         )}
       >

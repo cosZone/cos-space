@@ -1,5 +1,5 @@
 ---
-title: FE Bits 前端周周谈 Vol.1｜Hello World、TanStack DB 首个 Beta 版发布
+title: FE Bits Vol.1｜Hello World、TanStack DB 首个 Beta 版发布
 description: 本期为 FE Bits 前端周周谈创刊号，精选并总结了过去一周全球泛前端生态的新动向、重要技术动态、文章推荐、工具和代码库更新，以及深入分析几篇行业高质量内容。内容涵盖 TypeScript、React、CSS Masonry、Web 安全、Node.js/Bun、新一代前端架构（Remix 3）、Web 交互特效、独立开发实践等。
 link: weekly-1-hello-world
 catalog: true

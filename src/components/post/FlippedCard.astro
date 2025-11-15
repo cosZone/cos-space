@@ -21,7 +21,7 @@ export interface Props {
 const { className, direction = 'horizontal', duration = 600, disabled = false } = Astro.props;
 ---
 
-<div class:list={['flip-card h-64 p-4', className, { 'flip-card-disabled': disabled }]} data-direction={direction}>
+<div class:list={['flip-card h-56', className, { 'flip-card-disabled': disabled }]} data-direction={direction}>
   <div class="flip-card-inner">
     <div class="flip-card-front">
       <slot name="front" />

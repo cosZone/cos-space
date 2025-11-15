@@ -29,9 +29,9 @@ const sortedTags = Object.entries(tags)
       <h2 class="shoka-decoration-circle group relative h-19 px-6 py-5 text-2xl/9 font-bold">
         <a href="/" class="dashed-border text-muted-foreground group-hover:border-blue group-hover:text-blue border-b">首页</a>
         <span class="text-muted-foreground text-lg"> / </span>
-        目前共计 {sortedTags.length} 个标签
+        共 {sortedTags.length} 个标签
       </h2>
-      <div class="flex flex-wrap gap-3 p-4">
+      <div class="flex flex-wrap gap-3 px-4 md:px-0">
         {
           sortedTags.map(({ tag, count }, index) => (
             <div class="group relative">
