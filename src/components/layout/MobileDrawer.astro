@@ -148,4 +148,9 @@ const { type = HomeSiderType.HOME } = Astro.props;
     drawerController?.destroy();
     drawerController = new DrawerController();
   });
+
+  // Close drawer before page navigation to prevent it from staying open
+  document.addEventListener('astro:before-preparation', () => {
+    closeDrawer();
+  });
 </script>

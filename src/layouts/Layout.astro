@@ -7,18 +7,17 @@ interface Props {
   siderType?: HomeSiderType;
 }
 
-import '@fontsource/poppins';
-import '@fontsource/noto-serif-sc';
-import '@fontsource/noto-serif-jp';
-import { ClientRouter } from 'astro:transitions';
-import LoadingIndicator from 'astro-loading-indicator/component';
-import Header from '@components/layout/Header.astro';
-import Footer from '@components/layout/Footer.astro';
-import '@styles/index.css';
-import { seoConfig, siteConfig } from '@constants/site-config';
-import { Tooltips } from 'astro-tooltips';
 import FloatingGroup from '@components/layout/FloatingGroup.astro';
+import Header from '@components/layout/Header.astro';
 import MobileDrawer from '@components/layout/MobileDrawer.astro';
+import { seoConfig, siteConfig } from '@constants/site-config';
+import '@fontsource/noto-serif-jp';
+import '@fontsource/noto-serif-sc';
+import '@fontsource/poppins';
+import '@styles/index.css';
+import LoadingIndicator from 'astro-loading-indicator/component';
+import { Tooltips } from 'astro-tooltips';
+import { ClientRouter } from 'astro:transitions';
 
 const { title = seoConfig.title, description = seoConfig.description, siderType } = Astro.props;
 // TODO: siderType should be custom in router file, not in layout

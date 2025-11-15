@@ -34,7 +34,7 @@ const { prevPost, nextPost } =
     type === HomeSiderType.HOME ? 'pt-18' : 'pt-4',
     className,
   )}
-  transition:name={isDrawer ? 'page-home-sider-drawer' : 'page-home-sider'}
+  {...!isDrawer && { 'transition:name': 'page-home-sider' }}
 >
   {
     type === HomeSiderType.POST && (

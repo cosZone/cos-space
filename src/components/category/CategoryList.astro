@@ -14,9 +14,9 @@ const { categories, countMap, totalCount } = Astro.props;
 ---
 
 <div class={`shadow-box mx-0 flex w-full flex-col bg-gradient-start ${CONTENT_PADDING.standard}`}>
-  <h2 class="shoka-decoration-circle group relative px-6 py-5 text-2xl/9 font-bold">
+  <h2 class="shoka-decoration-circle group relative px-6 py-5 text-2xl/9 font-bold md:text-xl/9">
     <a href="/" class="dashed-border text-muted-foreground group-hover:border-blue group-hover:text-blue border-b"> 首页 </a>
-    <span class="text-muted-foreground text-xl">/</span> 共 {totalCount} 个分类
+    <span class="text-muted-foreground text-xl md:text-base">/</span> 共 {totalCount} 个分类
   </h2>
 
   <div class="flex w-full flex-col">

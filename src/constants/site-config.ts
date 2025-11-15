@@ -132,14 +132,11 @@ export const siteConfig: SiteConfig = {
     categoryName: '周刊',
     label: 'FE Bits',
     fullName: 'FE Bits 前端周周谈',
-    description: `之前在自己的频道经常进行一些输出，想将其记录下来，于是有了这个周刊！
+    description: `之前在自己的频道进行一些输出，于是有了这个周刊！
 
-部分总结有使用我自己开发的 MoeCopy AI 浏览器插件，欢迎尝试~ 喜欢的话可以给个 star！
+部分总结有使用我自己开发的 MoeCopy AI 浏览器插件，喜欢的话可以给个 star！
 
-> 随性更新，捡拾那些值得细品的泛前端圈子的新鲜事，不争高低，只作播报，把最新、最好玩的技术，第一时间分享给同样好奇的你～
-> 这里没什么大新闻推送，也不卷热点，就聊聊最近前端和技术圈的那些有趣小事。
-
-更新时间期望是在每周天，若本周内容少，则可能合并到下一期作为双周刊～`,
+更新时间期望是在每周天`,
     cover: '/img/weekly_header.webp',
     enabled: true,
     links: {
