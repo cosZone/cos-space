@@ -28,6 +28,7 @@
     overscroll-behavior-y: none;
     background: linear-gradient(to top, var(--gradient-bg-end) 0, var(--gradient-bg-start) 30%) no-repeat bottom;
     scroll-behavior: smooth;
+    letter-spacing: 0.02em;
     @apply tablet:bg-gradient-start tablet:bg-none;
   }
   h1,
@@ -36,7 +37,16 @@
   h4,
   h5,
   h6 {
-    font-family: 'Poppins', '方正悠宋 简 509R', 'Noto Serif JP';
+    font-family:
+      '寒蝉全圆体',
+      -apple-system,
+      BlinkMacSystemFont,
+      'Segoe UI',
+      Roboto,
+      Helvetica,
+      Arial,
+      sans-serif;
+    letter-spacing: 0.04em;
   }
   *::-webkit-scrollbar {
     display: none;

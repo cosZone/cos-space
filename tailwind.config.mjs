@@ -106,11 +106,8 @@ export default {
         '5.5xl': '3.5rem',
       },
       fontFamily: {
-        noto: 'Noto Serif SC',
-        poppins: 'Poppins',
-        candy: 'Candyshop',
-        fg: 'Fredericka the Great',
-        FZYS: '方正悠宋 简 509R',
+        sans: ['寒蝉全圆体', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'],
+        'chill-round': ['寒蝉全圆体', 'sans-serif'],
       },
       clipPath: {
         'post-img-left': 'polygon(0 0,92% 0%,100% 100%,0% 100%)',
