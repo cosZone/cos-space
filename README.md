@@ -2,6 +2,15 @@
 
 在 Astro 上复刻 Shoka 主题，之后考虑换一个名字～
 
+## 前言
+
+- 一开始的初衷是想很喜欢 [Shoka 主题](https://shoka.lostyu.me/computer-science/note/theme-shoka-doc/)，但又觉得 Hexo 性能太差了，所以使用 Astro 尝试复刻。
+- 我也有想过这么多的分类是否应该保留，想了想觉得还是保留了，可以选择不用这么复杂的分类。
+- 再后来，就变成了我想要打造自己喜爱的博客。
+- 一度纠结于，要复刻 Shoka 的很多样式吗，还是适当阉割改为自己喜爱的形式，最后决定，自己的博客自己做主～
+- 轮播图？随机文章封面？为了性能也干掉吧（忍痛）
+- 等开发到让我满意之后，要给这个主题起个名字呢。
+
 ## 📦 部署
 
 ### Vercel 一键部署
@@ -39,7 +48,3 @@ pnpm dev
 - [yfi.moe](https://github.com/yy4382/yfi.moe)
 - [4ark.me](https://github.com/gd4Ark/gd4Ark.github.io)
 - ...
-
-## 注
-
-因为初衷是想很喜欢 Shoka 的主题，但又觉得 hexo 性能太差了，所以使用 astro 尝试复刻，我也有想过这么多的分类是否应该保留，想了想觉得应该是要保留的。

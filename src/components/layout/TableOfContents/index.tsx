@@ -107,7 +107,7 @@ export function TableOfContents({ defaultExpanded = false }: TableOfContentsProp
   }
 
   return (
-    <nav className="toc-container max-h-[90vh] overflow-auto" aria-label="文章目录">
+    <nav className="toc-container max-h-[90dvh] overflow-auto" aria-label="文章目录">
       <div className="space-y-1 pr-2">
         <HeadingList
           headings={headings}
