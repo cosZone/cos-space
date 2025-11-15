@@ -64,7 +64,7 @@ const MenuIcon = ({ className, id }: MenuIconProps) => {
   return (
     <div className={cn('flex-center', className)} id={id}>
       <button
-        className="flex-center border-shoka text-shoka size-10 cursor-pointer rounded-full border bg-white/20 backdrop-blur select-none"
+        className="flex-center text-shoka size-10 cursor-pointer rounded-full bg-white/20 backdrop-blur select-none"
         onClick={handleToggle}
         aria-label={isOpen ? '关闭菜单' : '打开菜单'}
         aria-expanded={isOpen}
