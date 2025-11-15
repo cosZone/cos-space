@@ -22,12 +22,19 @@ export {
 
 // Export post utilities
 export {
+  getAdjacentSeriesPosts,
   getPostCount,
   getPostLastCategory,
   getPostsByCategory,
   getPostsBySticky,
   getRandomPosts,
+  getSeriesPosts,
   getSortedPosts,
+  // Weekly/Featured series utilities
+  getLatestWeeklyPost,
+  getNonWeeklyPosts,
+  getNonWeeklyPostsBySticky,
+  getWeeklyPosts,
 } from './content/posts';
 
 // Export tag utilities

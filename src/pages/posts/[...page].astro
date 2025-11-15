@@ -7,11 +7,12 @@ import { CONTENT_PADDING } from '@constants/layout';
 import { seoConfig } from '@constants/site-config';
 import Layout from '@layouts/Layout.astro';
 import TwoColumnLayout from '@layouts/TwoColumnLayout.astro';
-import { getSortedPosts } from '@lib/content';
+import { getNonWeeklyPosts } from '@lib/content';
 import type { PaginateFunction } from 'astro';
 
 export async function getStaticPaths({ paginate }: { paginate: PaginateFunction }) {
-  const postCollections = await getSortedPosts();
+  // 获取所有非周刊文章用于分页
+  const postCollections = await getNonWeeklyPosts();
   return paginate(postCollections, { pageSize: 10 });
 }
 

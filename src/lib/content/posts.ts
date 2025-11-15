@@ -4,6 +4,7 @@
 
 import { getCollection, type CollectionEntry } from 'astro:content';
 
+import { siteConfig } from '@constants/site-config';
 import type { BlogPost } from 'types/blog';
 import { buildCategoryPath } from './categories';
 
@@ -152,4 +153,82 @@ export async function getAdjacentSeriesPosts(currentPost: BlogPost): Promise<{
   const nextPost = currentIndex < seriesPosts.length - 1 ? seriesPosts[currentIndex + 1] : null;
 
   return { prevPost, nextPost };
+}
+
+/**
+ * 检查文章是否属于特定分类
+ * @param post 文章
+ * @param categoryName 分类名
+ * @returns 是否属于该分类
+ */
+function isPostInCategory(post: BlogPost, categoryName: string): boolean {
+  const { categories } = post.data;
+  if (!categories?.length) return false;
+
+  const firstCategory = categories[0];
+  if (Array.isArray(firstCategory)) {
+    return firstCategory.includes(categoryName);
+  } else if (typeof firstCategory === 'string') {
+    return firstCategory === categoryName;
+  }
+  return false;
+}
+
+/**
+ * 获取所有周刊文章
+ * @returns 周刊文章列表（按日期排序，最新的在前）
+ */
+export async function getWeeklyPosts(): Promise<BlogPost[]> {
+  const { featuredSeries } = siteConfig;
+  if (!featuredSeries?.enabled || !featuredSeries.categoryName) {
+    return [];
+  }
+
+  return await getPostsByCategory(featuredSeries.categoryName);
+}
+
+/**
+ * 获取最新一篇周刊文章
+ * @returns 最新周刊文章或 null
+ */
+export async function getLatestWeeklyPost(): Promise<BlogPost | null> {
+  const weeklyPosts = await getWeeklyPosts();
+  return weeklyPosts[0] ?? null;
+}
+
+/**
+ * 获取所有非周刊文章（已排序）
+ * @returns 非周刊文章列表（按日期排序，最新的在前）
+ */
+export async function getNonWeeklyPosts(): Promise<BlogPost[]> {
+  const { featuredSeries } = siteConfig;
+  if (!featuredSeries?.enabled || !featuredSeries.categoryName) {
+    return await getSortedPosts();
+  }
+
+  const allPosts = await getSortedPosts();
+  return allPosts.filter((post) => !isPostInCategory(post, featuredSeries.categoryName));
+}
+
+/**
+ * 获取非周刊文章，按置顶状态分组
+ * @returns 置顶和非置顶的非周刊文章
+ */
+export async function getNonWeeklyPostsBySticky(): Promise<{
+  stickyPosts: BlogPost[];
+  allPosts: BlogPost[];
+}> {
+  const nonWeeklyPosts = await getNonWeeklyPosts();
+
+  const stickyPosts: BlogPost[] = [];
+  const allPosts: BlogPost[] = [];
+
+  for (const post of nonWeeklyPosts) {
+    if (post.data?.sticky) {
+      stickyPosts.push(post);
+    }
+    allPosts.push(post);
+  }
+
+  return { stickyPosts, allPosts };
 }
