@@ -142,7 +142,7 @@ const categoryStr = categoryArr?.length ? categoryArr[categoryArr.length - 1] : 
     <a
       href={href}
       aria-label="more info"
-      class={cn('absolute bottom-0', hideCover ? 'right-0' : leftClip ? 'right-0' : 'left-0', 'md:left-auto md:right-0')}
+      class={cn('absolute -bottom-1', hideCover ? '-right-1' : leftClip ? '-right-1' : '-left-1', 'md:left-auto md:right-0')}
     >
       <Button
         className={cn(
