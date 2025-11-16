@@ -48,3 +48,10 @@ pnpm dev
 - [yfi.moe](https://github.com/yy4382/yfi.moe)
 - [4ark.me](https://github.com/gd4Ark/gd4Ark.github.io)
 - ...
+
+## TODO
+
+- [ ] Astro 搜索集成，使用 [Pagefind](https://pagefind.app/)，可参考 https://github.com/shishkin/astro-pagefind
+- [ ] 智能文章[相关推荐](https://alexop.dev/posts/semantic-related-posts-astro-transformersjs/)
+- [ ] 文档
+- [ ] [Page CMS](https://css-tricks.com/using-pages-cms-for-static-site-content-management/)

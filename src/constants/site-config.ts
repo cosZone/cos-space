@@ -71,8 +71,8 @@ export const siteConfig: SiteConfig = {
   alternate: 'cosine', // 网站名称
   subtitle: 'WA 的一声就哭了', // 副标题
   name: 'cos',
-  description: '图片迁移完毕，博客待重构~', // 站点简介（一段话）
-  avatar: 'https://ysx.cosine.ren/img/avatar.jpg', // 站点头像 logo.png or url
+  description: 'FE / ACG / 手工 / 深色模式强迫症 / INFP / 兴趣广泛养两只猫的老宅女 / remote / 热爱生活 ', // 站点简介（一段话）
+  avatar: '/img/avatar.webp', // 站点头像 logo.png or url
   showLogo: true, // 是否显示 logo 否则用 title
   author: 'cos', // 作者名称
   enableJSGridCover: false, // 是否启用 color4bg 的背景
