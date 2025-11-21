@@ -48,6 +48,11 @@ export default {
           900: '#801b38',
           950: '#470a1a',
         },
+        // shoka migrate
+        pink: {
+          a3: 'var(--color-pink-a3)',
+          DEFAULT: 'var(--color-pink)',
+        },
       },
       borderRadius: {
         ...borderRadius,

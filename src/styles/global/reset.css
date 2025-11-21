@@ -143,6 +143,11 @@
     outline-offset: 2px;
   }
 
+  /* 选中文本样式 */
+  ::selection {
+    background-color: var(--color-pink-a3);
+  }
+
   @media (prefers-reduced-motion: no-preference) {
     @view-transition {
       navigation: auto;

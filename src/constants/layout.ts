@@ -30,5 +30,5 @@ export const MAX_WIDTH = {
  */
 export const HEADER_SPACING = {
   outer: 'px-6 md:px-3',
-  inner: 'px-6 md:px-3',
+  inner: 'px-6 md:pl-3 md:pr-0',
 } as const;

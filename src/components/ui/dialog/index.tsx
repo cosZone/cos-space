@@ -71,20 +71,28 @@ function Dialog({
       <FloatingPortal>
         <AnimatePresence>
           {isOpen && (
-            <FloatingOverlay lockScroll className={cn('z-50 grid place-items-center bg-gray-800/70 md:px-4', overlayClassName)}>
-              <FloatingFocusManager context={context}>
-                <motion.div
-                  className={cn('bg-background max-h-[90dvh] overflow-auto shadow-md md:max-h-[70dvh]', className)}
-                  {...motionProps}
-                  {...getFloatingProps({ ref: setFloating })}
-                >
-                  <div className={cn('relative p-5', contentClassName)}>
-                    {render({
-                      close: () => onChange(false),
-                    })}
-                  </div>
-                </motion.div>
-              </FloatingFocusManager>
+            <FloatingOverlay lockScroll className="z-50" style={{ background: 'transparent' }}>
+              <motion.div
+                className={cn('grid h-full place-items-center md:px-4', overlayClassName)}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                <FloatingFocusManager context={context}>
+                  <motion.div
+                    className={cn('bg-background max-h-[80dvh] overflow-auto shadow-md', className)}
+                    {...motionProps}
+                    {...getFloatingProps({ ref: setFloating })}
+                  >
+                    <div className={cn('relative p-5', contentClassName)}>
+                      {render({
+                        close: () => onChange(false),
+                      })}
+                    </div>
+                  </motion.div>
+                </FloatingFocusManager>
+              </motion.div>
             </FloatingOverlay>
           )}
         </AnimatePresence>

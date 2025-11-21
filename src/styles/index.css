@@ -5,6 +5,7 @@
 @import './components/wave.css';
 @import './components/category.css';
 @import './components/post.css';
+@import './components/pagefind.css';
 @import './theme/index.css';
 @import './theme/theme-transition.css';
 @import './theme/markdown.css';
