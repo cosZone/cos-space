@@ -53,7 +53,7 @@ const SearchDialogComponent = ({ className }: SearchDialogProps) => {
       render={({ close }) => (
         <div className="search-dialog">
           {/* Header */}
-          <div className="mb-4 flex items-center justify-between">
+          <div className="relative mb-4 flex items-center justify-between">
             <h2 className="flex items-center gap-2 text-lg font-semibold md:text-base">
               <Icon icon="ri:search-line" className="size-5 md:size-4" />
               搜索文章
@@ -67,8 +67,8 @@ const SearchDialogComponent = ({ className }: SearchDialogProps) => {
             </button>
           </div>
           {/* Empty State Hint */}
-          <div className="relative h-[calc(80vh-6rem)] overflow-auto">
-            <div className="search-empty-hint absolute inset-x-0 top-14 text-center text-sm opacity-60">
+          <div className="scroll-feather-mask -mx-6 -mb-6 h-[calc(80vh-6rem)] overflow-auto scroll-smooth px-6 pb-6 md:-mx-3 md:px-3">
+            <div className="search-empty-hint absolute inset-x-0 top-32 text-center text-sm opacity-60 md:top-28">
               <p>输入关键词搜索博客文章</p>
               <p className="mt-1 text-xs">
                 按 <kbd className="rounded bg-black/10 px-1.5 py-0.5 font-mono dark:bg-white/10">ESC</kbd> 关闭
