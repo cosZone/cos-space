@@ -20,6 +20,7 @@
   --color-pink: #ed6ea0;
   --color-pink-a3: rgba(237, 110, 160, 0.3);
 }
+
 .dark {
   --gradient-bg-start: #21252b;
   --gradient-bg-end: #000;
@@ -40,6 +41,6 @@
   );
   --shoka-blue: 201 69% 77%;
   --grey-4: 0 0% 40%;
-  --color-pink: rgba(241, 139, 179, 0.8);
+  --color-pink: #f18bb3;
   --color-pink-a3: rgba(237, 110, 160, 0.3);
 }

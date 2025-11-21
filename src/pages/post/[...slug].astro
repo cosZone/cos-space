@@ -61,6 +61,7 @@ if (categoryArr?.length) {
   title={`${post.data.title}${categoryStr} | ${siteConfig.title}`}
   description={description}
   siderType={HomeSiderType.POST}
+  post={post}
 >
   <script is:inline slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   <TwoColumnLayout>

@@ -7,6 +7,7 @@ import umami from '@yeskunall/astro-umami';
 import tailwindcss from '@tailwindcss/vite';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import pagefind from 'astro-pagefind';
 
 // https://astro.build/config
 export default defineConfig({
@@ -49,6 +50,7 @@ export default defineConfig({
       endpointUrl: 'https://stats.cosine.ren',
       hostUrl: 'https://stats.cosine.ren',
     }),
+    pagefind(),
   ],
   devToolbar: {
     enabled: true,
@@ -56,5 +58,5 @@ export default defineConfig({
   vite: {
     plugins: [svgr(), tailwindcss()],
   },
-  trailingSlash: 'never',
+  trailingSlash: 'ignore',
 });

@@ -1,10 +1,12 @@
 ---
 import { HomeSiderType } from '@constants/enum';
+import type { BlogPost } from 'types/blog';
 
 interface Props {
   title: string;
   description?: string;
   siderType?: HomeSiderType;
+  post?: BlogPost;
 }
 
 import FloatingGroup from '@components/layout/FloatingGroup.astro';
@@ -17,7 +19,7 @@ import { ClientRouter } from 'astro:transitions';
 
 import '@styles/index.css';
 
-const { title = seoConfig.title, description = seoConfig.description, siderType } = Astro.props;
+const { title = seoConfig.title, description = seoConfig.description, siderType, post } = Astro.props;
 // TODO: siderType should be custom in router file, not in layout
 ---
 
@@ -89,7 +91,7 @@ const { title = seoConfig.title, description = seoConfig.description, siderType 
         {(<slot />)}
       </main>
       <FloatingGroup />
-      <MobileDrawer type={siderType} />
+      <MobileDrawer type={siderType} post={post} />
     </div>
   </body>
 </html>
