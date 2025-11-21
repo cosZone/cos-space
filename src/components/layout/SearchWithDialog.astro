@@ -1,0 +1,116 @@
+---
+import SearchDialog from './SearchDialog';
+import Search from 'astro-pagefind/components/Search';
+---
+
+<SearchDialog client:load />
+
+<!-- Search Component - will be portal'd into dialog -->
+<div id="search-component-portal">
+  <Search id="search-for-dialog" className="pagefind-ui" uiOptions={{ showImages: false }} />
+</div>
+
+<script>
+  let observer: MutationObserver | null = null;
+  let searchComponentOriginalParent: HTMLElement | null = null;
+
+  function moveSearchToDialog() {
+    const dialogContainer = document.getElementById('search-dialog-container');
+    const searchPortal = document.getElementById('search-component-portal');
+    const searchComponent = document.getElementById('search-for-dialog');
+
+    if (!dialogContainer || !searchPortal || !searchComponent) return;
+
+    // Check if search component is already in the dialog
+    if (dialogContainer.contains(searchComponent)) {
+      // Just focus the input
+      setTimeout(() => {
+        const searchInput = dialogContainer.querySelector('.pagefind-ui__search-input') as HTMLInputElement;
+        if (searchInput) {
+          searchInput.focus();
+        }
+      }, 150);
+      return;
+    }
+
+    // Save original parent if not saved yet
+    if (!searchComponentOriginalParent) {
+      searchComponentOriginalParent = searchComponent.parentElement;
+    }
+
+    // Move search component to dialog
+    dialogContainer.appendChild(searchComponent);
+
+    // Focus search input
+    setTimeout(() => {
+      const searchInput = dialogContainer.querySelector('.pagefind-ui__search-input') as HTMLInputElement;
+      if (searchInput) {
+        searchInput.focus();
+      }
+    }, 150);
+  }
+
+  function moveSearchBack() {
+    const searchComponent = document.getElementById('search-for-dialog');
+    const searchPortal = document.getElementById('search-component-portal');
+
+    if (!searchComponent || !searchPortal) return;
+
+    // Move search component back to portal if it's not already there
+    if (!searchPortal.contains(searchComponent)) {
+      searchPortal.appendChild(searchComponent);
+    }
+  }
+
+  function initSearchDialog() {
+    // Clean up existing observer
+    if (observer) {
+      observer.disconnect();
+    }
+
+    // Watch for dialog opening and closing
+    observer = new MutationObserver(() => {
+      const dialogContainer = document.getElementById('search-dialog-container');
+
+      if (dialogContainer) {
+        // Dialog is open, move search into it
+        moveSearchToDialog();
+      } else {
+        // Dialog is closed, move search back to portal
+        moveSearchBack();
+      }
+    });
+
+    // Observe the entire document for dialog appearance/disappearance
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+    });
+
+    // Initial check
+    const dialogContainer = document.getElementById('search-dialog-container');
+    if (dialogContainer) {
+      moveSearchToDialog();
+    }
+  }
+
+  // Initialize on page load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSearchDialog);
+  } else {
+    initSearchDialog();
+  }
+
+  // Re-initialize on Astro page navigation
+  document.addEventListener('astro:page-load', initSearchDialog);
+</script>
+
+<style>
+  /* Hide the portal container */
+  #search-component-portal {
+    display: none;
+    position: absolute;
+    pointer-events: none;
+    visibility: hidden;
+  }
+</style>

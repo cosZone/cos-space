@@ -37,6 +37,7 @@
     "astro": "^5.2.3",
     "astro-icon": "^1.1.5",
     "astro-loading-indicator": "^0.7.0",
+    "astro-pagefind": "^1.8.5",
     "astro-tooltips": "^0.6.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",

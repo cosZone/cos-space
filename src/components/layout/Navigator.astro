@@ -5,6 +5,7 @@ import { cn } from '@lib/utils';
 import { Icon } from 'astro-icon/components';
 import DropdownNav from './DropdownNav';
 import ThemeToggle from '@components/theme/ThemeToggle.astro';
+import SearchWithDialog from './SearchWithDialog.astro';
 ---
 
 <div class="tablet:grow-0 flex grow items-center">
@@ -37,6 +38,7 @@ import ThemeToggle from '@components/theme/ThemeToggle.astro';
   </div>
 
   <div class="tablet:gap-2 ml-auto flex items-center gap-4">
+    <SearchWithDialog />
     <a class="cursor-pointer" href="https://github.com/cosZone/cos-space" target="_blank">
       <Icon name="ri:github-fill" class="size-9 transition duration-300 hover:scale-125" onclick="backToTop()" />
     </a>
