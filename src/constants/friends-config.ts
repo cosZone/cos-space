@@ -76,7 +76,7 @@ export const friendsData: FriendLink[] = [
     owner: 'Magren',
     desc: '不为繁华易匠心',
     image: 'https://magren.cc/avatar.png',
-    color: '#666',
+    color: '#666666',
   },
   {
     site: 'GanSer',
