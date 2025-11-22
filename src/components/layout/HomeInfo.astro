@@ -22,9 +22,12 @@ const posts = await getSortedPosts();
 const tags = getAllTags(posts);
 
 const allTags = Object.entries(tags).map(([tag, count]) => ({ tag, count }));
+
+// 生成唯一 ID 前缀
+const uniqueId = `home-info-${Math.random().toString(36).substring(2, 11)}`;
 ---
 
-<div class="flex flex-col items-center">
+<div class="flex flex-col items-center" data-home-info-container={uniqueId}>
   <img
     transition:persist="page-home-sider-avatar"
     src={siteConfig.avatar}
@@ -33,7 +36,7 @@ const allTags = Object.entries(tags).map(([tag, count]) => ({ tag, count }));
   />
 
   <p class="mt-2">{siteConfig?.name}</p>
-  <p class="text-muted-foreground mt-3">{siteConfig?.description}</p>
+  <p class="text-muted-foreground mt-3 text-center">{siteConfig?.description}</p>
   <Social />
   <div
     class="text-muted-foreground mt-3 flex justify-center text-center text-sm/4 whitespace-nowrap select-none dark:text-white/80"
@@ -57,32 +60,49 @@ const allTags = Object.entries(tags).map(([tag, count]) => ({ tag, count }));
   </div>
   <div class="mt-6 flex w-full flex-col items-center gap-2.5">
     {
-      routers.map(({ name, path, icon, children }) => {
+      routers.map(({ name, path, icon, children }, index) => {
         if (children?.length) {
+          const collapseId = `${uniqueId}-collapse-${index}`;
           return (
-            <div class="bg-foreground/10 flex flex-col rounded-xl opacity-75 transition-all duration-300 hover:opacity-100">
-              <div class="flex-center h-12">
+            <div
+              class="bg-foreground/10 flex w-40 flex-col rounded-xl opacity-75 transition-all duration-300 hover:opacity-100"
+              data-collapsible
+            >
+              <button
+                class="flex-center hover:bg-foreground/5 h-12 w-full cursor-pointer rounded-t-xl transition-colors"
+                data-collapse-trigger={collapseId}
+                aria-expanded="false"
+                aria-label={`${name}菜单`}
+                type="button"
+              >
                 {icon && <Icon name={icon} class="mr-1.5" />}
                 {name}
-              </div>
-              <div class="flex flex-col gap-2.5">
-                {children.map(({ name, path, icon }) => (
-                  <ButtonLink
-                    url={path}
-                    label={name}
-                    variant="gradient-shoka"
-                    className={cn(
-                      'shoka-button-shadow h-12 w-40 rounded-xl text-base tracking-wider transition-all duration-300',
-                      {
-                        'text-muted-foreground/80 hover:bg-muted-foreground/10 bg-none shadow-none hover:shadow-none':
-                          path !== Astro.url.pathname,
-                      },
-                    )}
-                  >
-                    {icon && <Icon name={icon} class="mr-1.5" />}
-                    {name}
-                  </ButtonLink>
-                ))}
+                <Icon
+                  name="ri:arrow-down-s-line"
+                  class="ml-2 size-5 transition-transform duration-300"
+                  data-collapse-icon={collapseId}
+                />
+              </button>
+              <div class="transition-all duration-300" data-collapse-content={collapseId} style="max-height: 0; opacity: 0;">
+                <div class="flex flex-col items-center gap-2.5 pb-2.5">
+                  {children.map(({ name, path, icon }) => (
+                    <ButtonLink
+                      url={path}
+                      label={name}
+                      variant="gradient-shoka"
+                      className={cn(
+                        'shoka-button-shadow h-12 w-40 rounded-xl text-base tracking-wider transition-all duration-300',
+                        {
+                          'text-muted-foreground/80 hover:bg-muted-foreground/10 bg-none shadow-none hover:shadow-none':
+                            path !== Astro.url.pathname,
+                        },
+                      )}
+                    >
+                      {icon && <Icon name={icon} class="mr-1.5" />}
+                      {name}
+                    </ButtonLink>
+                  ))}
+                </div>
               </div>
             </div>
           );
@@ -108,3 +128,74 @@ const allTags = Object.entries(tags).map(([tag, count]) => ({ tag, count }));
     }
   </div>
 </div>
+
+<script>
+  function initCollapsible() {
+    // 找到所有 HomeInfo 容器
+    const containers = document.querySelectorAll('[data-home-info-container]');
+
+    containers.forEach((container) => {
+      const triggers = container.querySelectorAll('[data-collapse-trigger]');
+
+      triggers.forEach((trigger) => {
+        const targetId = trigger.getAttribute('data-collapse-trigger');
+        if (!targetId) return;
+
+        // 检查是否已经初始化过
+        if (trigger.hasAttribute('data-initialized')) return;
+        trigger.setAttribute('data-initialized', 'true');
+
+        // 在当前容器内查找对应的元素
+        const content = container.querySelector(`[data-collapse-content="${targetId}"]`) as HTMLElement;
+        const icon = trigger.querySelector(`[data-collapse-icon="${targetId}"]`) as HTMLElement;
+
+        if (!content || !icon) return;
+
+        trigger.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+
+          const isExpanded = trigger.getAttribute('aria-expanded') === 'true';
+
+          if (isExpanded) {
+            // 折叠
+            content.style.maxHeight = '0';
+            content.style.opacity = '0';
+            icon.style.transform = 'rotate(0deg)';
+            trigger.setAttribute('aria-expanded', 'false');
+          } else {
+            // 展开
+            content.style.maxHeight = '500px';
+            content.style.opacity = '1';
+            icon.style.transform = 'rotate(180deg)';
+            trigger.setAttribute('aria-expanded', 'true');
+          }
+        });
+      });
+    });
+  }
+
+  // 初始化
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCollapsible);
+  } else {
+    initCollapsible();
+  }
+
+  // 支持 Astro 的视图过渡
+  document.addEventListener('astro:page-load', initCollapsible);
+
+  // 支持 MobileDrawer 延迟加载
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.addedNodes.length) {
+        setTimeout(initCollapsible, 100);
+      }
+    });
+  });
+
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true,
+  });
+</script>

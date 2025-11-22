@@ -1,0 +1,32 @@
+---
+import Layout from '@layouts/Layout.astro';
+import TwoColumnLayout from '@layouts/TwoColumnLayout.astro';
+import Cover from '@components/ui/cover/Cover.astro';
+import HomeSider from '@components/layout/HomeSider.astro';
+import FriendsGrid from '@components/friends/FriendsGrid';
+import FriendRequestForm from '@components/friends/FriendRequestForm';
+import Divider from '@/components/ui/divider';
+import { CONTENT_PADDING } from '@constants/layout';
+import Remark from '@/components/common/Remark.astro';
+
+const title = '友情链接 | cosの博客';
+const description = '我的小伙伴们,欢迎加友链~';
+---
+
+<Layout title={title} description={description}>
+  <TwoColumnLayout>
+    <Cover slot="cover" title="友情链接" />
+    <HomeSider slot="sider" />
+    <div
+      class={`bg-gradient-start shadow-box tablet:shadow-none flex flex-col gap-10 overflow-hidden ${CONTENT_PADDING.standard}`}
+    >
+      <div class="mt-4">
+        <FriendsGrid client:load />
+      </div>
+      <div class="mb-4">
+        <FriendRequestForm client:visible />
+        <Remark />
+      </div>
+    </div>
+  </TwoColumnLayout>
+</Layout>

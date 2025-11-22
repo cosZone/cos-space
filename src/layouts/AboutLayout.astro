@@ -19,7 +19,7 @@ const { frontmatter } = Astro.props;
 
 <Layout title={`${frontmatter.title} | ${seoConfig.title}`}>
   <TwoColumnLayout>
-    <Cover slot="cover" />
+    <Cover slot="cover" title="关于我" />
     <HomeSider slot="sider" />
     <div class={`shadow-box bg-gradient-start mx-0 flex w-full flex-col gap-8 ${CONTENT_PADDING.standard}`}>
       <div class=`prose md:prose-sm dark:prose-invert`>

@@ -24,7 +24,19 @@ const readState = readingTime(data?.body ?? '');
   <div class="absolute inset-0 h-full bg-black/40"></div>
   <div class="absolute inset-0 bottom-[8vh] flex flex-col items-center justify-center px-5 text-white">
     {
-      data || title ? (
+      title ? (
+        <h1
+          class={`shadow-text word-break flex items-center gap-2 text-center text-5xl/[1.2] font-bold tracking-widest ${MAX_WIDTH.content}`}
+        >
+          {title}
+          <Icon
+            name="ri:link"
+            title="复制链接"
+            class="hover:text-primary cursor-pointer transition-colors duration-300"
+            onclick="navigator.clipboard.writeText(window.location.href)"
+          />
+        </h1>
+      ) : data ? (
         <>
           <h1 class={`shadow-text word-break text-4.5xl text-center font-bold md:text-2xl ${MAX_WIDTH.content}`}>
             {dataTitle ?? title}

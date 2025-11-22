@@ -96,12 +96,6 @@
     }
   }
 
-  pre {
-    white-space: pre-wrap;
-    background: CanvasText;
-    color: Canvas;
-  }
-
   hr {
     border-style: solid;
     border-width: 1px 0 0;
