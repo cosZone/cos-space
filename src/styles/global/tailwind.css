@@ -68,18 +68,6 @@
     border-radius: 0.5rem;
   }
 
-  .scroll-feather-mask {
-    container-name: scroll-feather-mask;
-    container-type: scroll-state;
-  }
-  @container scroll-feather-mask scroll-state(scrollable: bottom) {
-    .scroll-feather-mask::before {
-      content: '';
-      background: linear-gradient(to bottom, transparent 0%, var(--gradient-bg-start) 70%, var(--gradient-bg-start) 100%);
-      @apply absolute inset-x-0 bottom-0 z-10 block h-20;
-    }
-  }
-
   a.link {
     @apply text-primary hover:text-blue transition-colors duration-300;
   }

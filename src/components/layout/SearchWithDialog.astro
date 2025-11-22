@@ -98,3 +98,22 @@ import Search from 'astro-pagefind/components/Search';
     visibility: hidden;
   }
 </style>
+<style is:global is:inline>
+  /* https://github.com/parcel-bundler/lightningcss/issues/887 */
+  .scroll-feather-mask {
+    container-type: scroll-state;
+  }
+  @container scroll-state(scrollable: bottom) {
+    .scroll-feather-mask::before {
+      content: '';
+      background: linear-gradient(to bottom, transparent 0%, var(--gradient-bg-start) 70%, var(--gradient-bg-start) 100%);
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 10;
+      display: block;
+      height: 5rem;
+    }
+  }
+</style>

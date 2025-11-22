@@ -48,7 +48,7 @@ const SearchDialogComponent = ({ className }: SearchDialogProps) => {
       onOpenChange={setIsOpen}
       isDismiss={true}
       overlayClassName="bg-black/50 backdrop-blur-sm"
-      className="bg-gradient-start shadow-box w-full max-w-4xl rounded-xl"
+      className="bg-gradient-start shadow-box w-full max-w-3xl rounded-xl"
       contentClassName="p-6 md:p-3"
       render={({ close }) => (
         <div className="search-dialog">
