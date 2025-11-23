@@ -86,7 +86,7 @@ React 团队近年来以稳健的节奏迭代，引入了 Server Components、Co
 
 - [在 Chrome 浏览器 144+ 中，锚点定位具有变换感知功能](https://www.bram.us/2025/11/20/anchor-positioning-is-transform-aware-in-chrome-144/)：Chrome 144 将 Anchor Positioning 改为对 transform 变换敏感（transform-aware），更新后 tooltip、浮层等会根据元素的变换后位置进行定位。
 
-- [Masonry Switch 语法 #1022]((https://github.com/w3c/csswg-drafts/issues/12022#issuecomment-3525043825)：CSS 工作组（CSSWG）确定采用新语法 `display: grid-lanes` 来启用 CSS Grid Level 3 新增的 Masonry 布局。
+- [Masonry Switch 语法 #1022](https://github.com/w3c/csswg-drafts/issues/12022#issuecomment-3525043825)：CSS 工作组（CSSWG）确定采用新语法 `display: grid-lanes` 来启用 CSS Grid Level 3 新增的 Masonry 布局。
 
 ## 小贴士
 
