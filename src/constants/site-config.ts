@@ -76,7 +76,7 @@ export const siteConfig: SiteConfig = {
   showLogo: true, // 是否显示 logo 否则用 title
   author: 'cos', // 作者名称
   enableJSGridCover: false, // 是否启用 color4bg 的背景
-  site: 'https://space.cosine.ren/',
+  site: 'https://blog.cosine.ren/',
   startYear: 2020,
   keywords: ['cos', 'cosine', '博客', '个人空间', '技术', '前端'],
   featuredCategories: [

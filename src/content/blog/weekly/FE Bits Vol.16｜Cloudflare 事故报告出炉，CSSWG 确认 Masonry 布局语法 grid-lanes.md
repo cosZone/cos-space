@@ -13,7 +13,7 @@ categories:
   - 周刊
 ---
 
-> 本期网址 https://space.cosine.ren/post/weekly-16
+> 本期网址 https://blog.cosine.ren/post/weekly-16
 > 本周刊更新时间期望是在每周天
 > 目前推荐使用 [Folo](https://folo.is/) 订阅本周刊的 [Quaily RSS](https://quaily.com/cosine/feed/atom)。
 > 公众号 前端周周谈 FE Bits，点击阅读原文链接可查看原文。

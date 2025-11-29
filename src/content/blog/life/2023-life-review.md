@@ -193,21 +193,7 @@ categories:
 
 ![](https://backblaze.cosine.ren/blog/4c66d1d71b8da7cd9a3d163b2aad498d.jpg)
 
-- 折腾了 [Memos](https://github.com/usememos/memos)，一个备忘录网站，三步就能向 bot 发消息然后存到网站里
-
-1. 注册一个你自己的账号 https://memo.cosine.ren/auth
-2. 向 @cosMemosbot 机器人发送 /start 获取 Telegram UserID (https://usememos.com/docs/integration/telegram-bot) 然后在网站设置 - 偏好设置中填入
-3. 发消息或者转发消息给机器人，就能发到网站里了，默认是 private。
-
-网站地址 https://memo.cosine.ren/ 后续应该会做整合
-
-- 折腾了监控面版：https://uptime.cosine.ren/status/cosine
-
-![](https://backblaze.cosine.ren/blog/87eab677a500fcc32976e2808711951c.png)
-
 - 工具箱新增了几个自己经常用的工具（是真的只有自己用嘻嘻）
-
-- 折腾了我的小展示柜 https://space.cosine.ren/gallery
 
 ![](https://backblaze.cosine.ren/blog/489ff19fcfa414923c842bcaa7f2b904.webp)
 

@@ -2,7 +2,7 @@
 
 “小春日和” 风格的 Astro 博客主题。
 
-“小春日和” （こはるびより）指的是晚秋到初冬这段时期，持续的一段似春天般溫暖的晴天。也就是中文中的“小阳春”。
+“小春日和” （こはるびより）指的是晚秋到初冬这段时期，持续的一段似春天般温暖的晴天。也就是中文中的“小阳春”。
 
 灵感来自 Hexo 的 Shoka 主题，但不再追求一比一复刻，而是保留它的优点，用更轻量的技术栈，做一款属于自己的个人博客主题。
 
@@ -52,7 +52,6 @@ pnpm dev
 
 ## TODO
 
-- [ ] Astro 搜索集成，使用 [Pagefind](https://pagefind.app/)，可参考 https://github.com/shishkin/astro-pagefind
 - [ ] 智能文章[相关推荐](https://alexop.dev/posts/semantic-related-posts-astro-transformersjs/)
 - [ ] 文档
 - [ ] [Page CMS](https://css-tricks.com/using-pages-cms-for-static-site-content-management/)

@@ -46,7 +46,7 @@ export default defineConfig({
       },
     }),
     umami({
-      id: '8c54da69-94b0-417e-ad3b-0b737dc28937',
+      id: '14de13b0-3220-4beb-8f0b-e08b17724991',
       endpointUrl: 'https://stats.cosine.ren',
       hostUrl: 'https://stats.cosine.ren',
     }),
