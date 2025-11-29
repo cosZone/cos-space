@@ -11,7 +11,7 @@ type SiteConfig = {
   enableJSGridCover?: boolean; // 是否启用 color4bg 的背景 (写了不舍得扔)
   site: string; // 站点线上域名 用于 RSS 生成等
   startYear?: number; // 站点创建年份
-
+  keywords?: string[]; // 站点关键词 SEO
   featuredCategories?: {
     link: string;
     image: string;
@@ -78,6 +78,7 @@ export const siteConfig: SiteConfig = {
   enableJSGridCover: false, // 是否启用 color4bg 的背景
   site: 'https://space.cosine.ren/',
   startYear: 2020,
+  keywords: ['cos', 'cosine', '博客', '个人空间', '技术', '前端'],
   featuredCategories: [
     {
       link: 'life',
@@ -198,12 +199,12 @@ export const socialConfig: SocialConfig = {
 };
 
 const { title, alternate, subtitle } = siteConfig;
+
 export const seoConfig = {
   title: `${alternate ? alternate + ' = ' : ''}${title}${subtitle ? ' = ' + subtitle : ''}`,
-  description:
-    'cosSpace 是基于 Next.js (App Router)、Typescript、React 和 Tailwind 开发的个人空间，是 cos_blogs 的重构版，为用户提供同时拥有博客和个人空间的平台。',
-  keywords: 'cos, cosine, cos_blogs, 博客, 个人空间, 技术, 前端, cos-space',
-  url: 'https://space.cosine.ren/',
+  description: siteConfig.description,
+  keywords: siteConfig?.keywords?.join(',') ?? '',
+  url: siteConfig.site,
 };
 
 export const defaultCoverList = Array.from({ length: 13 }, (_, index) => index + 1).map((item) => `/img/cover/${item}.webp`);

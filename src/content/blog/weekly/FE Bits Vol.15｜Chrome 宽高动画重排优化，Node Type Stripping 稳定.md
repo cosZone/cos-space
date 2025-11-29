@@ -26,7 +26,7 @@ categories:
 
 在博客的基础上加上了周刊栏目，欢迎提建议，还有很多要优化的，搜索和评论还没加上，但是欢迎来看看提建议。
 
-仓库在 https://github.com/cosZone/cos-space
+仓库在 https://github.com/cosZone/astro-koharu
 
 我发现我的拖延症还是没好，不发出来就会一直拖～所以发出来鞭策鞭策自己。
 

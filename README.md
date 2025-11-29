@@ -1,34 +1,35 @@
-# 🚀 cosSpace
+# astro-koharu
 
-在 Astro 上复刻 Shoka 主题，之后考虑换一个名字～
+“小春日和” 风格的 Astro 博客主题。
 
-## 前言
+“小春日和” （こはるびより）指的是晚秋到初冬这段时期，持续的一段似春天般溫暖的晴天。也就是中文中的“小阳春”。
 
-- 一开始的初衷是想很喜欢 [Shoka 主题](https://shoka.lostyu.me/computer-science/note/theme-shoka-doc/)，但又觉得 Hexo 性能太差了，所以使用 Astro 尝试复刻。
-- 我也有想过这么多的分类是否应该保留，想了想觉得还是保留了，可以选择不用这么复杂的分类。
-- 再后来，就变成了我想要打造自己喜爱的博客。
-- 一度纠结于，要复刻 Shoka 的很多样式吗，还是适当阉割改为自己喜爱的形式，最后决定，自己的博客自己做主～
-- 轮播图？随机文章封面？为了性能也干掉吧（忍痛）
-- 等开发到让我满意之后，要给这个主题起个名字呢。
+灵感来自 Hexo 的 Shoka 主题，但不再追求一比一复刻，而是保留它的优点，用更轻量的技术栈，做一款属于自己的个人博客主题。
 
-## 📦 部署
+- 基于 **Astro**，静态输出，加载轻快
+- 萌系 / 二次元 / 粉蓝配色，适合 ACG、前端、手账向个人站
+- 支持多分类、多标签，但不会强迫你用复杂信息架构
+- 尽可能的减少性能开销
+- 使用 pagefind 实现无后端的全站搜索。
+
+## 部署
 
 ### Vercel 一键部署
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FcosZone%2Fcos-space&project-name=my-cos-space&repository-name=my-cos-space)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/cosZone/astro-koharu&project-name=astro-koharu&repository-name=astro-koharu)
 
 ### 本地开发
 
 1. 克隆项目到本地
 
 ```bash
-git clone https://github.com/cosZone/cos-space
+git clone https://github.com/cosZone/astro-koharu
 ```
 
 2. 进入项目目录并安装依赖
 
 ```bash
-cd cos-space
+cd astro-koharu
 pnpm i
 ```
 
@@ -40,7 +41,7 @@ pnpm dev
 
 ## 🙏 鸣谢
 
-感谢以下项目对 cosSpace 的开发提供的灵感及参考：
+感谢以下项目对 astro-koharu 的开发提供的灵感及参考：
 
 - [mx-space](https://github.com/mx-space)
 - [Hexo 主题 Shoka](https://shoka.lostyu.me/computer-science/note/theme-shoka-doc/)
