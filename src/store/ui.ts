@@ -56,9 +56,26 @@ export const modalOpen = atom<boolean>(false);
 /**
  * Search modal open/close state
  *
- * Controls the visibility of the search modal (if implemented).
+ * Controls the visibility of the search modal.
  */
 export const searchOpen = atom<boolean>(false);
+
+/**
+ * Code fullscreen data
+ *
+ * Contains the data for the code block fullscreen dialog.
+ * When set to non-null, the dialog opens. When set to null, it closes.
+ */
+export interface CodeBlockData {
+  code: string;
+  codeHTML: string;
+  language: string;
+  preClassName: string;
+  preStyle: string;
+  codeClassName: string;
+}
+
+export const codeFullscreenData = atom<CodeBlockData | null>(null);
 
 /**
  * Helper functions for common operations
@@ -104,4 +121,32 @@ export function toggleModal(): void {
  */
 export function toggleSearch(): void {
   searchOpen.set(!searchOpen.get());
+}
+
+/**
+ * Open search dialog
+ */
+export function openSearch(): void {
+  searchOpen.set(true);
+}
+
+/**
+ * Close search dialog
+ */
+export function closeSearch(): void {
+  searchOpen.set(false);
+}
+
+/**
+ * Open code fullscreen dialog with data
+ */
+export function openCodeFullscreen(data: CodeBlockData): void {
+  codeFullscreenData.set(data);
+}
+
+/**
+ * Close code fullscreen dialog
+ */
+export function closeCodeFullscreen(): void {
+  codeFullscreenData.set(null);
 }

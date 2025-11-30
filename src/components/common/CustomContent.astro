@@ -2,7 +2,6 @@
 import type { ContentConfig } from '@constants/content-config';
 import type { AstroComponentFactory } from 'astro/runtime/server/index.js';
 import { defaultContentConfig } from '@constants/content-config';
-import CodeBlockFullscreen from '@components/markdown/CodeBlockFullscreen';
 
 interface Props {
   Content: AstroComponentFactory;
@@ -16,9 +15,6 @@ const finalConfig = { ...defaultContentConfig, ...config };
 <div class="custom-content" data-config={JSON.stringify(finalConfig)}>
   <Content />
 </div>
-
-<!-- Code block fullscreen dialog -->
-<CodeBlockFullscreen client:only="react" />
 
 <script>
   import type { ContentConfig } from '@constants/content-config';

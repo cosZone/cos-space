@@ -44,7 +44,7 @@ body {
   font-size: 16px;
   margin: 0;
   padding: 0;
-  min-height: 100vh;
+  min-height: 100dvh;
   background-image: radial-gradient(circle at 90% 10%, rgba(241, 120, 182, 0.08) 0%, transparent 40%),
     radial-gradient(circle at 10% 90%, rgba(255, 110, 176, 0.08) 0%, transparent 40%);
   overscroll-behavior: none;

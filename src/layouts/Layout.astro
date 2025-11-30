@@ -12,6 +12,8 @@ interface Props {
 import FloatingGroup from '@components/layout/FloatingGroup.astro';
 import Header from '@components/layout/Header.astro';
 import MobileDrawer from '@components/layout/MobileDrawer.astro';
+import SearchDialog from '@components/layout/SearchDialog.astro';
+import CodeBlockFullscreen from '@components/markdown/CodeBlockFullscreen.astro';
 import { seoConfig, siteConfig } from '@constants/site-config';
 import LoadingIndicator from 'astro-loading-indicator/component';
 import { Tooltips } from 'astro-tooltips';
@@ -92,6 +94,8 @@ const { title = seoConfig.title, description = seoConfig.description, siderType,
       </main>
       <FloatingGroup />
       <MobileDrawer type={siderType} post={post} />
+      <SearchDialog />
+      <CodeBlockFullscreen />
     </div>
   </body>
 </html>

@@ -1,9 +1,17 @@
 ---
-import SearchDialog from './SearchDialog';
 import Search from 'astro-pagefind/components/Search';
+import { Icon } from 'astro-icon/components';
 ---
 
-<SearchDialog client:load />
+<!-- Search trigger button -->
+<button
+  id="search-trigger"
+  class="group cursor-pointer transition duration-300 hover:scale-125"
+  aria-label="搜索"
+  title="搜索 (⌘K)"
+>
+  <Icon name="ri:search-line" class="size-8" />
+</button>
 
 <!-- Search Component - will be portal'd into dialog -->
 <div id="search-component-portal">
@@ -32,6 +40,14 @@ import Search from 'astro-pagefind/components/Search';
 </div>
 
 <script>
+  import { openSearch } from '@store/ui';
+
+  let triggerElement: HTMLElement | null = null;
+
+  function handleTriggerClick() {
+    openSearch();
+  }
+
   function moveSearchToDialog() {
     const dialogContainer = document.getElementById('search-dialog-container');
     const searchPortal = document.getElementById('search-component-portal');
@@ -70,21 +86,37 @@ import Search from 'astro-pagefind/components/Search';
     moveSearchBack();
   }
 
+  let initialized = false;
+
   function initSearchDialog() {
-    // Listen for custom events from React component
+    // Prevent double initialization
+    if (initialized) return;
+    initialized = true;
+
+    // Init trigger button
+    triggerElement = document.getElementById('search-trigger');
+    triggerElement?.addEventListener('click', handleTriggerClick);
+    // Listen for custom events from Astro component
     window.addEventListener('search-dialog-open', handleDialogOpen);
     window.addEventListener('search-dialog-close', handleDialogClose);
   }
 
   function cleanupSearchDialog() {
+    if (!initialized) return;
+
+    triggerElement?.removeEventListener('click', handleTriggerClick);
+    triggerElement = null;
     window.removeEventListener('search-dialog-open', handleDialogOpen);
     window.removeEventListener('search-dialog-close', handleDialogClose);
+    initialized = false;
   }
 
-  // Initialize on page load
-  initSearchDialog();
+  // Initialize immediately if DOM is ready (handles race condition on first load)
+  if (document.readyState !== 'loading') {
+    initSearchDialog();
+  }
 
-  // Re-initialize on Astro page navigation
+  // Also listen for astro:page-load for subsequent navigations
   document.addEventListener('astro:page-load', initSearchDialog);
   document.addEventListener('astro:before-swap', cleanupSearchDialog);
 </script>
