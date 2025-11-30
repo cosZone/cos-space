@@ -127,7 +127,7 @@
     mask-size: 100% 100%;
     /* 调整为相对定位，配合 flex 居中 */
     position: relative;
-    top: auto;
+    top: -0.075em;
     right: auto;
     margin-left: 0.5rem;
     @apply opacity-0 transition-opacity duration-300;
