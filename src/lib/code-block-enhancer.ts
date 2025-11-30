@@ -19,17 +19,26 @@ export interface CodeBlockInfo {
  * 从 Shiki 生成的代码块中提取语言
  */
 export function extractLanguage(preElement: HTMLElement): string {
-  const codeElement = preElement.querySelector('code');
-  if (!codeElement) return 'text';
-
-  // Shiki 会在 code 标签的 class 中添加语言信息
-  const classes = codeElement.className.split(' ');
-  const langClass = classes.find((cls) => cls.startsWith('language-'));
-
-  if (langClass) {
-    return langClass.replace('language-', '');
+  // Primary method: Check for data-language attribute on pre element
+  // This is the standard way Shiki adds language information in Astro
+  // Shiki 会在 pre 标签的 data-language 属性中添加语言信息
+  const dataLang = preElement.getAttribute('data-language');
+  if (dataLang) {
+    return dataLang;
   }
 
+  // Fallback 1: Check for language-* class on code element
+  // This handles cases where other markdown processors are used
+  const codeElement = preElement.querySelector('code');
+  if (codeElement) {
+    const classes = codeElement.className.split(' ');
+    const langClass = classes.find((cls) => cls.startsWith('language-'));
+    if (langClass) {
+      return langClass.replace('language-', '');
+    }
+  }
+
+  // Fallback 2: Default to 'text' for plain code blocks
   return 'text';
 }
 
