@@ -53,5 +53,6 @@ pnpm dev
 ## TODO
 
 - [ ] 智能文章[相关推荐](https://alexop.dev/posts/semantic-related-posts-astro-transformersjs/)
+- [ ] PathLength 实现 [文末签名动画](https://www.stefanjudis.com/today-i-learned/pathlength-makes-makes-svg-path-animations-easier-to-manage/)
 - [ ] 文档
 - [ ] [Page CMS](https://css-tricks.com/using-pages-cms-for-static-site-content-management/)
