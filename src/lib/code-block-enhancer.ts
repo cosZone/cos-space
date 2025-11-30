@@ -10,6 +10,9 @@ export interface CodeBlockInfo {
   language: string;
   code: string;
   codeHTML: string;
+  preClassName: string;
+  preStyle: string;
+  codeClassName: string;
 }
 
 /**
@@ -44,6 +47,28 @@ export function extractCode(preElement: HTMLElement): string {
 export function extractCodeHTML(preElement: HTMLElement): string {
   const codeElement = preElement.querySelector('code');
   return codeElement?.innerHTML || '';
+}
+
+/**
+ * 提取 pre 标签的 class
+ */
+export function extractPreClassName(preElement: HTMLElement): string {
+  return preElement.className;
+}
+
+/**
+ * 提取 pre 标签的内联样式
+ */
+export function extractPreStyle(preElement: HTMLElement): string {
+  return preElement.getAttribute('style') || '';
+}
+
+/**
+ * 提取 code 标签的 class
+ */
+export function extractCodeClassName(preElement: HTMLElement): string {
+  const codeElement = preElement.querySelector('code');
+  return codeElement?.className || '';
 }
 
 export interface ToolbarOptions {
@@ -141,6 +166,9 @@ export function enhanceCodeBlock(preElement: HTMLElement, options: ToolbarOption
   const language = extractLanguage(preElement);
   const code = extractCode(preElement);
   const codeHTML = extractCodeHTML(preElement);
+  const preClassName = extractPreClassName(preElement);
+  const preStyle = extractPreStyle(preElement);
+  const codeClassName = extractCodeClassName(preElement);
 
   // 创建 wrapper 容器
   const wrapper = document.createElement('div');
@@ -162,6 +190,9 @@ export function enhanceCodeBlock(preElement: HTMLElement, options: ToolbarOption
     language,
     code,
     codeHTML,
+    preClassName,
+    preStyle,
+    codeClassName,
   };
 }
 

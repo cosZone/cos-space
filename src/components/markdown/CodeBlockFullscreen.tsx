@@ -6,10 +6,44 @@ import { copyToClipboard } from '@lib/code-block-enhancer';
 import { cn } from '@lib/utils';
 import { memo, useCallback, useDeferredValue, useEffect, useState } from 'react';
 
+/**
+ * Parse inline style string to React style object
+ */
+function parseInlineStyle(styleString: string): React.CSSProperties {
+  if (!styleString) return {};
+
+  const styles: React.CSSProperties = {};
+  const declarations = styleString.split(';').filter((s) => s.trim());
+
+  declarations.forEach((declaration) => {
+    const colonIndex = declaration.indexOf(':');
+    if (colonIndex === -1) return;
+
+    const property = declaration.slice(0, colonIndex).trim();
+    const value = declaration.slice(colonIndex + 1).trim();
+
+    if (!property || !value) return;
+
+    // CSS variables (--*) should be kept as-is
+    if (property.startsWith('--')) {
+      (styles as any)[property] = value;
+    } else {
+      // Convert kebab-case to camelCase (e.g., background-color -> backgroundColor)
+      const camelProperty = property.replace(/-([a-z])/g, (_, letter) => letter.toUpperCase());
+      (styles as any)[camelProperty] = value;
+    }
+  });
+
+  return styles;
+}
+
 interface CodeBlockData {
   code: string;
   codeHTML: string;
   language: string;
+  preClassName: string;
+  preStyle: string;
+  codeClassName: string;
 }
 
 function CodeBlockFullscreenComponent() {
@@ -19,6 +53,9 @@ function CodeBlockFullscreenComponent() {
     code: '',
     codeHTML: '',
     language: 'text',
+    preClassName: '',
+    preStyle: '',
+    codeClassName: '',
   });
 
   // 延迟渲染代码内容，让 Dialog 动画优先执行
@@ -124,11 +161,11 @@ function CodeBlockFullscreenComponent() {
             </div>
           </div>
 
-          {/* Code Content - 独立滚动，bg-card 与外面代码块一致 */}
-          <div className="bg-card flex-1 overflow-auto p-4">
-            <pre className="m-0 border-0 bg-transparent p-0 shadow-none">
+          {/* Code Content - 独立滚动 */}
+          <div className="flex-1 overflow-auto">
+            <pre className={cn(data.preClassName, 'p-4')} style={{ ...parseInlineStyle(data.preStyle) }}>
               {/* SAFE: codeHTML comes from Shiki syntax highlighter output only */}
-              <code className="block text-sm leading-relaxed" dangerouslySetInnerHTML={{ __html: deferredCodeHTML }} />
+              <code className={data.codeClassName} dangerouslySetInnerHTML={{ __html: deferredCodeHTML }} />
             </pre>
           </div>
         </div>
