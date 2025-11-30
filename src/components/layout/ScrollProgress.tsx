@@ -22,7 +22,7 @@ export function ScrollProgress({ className }: ScrollProgressProps) {
 
   return (
     <div className={className}>
-      <motion.div className="bg-primary h-0.5 origin-left rounded-full" style={{ scaleX }} />
+      <motion.div className="bg-primary h-1 origin-left rounded-full" style={{ scaleX }} />
     </div>
   );
 }
