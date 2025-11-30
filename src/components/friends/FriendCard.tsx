@@ -68,7 +68,6 @@ export default function FriendCard({ friend, index }: FriendCardProps) {
     <motion.a
       href={friend.url}
       target="_blank"
-      rel="noopener noreferrer"
       ref={cardRef}
       className="friend-card ease-easeOut group relative block h-[200px] w-full cursor-pointer transition-transform duration-300 select-none"
       style={{ perspective: '1000px' }}

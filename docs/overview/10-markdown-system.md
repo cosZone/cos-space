@@ -77,6 +77,7 @@ const blogCollection = defineCollection({
 ```
 
 **特点：**
+
 - 类型安全的 frontmatter 验证
 - 支持分层分类结构
 - 保持与 Hexo 博客的兼容性
@@ -93,6 +94,7 @@ const blogCollection = defineCollection({
 Shiki 在构建时进行语法高亮，生成的 HTML 包含内联样式，无需运行时 JavaScript。
 
 **优势：**
+
 - 零运行时开销
 - 精准的语法高亮（基于 VSCode 的 TextMate 语法）
 - 主题自动跟随系统/用户偏好切换
@@ -107,18 +109,19 @@ Shiki 在构建时进行语法高亮，生成的 HTML 包含内联样式，无�
 plugins: [
   require('@tailwindcss/typography'),
   // ... other plugins
-]
+];
 ```
 
 文章内容应用 `.prose` 类来获得优雅的排版效果（见 `src/pages/post/[...slug].astro:96`）：
 
 ```html
 <article class="prose md:prose-sm dark:prose-invert">
-  <CustomContent Content={Content} />
+  <CustomContent Content="{Content}" />
 </article>
 ```
 
 **Typography 提供的样式：**
+
 - 合理的字体大小和行高
 - 段落间距和列表缩进
 - 链接、引用、代码块的默认样式
@@ -142,13 +145,12 @@ plugins: [
 
 ```css
 .prose a {
-  @apply text-primary hover:text-blue
-         no-underline transition-colors duration-300
-         hover:underline;
+  @apply text-primary hover:text-blue no-underline transition-colors duration-300 hover:underline;
 }
 ```
 
 **特点：**
+
 - 使用主题色 `text-primary`
 - Hover 时变为蓝色并显示下划线
 - 300ms 平滑过渡动画
@@ -157,9 +159,14 @@ plugins: [
 
 ```css
 /* 标题滚动偏移，避免被固定头部遮挡 */
-.prose h1, h2, h3, h4, h5, h6 {
+.prose h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   position: relative;
-  scroll-margin-top: 4rem;  /* 64px 偏移 */
+  scroll-margin-top: 4rem; /* 64px 偏移 */
 }
 
 /* 锚点图标 */
@@ -175,7 +182,7 @@ plugins: [
 
   /* 使用 SVG mask 显示 # 图标 */
   background-color: currentColor;
-  mask-image: url("data:image/svg+xml,...");
+  mask-image: url('data:image/svg+xml,...');
   /* ... */
 }
 
@@ -187,6 +194,7 @@ plugins: [
 ```
 
 **工作原理：**
+
 1. `rehype-autolink-headings` 在每个标题后插入 `<a class="anchor-link">` 元素
 2. 使用 CSS `::before` 伪元素在标题右侧显示 # 图标
 3. 默认透明，鼠标悬停时渐显
@@ -250,20 +258,17 @@ export const defaultContentConfig: ContentConfig = {
 1. **外部链接处理**（`CustomContent.astro:37-49`）
 
 ```javascript
-// 为所有外部链接添加 target="_blank" 和 rel="noopener noreferrer"
+// 为所有外部链接添加 target="_blank"
 if (config.addBlankTarget) {
   const links = contentContainer.querySelectorAll('a[href]');
   links.forEach((link) => {
     const href = link.getAttribute('href') || '';
     if (href.startsWith('http') || href.startsWith('//')) {
       link.setAttribute('target', '_blank');
-      link.setAttribute('rel', 'noopener noreferrer');
     }
   });
 }
 ```
-
-**安全性：** `noopener noreferrer` 防止 tabnabbing 攻击。
 
 2. **平滑滚动**（`CustomContent.astro:52-76`）
 
@@ -290,6 +295,7 @@ if (config.smoothScroll) {
 ```
 
 **优点：**
+
 - 平滑滚动到目标标题
 - 更新 URL 但不触发页面跳转
 - 更好的用户体验
@@ -348,6 +354,7 @@ const handleHeadingClick = useCallback((id: string) => {
 ```
 
 **用户体验：**
+
 - 点击标题时，只展开该标题及其父级
 - 自动折叠同级其他标题，保持界面简洁
 - 平滑滚动到目标位置
@@ -367,6 +374,7 @@ const handleHeadingClick = useCallback((id: string) => {
 ```
 
 **侧边栏功能：**
+
 - 分段控制（信息、目录、系列）
 - 平滑切换动画
 - 响应式：移动端隐藏，桌面端固定显示
@@ -381,6 +389,7 @@ const handleHeadingClick = useCallback((id: string) => {
 依赖：`reading-time` 包（`package.json:54`）
 
 用法示例：
+
 ```typescript
 import readingTime from 'reading-time';
 const stats = readingTime(post.body);
@@ -411,6 +420,7 @@ const jsonLd = {
 ```
 
 **好处：**
+
 - 帮助搜索引擎理解文章内容
 - 可能在搜索结果中显示富文本片段
 - 改善 SEO 和社交媒体分享效果
@@ -420,18 +430,23 @@ const jsonLd = {
 ### 编写 Markdown
 
 1. **使用语义化标题**
+
    ```markdown
    # 文章标题（仅一个 h1）
+
    ## 主要章节
+
    ### 小节
+
    #### 细节
    ```
 
 2. **利用 GFM 扩展**
+
    ```markdown
-   | 表头1 | 表头2 |
-   |-------|-------|
-   | 内容  | 内容  |
+   | 表头 1 | 表头 2 |
+   | ------ | ------ |
+   | 内容   | 内容   |
 
    - [x] 已完成任务
    - [ ] 待办任务
@@ -451,16 +466,17 @@ const jsonLd = {
 1. **扩展 prose 样式**
 
    在 `src/styles/theme/markdown.css` 中添加自定义规则：
+
    ```css
    .prose blockquote {
-     @apply border-l-4 border-primary/50
-            bg-primary/5 italic;
+     @apply border-primary/50 bg-primary/5 border-l-4 italic;
    }
    ```
 
 2. **添加自定义组件**
 
    在 Markdown 中使用 MDX 组件：
+
    ```markdown
    import { Callout } from '@components/ui/Callout';
 
@@ -476,24 +492,29 @@ const jsonLd = {
 ## 文件索引
 
 **配置文件：**
+
 - `astro.config.mjs:15-37` - Markdown 主配置
 - `tailwind.config.mjs:138` - Typography 插件
 - `src/content/config.ts` - Content Collections Schema
 
 **样式文件：**
+
 - `src/styles/theme/markdown.css` - Markdown 自定义样式
 - `src/styles/components/post.css` - 文章组件样式
 - `src/styles/global/tailwind.css` - Tailwind 基础配置
 
 **组件文件：**
+
 - `src/components/common/CustomContent.astro` - 内容增强组件
 - `src/components/layout/TableOfContents/index.tsx` - 目录导航组件
 - `src/components/layout/HomeSider.astro` - 侧边栏容器
 
 **页面文件：**
+
 - `src/pages/post/[...slug].astro` - 文章详情页模板
 
 **常量配置：**
+
 - `src/constants/content-config.ts` - 内容增强配置
 
 ## 总结

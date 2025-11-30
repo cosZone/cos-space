@@ -55,7 +55,6 @@ const finalConfig = { ...defaultContentConfig, ...config };
         // Check if it's an external link (starts with http/https or is absolute)
         if (href.startsWith('http') || href.startsWith('//')) {
           anchor.setAttribute('target', '_blank');
-          anchor.setAttribute('rel', 'noopener noreferrer');
         }
       });
     }
