@@ -6,6 +6,42 @@
     @apply text-primary hover:text-blue no-underline transition-colors duration-300 hover:underline;
   }
 
+  /* ========== 行内代码样式 ========== */
+  /* 移除 Typography 默认的反引号 */
+  :not(pre) > code::before,
+  :not(pre) > code::after {
+    content: none;
+  }
+
+  :not(pre) > code {
+    /* 背景色和圆角 */
+    background: hsl(var(--primary) / 0.08);
+    border-radius: 0.375rem;
+    color: hsl(var(--primary) / 0.8);
+
+    /* 阴影 */
+    box-shadow: 0 1px 2px 0 hsl(var(--primary) / 0.05);
+
+    /* 内边距 */
+    padding: 0.15rem 0.375rem;
+
+    /* 字体 */
+    font-size: 0.9em;
+    font-weight: 500;
+
+    /* Hover 效果 */
+    transition:
+      background-color 0.2s ease,
+      border-color 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+
+  :not(pre) > code:hover {
+    background: hsl(var(--primary) / 0.12);
+    border-color: hsl(var(--primary) / 0.2);
+    box-shadow: 0 2px 4px 0 hsl(var(--primary) / 0.1);
+  }
+
   /* Anchor link styles for Astro's automatic heading links */
   .anchor-link {
     @apply relative;
@@ -20,6 +56,8 @@
     }
   }
 
+  /* ========== 标题样式优化 ========== */
+
   /* For headings with anchor links */
   h1,
   h2,
@@ -28,11 +66,50 @@
   h5,
   h6 {
     position: relative;
-    scroll-margin-top: 4rem; /* Offset for fixed header */
-
+    scroll-margin-top: 4rem;
     &:hover .anchor-link::before {
       opacity: 1;
     }
+  }
+
+  /* 级别标签 */
+  h1::before,
+  h2::before,
+  h3::before,
+  h4::before,
+  h5::before,
+  h6::before {
+    content: attr(data-level);
+    position: absolute;
+    left: -1.5em;
+    bottom: 0;
+
+    /* 样式 */
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: hsl(var(--muted-foreground));
+    opacity: 0.5;
+
+    /* 等宽字体 */
+    font-family: ui-monospace, SFMono-Regular, monospace;
+
+    transition: opacity 0.3s ease;
+  }
+
+  h1:hover::before,
+  h2:hover::before,
+  h3:hover::before,
+  h4:hover::before,
+  h5:hover::before,
+  h6:hover::before {
+    opacity: 0.8;
+  }
+
+  /* 调整锚点链接居中对齐 */
+  a.anchor-link {
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;
   }
 
   a.anchor-link > span::before {
@@ -48,10 +125,14 @@
     mask-repeat: no-repeat;
     -webkit-mask-size: 100% 100%;
     mask-size: 100% 100%;
-    top: 0.2em;
-    right: -1.25em;
-    @apply absolute opacity-0 transition-opacity duration-300;
+    /* 调整为相对定位，配合 flex 居中 */
+    position: relative;
+    top: auto;
+    right: auto;
+    margin-left: 0.5rem;
+    @apply opacity-0 transition-opacity duration-300;
   }
+
   h1:hover .anchor-link > span::before,
   h2:hover .anchor-link > span::before,
   h3:hover .anchor-link > span::before,
@@ -60,4 +141,290 @@
   h6:hover .anchor-link > span::before {
     opacity: 1;
   }
+
+  /* ========== 列表样式优化 ========== */
+
+  /* 无序列表 - 覆盖 Typography 默认样式 */
+  ul {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  ul > li {
+    position: relative;
+    padding-left: 1.75rem;
+    /* padding-inline-start: 0; */
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    /* Hover 效果 */
+    transition: background-color 0.2s ease;
+    border-radius: 0.375rem;
+  }
+
+  ul > li:hover {
+    background: hsl(var(--primary) / 0.05);
+  }
+
+  /* 隐藏默认 marker */
+  ul > li::marker {
+    content: none;
+    color: transparent;
+  }
+
+  /* 自定义项目符号 */
+  ul > li::before {
+    content: '';
+    position: absolute;
+    left: 0.5rem;
+    top: 0.625em; /* 使用 em 单位，相对于行高居中 */
+    width: 0.375rem;
+    height: 0.375rem;
+    border-radius: 50%;
+    background: hsl(var(--primary));
+    opacity: 0.7;
+  }
+
+  /* 嵌套列表缩进 */
+  ul ul {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    padding-left: 1rem;
+  }
+
+  /* 嵌套列表使用空心圆 */
+  ul ul > li::before {
+    background: transparent;
+    border: 1.5px solid hsl(var(--primary));
+    opacity: 0.6;
+  }
+
+  /* 有序列表 - 覆盖 Typography 默认样式 */
+  ol {
+    list-style: none;
+    counter-reset: list-counter;
+    padding-left: 0;
+    /* padding-inline-start: 0; */
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  ol > li {
+    position: relative;
+    counter-increment: list-counter;
+    padding-left: 2.5rem;
+    /* padding-inline-start: 0; */
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+
+    /* Hover 效果 */
+    transition: background-color 0.2s ease;
+    border-radius: 0.375rem;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    padding-right: 0.5rem;
+  }
+
+  ol > li:hover {
+    background: hsl(var(--primary) / 0.05);
+  }
+
+  /* 隐藏默认 marker */
+  ol > li::marker {
+    content: none;
+    color: transparent;
+  }
+
+  /* 自定义数字样式 */
+  ol > li::before {
+    content: counter(list-counter);
+    position: absolute;
+    left: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+
+    /* 样式 - 支持两位数 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.5rem;
+    width: auto;
+    height: 1.5rem;
+    padding: 0 0.25rem;
+
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: hsl(var(--primary));
+
+    background: hsl(var(--primary) / 0.1);
+    border-radius: 9999px;
+  }
+
+  /* 嵌套有序列表 */
+  ol ol {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    padding-left: 1rem;
+  }
+
+  ol ol > li::before {
+    background: transparent;
+    border: 1.5px solid hsl(var(--primary));
+    font-size: 0.75rem;
+  }
+
+  /* ========== 代码块 Mac 窗口样式 ========== */
+
+  /* 代码块容器 - 覆盖 Typography 默认样式 */
+  pre {
+    position: relative;
+    border-radius: 0 0 0.75rem 0.75rem;
+    border: 1px solid hsl(var(--border));
+    /* 重置 Typography 默认 padding */
+    padding: 0;
+    padding-inline-end: 0;
+    overflow: hidden;
+    margin: 0;
+    /* 覆盖 Typography 背景色 */
+    background-color: hsl(var(--card));
+    /* 阴影 */
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  }
+
+  pre code {
+    display: block;
+    padding: 1rem 1.5rem;
+    overflow-x: auto;
+    font-size: 0.875rem;
+    line-height: 1.7;
+    /* 覆盖 Typography 默认值 */
+    background-color: transparent;
+    color: inherit;
+  }
+
+  /* 移除 pre code 的 Typography ::before/::after */
+  pre code::before,
+  pre code::after {
+    content: none;
+  }
+}
+
+/* 工具栏（通过 JS 动态添加） */
+.code-block-toolbar {
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 1rem;
+  padding-right: 0.5rem;
+
+  background: hsl(var(--muted) / 0.5);
+  backdrop-filter: blur(8px);
+  border-radius: 0.75rem 0.75rem 0 0;
+
+  border: 1px solid hsl(var(--border));
+  border-bottom: none;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+}
+
+/* Mac 窗口圆点 */
+.code-block-dots {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.code-block-dot {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+}
+
+.code-block-dot.red {
+  background: #ff5f56;
+}
+
+.code-block-dot.yellow {
+  background: #ffbd2e;
+}
+
+.code-block-dot.green {
+  background: #27c93f;
+}
+
+/* 语言标签 */
+.code-block-language {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: hsl(var(--muted-foreground));
+  font-family: ui-monospace, SFMono-Regular, monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-left: 0.25rem;
+}
+
+/* 按钮组 */
+.code-block-actions {
+  display: flex;
+  align-items: center;
+}
+
+.code-block-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.375rem;
+
+  background: transparent;
+  color: hsl(var(--muted-foreground));
+
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.1s ease;
+}
+
+.code-block-button:hover {
+  background: hsl(var(--accent));
+  color: hsl(var(--accent-foreground));
+}
+
+.code-block-button:active {
+  transform: scale(0.95);
+}
+
+/* 复制成功状态 */
+.code-block-button.copied {
+  color: hsl(var(--primary));
+}
+
+.code-block-button.copied svg {
+  stroke: hsl(142.1 76.2% 36.3%); /* green-600 */
+}
+
+/* ========== 深色模式样式 ========== */
+
+/* 深色模式 - 行内代码 */
+.dark .prose :not(pre) > code {
+  background: hsl(var(--primary) / 0.15);
+  /* border-color: hsl(var(--primary) / 0.25); */
+}
+
+.dark .prose :not(pre) > code:hover {
+  background: hsl(var(--primary) / 0.2);
+  /* border-color: hsl(var(--primary) / 0.35); */
+}
+
+/* 深色模式 - 列表 hover */
+.dark .prose ul > li:hover,
+.dark .prose ol > li:hover {
+  background: hsl(var(--primary) / 0.1);
+}
+
+/* 深色模式 - 工具栏 */
+.dark .code-block-toolbar {
+  background: hsl(var(--muted) / 0.3);
 }
