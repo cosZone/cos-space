@@ -6,7 +6,6 @@ import { routeBuilder } from '@lib/route';
 import { cn } from '@lib/utils';
 import { RiArrowDownSLine, RiArrowLeftSLine, RiArrowRightSLine, RiArrowUpSLine } from 'react-icons/ri';
 import type { BlogPost } from 'types/blog';
-import { useReducedMotion } from 'motion/react';
 
 interface SeriesNavigationProps {
   prevPost: BlogPost | null;
@@ -15,13 +14,11 @@ interface SeriesNavigationProps {
 }
 
 export function SeriesNavigation({ prevPost, nextPost, className }: SeriesNavigationProps) {
-  const shouldReduceMotion = useReducedMotion();
-
   if (!prevPost && !nextPost) {
     return null;
   }
 
-  const scrollBehavior = shouldReduceMotion ? 'auto' : 'smooth';
+  const scrollBehavior: ScrollBehavior = 'smooth';
 
   return (
     <div className={cn('mt-4 flex flex-col gap-3 border-t pt-4', className)}>
@@ -37,6 +34,7 @@ export function SeriesNavigation({ prevPost, nextPost, className }: SeriesNaviga
               'max-w-[45%] min-w-0 flex-1',
             )}
             title={prevPost.data.title}
+            suppressHydrationWarning
           >
             <RiArrowLeftSLine className="h-4 w-4 flex-shrink-0" />
             <span className="truncate text-xs">{prevPost.data.title}</span>
@@ -55,6 +53,7 @@ export function SeriesNavigation({ prevPost, nextPost, className }: SeriesNaviga
               'max-w-[45%] min-w-0 flex-1 justify-end text-right',
             )}
             title={nextPost.data.title}
+            suppressHydrationWarning
           >
             <span className="truncate text-xs">{nextPost.data.title}</span>
             <RiArrowRightSLine className="h-4 w-4 flex-shrink-0" />
@@ -74,6 +73,7 @@ export function SeriesNavigation({ prevPost, nextPost, className }: SeriesNaviga
           )}
           title="回到顶部"
           aria-label="回到顶部"
+          suppressHydrationWarning
         >
           <RiArrowUpSLine className="h-4 w-4" />
           回到顶部
@@ -86,6 +86,7 @@ export function SeriesNavigation({ prevPost, nextPost, className }: SeriesNaviga
           )}
           title="滚到底部"
           aria-label="滚到底部"
+          suppressHydrationWarning
         >
           <RiArrowDownSLine className="h-4 w-4" />
           滚到底部

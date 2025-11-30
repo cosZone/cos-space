@@ -3,7 +3,12 @@
  * 为 Shiki 渲染的代码块添加 Mac 窗口风格工具栏
  */
 
-import { getSanitizeHtml } from './utils';
+/**
+ * 转义 HTML 特殊字符（用于语言名称显示）
+ */
+function escapeHtml(text: string): string {
+  return text.replace(/[&<>"']/g, '');
+}
 
 export interface CodeBlockInfo {
   element: HTMLElement;
@@ -91,7 +96,7 @@ export interface ToolbarOptions {
 export function createToolbar(language: string, options: ToolbarOptions = {}): string {
   const { enableCopy = true, enableFullscreen = true } = options;
   // 转义语言名防止 XSS
-  const safeLanguage = getSanitizeHtml(language);
+  const safeLanguage = escapeHtml(language);
 
   const fullscreenBtn = enableFullscreen
     ? `

@@ -67,7 +67,13 @@ function Dialog({
 
   return (
     <>
-      {children && cloneElement(children, getReferenceProps({ ref: setReference, ...children.props }))}
+      {children &&
+        cloneElement(children, {
+          ...getReferenceProps({ ref: setReference }),
+          ...children.props,
+          // Preserve original title and avoid SSR mismatch
+          suppressHydrationWarning: true,
+        })}
       <FloatingPortal>
         <AnimatePresence>
           {isOpen && (

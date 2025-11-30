@@ -258,7 +258,7 @@ RSS 使用 TypeScript 端点（`.ts` 文件）生成 XML：
 import rss from '@astrojs/rss';
 import { siteConfig } from '@constants/site-config';
 import { getSortedPosts } from '@lib/content';
-import { getSanitizeHtml } from '@lib/utils';
+import { getSanitizeHtml } from '@lib/sanitize';
 import type { APIContext } from 'astro';
 import sanitizeHtml from 'sanitize-html';
 

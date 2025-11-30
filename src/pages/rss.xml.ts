@@ -2,7 +2,7 @@
 import rss from '@astrojs/rss';
 import { siteConfig } from '@constants/site-config';
 import { getSortedPosts } from '@lib/content';
-import { getSanitizeHtml } from '@lib/utils';
+import { getSanitizeHtml } from '@lib/sanitize';
 import type { APIContext } from 'astro';
 import sanitizeHtml from 'sanitize-html';
 import type { BlogPost } from 'types/blog';
