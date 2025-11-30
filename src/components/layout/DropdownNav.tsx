@@ -37,7 +37,7 @@ const DropdownNavComponent = ({ item, className }: DropdownNavProps) => {
                   },
                 )}
               >
-                <div className="flex items-center gap-2 transition-all duration-300 group-hover:translate-x-0.5 group-hover:text-white">
+                <div className="flex items-center gap-2 text-white transition-all duration-300 group-hover:translate-x-0.5 group-hover:text-white">
                   {child.icon && <Icon icon={child.icon} className="size-4" />}
                   {child.name}
                 </div>
