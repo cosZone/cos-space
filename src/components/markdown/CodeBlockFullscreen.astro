@@ -5,7 +5,8 @@ import { Icon } from 'astro-icon/components';
 <!-- 遮罩层 -->
 <div
   id="code-fullscreen-overlay"
-  class="fixed inset-0 z-40 hidden bg-black/80 opacity-0 backdrop-blur-sm transition-opacity duration-200"
+  data-state="closed"
+  class="fixed inset-0 z-40 bg-black/80 opacity-0 backdrop-blur-sm transition-opacity duration-200 data-[state=closed]:hidden"
   role="presentation"
   aria-hidden="true"
 >
@@ -14,14 +15,15 @@ import { Icon } from 'astro-icon/components';
 <!-- 代码全屏对话框 -->
 <div
   id="code-fullscreen-dialog"
-  class="fixed inset-0 z-50 grid hidden place-items-center px-4"
+  data-state="closed"
+  class="fixed inset-0 z-50 grid place-items-center px-4 data-[state=closed]:hidden"
   role="dialog"
   aria-label="代码全屏预览"
   aria-modal="true"
 >
   <div
     id="code-fullscreen-content"
-    class="bg-background flex h-[85vh] w-[90vw] max-w-6xl flex-col overflow-hidden rounded-xl opacity-0 shadow-2xl transition-opacity duration-200 md:max-w-[90vw]"
+    class="bg-background relative flex h-[85vh] w-[90vw] max-w-6xl flex-col overflow-hidden rounded-xl opacity-0 shadow-2xl transition-opacity duration-200 md:max-w-[90vw]"
   >
     <!-- Toolbar -->
     <div class="border-border bg-muted/50 flex shrink-0 items-center justify-between border-b px-4 py-3 backdrop-blur-sm">
@@ -101,7 +103,7 @@ import { Icon } from 'astro-icon/components';
     </div>
 
     <!-- Code Content -->
-    <div class="flex-1 overflow-auto">
+    <div class="scroll-feather-mask flex-1 overflow-auto">
       <pre id="code-fullscreen-pre" class="p-4"><code id="code-fullscreen-code" /></pre>
     </div>
   </div>
@@ -140,10 +142,15 @@ import { Icon } from 'astro-icon/components';
   } as const;
 
   const CLASSES = {
-    hidden: 'hidden',
     opacityFull: 'opacity-100',
     opacityZero: 'opacity-0',
     copied: 'text-primary',
+    hidden: 'hidden',
+  } as const;
+
+  const STATE = {
+    open: 'open',
+    closed: 'closed',
   } as const;
 
   /**
@@ -294,8 +301,8 @@ import { Icon } from 'astro-icon/components';
       code.innerHTML = data.codeHTML;
 
       // Show elements
-      overlay.classList.remove(CLASSES.hidden);
-      dialog.classList.remove(CLASSES.hidden);
+      overlay.dataset.state = STATE.open;
+      dialog.dataset.state = STATE.open;
 
       // Lock body scroll
       document.body.style.overflow = 'hidden';
@@ -321,8 +328,8 @@ import { Icon } from 'astro-icon/components';
 
       // Hide elements after animation
       setTimeout(() => {
-        overlay.classList.add(CLASSES.hidden);
-        dialog.classList.add(CLASSES.hidden);
+        overlay.dataset.state = STATE.closed;
+        dialog.dataset.state = STATE.closed;
         document.body.style.overflow = '';
       }, 200);
 
@@ -346,12 +353,20 @@ import { Icon } from 'astro-icon/components';
     }
   }
 
-  let controller: CodeFullscreenController;
+  let controller: CodeFullscreenController | null = null;
 
-  document.addEventListener('astro:page-load', () => {
+  function init() {
     controller?.destroy();
     controller = new CodeFullscreenController();
-  });
+  }
+
+  // Initialize immediately if DOM is ready (handles race condition on first load)
+  if (document.readyState !== 'loading') {
+    init();
+  }
+
+  // Also listen for astro:page-load for subsequent navigations
+  document.addEventListener('astro:page-load', init);
 
   // Close before page navigation
   document.addEventListener('astro:before-preparation', () => {

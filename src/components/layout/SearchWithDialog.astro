@@ -138,14 +138,19 @@ import { Icon } from 'astro-icon/components';
   @container scroll-state(scrollable: bottom) {
     .scroll-feather-mask::before {
       content: '';
-      background: linear-gradient(to bottom, transparent 0%, var(--gradient-bg-start) 70%, var(--gradient-bg-start) 100%);
+      background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        var(--gradient-bg-start) var(--scroll-mask-middle, 70%),
+        var(--gradient-bg-start) var(--scroll-mask-end, 100%)
+      );
       position: absolute;
       left: 0;
       right: 0;
       bottom: 0;
       z-index: 10;
       display: block;
-      height: 5rem;
+      height: var(--scroll-mask-height, 5rem);
     }
   }
 </style>

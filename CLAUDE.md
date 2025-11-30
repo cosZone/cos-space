@@ -163,6 +163,23 @@ Configured in `tsconfig.json`:
 - **React components** (`.tsx`): For interactive UI (navigation dropdowns, theme toggle, segmented controls)
 - **Client directives**: Use `client:load`, `client:visible`, etc. for React components that need JavaScript
 
+#### Astro Script Initialization
+
+When writing `<script>` in Astro components that need DOM access, **always handle the initialization race condition**:
+
+```typescript
+// ❌ Bad: May miss the event if script loads after astro:page-load fires
+document.addEventListener('astro:page-load', init);
+
+// ✅ Good: Initialize immediately if DOM ready, also listen for subsequent navigations
+if (document.readyState !== 'loading') {
+  init();
+}
+document.addEventListener('astro:page-load', init);
+```
+
+For components with cleanup needs, use an `initialized` flag or `controller?.destroy()` pattern to prevent double initialization.
+
 #### Error Handling
 
 - `ErrorBoundary` component wraps interactive sections

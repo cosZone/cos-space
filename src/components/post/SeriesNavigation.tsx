@@ -21,7 +21,7 @@ export function SeriesNavigation({ prevPost, nextPost, className }: SeriesNaviga
   const scrollBehavior: ScrollBehavior = 'smooth';
 
   return (
-    <div className={cn('mt-4 flex flex-col gap-3 border-t pt-4', className)}>
+    <div className={cn('mt-4 flex flex-col gap-3 border-t pt-4 md:mt-0 md:pt-2', className)}>
       {/* 文章导航 */}
       <div className="flex items-center justify-between gap-2">
         {/* 上一篇 */}
