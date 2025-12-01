@@ -9,6 +9,14 @@ export interface FriendLink {
 
 export const friendsData: FriendLink[] = [
   {
+    site: '吐槽大王部落格',
+    url: 'https://www.tcdw.net/',
+    owner: 'tcdw',
+    desc: '正在学习接受不完美的世界！',
+    image: 'https://secure.gravatar.com/avatar/70ae2023afad30dae905344325cece8f?s=96&r=g',
+    color: '#00a6f4',
+  },
+  {
     site: 'Guoweiyi',
     url: 'https://gwy.fun/',
     owner: 'Guoweiyi',
