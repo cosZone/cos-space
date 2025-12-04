@@ -51,7 +51,7 @@ categories:
 
 ### WebGL & OpenGL 关系
 
-[OpenGL, OpenGL ES, WebGL, GLSL, GLSL ES API Tables (umich.edu)](http://web.eecs.umich.edu/~sugih/courses/eecs487/common/notes/APITables.xml)
+[OpenGL, OpenGL ES, WebGL, GLSL, GLSL ES API Tables (umich.edu)](https://web.eecs.umich.edu/~sugih/courses/eecs487/common/notes/APITables.xml)
 
 ![image.png](https://backblaze.cosine.ren/juejin/ce125f7f2cc14fada66e2971853070d2~tplv-k3u1fbpfcp-watermark.png)
 
@@ -284,7 +284,7 @@ const triangles = earcut(points)
 
 由设计师导出给我们，再提取
 
-[SpriteJS/next - The next generation of spritejs.](http://spritejs.com/demo/#/3d/wireframe)
+[SpriteJS/next - The next generation of spritejs.](https://spritejs.com/demo/#/3d/wireframe)
 
 ## 图形变换（Transforms）
 
@@ -328,7 +328,7 @@ const triangles = earcut(points)
 1. [The Book of Shaders](https://thebookofshaders.com/) （介绍片元着色器，非常好玩的）
 2. [Mesh.js](https://github.com/mesh-js/mesh.js) （底层库，欸嘿）
 3. [Glsl Doodle](https://doodle.webgl.group/) （片元着色器的一个轻量库，有很多小 demo）
-4. [SpriteJS](http://spritejs.com/#/) （月影老师写的开源库 orz）
+4. [SpriteJS](https://spritejs.com/#/) （月影老师写的开源库 orz）
 5. [Three.js](https://threejs.org/)（很多有意思的~~游戏~~项目）
 6. [Shadertoy BETA](https://www.shadertoy.com/)（很多有意思的项目）
 

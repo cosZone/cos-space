@@ -51,7 +51,7 @@ categories:
 ![image.png](https://backblaze.cosine.ren/juejin/B4e16f59c5ba42b39cc07156fb27ef84~Tplv-K3u1fbpfcp-Watermark.png)
 
 - N-API：用户代码中利用 npm 安装的一些包
-- [V8](http://nodejs.cn/learn/the-v8-javascript-engine)：JavaScript Runtime，诊断调试工具(inspector)
+- [V8](https://nodejs.cn/learn/the-v8-javascript-engine)：JavaScript Runtime，诊断调试工具(inspector)
 - [libuv](https://luohaha.github.io/Chinese-uvbook/source/introduction.html)：eventloop (事件循环)，syscall (系统调用)
   - 举例：用 node-fetch 发起请求时
   - 整个过程中底层会调用非常多的 c++代码
@@ -183,14 +183,14 @@ const server = http.createServer((req, res) => {
 
 #### Http Client
 
-- [`http.request(url[, options\][, callback])`](http://nodejs.cn/api/http/http_request_url_options_callback.html)
+- [`http.request(url[, options\][, callback])`](https://nodejs.cn/api/http/http_request_url_options_callback.html)
 
 ```js
 const http = require('http');
 const body = JSON.stringify({ msg: 'hello from my own client' });
 // [url] [option] [callback]
 const req = http.request(
-  'http://127.0.0.1:3000',
+  'https://127.0.0.1:3000',
   {
     method: 'POST',
     headers: {
@@ -281,7 +281,7 @@ req.end(body);
 
 ### 编写静态文件服务器
 
-编写一个简单的静态服务，接受用户发过来的 http 请求，拿到图片的 url 约定为静态文件服务器磁盘上对应的路径，再把具体内容返回给用户。这次除了 [http](http://nodejs.cn/api/http.html) 模块，还需要 [fs](http://nodejs.cn/api/fs.html) 模块和 [path](http://nodejs.cn/api/path.html) 模块
+编写一个简单的静态服务，接受用户发过来的 http 请求，拿到图片的 url 约定为静态文件服务器磁盘上对应的路径，再把具体内容返回给用户。这次除了 [http](https://nodejs.cn/api/http.html) 模块，还需要 [fs](https://nodejs.cn/api/fs.html) 模块和 [path](https://nodejs.cn/api/path.html) 模块
 
 先编写一个简单的 index.html，放于 static 目录下
 
@@ -299,7 +299,7 @@ const folderPath = path.resolve(__dirname, './static');
 
 const server = http.createServer((req, res) => {
   // 注意这里的async
-  // expected http://127.0.0.1:3000/index.html
+  // expected https://127.0.0.1:3000/index.html
   const info = url.parse(req.url);
 
   // static/index.html
@@ -386,7 +386,7 @@ server.listen(port, () => {
   台
 
   - `node -- inspect`
-  - `open http://localhost:9229/json`
+  - `open https://localhost:9229/json`
 
   ![image.png](https://backblaze.cosine.ren/juejin/73f242fda3c741b6abdb6a9b8cceab2e~tplv-k3u1fbpfcp-watermark.png)
 

@@ -33,20 +33,20 @@ code:
 ```python
 import urllib3
 http = urllib3.PoolManager()
-rq = http.request('GET',url='http://www.pythonscraping.com/pages/page3.html')
+rq = http.request('GET',url='https://www.pythonscraping.com/pages/page3.html')
 print('服务器响应码：', rq.status)
 print('响应实体：', rq.data)
 ```
 
 ## 2.处理请求头
 
-传入 headers 参数可通过定义一个字典类型实现，定义一个包含 User-Agent 信息的字典，使用浏览器为火狐和 chrome 浏览器，操作系统为"Window NT 6.1;Win64; x64"，向网站"<http://www.tipdm/index.html"发送带 headers 参数的 GET 请求，hearders 参数为定义的 User-Agent 字典>
+传入 headers 参数可通过定义一个字典类型实现，定义一个包含 User-Agent 信息的字典，使用浏览器为火狐和 chrome 浏览器，操作系统为"Window NT 6.1;Win64; x64"，向网站"<https://www.tipdm/index.html"发送带 headers 参数的 GET 请求，hearders 参数为定义的 User-Agent 字典>
 
 ```python
 import urllib3
 http = urllib3.PoolManager()
 head = {'User-Agent':'Window NT 6.1;Win64; x64'}
-http.request('GET',url='http://www.pythonscraping.com/pages/page3.html',headers=head)
+http.request('GET',url='https://www.pythonscraping.com/pages/page3.html',headers=head)
 ```
 
 ## 3.Timeout 设置
@@ -61,7 +61,7 @@ http.request('GET',url='',headers=head，timeout=3.0)
 ```
 
 ```python
-http.request('GET',url='http://www.pythonscraping.com/pages/page3.html',headers=head，timeout=urllib3.Timeout(connect=1.0,read=2.0))
+http.request('GET',url='https://www.pythonscraping.com/pages/page3.html',headers=head，timeout=urllib3.Timeout(connect=1.0,read=2.0))
 #链接超过1s,读取超过2s终止
 ```
 
@@ -71,7 +71,7 @@ http.request('GET',url='http://www.pythonscraping.com/pages/page3.html',headers=
 import urllib3
 http = urllib3.PoolManager(timeout=4.0)
 head = {'User-Agent':'Window NT 6.1;Win64; x64'}
-http.request('GET',url='http://www.pythonscraping.com/pages/page3.html',headers=head)
+http.request('GET',url='https://www.pythonscraping.com/pages/page3.html',headers=head)
 #超过4s超时
 ```
 
@@ -85,13 +85,13 @@ urllib3 库可以通过设置 retries 参数对重试进行控制。默认进行
 import urllib3
 http = urllib3.PoolManager(timeout=4.0,retries=10)
 head = {'User-Agent':'Window NT 6.1;Win64; x64'}
-http.request('GET',url='http://www.pythonscraping.com/pages/page3.html',headers=head)
+http.request('GET',url='https://www.pythonscraping.com/pages/page3.html',headers=head)
 #超过4s超时 重试10次
 ```
 
 ## 5.生成完整 HTTP 请求
 
-使用 urllib3 库实现向<http://www.pythonscraping.com/pages/page3.html 生成一个完整的请求，该请求应当包含链接、请求头、超时时间和重试次数设置。>
+使用 urllib3 库实现向<https://www.pythonscraping.com/pages/page3.html 生成一个完整的请求，该请求应当包含链接、请求头、超时时间和重试次数设置。>
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20210201170815550.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODkwNTMz,size_16,color_FFFFFF,t_70)
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20210201170851718.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODkwNTMz,size_16,color_FFFFFF,t_70)
 注意编码方式 utf-8
@@ -101,7 +101,7 @@ import urllib3
 #发送请求实例
 http = urllib3.PoolManager()
 #网址
-url = 'http://www.pythonscraping.com/pages/page3.html'
+url = 'https://www.pythonscraping.com/pages/page3.html'
 #请求头
 head = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36 Edg/88.0.705.56'}
 #超时时间
@@ -222,7 +222,7 @@ $1.50
 # 二、使用 requests 库实现 HTTP 请求
 
 ```html
-import requests url = 'http://www.pythonscraping.com/pages/page3.html' rq2 = requests.get(url) rq2.encoding = 'utf-8'
+import requests url = 'https://www.pythonscraping.com/pages/page3.html' rq2 = requests.get(url) rq2.encoding = 'utf-8'
 print('响应码：',rq2.status_code) print('编码：',rq2.encoding) print('请求头：',rq2.headers) print('实体：',rq2.text)
 ```
 
@@ -247,7 +247,7 @@ chardet.detect(rq2.content)
 ```python
 import requests
 import chardet
-url = 'http://www.pythonscraping.com/pages/page3.html'
+url = 'https://www.pythonscraping.com/pages/page3.html'
 head={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36 Edg/88.0.705.56'}
 rq2 = requests.get(url,headers=head,timeout=2.0)
 rq2.encoding = chardet.detect(rq2.content)['encoding']

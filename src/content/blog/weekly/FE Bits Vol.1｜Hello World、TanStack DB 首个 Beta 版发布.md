@@ -475,7 +475,7 @@ https://guangzhengli.com/blog/zh/indie-hacker-poor-stack
    - 简述独立开发三种低成本路径：A. 利用云平台免费额度（如 Supabase/Neon/Vercel 等），B. 全部服务基于 Cloudflare，C. 自托管（廉价 VPS + 开源 PaaS 平台）。
    - 分析各模式优劣：云平台部署简单、运维压力小但成本不稳定；Cloudflare 适合高流量/无收入阶段；自托管自由度高但需解决运维/安全等问题。
 3. 云平台方式
-   - 细分为“入门级完全免费组合”“面向小商业的稳定运营组合”，逐项对比主流云平台（Vercel、Railway、[Fly.io](http://fly.io/)）、数据库（Supabase、Neon、Upstash）、对象存储（Cloudflare R2）、邮件服务（Resend）等的免费额度与核心优缺点。
+   - 细分为“入门级完全免费组合”“面向小商业的稳定运营组合”，逐项对比主流云平台（Vercel、Railway、[Fly.io](https://fly.io/)）、数据库（Supabase、Neon、Upstash）、对象存储（Cloudflare R2）、邮件服务（Resend）等的免费额度与核心优缺点。
    - 强调高流量/免费额度耗尽时，成本可能快速上涨，需要有盈利模式支撑。
    - 建议新手优先选择云服务，节约运维精力，把重心放在产品与营销上。
 4. 完全利用 Cloudflare 平台
@@ -488,7 +488,7 @@ https://guangzhengli.com/blog/zh/indie-hacker-poor-stack
 6. 其它成本项
    - 域名：推荐优先在 Cloudflare 购买，兼顾成本、速度、稳定性。
    - 邮件服务：若依赖登录/营销可选择 Resend、plunk 或自托管方案（Unsend+AWS SES 等）。
-   - 支付平台：建议优先 Stripe/Paddle，初期可探索 [Creem.io](http://creem.io/) 等新平台并分享认证/提现实战经验。
+   - 支付平台：建议优先 Stripe/Paddle，初期可探索 [Creem.io](https://creem.io/) 等新平台并分享认证/提现实战经验。
 7. 最后
    - 提醒“穷鬼套餐不等于无止境折腾”，独立开发应聚焦产品与市场验证，合理分配时间资源。
    - 推荐自己开发的 NextDevKit 作为一键多平台部署利器，降低初学者技术门槛。
