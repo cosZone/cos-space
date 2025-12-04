@@ -350,7 +350,7 @@ axios.interceptors.request.use(function (config) {
 //发送请求
 axios( {
     method: 'get',
-    url: 'http://test.com',
+    url: 'https://test.com',
     responseType: 'stream
     }).then( function(response) {
     response.data.pipe( fs.createWriteStream('ada_lovelace.jpg'))

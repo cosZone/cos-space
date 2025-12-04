@@ -16,7 +16,7 @@ categories:
 
 # 1、自行设计一个反射的实例,说明 class 对象的使用方法
 
-项目代码：[ReflectionTest](http://cosine.ren/wp-content/uploads/2021/12/ReflectionTest.zip)
+项目代码：[ReflectionTest](https://cosine.ren/wp-content/uploads/2021/12/ReflectionTest.zip)
 
 Java 中的反射是在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法；对于任意一个对象，都能够调用它的任意方法和属性；并且能改变它的属性。
 

@@ -67,7 +67,7 @@ duckdb@1.3.3 – ~14.9万次每周下载量。（发布于2025-09-09 01:13:07 UT
 
 - [JavaScript 中的安全数组方法](https://allthingssmitty.com/2025/09/08/finally-safe-array-methods-in-javascript/)：介绍 ES2023 新增的不可变 (non-mutating) 数组方法 `toSorted()` `toReversed()` 和 `toSpliced()`，这些新方法的行为与它们的可变对应方法类似，但返回一个新数组而不是修改原始数组。
 
-- [Andromeda](http://tryandromeda.dev/) 是一个新的由 Rust 构建的 JavaScript & TypeScript 运行时，核心由 Nova 引擎驱动，主打内存安全、零配置、GPU 硬件加速和丰富的 Web API 支持。
+- [Andromeda](https://tryandromeda.dev/) 是一个新的由 Rust 构建的 JavaScript & TypeScript 运行时，核心由 Nova 引擎驱动，主打内存安全、零配置、GPU 硬件加速和丰富的 Web API 支持。
 
 - [浏览器中的液态玻璃：使用 CSS 和 SVG 进行折射](https://kube.io/blog/liquid-glass-css-svg/)。超级棒的交互式教程，并且技术解析的也很全面，内含非常多 demo，把 Web Liquid Glass 玩明白了，非常值得一看。
 

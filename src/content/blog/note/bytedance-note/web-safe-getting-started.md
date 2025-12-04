@@ -111,7 +111,7 @@ xss 攻击也分几大类：Store XSS、Reflected XSS、DOM-based XSS、Mutation
 
   一个用户访问了一个恶意的页面，这个页面向银行发送一个转账请求，ServerA 为银行的服务器，发现这个请求带有用户的 cookie，成功
 
-  > CSRF 通过伪装来自受信任用户的请求来利用受信任的网站。与[XSS](https://link.jianshu.com/?t=http://baike.baidu.com/view/50325.htm)攻击相比，CSRF 攻击往往不大流行（因此对其进行防范的资源也相当稀少）和难以防范，所以被认为比[XSS](https://link.jianshu.com/?t=http://baike.baidu.com/view/50325.htm)`更具危险性`。
+  > CSRF 通过伪装来自受信任用户的请求来利用受信任的网站。与[XSS](https://link.jianshu.com/?t=https://baike.baidu.com/view/50325.htm)攻击相比，CSRF 攻击往往不大流行（因此对其进行防范的资源也相当稀少）和难以防范，所以被认为比[XSS](https://link.jianshu.com/?t=https://baike.baidu.com/view/50325.htm)`更具危险性`。
 
 #### Injection（注入）
 
