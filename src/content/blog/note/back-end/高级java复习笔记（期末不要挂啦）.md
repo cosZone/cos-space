@@ -266,7 +266,7 @@ AOP（面向切面编程）是 Spring 框架的特色功能之一。
 
 # JDBC 连接数据库
 
-[我的项目文件](http://cosine.ren/wp-content/uploads/2021/12/JavaExp_1.zip)
+[我的项目文件](https://cosine.ren/wp-content/uploads/2021/12/JavaExp_1.zip)
 将数据库连接信息放在 mysql.properties 配置文件中，文件内容
 
 ```java

@@ -24,7 +24,7 @@ categories:
 
 ## 一、查询区间最值（点修改）
 
-[模板题：hihoCoder #1077 RMQ 问题再临-线段树](http://hihocoder.com/problemset/problem/1077)
+[模板题：hihoCoder #1077 RMQ 问题再临-线段树](https://hihocoder.com/problemset/problem/1077)
 题目大意：给出一个数组 A，每次有查询或修改两种操作，此处是查询区间 l 到 r 上的最小值，或将编号为 p 的值改为 v。
 用线段树维护最值，想要改成查询最大值，只需把所有 min 改成 max，然后把 inf 换成 0
 

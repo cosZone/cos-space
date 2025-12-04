@@ -26,7 +26,7 @@ categories:
 
 服务器为 Producer 类，客户端为 Customer 类，均继承 Thread 实现多线程，然后一个 Tickets 类，表示余票，一个 MyTime 类表示时间（
 
-源代码下载在这儿：[cos_javatest2](http://cosine.ren/wp-content/uploads/2021/12/cos_javatest2.zip)
+源代码下载在这儿：[cos_javatest2](https://cosine.ren/wp-content/uploads/2021/12/cos_javatest2.zip)
 
 MyTime 类：passM 函数表示过去 minute 分钟
 

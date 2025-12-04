@@ -92,14 +92,14 @@ int Kruskal() {
 
 ## 练习题
 
-| 题号                                                      | 题目名称(英文)     | 备注              |
-| --------------------------------------------------------- | ------------------ | ----------------- |
-| [hdu1863](http://acm.hdu.edu.cn/showproblem.php?pid=1863) | 畅通工程           | 最小生成树 板子题 |
-| [hdu1879](http://acm.hdu.edu.cn/showproblem.php?pid=1879) | 继续畅通工程       | 最小生成树 板子题 |
-| [hdu1875](http://acm.hdu.edu.cn/showproblem.php?pid=1875) | 畅通工程再续       | 最小生成树 板子题 |
-| [洛谷 P3366](https://www.luogu.com.cn/problem/P3366)      | 【模板】最小生成树 | 最小生成树 板子题 |
+| 题号                                                       | 题目名称(英文)     | 备注              |
+| ---------------------------------------------------------- | ------------------ | ----------------- |
+| [hdu1863](https://acm.hdu.edu.cn/showproblem.php?pid=1863) | 畅通工程           | 最小生成树 板子题 |
+| [hdu1879](https://acm.hdu.edu.cn/showproblem.php?pid=1879) | 继续畅通工程       | 最小生成树 板子题 |
+| [hdu1875](https://acm.hdu.edu.cn/showproblem.php?pid=1875) | 畅通工程再续       | 最小生成树 板子题 |
+| [洛谷 P3366](https://www.luogu.com.cn/problem/P3366)       | 【模板】最小生成树 | 最小生成树 板子题 |
 
-### 1. [hdu1863 畅通工程](http://acm.hdu.edu.cn/showproblem.php?pid=1863)
+### 1. [hdu1863 畅通工程](https://acm.hdu.edu.cn/showproblem.php?pid=1863)
 
 > Problem Description
 > 省政府“畅通工程”的目标是使全省任何两个村庄间都可以实现公路交通（但不一定有直接的公路相连，只要能间接通过公路可达即可）。经过调查评估，得到的统计表中列出了有可能建设公路的若干条道路的成本。现请你编写程序，计算出全省畅通需要的最低成本。
@@ -155,7 +155,7 @@ int main() {
 }
 ```
 
-### 2.[hdu1879 继续畅通工程](http://acm.hdu.edu.cn/showproblem.php?pid=1879)
+### 2.[hdu1879 继续畅通工程](https://acm.hdu.edu.cn/showproblem.php?pid=1879)
 
 这题相比上题来说，就将已经建好了的道路花费置为 0 即可，同时注意本题输入输出好像都不能用 cincout,会超时。
 
@@ -211,7 +211,7 @@ int main() {
 }
 ```
 
-### 3.[hdu1875 畅通工程再续](http://acm.hdu.edu.cn/showproblem.php?pid=1875)
+### 3.[hdu1875 畅通工程再续](https://acm.hdu.edu.cn/showproblem.php?pid=1875)
 
 先输入所有顶点，再判断每两个顶点是否可以构成合适的边
 
