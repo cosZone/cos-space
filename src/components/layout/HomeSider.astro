@@ -221,6 +221,28 @@ const { prevPost, nextPost } =
 
   /* 只在用户未设置 reduce-motion 时应用动画 */
   @media (prefers-reduced-motion: no-preference) {
+    @keyframes slide-in-from-right {
+      from {
+        opacity: 0;
+        transform: translateX(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes slide-out-to-left {
+      from {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      to {
+        opacity: 0;
+        transform: translateX(-12px);
+      }
+    }
+
     .sider-slot.entering {
       animation: slide-in-from-right 0.2s ease-in-out;
     }
