@@ -36,7 +36,7 @@ export function SeriesPostList({ posts, currentPostSlug, className }: SeriesPost
             {/* 圆点指示器 */}
             <span
               className={cn(
-                'mt-2 h-2 w-2 flex-shrink-0 rounded-full transition-colors',
+                'mt-2 h-2 w-2 shrink-0 rounded-full transition-colors',
                 isActive ? 'bg-primary' : 'bg-muted-foreground/40 group-hover:bg-muted-foreground/60',
               )}
             />

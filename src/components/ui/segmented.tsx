@@ -70,7 +70,7 @@ export const Segmented = <T extends string | number = string | number>({
             transition={shouldReduceMotion ? { duration: 0 } : { type: 'spring', stiffness: 400, damping: 30 }}
           >
             {/* 图标 */}
-            {icon && <span className="flex-center flex-shrink-0">{React.createElement(icon, { className: 'w-4 h-4' })}</span>}
+            {icon && <span className="flex-center shrink-0">{React.createElement(icon, { className: 'w-4 h-4' })}</span>}
 
             {/* 文字标签 - 只在选中时显示 */}
             <AnimatePresence initial={false} mode="wait">

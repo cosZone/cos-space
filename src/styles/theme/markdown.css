@@ -307,7 +307,12 @@
   }
 }
 
-/* 工具栏（通过 JS 动态添加） */
+/* 代码块 */
+.code-block-wrapper {
+  margin-bottom: 1.25rem;
+}
+
+/* 代码块工具栏（通过 JS 动态添加） */
 .code-block-toolbar {
   height: 2.5rem;
   display: flex;

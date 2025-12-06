@@ -48,6 +48,7 @@
     "metascraper-description": "^5.49.7",
     "metascraper-image": "^5.49.7",
     "metascraper-logo": "^5.49.7",
+    "metascraper-logo-favicon": "^5.49.7",
     "metascraper-title": "^5.49.7",
     "metascraper-url": "^5.49.7",
     "motion": "^11.18.2",

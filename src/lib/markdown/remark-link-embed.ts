@@ -15,14 +15,17 @@ import metascraperLogo from 'metascraper-logo';
 import metascraperTitle from 'metascraper-title';
 import metascraperUrl from 'metascraper-url';
 import sanitizeHtml from 'sanitize-html';
+import metascraperLogoFavicon from 'metascraper-logo-favicon';
 
 interface OGData {
+  originUrl;
   url: string;
   title?: string;
   description?: string;
   image?: string;
   logo?: string;
   error?: string;
+  author?: string;
 }
 
 interface RemarkLinkEmbedOptions {
@@ -38,6 +41,7 @@ const scraper = metascraper([
   metascraperLogo(),
   metascraperTitle(),
   metascraperUrl(),
+  metascraperLogoFavicon(),
 ]);
 
 /**
@@ -77,7 +81,7 @@ function sanitizeUrl(url: string): string {
  * With timeout to avoid hanging builds
  */
 async function fetchOGData(url: string): Promise<OGData> {
-  const TIMEOUT_MS = 3000; // 3 second timeout (most sites respond within 1-2s)
+  const TIMEOUT_MS = 5000; // 5 second timeout (most sites respond within 1-2s)
 
   try {
     // Create AbortController for timeout
@@ -102,6 +106,7 @@ async function fetchOGData(url: string): Promise<OGData> {
     if (!response.ok) {
       console.warn(`[Link Embed] Failed to fetch ${url}: ${response.status}`);
       return {
+        originUrl: url,
         url,
         error: `Failed to fetch: ${response.status}`,
       };
@@ -111,22 +116,26 @@ async function fetchOGData(url: string): Promise<OGData> {
     const metadata = await scraper({ html, url });
 
     return {
+      originUrl: url,
       url: metadata.url || url,
       title: metadata.title,
       description: metadata.description,
       image: metadata.image,
-      logo: metadata.logo,
+      logo: metadata?.logo || metadata?.favicon,
+      author: metadata?.author || metadata?.publisher,
     };
   } catch (error) {
     if (error instanceof Error && error.name === 'AbortError') {
       console.warn(`[Link Embed] Timeout fetching ${url}`);
       return {
+        originUrl: url,
         url,
         error: 'Request timeout',
       };
     }
     console.warn(`[Link Embed] Error fetching ${url}:`, error);
     return {
+      originUrl: url,
       url,
       error: error instanceof Error ? error.message : 'Failed to fetch',
     };
@@ -150,7 +159,7 @@ function getDomain(url: string): string {
  * Generate HTML for link preview card
  */
 function generateLinkPreviewHTML(ogData: OGData): string {
-  const { url, title, description, image, logo, error } = ogData;
+  const { originUrl, url, title, description, image, logo, error } = ogData;
   const domain = getDomain(url);
 
   // If there's an error or no data, show an enhanced fallback link card
@@ -177,11 +186,8 @@ function generateLinkPreviewHTML(ogData: OGData): string {
         // Generic: use last meaningful segment
         const lastSegment = pathSegments[pathSegments.length - 1];
         if (lastSegment && lastSegment !== 'index.html') {
-          const readable = decodeURIComponent(lastSegment)
-            .replace(/[-_]/g, ' ')
-            .replace(/\.[^.]+$/, ''); // Remove file extension
-          displayText = readable.charAt(0).toUpperCase() + readable.slice(1);
-          subtitle = domain;
+          displayText = originUrl;
+          subtitle = description ?? domain;
         }
       }
     } catch (error) {
@@ -193,11 +199,11 @@ function generateLinkPreviewHTML(ogData: OGData): string {
     const safeDisplayText = sanitizeText(displayText);
     const safeSubtitle = subtitle ? sanitizeText(subtitle) : sanitizeText(url.length > 60 ? url.substring(0, 60) + '...' : url);
 
-    return `<div class="not-prose my-6">
-  <a href="${safeUrl}" target="_blank" rel="noopener noreferrer" class="hover:border-primary/50 group block rounded-lg border bg-gradient-to-br from-muted/30 to-muted/10 p-4 transition-all hover:shadow-md" aria-label="${safeDisplayText}">
+    return `<div class="link-preview-block not-prose" data-state="error">
+  <a href="${safeUrl}" target="_blank" class="hover:border-primary/50 group block rounded-lg border bg-card p-4 transition-all hover:shadow-md" aria-label="${safeDisplayText}">
     <div class="flex items-center justify-between gap-3">
       <div class="flex items-center gap-3 min-w-0 flex-1">
-        <div class="bg-primary/10 text-primary flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg">
+        <div class="bg-primary/10 text-primary flex h-10 w-10 shrink-0 items-center justify-center rounded-lg">
           <svg class="h-5 w-5" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-dasharray="28" stroke-dashoffset="28" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 6l2 -2c1 -1 3 -1 4 0l1 1c1 1 1 3 0 4l-5 5c-1 1 -3 1 -4 0M11 18l-2 2c-1 1 -3 1 -4 0l-1 -1c-1 -1 -1 -3 0 -4l5 -5c1 -1 3 -1 4 0"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.6s" values="28;0"/></path></svg>
         </div>
         <div class="min-w-0 flex-1">
@@ -205,7 +211,7 @@ function generateLinkPreviewHTML(ogData: OGData): string {
           <div class="text-muted-foreground text-xs truncate mt-0.5">${safeSubtitle}</div>
         </div>
       </div>
-      <svg class="text-primary h-5 w-5 flex-shrink-0 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg class="text-primary h-5 w-5 shrink-0 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
       </svg>
     </div>
@@ -220,23 +226,23 @@ function generateLinkPreviewHTML(ogData: OGData): string {
   const safeDomain = sanitizeText(domain);
   const safeLogo = logo ? sanitizeUrl(logo) : '';
   const safeImage = image ? sanitizeUrl(image) : '';
-
-  return `<div class="not-prose my-6" data-link-preview>
-  <a href="${safeUrl}" target="_blank" rel="noopener noreferrer" class="hover:border-primary/50 group block overflow-hidden rounded-lg border transition-all hover:shadow-md" aria-label="${safeTitle} - ${safeDomain}">
-    <div class="bg-card flex flex-col sm:flex-row">
+  // console.log('ogData:%o', ogData);
+  return `<div class="link-preview-block not-prose" data-state="success">
+  <a href="${safeUrl}" target="_blank" class="group block overflow-hidden rounded-lg border transition-all hover:border-primary/50 hover:shadow-md" aria-label="${safeTitle} - ${safeDomain}">
+    <div class="bg-card flex md:flex-col flex-row">
       <div class="flex-1 p-4">
         <div class="mb-2 flex items-center gap-2">
-          ${safeLogo ? `<img src="${safeLogo}" alt="" class="h-4 w-4 flex-shrink-0" loading="lazy" aria-hidden="true" />` : ''}
+          ${safeLogo ? `<img src="${safeLogo}" alt="" class="h-4 w-4 shrink-0" loading="lazy" aria-hidden="true" />` : ''}
           <span class="text-muted-foreground truncate text-xs font-medium">${safeDomain}</span>
         </div>
         <h3 class="text-foreground mb-2 line-clamp-2 font-semibold leading-tight">${safeTitle}</h3>
         ${safeDescription ? `<p class="text-muted-foreground mb-3 line-clamp-2 text-sm">${safeDescription}</p>` : ''}
         <div class="text-primary flex items-center gap-1 text-xs">
-          <span class="truncate">${safeDomain}</span>
-          <svg class="h-3 w-3 flex-shrink-0 transition-transform group-hover:translate-x-0.5" aria-hidden="true" viewBox="0 0 12 12"><path fill="currentColor" d="M4 3.5a.5.5 0 0 0-.5.5v4a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-.25a.75.75 0 0 1 1.5 0V8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h.25a.75.75 0 0 1 0 1.5zm2.75 0a.75.75 0 0 1 0-1.5h2.5a.75.75 0 0 1 .75.75v2.5a.75.75 0 0 1-1.5 0v-.69L7.28 5.78a.75.75 0 0 1-1.06-1.06L7.44 3.5z"/></svg>
+          <span class="truncate">${originUrl}</span>
+          <svg class="h-3 w-3 shrink-0 transition-transform group-hover:translate-x-0.5" aria-hidden="true" viewBox="0 0 12 12"><path fill="currentColor" d="M4 3.5a.5.5 0 0 0-.5.5v4a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-.25a.75.75 0 0 1 1.5 0V8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h.25a.75.75 0 0 1 0 1.5zm2.75 0a.75.75 0 0 1 0-1.5h2.5a.75.75 0 0 1 .75.75v2.5a.75.75 0 0 1-1.5 0v-.69L7.28 5.78a.75.75 0 0 1-1.06-1.06L7.44 3.5z"/></svg> 
         </div>
       </div>
-      ${safeImage ? `<div class="bg-muted relative h-48 w-full flex-shrink-0 sm:h-auto sm:w-48"><img src="${safeImage}" alt="${safeTitle}" class="h-full w-full object-cover" loading="lazy" /></div>` : ''}
+      ${safeImage ? `<div class="bg-muted relative md:w-full shrink-0 aspect-1200/630 h-38"><img src="${safeImage}" alt="${safeTitle}" class="h-full w-full object-cover" loading="lazy" /></div>` : ''}
     </div>
   </a>
 </div>`;

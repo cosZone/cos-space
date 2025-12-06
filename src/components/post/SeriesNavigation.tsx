@@ -36,7 +36,7 @@ export function SeriesNavigation({ prevPost, nextPost, className }: SeriesNaviga
             title={prevPost.data.title}
             suppressHydrationWarning
           >
-            <RiArrowLeftSLine className="h-4 w-4 flex-shrink-0" />
+            <RiArrowLeftSLine className="h-4 w-4 shrink-0" />
             <span className="truncate text-xs">{prevPost.data.title}</span>
           </a>
         ) : (
@@ -56,7 +56,7 @@ export function SeriesNavigation({ prevPost, nextPost, className }: SeriesNaviga
             suppressHydrationWarning
           >
             <span className="truncate text-xs">{nextPost.data.title}</span>
-            <RiArrowRightSLine className="h-4 w-4 flex-shrink-0" />
+            <RiArrowRightSLine className="h-4 w-4 shrink-0" />
           </a>
         ) : (
           <div className="max-w-[45%] flex-1" />

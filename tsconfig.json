@@ -19,8 +19,7 @@
       "@hooks/*": ["hooks/*"],
       "@store/*": ["store/*"],
       "@scripts/*": ["scripts/*"],
-      "@types/*": ["types/*"],
-      "@services/*": ["services/*"]
+      "@types/*": ["types/*"]
     }
   }
 }
