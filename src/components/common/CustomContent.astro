@@ -2,6 +2,7 @@
 import type { ContentConfig } from '@constants/content-config';
 import type { AstroComponentFactory } from 'astro/runtime/server/index.js';
 import { defaultContentConfig } from '@constants/content-config';
+import EmbedHydrator from '@components/embed/EmbedHydrator';
 
 interface Props {
   Content: AstroComponentFactory;
@@ -15,6 +16,9 @@ const finalConfig = { ...defaultContentConfig, ...config };
 <div class="custom-content" data-config={JSON.stringify(finalConfig)}>
   <Content />
 </div>
+
+{/* Only load EmbedHydrator if tweet embeds are enabled (link previews are now server-rendered) */}
+{finalConfig.enableTweetEmbed && <EmbedHydrator client:load />}
 
 <script>
   import type { ContentConfig } from '@constants/content-config';

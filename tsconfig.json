@@ -19,7 +19,8 @@
       "@hooks/*": ["hooks/*"],
       "@store/*": ["store/*"],
       "@scripts/*": ["scripts/*"],
-      "@types/*": ["types/*"]
+      "@types/*": ["types/*"],
+      "@services/*": ["services/*"]
     }
   }
 }

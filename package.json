@@ -44,6 +44,12 @@
     "dayjs": "^1.11.19",
     "es-toolkit": "^1.42.0",
     "marked": "^17.0.1",
+    "metascraper": "^5.49.7",
+    "metascraper-description": "^5.49.7",
+    "metascraper-image": "^5.49.7",
+    "metascraper-logo": "^5.49.7",
+    "metascraper-title": "^5.49.7",
+    "metascraper-url": "^5.49.7",
     "motion": "^11.18.2",
     "nanostores": "^0.11.4",
     "react": "^19.2.1",
@@ -51,6 +57,7 @@
     "react-error-boundary": "^5.0.0",
     "react-icons": "^5.5.0",
     "react-responsive": "^10.0.1",
+    "react-tweet": "^3.2.2",
     "reading-time": "^1.5.0",
     "rehype-autolink-headings": "^7.1.0",
     "rehype-slug": "^6.0.0",
@@ -58,7 +65,8 @@
     "tailwind-clip-path": "^1.0.0",
     "tailwind-merge": "^2.6.0",
     "tailwindcss": "^4.1.17",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "unist-util-visit": "^5.0.0"
   },
   "devDependencies": {
     "@iconify/react": "^5.2.1",

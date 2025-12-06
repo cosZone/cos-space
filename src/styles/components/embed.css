@@ -1,0 +1,21 @@
+/**
+ * Embed components styles (Tweet and Link Preview)
+ */
+
+/* Import react-tweet styles */
+@import 'react-tweet/theme.css';
+
+/* Custom tweet embed styling */
+[data-tweet-embed] {
+}
+
+/* Ensure tweet theme matches site theme */
+[data-theme='dark'] .react-tweet-theme {
+}
+
+[data-theme='light'] .react-tweet-theme {
+}
+
+/* Link preview styles (server-rendered, no React component needed) */
+[data-link-preview] {
+}

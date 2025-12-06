@@ -11,6 +11,16 @@ export interface ContentConfig {
   enableCodeCopy: boolean;
   // 是否启用代码全屏预览
   enableCodeFullscreen: boolean;
+  // 是否启用链接嵌入功能
+  enableLinkEmbed: boolean;
+  // 是否启用 Tweet 嵌入
+  enableTweetEmbed: boolean;
+  // 是否启用 OG 链接预览
+  enableOGPreview: boolean;
+  // 预览数据缓存时间（秒）
+  previewCacheTime: number;
+  // 是否懒加载嵌入内容
+  lazyLoadEmbeds: boolean;
 }
 
 export const defaultContentConfig: ContentConfig = {
@@ -20,4 +30,9 @@ export const defaultContentConfig: ContentConfig = {
   enhanceCodeBlock: true,
   enableCodeCopy: true,
   enableCodeFullscreen: true,
+  enableLinkEmbed: true,
+  enableTweetEmbed: true,
+  enableOGPreview: true,
+  previewCacheTime: 3600, // 1 hour
+  lazyLoadEmbeds: true,
 };
