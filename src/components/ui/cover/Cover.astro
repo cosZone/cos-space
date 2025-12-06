@@ -15,9 +15,10 @@ export interface CoverProps {
 
 const { data, title } = Astro.props as CoverProps;
 
-const { date, title: dataTitle } = data?.data ?? {};
+const { date, title: dataTitle, draft } = data?.data ?? {};
 
 const readState = readingTime(data?.body ?? '');
+const isDraft = import.meta.env.DEV && draft === true;
 ---
 
 <div class="relative flex h-[60dvh] max-h-[50rem] overflow-hidden">
@@ -38,8 +39,16 @@ const readState = readingTime(data?.body ?? '');
         </h1>
       ) : data ? (
         <>
-          <h1 class={`shadow-text word-break text-4.5xl text-center font-bold md:text-2xl ${MAX_WIDTH.content}`}>
+          <h1
+            class={`shadow-text word-break text-4.5xl text-center font-bold md:text-2xl ${MAX_WIDTH.content} flex flex-wrap items-center justify-center gap-3`}
+          >
             {dataTitle ?? title}
+            {isDraft && (
+              <span class="inline-flex items-center gap-1.5 rounded-full bg-yellow-500 px-3 py-1.5 text-base font-semibold text-white shadow-lg backdrop-blur-sm text-shadow-none hover:bg-yellow-500 md:px-2.5 md:py-1 md:text-sm">
+                <Icon name="fa6-solid:file-pen" class="h-4 w-4 md:h-3.5 md:w-3.5" />
+                草稿
+              </span>
+            )}
           </h1>
           {data && (
             <p class="mt-3 flex items-center justify-center gap-4 md:text-xs">
