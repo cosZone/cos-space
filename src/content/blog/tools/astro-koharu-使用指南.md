@@ -2,7 +2,7 @@
 title: astro-koharu 使用指南
 link: astro-koharu-guide
 catalog: true
-date: 2025-12-06 20:00:00
+date: 2025-12-07 01:18:00
 description: astro-koharu 博客系统完整使用指南，包含快速开始、配置说明、文章系统、界面功能等详细介绍
 tags:
   - Astro
@@ -16,7 +16,7 @@ categories:
 
 一份完整的 astro-koharu 博客系统使用指南，帮助你快速上手并充分利用所有功能特性。
 
-## 一、快速开始
+## 快速开始
 
 ### 项目简介
 
@@ -62,7 +62,7 @@ pnpm preview
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/cosZone/astro-koharu&project-name=astro-koharu&repository-name=astro-koharu)
 
-## 二、基本配置
+## 基本配置
 
 ### 站点配置
 
@@ -181,7 +181,7 @@ category_map:
 
 这样，"随笔" 分类的 URL 会是 `/categories/life`，而不是 `/categories/随笔`。
 
-## 三、文章系统
+## 文章系统
 
 ### 创建文章
 
@@ -323,18 +323,11 @@ categories:
 ---
 ```
 
-## 四、界面功能
+## 界面功能
 
 ### 主题切换
 
 点击右上角的太阳/月亮图标切换深色/浅色模式。
-
-**技术特性：**
-
-- 使用 View Transitions API 提供平滑的主题切换动画
-- 主题偏好保存在 `localStorage`
-- 页面加载时立即应用保存的主题，防止闪烁 (FOUC)
-- 支持跨页面导航保持主题状态
 
 **代码高亮：**
 
@@ -349,12 +342,6 @@ categories:
 
 - 点击导航栏搜索图标
 - 快捷键：`Cmd/Ctrl + K`
-
-**关闭搜索：**
-
-- 点击对话框外部
-- 点击关闭按钮
-- 按 `ESC` 键
 
 **特性：**
 
@@ -415,7 +402,7 @@ categories:
 - 折叠式目录
 - 触摸优化的交互
 
-## 五、特色功能
+## 特色功能
 
 ### 周刊系统
 
@@ -478,9 +465,57 @@ function hello() {
 ```
 ````
 
+```javascript
+function hello() {
+  console.log('Hello, world!');
+}
+```
+
 **标题自动链接：**
 
 所有标题自动生成可点击的锚点链接。
+
+**链接自动嵌入：**
+
+独行的特殊链接会自动转换为嵌入组件：
+
+- **Twitter/X 链接**：自动嵌入 Tweet 组件
+- **CodePen 链接**：自动嵌入交互式 CodePen 演示
+- **其他链接**：显示 OG 预览卡片（包含标题、描述、图片等）
+
+示例：
+
+```markdown
+<!-- 独行链接会被嵌入 -->
+
+https://x.com/vercel_dev/status/1997059920936775706
+
+https://codepen.io/botteu/pen/YPKBrJX/
+
+https://github.com/vercel/react-tweet
+
+反爬严格，获取不到元信息的链接
+
+https://zhuanlan.zhihu.com/p/1900483903984243480
+
+<!-- 段落中的链接保持不变 -->
+
+这是一个 [普通链接](https://example.com)，不会被嵌入。
+```
+
+https://x.com/vercel_dev/status/1997059920936775706
+
+https://codepen.io/botteu/pen/YPKBrJX/
+
+https://github.com/vercel/react-tweet
+
+反爬严格，获取不到元信息的链接
+
+https://zhuanlan.zhihu.com/p/1900483903984243480
+
+<!-- 段落中的链接保持不变 -->
+
+这是一个 [普通链接](https://example.com)，不会被嵌入。
 
 **其他增强：**
 
@@ -513,7 +548,7 @@ umami({
 });
 ```
 
-## 六、开发指南
+## 开发指南
 
 ### 目录结构
 
@@ -637,7 +672,7 @@ import { fadeIn } from '@constants/anim/variants';
 </motion.div>
 ```
 
-## 七、与 Hexo/Shoka 主题的对比
+## 与 Hexo/Shoka 主题的对比
 
 ### 保留的特性
 
@@ -680,7 +715,7 @@ import { fadeIn } from '@constants/anim/variants';
 | 类型检查 | 无             | TypeScript          |
 | 内容管理 | 文件系统       | Content Collections |
 
-## 八、常见问题
+## 常见问题
 
 ### 1. 如何修改封面图片？
 
@@ -718,7 +753,7 @@ cover: /img/cover/1.webp
 link: my-custom-url
 ```
 
-## 九、参考资源
+## 参考资源
 
 - [Astro 官方文档](https://docs.astro.build/)
 - [Tailwind CSS 文档](https://tailwindcss.com/docs)
@@ -726,7 +761,7 @@ link: my-custom-url
 - [Pagefind 文档](https://pagefind.app/)
 - [Shoka 主题文档](https://shoka.lostyu.me/computer-science/note/theme-shoka-doc/)
 
-## 十、更新日志
+## 更新日志
 
 查看 [CHANGELOG.md](https://github.com/cosZone/astro-koharu/blob/main/CHANGELOG.md) 了解版本更新历史。
 

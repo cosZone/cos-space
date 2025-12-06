@@ -1,5 +1,6 @@
 import react from '@astrojs/react';
 import { siteConfig } from './src/constants/site-config';
+import { defaultContentConfig } from './src/constants/content-config';
 import icon from 'astro-icon';
 import { defineConfig } from 'astro/config';
 import svgr from 'vite-plugin-svgr';
@@ -8,6 +9,7 @@ import tailwindcss from '@tailwindcss/vite';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import pagefind from 'astro-pagefind';
+import { remarkLinkEmbed } from './src/lib/markdown/remark-link-embed.ts';
 
 // https://astro.build/config
 export default defineConfig({
@@ -15,6 +17,16 @@ export default defineConfig({
   markdown: {
     // Enable GitHub Flavored Markdown
     gfm: true,
+    // Configure remark plugins for link embedding
+    remarkPlugins: [
+      [
+        remarkLinkEmbed,
+        {
+          enableTweetEmbed: defaultContentConfig.enableTweetEmbed,
+          enableOGPreview: defaultContentConfig.enableOGPreview,
+        },
+      ],
+    ],
     // Configure rehype plugins for automatic heading IDs and anchor links
     rehypePlugins: [
       rehypeSlug,
@@ -57,6 +69,9 @@ export default defineConfig({
   },
   vite: {
     plugins: [svgr(), tailwindcss()],
+    ssr: {
+      noExternal: ['react-tweet'],
+    },
   },
   trailingSlash: 'ignore',
 });
