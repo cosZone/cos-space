@@ -8,7 +8,10 @@ import TwoColumnLayout from '@layouts/TwoColumnLayout.astro';
 import Cover from '@components/ui/cover/Cover.astro';
 import HomeSider from '@components/layout/HomeSider.astro';
 
-const posts = await getCollection('blog');
+const posts = await getCollection('blog', ({ data }) => {
+  // 在生产环境中，过滤掉草稿
+  return import.meta.env.PROD ? data.draft !== true : true;
+});
 
 // 按年份对文章进行分组
 const postsByYear = posts
