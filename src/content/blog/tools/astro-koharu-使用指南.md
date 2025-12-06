@@ -482,6 +482,28 @@ function hello() {
 
 所有标题自动生成可点击的锚点链接。
 
+**链接自动嵌入：**
+
+独行的特殊链接会自动转换为嵌入组件：
+
+- **Twitter/X 链接**：自动嵌入 Tweet 组件
+- **CodePen 链接**：自动嵌入交互式 CodePen 演示
+- **其他链接**：显示 OG 预览卡片（包含标题、描述、图片等）
+
+示例：
+
+```markdown
+<!-- 独行链接会被嵌入 -->
+https://twitter.com/username/status/123456789
+
+https://codepen.io/username/pen/PenId
+
+https://github.com/user/repo
+
+<!-- 段落中的链接保持不变 -->
+这是一个 [普通链接](https://example.com)，不会被嵌入。
+```
+
 **其他增强：**
 
 - 自动目录生成

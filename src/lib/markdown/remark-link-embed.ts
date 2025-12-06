@@ -27,6 +27,7 @@ interface OGData {
 
 interface RemarkLinkEmbedOptions {
   enableTweetEmbed?: boolean;
+  enableCodePenEmbed?: boolean;
   enableOGPreview?: boolean;
 }
 
@@ -242,11 +243,26 @@ function generateLinkPreviewHTML(ogData: OGData): string {
 }
 
 /**
+ * Generate HTML for CodePen embed using official embed format
+ * https://blog.codepen.io/documentation/embedded-pens/
+ */
+function generateCodePenEmbedHTML(user: string, penId: string, url: string): string {
+  // Sanitize inputs
+  const safeUser = sanitizeText(user);
+  const safePenId = sanitizeText(penId);
+  const safeUrl = sanitizeUrl(url);
+
+  return `<p class="codepen" data-height="400" data-default-tab="result" data-slug-hash="${safePenId}" data-user="${safeUser}">
+  <span>See the Pen <a href="${safeUrl}">${safePenId}</a> by ${safeUser} (<a href="https://codepen.io/${safeUser}">@${safeUser}</a>) on <a href="https://codepen.io">CodePen</a>.</span>
+</p>`;
+}
+
+/**
  * Remark plugin that transforms standalone links into embed components
  * This version uses metascraper to fetch OG data at build time
  */
 export function remarkLinkEmbed(options: RemarkLinkEmbedOptions = {}) {
-  const { enableTweetEmbed = true, enableOGPreview = true } = options;
+  const { enableTweetEmbed = true, enableCodePenEmbed = true, enableOGPreview = true } = options;
 
   return async function (tree: Root) {
     const nodesToReplace: Array<{
@@ -256,6 +272,10 @@ export function remarkLinkEmbed(options: RemarkLinkEmbedOptions = {}) {
       url: string;
       type: string;
       tweetId?: string;
+      codepen?: {
+        user: string;
+        penId: string;
+      };
     }> = [];
 
     // First pass: identify standalone link paragraphs
@@ -274,16 +294,24 @@ export function remarkLinkEmbed(options: RemarkLinkEmbedOptions = {}) {
           url,
           type: linkInfo.type,
           tweetId: linkInfo.tweetId,
+          codepen: linkInfo.codepen,
         });
       }
     });
 
     // Second pass: fetch OG data in parallel for better performance
-    const fetchPromises = nodesToReplace.map(async ({ url, type, tweetId }) => {
+    const fetchPromises = nodesToReplace.map(async ({ url, type, tweetId, codepen }) => {
       if (type === 'tweet' && enableTweetEmbed && tweetId) {
         return {
           type: 'html' as const,
           value: `<div data-tweet-embed data-tweet-id="${tweetId}"></div>`,
+        };
+      } else if (type === 'codepen' && enableCodePenEmbed && codepen) {
+        console.log(`[Link Embed] Embedding CodePen: ${codepen.user}/${codepen.penId}`);
+        const html = generateCodePenEmbedHTML(codepen.user, codepen.penId, url);
+        return {
+          type: 'html' as const,
+          value: html,
         };
       } else if (type === 'general' && enableOGPreview) {
         console.log(`[Link Embed] Fetching OG data for: ${url}`);

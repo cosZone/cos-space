@@ -1,6 +1,6 @@
 # 链接嵌入功能
 
-自动将独行的 Twitter/X 链接转换为 Tweet 组件,并为其他链接显示 OG 预览卡片。
+自动将独行的 Twitter/X、CodePen 链接转换为嵌入组件,并为其他链接显示 OG 预览卡片。
 
 ## 功能特性
 
@@ -26,7 +26,37 @@ https://twitter.com/vercel/status/1683949196632969217
 https://x.com/elonmusk/status/1683631781486342144
 ```
 
-### 2. 通用链接预览
+### 2. CodePen 自动嵌入
+
+将独行的 CodePen 链接自动转换为交互式代码演示:
+
+- ✅ 支持 `codepen.io` 域名
+- ✅ 使用 CodePen 官方嵌入格式
+- ✅ 支持实时代码编辑和预览
+- ✅ 自动适配 Astro 页面导航
+- ✅ 按需加载,优化性能
+- ✅ 支持深色/浅色主题
+
+**示例:**
+
+```markdown
+这是一个独行的 CodePen 链接,会自动转换为交互式嵌入:
+
+https://codepen.io/username/pen/PenId
+
+支持的格式:
+https://codepen.io/username/pen/PenId
+https://codepen.io/username/details/PenId
+```
+
+**技术实现:**
+
+- 使用 CodePen 官方嵌入 API (`__CPEmbed`)
+- 自动处理 Astro 页面转换,确保嵌入正确初始化
+- 脚本按需加载,仅在页面包含 CodePen 嵌入时加载
+- 支持多个 CodePen 嵌入在同一页面
+
+### 3. 通用链接预览
 
 为独行的普通链接显示 OG (Open Graph) 预览卡片:
 

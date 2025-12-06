@@ -4,8 +4,12 @@
 
 export interface LinkInfo {
   url: string;
-  type: 'tweet' | 'general';
+  type: 'tweet' | 'codepen' | 'general';
   tweetId?: string;
+  codepen?: {
+    user: string;
+    penId: string;
+  };
 }
 
 /**
@@ -43,6 +47,48 @@ export function isTweetUrl(url: string): boolean {
 }
 
 /**
+ * Extract CodePen user and pen ID from CodePen URL
+ * Supports formats:
+ * - https://codepen.io/username/pen/PenId
+ * - https://codepen.io/username/pen/PenId/
+ * - https://codepen.io/username/details/PenId
+ * - With query parameters or hash
+ */
+export function extractCodePenId(url: string): { user: string; penId: string } | null {
+  try {
+    const urlObj = new URL(url);
+    const hostname = urlObj.hostname.toLowerCase();
+
+    // Check if it's a CodePen domain
+    if (!['codepen.io', 'www.codepen.io'].includes(hostname)) {
+      return null;
+    }
+
+    // Match username and pen ID from path
+    // Format: /username/(pen|details)/penId
+    const match = urlObj.pathname.match(/^\/([^\/]+)\/(?:pen|details)\/([^\/]+)/);
+    if (match) {
+      return {
+        user: match[1],
+        penId: match[2],
+      };
+    }
+
+    return null;
+  } catch (error) {
+    console.warn('[Link Utils] Failed to parse CodePen URL:', url, error);
+    return null;
+  }
+}
+
+/**
+ * Check if URL is a CodePen link
+ */
+export function isCodePenUrl(url: string): boolean {
+  return extractCodePenId(url) !== null;
+}
+
+/**
  * Classify a link and extract relevant information
  */
 export function classifyLink(url: string): LinkInfo {
@@ -53,6 +99,16 @@ export function classifyLink(url: string): LinkInfo {
       url,
       type: 'tweet',
       tweetId,
+    };
+  }
+
+  const codepen = extractCodePenId(url);
+
+  if (codepen) {
+    return {
+      url,
+      type: 'codepen',
+      codepen,
     };
   }
 
