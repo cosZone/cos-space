@@ -69,8 +69,8 @@ commit_preprocessors = [
 # Assigns commits to groups.
 # Optionally sets the commit's scope and can decide to exclude commits from further processing.
 commit_parsers = [
-    { message = "feat: new post", skip = true },            # old commits
-    { message = "docs: new post", skip = true },            # old commits
+    { message = "feat: new post", skip = true },    # old commits
+    { message = "docs: new post", skip = true },    # old commits
     { message = "^feat", group = "Features" },
     { message = "^fix", group = "Bug Fixes" },
     { message = "^docs", group = "Documentation" },
@@ -78,8 +78,6 @@ commit_parsers = [
     { message = "^test", group = "Tests" },
     { message = "^build", group = "Build" },
     { message = "^ci", group = "CI" },
-    { message = "^chore\\(version\\):", skip = true },
-    { message = "^chore", group = "Miscellaneous Chores" },
     { body = ".*security", group = "Security" },
 ]
 # Exclude commits that are not matched by any commit parser.

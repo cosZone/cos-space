@@ -20,13 +20,13 @@
 [data-theme='dark'] .react-tweet-theme {
   --tweet-bg-color: hsl(var(--card));
   --tweet-border: hsl(var(--border));
-  --tweet-color: hsl(var(--card) / 0.8);
+  --tweet-bg-color-hover: hsl(var(--card) / 0.8);
 }
 
 [data-theme='light'] .react-tweet-theme {
   --tweet-bg-color: hsl(var(--card));
   --tweet-border: hsl(var(--border));
-  --tweet-color: hsl(var(--card) / 0.8);
+  --tweet-bg-color-hover: hsl(var(--card) / 0.8);
 }
 
 .link-preview-block {
