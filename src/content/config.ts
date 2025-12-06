@@ -17,6 +17,7 @@ const blogCollection = defineCollection({
       .or(z.array(z.array(z.string())))
       .optional(),
     sticky: z.boolean().optional(),
+    draft: z.boolean().optional(),
   }) satisfies z.ZodType<BlogSchema>,
 });
 

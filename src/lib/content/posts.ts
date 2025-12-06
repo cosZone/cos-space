@@ -10,9 +10,13 @@ import { buildCategoryPath } from './categories';
 
 /**
  * Get all posts sorted by date (newest first)
+ * In production, draft posts are filtered out
  */
 export async function getSortedPosts(): Promise<CollectionEntry<'blog'>[]> {
-  const posts = await getCollection('blog');
+  const posts = await getCollection('blog', ({ data }) => {
+    // 在生产环境中，过滤掉草稿
+    return import.meta.env.PROD ? data.draft !== true : true;
+  });
 
   // 按日期排序
   const sortedPosts = posts.sort((a: BlogPost, b: BlogPost) => {
@@ -47,10 +51,13 @@ export async function getPostsBySticky(): Promise<{
 }
 
 /**
- * Get post count
+ * Get post count (excluding drafts in production)
  */
 export async function getPostCount() {
-  const posts = await getCollection('blog');
+  const posts = await getCollection('blog', ({ data }) => {
+    // 在生产环境中，过滤掉草稿
+    return import.meta.env.PROD ? data.draft !== true : true;
+  });
   return posts?.length ?? 0;
 }
 

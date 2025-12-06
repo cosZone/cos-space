@@ -205,3 +205,4 @@ For components with cleanup needs, use an `initialized` flag or `controller?.des
 - **SVG Handling**: `vite-plugin-svgr` allows importing SVGs as React components
 - **Umami Analytics**: Integrated for usage tracking (see `astro.config.mjs`)
 - **Content Migration**: This blog was migrated from Hexo, so some posts may have legacy metadata fields
+- Remember to turn it off after testing with dev. Don't ask. Just close it directly after the test
