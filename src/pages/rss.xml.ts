@@ -1,7 +1,7 @@
 // edit https://github.com/lawvs/lawvs.github.io/blob/dba2e51e312765f8322ee87755b4e9c22b520048/src/pages/rss.xml.ts
 import rss from '@astrojs/rss';
 import { siteConfig } from '@constants/site-config';
-import { getSortedPosts } from '@lib/content';
+import { getSortedPosts, getCategoryArr } from '@lib/content';
 import { getSanitizeHtml } from '@lib/sanitize';
 import type { APIContext } from 'astro';
 import sanitizeHtml from 'sanitize-html';
@@ -37,12 +37,24 @@ export async function GET(context: APIContext) {
     stylesheet: '/rss/cos-feed.xsl', // https://docs.astro.build/en/recipes/rss/#adding-a-stylesheet
     items: posts
       .map((post: BlogPost) => {
+        // 获取分类数组
+        const categoryArr = getCategoryArr(post.data.categories?.[0]);
+
+        // 构建 categories 数组，包含分类和标签
+        const categories = [
+          // 添加分类信息 (使用 domain 属性区分)
+          ...(categoryArr || []).map((cat) => `category:${cat}`),
+          // 添加标签信息
+          ...(post.data.tags || []).map((tag) => `tag:${tag}`),
+        ];
+
         return {
           title: post.data.title,
           pubDate: post.data.date,
           description: post.data?.description ?? generateTextSummary(post.rendered?.html),
           link: `/post/${post.data.link ?? post.slug}`,
           content: getSanitizeHtml(post.rendered?.html ?? ''),
+          categories,
         };
       })
       .slice(0, 20),
