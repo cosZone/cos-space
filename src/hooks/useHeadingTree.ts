@@ -111,13 +111,21 @@ export function useHeadingTree(): Heading[] {
     const articleContent = document.querySelector('article');
     if (!articleContent) return;
 
-    // Get all heading elements in the article
-    const headingElements = articleContent.querySelectorAll('h1, h2, h3, h4, h5, h6');
+    // Get all heading elements, excluding those inside .link-preview-block
+    // Using :not() pseudo-class for better performance (single DOM traversal)
+    const headingElements = articleContent.querySelectorAll(
+      'h1:not(.link-preview-block h1), ' +
+        'h2:not(.link-preview-block h2), ' +
+        'h3:not(.link-preview-block h3), ' +
+        'h4:not(.link-preview-block h4), ' +
+        'h5:not(.link-preview-block h5), ' +
+        'h6:not(.link-preview-block h6)',
+    );
 
     // If no headings, don't show TOC
     if (headingElements.length === 0) return;
 
-    // Process heading elements
+    // Process heading elements (convert NodeList to Array for map)
     const flatHeadings: Array<{ id: string; text: string; level: number }> = Array.from(headingElements).map(
       (heading, index) => {
         // Use existing ID or create fallback ID
