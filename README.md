@@ -64,6 +64,7 @@ pnpm dev
 - [waterwater.moe](https://github.com/lawvs/lawvs.github.io)
 - [yfi.moe](https://github.com/yy4382/yfi.moe)
 - [4ark.me](https://github.com/gd4Ark/gd4Ark.github.io)
+- [纸鹿摸鱼处](https://blog.zhilu.site/)
 - ...
 
 ## TODO

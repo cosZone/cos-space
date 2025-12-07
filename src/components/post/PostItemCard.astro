@@ -4,7 +4,7 @@ import { Badge } from '@components/ui/badge';
 import { Button } from '@components/ui/button';
 import { Routes } from '@constants/router';
 import { defaultCoverList } from '@constants/site-config';
-import { buildCategoryPath, getCategoryArr } from '@lib/content';
+import { buildCategoryPath, getCategoryArr, getPostDescription } from '@lib/content';
 import { parseDate } from '@lib/datetime';
 import { routeBuilder } from '@lib/route';
 import { cn } from '@lib/utils';
@@ -33,7 +33,7 @@ const {
 const showTags = showTagsProp ?? !isSimple;
 const hideCover = hideCoverProp ?? isSimple;
 
-const { cover, date, catalog, categories, title, description, draft } = data?.data ?? {};
+const { cover, date, catalog, categories, title, draft } = data?.data ?? {};
 const { body } = data ?? {};
 
 const readState = readingTime(body ?? '');
@@ -44,6 +44,9 @@ const isDraft = import.meta.env.DEV && draft === true;
 const categoryArr = getCategoryArr(categories?.[0]);
 const categoryLink = await buildCategoryPath(categoryArr);
 const categoryStr = categoryArr?.length ? categoryArr[categoryArr.length - 1] : '';
+
+// 使用统一的工具函数获取文章描述
+const postDescription = getPostDescription(data);
 ---
 
 <div
@@ -127,7 +130,7 @@ const categoryStr = categoryArr?.length ? categoryArr[categoryArr.length - 1] : 
         'line-clamp-2 h-10 md:max-h-10': isSimple,
       })}
     >
-      {description ?? body?.slice(0, 150)}
+      {postDescription}
     </p>
     {
       showTags && (

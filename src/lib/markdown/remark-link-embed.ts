@@ -18,7 +18,7 @@ import sanitizeHtml from 'sanitize-html';
 import metascraperLogoFavicon from 'metascraper-logo-favicon';
 
 interface OGData {
-  originUrl;
+  originUrl: string;
   url: string;
   title?: string;
   description?: string;

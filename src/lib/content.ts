@@ -24,6 +24,7 @@ export {
 export {
   getAdjacentSeriesPosts,
   getPostCount,
+  getPostDescription,
   getPostLastCategory,
   getPostsByCategory,
   getPostsBySticky,

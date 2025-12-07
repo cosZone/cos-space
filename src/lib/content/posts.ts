@@ -5,8 +5,20 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
 
 import { siteConfig } from '@constants/site-config';
+import { extractTextFromMarkdown } from '@lib/sanitize';
 import type { BlogPost } from 'types/blog';
 import { buildCategoryPath } from './categories';
+
+/**
+ * 获取文章描述
+ * 优先使用 frontmatter 中的 description，如果不存在则从 Markdown 内容中智能提取
+ * @param post 文章对象
+ * @param maxLength 最大长度，默认 150 字符
+ * @returns 文章描述文本
+ */
+export function getPostDescription(post: BlogPost, maxLength: number = 150): string {
+  return post.data.description || extractTextFromMarkdown(post.body, maxLength);
+}
 
 /**
  * Get all posts sorted by date (newest first)

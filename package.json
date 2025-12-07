@@ -7,6 +7,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
+    "check": "astro check",
     "lint": "eslint .",
     "lint-md": "lint-md ./src/content/**/*.{md,mdx}",
     "lint-md:fix": "lint-md ./src/content/**/*.{md,mdx} --fix",
@@ -16,6 +17,7 @@
     "knip": "knip"
   },
   "dependencies": {
+    "@astrojs/check": "^0.9.6",
     "@astrojs/react": "^4.4.2",
     "@astrojs/rss": "^4.0.14",
     "@floating-ui/react": "^0.27.16",
@@ -74,8 +76,10 @@
     "@tailwindcss/container-queries": "^0.1.1",
     "@tailwindcss/typography": "^0.5.19",
     "@types/js-yaml": "^4.0.9",
+    "@types/mdast": "^4.0.4",
     "@types/node": "^24.10.1",
     "@types/sanitize-html": "^2.16.0",
+    "@types/unist": "^3.0.3",
     "@typescript-eslint/parser": "^8.48.1",
     "eslint": "^9.39.1",
     "eslint-plugin-astro": "^1.5.0",
