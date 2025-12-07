@@ -9,6 +9,21 @@ export interface FriendLink {
 
 export const friendsData: FriendLink[] = [
   {
+    site: '纸鹿摸鱼处',
+    url: 'https://blog.zhilu.site/',
+    owner: '纸鹿本鹿',
+    desc: '纸鹿至麓不知路，支炉制露不止漉',
+    image: 'https://www.zhilu.site/api/avatar.png',
+    color: '#BEDCFF',
+  },
+  {
+    site: '猫猫博客',
+    url: 'https://catcat.blog',
+    owner: 'catcat',
+    desc: '𝙄𝙩’𝙨 𝙩𝙝𝙚 𝙤𝙣𝙡𝙮 𝙉𝙀𝙀𝙏 𝙩𝙝𝙞𝙣𝙜 𝙩𝙤 𝙙𝙤…',
+    image: 'https://s3.catcat.blog/avatar.avif',
+  },
+  {
     site: '吐槽大王部落格',
     url: 'https://www.tcdw.net/',
     owner: 'tcdw',
