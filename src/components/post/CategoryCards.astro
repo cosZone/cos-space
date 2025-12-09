@@ -68,12 +68,12 @@ const categoryPosts: CategoryWithPosts[] = await Promise.all(
           <div slot="back" class="bg-card relative h-full flex-col rounded-md px-6 pt-16 pb-4">
             <div
               class={cn(
-                'from-gradient-shoka-button-start to-gradient-shoka-button-end absolute top-4 -left-4 inline-block h-8 max-w-[calc(100%+2rem)] rounded-r-md border bg-linear-to-l pr-4 pl-6',
+                'from-gradient-shoka-button-start to-gradient-shoka-button-end absolute top-4 -left-4 grid h-8 max-w-[calc(100%+2rem)] place-items-center rounded-r-md bg-linear-to-l px-4',
                 "after:absolute after:top-full after:-left-4 after:h-0 after:w-0 after:border-t-0 after:border-r-16 after:border-b-16 after:border-l-16 after:border-transparent after:content-['']",
                 'after:border-r-gradient-shoka-button-end',
               )}
             >
-              <a class="hover:animate-shake mt-1.5 block text-base/4 text-white" href={categoryLink}>
+              <a class="hover:animate-shake block text-base text-white" href={categoryLink}>
                 {category?.label || categoryInfo?.name}
               </a>
             </div>
