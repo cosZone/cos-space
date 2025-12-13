@@ -6,7 +6,7 @@
  * 支持 prefers-reduced-motion 可访问性
  */
 
-import { useState, useEffect, useCallback, useRef, memo, type ReactNode } from 'react';
+import { useState, useEffect, useCallback, useRef, memo, type ReactNode, type RefObject } from 'react';
 import { cn } from '@lib/utils';
 import { MingcuteAiFillSvg } from '../svg/MingcuteAiFillSvg.tsx';
 import { RiBook2Fill } from 'react-icons/ri';
@@ -23,7 +23,7 @@ const SummaryPanelContent = memo(
     isExpanded: boolean;
     summary: string;
     isTyping: boolean;
-    textRef: React.RefObject<HTMLSpanElement>;
+    textRef: RefObject<HTMLSpanElement | null>;
   }) => {
     return (
       <div
@@ -90,7 +90,7 @@ export function SummaryPanel({ summary, source = 'ai', typingSpeed = 25, classNa
   const [hasAnimated, setHasAnimated] = useState(false);
   const animationRef = useRef<number | null>(null);
   const startTimeRef = useRef<number>(0);
-  const textRef = useRef<HTMLSpanElement>(null);
+  const textRef = useRef<HTMLSpanElement | null>(null);
 
   const config = SOURCE_CONFIG[source];
 
