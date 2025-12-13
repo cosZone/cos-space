@@ -620,6 +620,114 @@
       "similarity": 0.757
     }
   ],
+  "163-yanxuan-review-2022-spring-frontend": [
+    {
+      "slug": "metaapp-review-2022-spring-frontend",
+      "title": "MetaApp一二面面经（已OC）",
+      "similarity": 0.837
+    },
+    {
+      "slug": "bytedance-review-2022-spring-frontend",
+      "title": "字节前端暑期实习一面凉经",
+      "similarity": 0.8
+    },
+    {
+      "slug": "shoplazza-review-2022-spring-frontend",
+      "title": "2022春暑期实习店匠前端一二面面经",
+      "similarity": 0.755
+    },
+    {
+      "slug": "note/front-end/bytedance-note/mini-program-develop",
+      "title": "青训营 |「小程序技术全解」笔记",
+      "similarity": 0.711
+    },
+    {
+      "slug": "fe-talk-1",
+      "title": "浅谈前端的变与不变",
+      "similarity": 0.687
+    }
+  ],
+  "shoplazza-review-2022-spring-frontend": [
+    {
+      "slug": "metaapp-review-2022-spring-frontend",
+      "title": "MetaApp一二面面经（已OC）",
+      "similarity": 0.757
+    },
+    {
+      "slug": "163-yanxuan-review-2022-spring-frontend",
+      "title": "2022春暑期实习网易严选前端一二HR面凉经",
+      "similarity": 0.755
+    },
+    {
+      "slug": "bytedance-review-2022-spring-frontend",
+      "title": "字节前端暑期实习一面凉经",
+      "similarity": 0.74
+    },
+    {
+      "slug": "note/front-end/bytedance-note/javascript-learing",
+      "title": "青训营 |「跟着月影学 JavaScript」笔记",
+      "similarity": 0.689
+    },
+    {
+      "slug": "note/front-end/bytedance-note/mini-program-develop",
+      "title": "青训营 |「小程序技术全解」笔记",
+      "similarity": 0.688
+    }
+  ],
+  "bytedance-review-2022-spring-frontend": [
+    {
+      "slug": "metaapp-review-2022-spring-frontend",
+      "title": "MetaApp一二面面经（已OC）",
+      "similarity": 0.835
+    },
+    {
+      "slug": "163-yanxuan-review-2022-spring-frontend",
+      "title": "2022春暑期实习网易严选前端一二HR面凉经",
+      "similarity": 0.8
+    },
+    {
+      "slug": "note/front-end/bytedance-note/mini-program-develop",
+      "title": "青训营 |「小程序技术全解」笔记",
+      "similarity": 0.742
+    },
+    {
+      "slug": "shoplazza-review-2022-spring-frontend",
+      "title": "2022春暑期实习店匠前端一二面面经",
+      "similarity": 0.74
+    },
+    {
+      "slug": "fe-talk-1",
+      "title": "浅谈前端的变与不变",
+      "similarity": 0.703
+    }
+  ],
+  "metaapp-review-2022-spring-frontend": [
+    {
+      "slug": "163-yanxuan-review-2022-spring-frontend",
+      "title": "2022春暑期实习网易严选前端一二HR面凉经",
+      "similarity": 0.837
+    },
+    {
+      "slug": "bytedance-review-2022-spring-frontend",
+      "title": "字节前端暑期实习一面凉经",
+      "similarity": 0.835
+    },
+    {
+      "slug": "shoplazza-review-2022-spring-frontend",
+      "title": "2022春暑期实习店匠前端一二面面经",
+      "similarity": 0.757
+    },
+    {
+      "slug": "note/front-end/bytedance-note/mini-program-develop",
+      "title": "青训营 |「小程序技术全解」笔记",
+      "similarity": 0.738
+    },
+    {
+      "slug": "fe-talk-1",
+      "title": "浅谈前端的变与不变",
+      "similarity": 0.734
+    }
+  ],
   "tailwind-update-v4-migrate": [
     {
       "slug": "tailwind-update-v3-3",
@@ -780,6 +888,1113 @@
       "slug": "implementation-of-datepicker",
       "title": "仿Antd组件之DatePicker组件实现（简易）",
       "similarity": 0.641
+    }
+  ],
+  "软件工程期末小测": [
+    {
+      "slug": "metaapp-review-2022-spring-frontend",
+      "title": "MetaApp一二面面经（已OC）",
+      "similarity": 0.65
+    },
+    {
+      "slug": "fe-talk-1",
+      "title": "浅谈前端的变与不变",
+      "similarity": 0.635
+    },
+    {
+      "slug": "计算机组成原理复习总结（一）计算机系统概论",
+      "title": "计算机组成原理复习总结（一）计算机系统概论",
+      "similarity": 0.628
+    },
+    {
+      "slug": "计算机组成原理复习总结（五）中央处理器",
+      "title": "计算机组成原理复习总结（五）中央处理器",
+      "similarity": 0.623
+    },
+    {
+      "slug": "note/front-end/bytedance-note/javascript-learing",
+      "title": "青训营 |「跟着月影学 JavaScript」笔记",
+      "similarity": 0.623
+    }
+  ],
+  "计算机组成原理复习总结（四）指令系统": [
+    {
+      "slug": "计算机组成原理复习总结（一）计算机系统概论",
+      "title": "计算机组成原理复习总结（一）计算机系统概论",
+      "similarity": 0.853
+    },
+    {
+      "slug": "计算机组成原理复习总结（五）中央处理器",
+      "title": "计算机组成原理复习总结（五）中央处理器",
+      "similarity": 0.816
+    },
+    {
+      "slug": "计算机组成原理复习总结（七）外围设备",
+      "title": "计算机组成原理复习总结（七）外围设备",
+      "similarity": 0.772
+    },
+    {
+      "slug": "计算机组成原理复习总结（三）多层次的存储器",
+      "title": "计算机组成原理复习总结（三）多层次的存储器",
+      "similarity": 0.766
+    },
+    {
+      "slug": "计算机组成原理复习总结（六）总线系统",
+      "title": "计算机组成原理复习总结（六）总线系统",
+      "similarity": 0.751
+    }
+  ],
+  "计算机组成原理复习总结（六）总线系统": [
+    {
+      "slug": "计算机组成原理复习总结（一）计算机系统概论",
+      "title": "计算机组成原理复习总结（一）计算机系统概论",
+      "similarity": 0.788
+    },
+    {
+      "slug": "计算机组成原理复习总结（七）外围设备",
+      "title": "计算机组成原理复习总结（七）外围设备",
+      "similarity": 0.753
+    },
+    {
+      "slug": "计算机组成原理复习总结（四）指令系统",
+      "title": "计算机组成原理复习总结（四）指令系统",
+      "similarity": 0.751
+    },
+    {
+      "slug": "计算机组成原理复习总结（五）中央处理器",
+      "title": "计算机组成原理复习总结（五）中央处理器",
+      "similarity": 0.698
+    },
+    {
+      "slug": "PTA数据结构题目集 第二周——线性结构",
+      "title": "PTA数据结构题目集 第二周——线性结构",
+      "similarity": 0.664
+    }
+  ],
+  "计算机组成原理复习总结（五）中央处理器": [
+    {
+      "slug": "计算机组成原理复习总结（四）指令系统",
+      "title": "计算机组成原理复习总结（四）指令系统",
+      "similarity": 0.816
+    },
+    {
+      "slug": "计算机组成原理复习总结（一）计算机系统概论",
+      "title": "计算机组成原理复习总结（一）计算机系统概论",
+      "similarity": 0.81
+    },
+    {
+      "slug": "计算机组成原理复习总结（三）多层次的存储器",
+      "title": "计算机组成原理复习总结（三）多层次的存储器",
+      "similarity": 0.778
+    },
+    {
+      "slug": "高级java复习笔记（期末不要挂啦）",
+      "title": "高级java复习笔记（期末不要挂啦）",
+      "similarity": 0.766
+    },
+    {
+      "slug": "计算机组成原理复习总结（二）运算方法和运算器",
+      "title": "计算机组成原理复习总结（二）运算方法和运算器",
+      "similarity": 0.75
+    }
+  ],
+  "计算机组成原理复习总结（二）运算方法和运算器": [
+    {
+      "slug": "2021秋PAT乙级真题题解及赛后总结",
+      "title": "2021秋PAT乙级真题题解及赛后总结",
+      "similarity": 0.761
+    },
+    {
+      "slug": "计算机组成原理复习总结（五）中央处理器",
+      "title": "计算机组成原理复习总结（五）中央处理器",
+      "similarity": 0.75
+    },
+    {
+      "slug": "计算机组成原理复习总结（三）多层次的存储器",
+      "title": "计算机组成原理复习总结（三）多层次的存储器",
+      "similarity": 0.75
+    },
+    {
+      "slug": "back-end/go_learning_1",
+      "title": "Go语言初上手(一) 环境配置与基础语法 | 青训营",
+      "similarity": 0.744
+    },
+    {
+      "slug": "计算机组成原理复习总结（四）指令系统",
+      "title": "计算机组成原理复习总结（四）指令系统",
+      "similarity": 0.74
+    }
+  ],
+  "计算机组成原理复习总结（三）多层次的存储器": [
+    {
+      "slug": "计算机组成原理复习总结（五）中央处理器",
+      "title": "计算机组成原理复习总结（五）中央处理器",
+      "similarity": 0.778
+    },
+    {
+      "slug": "计算机组成原理复习总结（四）指令系统",
+      "title": "计算机组成原理复习总结（四）指令系统",
+      "similarity": 0.766
+    },
+    {
+      "slug": "计算机组成原理复习总结（二）运算方法和运算器",
+      "title": "计算机组成原理复习总结（二）运算方法和运算器",
+      "similarity": 0.75
+    },
+    {
+      "slug": "计算机组成原理复习总结（七）外围设备",
+      "title": "计算机组成原理复习总结（七）外围设备",
+      "similarity": 0.748
+    },
+    {
+      "slug": "数据结构学习笔记＜9＞ 散列查找",
+      "title": "数据结构学习笔记＜9＞ 散列查找",
+      "similarity": 0.726
+    }
+  ],
+  "计算机组成原理复习总结（七）外围设备": [
+    {
+      "slug": "计算机组成原理复习总结（一）计算机系统概论",
+      "title": "计算机组成原理复习总结（一）计算机系统概论",
+      "similarity": 0.803
+    },
+    {
+      "slug": "计算机组成原理复习总结（四）指令系统",
+      "title": "计算机组成原理复习总结（四）指令系统",
+      "similarity": 0.772
+    },
+    {
+      "slug": "计算机组成原理复习总结（六）总线系统",
+      "title": "计算机组成原理复习总结（六）总线系统",
+      "similarity": 0.753
+    },
+    {
+      "slug": "计算机组成原理复习总结（三）多层次的存储器",
+      "title": "计算机组成原理复习总结（三）多层次的存储器",
+      "similarity": 0.748
+    },
+    {
+      "slug": "计算机组成原理复习总结（五）中央处理器",
+      "title": "计算机组成原理复习总结（五）中央处理器",
+      "similarity": 0.712
+    }
+  ],
+  "计算机组成原理复习总结（一）计算机系统概论": [
+    {
+      "slug": "计算机组成原理复习总结（四）指令系统",
+      "title": "计算机组成原理复习总结（四）指令系统",
+      "similarity": 0.853
+    },
+    {
+      "slug": "计算机组成原理复习总结（五）中央处理器",
+      "title": "计算机组成原理复习总结（五）中央处理器",
+      "similarity": 0.81
+    },
+    {
+      "slug": "计算机组成原理复习总结（七）外围设备",
+      "title": "计算机组成原理复习总结（七）外围设备",
+      "similarity": 0.803
+    },
+    {
+      "slug": "计算机组成原理复习总结（六）总线系统",
+      "title": "计算机组成原理复习总结（六）总线系统",
+      "similarity": 0.788
+    },
+    {
+      "slug": "计算机组成原理复习总结（三）多层次的存储器",
+      "title": "计算机组成原理复习总结（三）多层次的存储器",
+      "similarity": 0.723
+    }
+  ],
+  "compile-learning-experiment_4": [
+    {
+      "slug": "compile-learning-experiment_2",
+      "title": "编译原理 实验二 LL(1)分析法程序",
+      "similarity": 0.935
+    },
+    {
+      "slug": "compile-learning-experiment_1",
+      "title": "编译原理 实验一 词法分析器设计",
+      "similarity": 0.835
+    },
+    {
+      "slug": "PTA数据结构题目集 第十一周——散列查找",
+      "title": "PTA数据结构题目集 第十一周——散列查找",
+      "similarity": 0.66
+    },
+    {
+      "slug": "PTA数据结构题目集 第五周——堆&哈夫曼树&并查集",
+      "title": "PTA数据结构题目集 第五周——堆&哈夫曼树&并查集",
+      "similarity": 0.65
+    },
+    {
+      "slug": "PTA数据结构题目集 第二周——线性结构",
+      "title": "PTA数据结构题目集 第二周——线性结构",
+      "similarity": 0.65
+    }
+  ],
+  "compile-learning-experiment_2": [
+    {
+      "slug": "compile-learning-experiment_4",
+      "title": "编译原理 实验四 LR(1)分析法程序",
+      "similarity": 0.935
+    },
+    {
+      "slug": "compile-learning-experiment_1",
+      "title": "编译原理 实验一 词法分析器设计",
+      "similarity": 0.844
+    },
+    {
+      "slug": "PTA数据结构题目集 第二周——线性结构",
+      "title": "PTA数据结构题目集 第二周——线性结构",
+      "similarity": 0.682
+    },
+    {
+      "slug": "动态规划学习笔记（1）",
+      "title": "动态规划学习笔记（1）",
+      "similarity": 0.682
+    },
+    {
+      "slug": "meituan-examination-2022-spring-frontend",
+      "title": "2022春美团笔试暑期实习笔试题复盘",
+      "similarity": 0.681
+    }
+  ],
+  "compile-learning-experiment_1": [
+    {
+      "slug": "compile-learning-experiment_2",
+      "title": "编译原理 实验二 LL(1)分析法程序",
+      "similarity": 0.844
+    },
+    {
+      "slug": "compile-learning-experiment_4",
+      "title": "编译原理 实验四 LR(1)分析法程序",
+      "similarity": 0.835
+    },
+    {
+      "slug": "coding-train/leetcode/bytedance/bytedance-day11",
+      "title": "冲刺春招-精选笔面试66题大通关day11",
+      "similarity": 0.73
+    },
+    {
+      "slug": "coding-train/leetcode/bytedance/bytedance-day8",
+      "title": "冲刺春招-精选笔面试66题大通关day8",
+      "similarity": 0.714
+    },
+    {
+      "slug": "动态规划学习笔记（1）",
+      "title": "动态规划学习笔记（1）",
+      "similarity": 0.712
+    }
+  ],
+  "操作系统编程实验——创建进程": [
+    {
+      "slug": "compile-learning-experiment_2",
+      "title": "编译原理 实验二 LL(1)分析法程序",
+      "similarity": 0.637
+    },
+    {
+      "slug": "compile-learning-experiment_4",
+      "title": "编译原理 实验四 LR(1)分析法程序",
+      "similarity": 0.597
+    },
+    {
+      "slug": "操作系统实验——动态分区分配方式的模拟",
+      "title": "操作系统实验——动态分区分配方式的模拟",
+      "similarity": 0.584
+    },
+    {
+      "slug": "高级java小测2——线程",
+      "title": "高级java小测2——线程",
+      "similarity": 0.57
+    },
+    {
+      "slug": "note/front-end/bytedance-note/javascript-learing",
+      "title": "青训营 |「跟着月影学 JavaScript」笔记",
+      "similarity": 0.567
+    }
+  ],
+  "操作系统实验——动态分区分配方式的模拟": [
+    {
+      "slug": "动态规划学习笔记（1）",
+      "title": "动态规划学习笔记（1）",
+      "similarity": 0.713
+    },
+    {
+      "slug": "数据结构学习笔记＜8＞ 排序",
+      "title": "数据结构学习笔记＜8＞ 排序",
+      "similarity": 0.702
+    },
+    {
+      "slug": "数据结构学习笔记＜9＞ 散列查找",
+      "title": "数据结构学习笔记＜9＞ 散列查找",
+      "similarity": 0.694
+    },
+    {
+      "slug": "RMQ问题——线段树",
+      "title": "RMQ问题——线段树",
+      "similarity": 0.667
+    },
+    {
+      "slug": "meituan-examination-2022-spring-frontend",
+      "title": "2022春美团笔试暑期实习笔试题复盘",
+      "similarity": 0.656
+    }
+  ],
+  "secure-basics-4": [
+    {
+      "slug": "secure-basics-1",
+      "title": "信息安全概论复习一（Chapter1、2、3）",
+      "similarity": 0.872
+    },
+    {
+      "slug": "secure-basics-3",
+      "title": "信息安全概论复习三 Chapter5、6、7",
+      "similarity": 0.809
+    },
+    {
+      "slug": "高级java复习笔记（期末不要挂啦）",
+      "title": "高级java复习笔记（期末不要挂啦）",
+      "similarity": 0.708
+    },
+    {
+      "slug": "计算机组成原理复习总结（五）中央处理器",
+      "title": "计算机组成原理复习总结（五）中央处理器",
+      "similarity": 0.697
+    },
+    {
+      "slug": "secure-basics-2",
+      "title": "信息安全概论复习二 Chapter4 对称密码技术",
+      "similarity": 0.684
+    }
+  ],
+  "secure-basics-3": [
+    {
+      "slug": "secure-basics-1",
+      "title": "信息安全概论复习一（Chapter1、2、3）",
+      "similarity": 0.857
+    },
+    {
+      "slug": "secure-basics-4",
+      "title": "信息安全概论复习四 Chapte8、9、10",
+      "similarity": 0.809
+    },
+    {
+      "slug": "secure-basics-2",
+      "title": "信息安全概论复习二 Chapter4 对称密码技术",
+      "similarity": 0.773
+    },
+    {
+      "slug": "高级java复习笔记（期末不要挂啦）",
+      "title": "高级java复习笔记（期末不要挂啦）",
+      "similarity": 0.668
+    },
+    {
+      "slug": "计算机组成原理复习总结（二）运算方法和运算器",
+      "title": "计算机组成原理复习总结（二）运算方法和运算器",
+      "similarity": 0.65
+    }
+  ],
+  "secure-basics-2": [
+    {
+      "slug": "secure-basics-3",
+      "title": "信息安全概论复习三 Chapter5、6、7",
+      "similarity": 0.773
+    },
+    {
+      "slug": "secure-basics-1",
+      "title": "信息安全概论复习一（Chapter1、2、3）",
+      "similarity": 0.762
+    },
+    {
+      "slug": "计算机组成原理复习总结（四）指令系统",
+      "title": "计算机组成原理复习总结（四）指令系统",
+      "similarity": 0.693
+    },
+    {
+      "slug": "PAT乙级刷题感想及踩坑总结",
+      "title": "PAT乙级刷题感想及踩坑总结",
+      "similarity": 0.692
+    },
+    {
+      "slug": "secure-basics-4",
+      "title": "信息安全概论复习四 Chapte8、9、10",
+      "similarity": 0.684
+    }
+  ],
+  "secure-basics-1": [
+    {
+      "slug": "secure-basics-4",
+      "title": "信息安全概论复习四 Chapte8、9、10",
+      "similarity": 0.872
+    },
+    {
+      "slug": "secure-basics-3",
+      "title": "信息安全概论复习三 Chapter5、6、7",
+      "similarity": 0.857
+    },
+    {
+      "slug": "secure-basics-2",
+      "title": "信息安全概论复习二 Chapter4 对称密码技术",
+      "similarity": 0.762
+    },
+    {
+      "slug": "高级java复习笔记（期末不要挂啦）",
+      "title": "高级java复习笔记（期末不要挂啦）",
+      "similarity": 0.696
+    },
+    {
+      "slug": "计算机组成原理复习总结（四）指令系统",
+      "title": "计算机组成原理复习总结（四）指令系统",
+      "similarity": 0.687
+    }
+  ],
+  "高级java小测2——线程": [
+    {
+      "slug": "coding-train/leetcode/bytedance/bytedance-day20",
+      "title": "冲刺春招-精选笔面试66题大通关day20",
+      "similarity": 0.648
+    },
+    {
+      "slug": "meituan-examination-2022-spring-frontend",
+      "title": "2022春美团笔试暑期实习笔试题复盘",
+      "similarity": 0.637
+    },
+    {
+      "slug": "coding-train/leetcode/bytedance/bytedance-day17",
+      "title": "冲刺春招-精选笔面试66题大通关17",
+      "similarity": 0.635
+    },
+    {
+      "slug": "coding-train/leetcode/bytedance/bytedance-day14",
+      "title": "冲刺春招-精选笔面试66题大通关day14",
+      "similarity": 0.629
+    },
+    {
+      "slug": "coding-train/leetcode/offer/day19",
+      "title": "剑指offer day19 搜索与回溯算法（中等）",
+      "similarity": 0.625
+    }
+  ],
+  "高级java复习笔记（期末不要挂啦）": [
+    {
+      "slug": "计算机组成原理复习总结（五）中央处理器",
+      "title": "计算机组成原理复习总结（五）中央处理器",
+      "similarity": 0.766
+    },
+    {
+      "slug": "js-learning-1",
+      "title": "深入JavaScript学习之路（一）对象、类与面向对象编程",
+      "similarity": 0.756
+    },
+    {
+      "slug": "note/front-end/bytedance-note/javascript-learing",
+      "title": "青训营 |「跟着月影学 JavaScript」笔记",
+      "similarity": 0.753
+    },
+    {
+      "slug": "note/front-end/bytedance-note/design-pattern",
+      "title": "青训营 |「前端设计模式应用」笔记",
+      "similarity": 0.748
+    },
+    {
+      "slug": "back-end/go_learning_1",
+      "title": "Go语言初上手(一) 环境配置与基础语法 | 青训营",
+      "similarity": 0.746
+    }
+  ],
+  "高级java作业(反射、Collection、正则、工厂设计模式和观察者模式)": [
+    {
+      "slug": "高级java复习笔记（期末不要挂啦）",
+      "title": "高级java复习笔记（期末不要挂啦）",
+      "similarity": 0.74
+    },
+    {
+      "slug": "note/front-end/bytedance-note/design-pattern",
+      "title": "青训营 |「前端设计模式应用」笔记",
+      "similarity": 0.734
+    },
+    {
+      "slug": "note/front-end/bytedance-note/javascript-learing",
+      "title": "青训营 |「跟着月影学 JavaScript」笔记",
+      "similarity": 0.722
+    },
+    {
+      "slug": "js-learning-2",
+      "title": "深入JavaScript学习之路（二）JavaScript中的类",
+      "similarity": 0.672
+    },
+    {
+      "slug": "note/front-end/bytedance-note/typescript-introduction",
+      "title": "青训营 |「TypeScript入门」笔记",
+      "similarity": 0.641
+    }
+  ],
+  "python网络爬虫学习笔记(一) 爬取简单静态网页": [
+    {
+      "slug": "note/front-end/bytedance-note/http-utilization-guide",
+      "title": "青训营 |「HTTP实用指南」",
+      "similarity": 0.657
+    },
+    {
+      "slug": "note/front-end/bytedance-note/development-and-debugging",
+      "title": "青训营 |「前端必须知道的开发调试知识」",
+      "similarity": 0.653
+    },
+    {
+      "slug": "数据结构学习笔记＜9＞ 散列查找",
+      "title": "数据结构学习笔记＜9＞ 散列查找",
+      "similarity": 0.653
+    },
+    {
+      "slug": "note/front-end/bytedance-note/mini-program-develop",
+      "title": "青训营 |「小程序技术全解」笔记",
+      "similarity": 0.646
+    },
+    {
+      "slug": "note/front-end/bytedance-note/web-safe-getting-started",
+      "title": "青训营 |「Web开发的安全之旅」",
+      "similarity": 0.638
+    }
+  ],
+  "nest-learn-project-1": [
+    {
+      "slug": "js-learning-1",
+      "title": "深入JavaScript学习之路（一）对象、类与面向对象编程",
+      "similarity": 0.709
+    },
+    {
+      "slug": "redux-learning-1",
+      "title": "Redux学习之路（一）Redux三原则、createSore原理及实现",
+      "similarity": 0.691
+    },
+    {
+      "slug": "note/front-end/bytedance-note/typescript-introduction",
+      "title": "青训营 |「TypeScript入门」笔记",
+      "similarity": 0.681
+    },
+    {
+      "slug": "note/front-end/bytedance-note/nodejs-develop",
+      "title": "青训营 |「Node.js 与前端开发实战」",
+      "similarity": 0.679
+    },
+    {
+      "slug": "optimizing-javascript-translate",
+      "title": "优化 JavaScript 的乐趣和好处【译文】",
+      "similarity": 0.678
+    }
+  ],
+  "note/front-end/bytedance-note/webpack-knowledge-system": [
+    {
+      "slug": "note/front-end/bytedance-note/javascript-learing",
+      "title": "青训营 |「跟着月影学 JavaScript」笔记",
+      "similarity": 0.706
+    },
+    {
+      "slug": "note/front-end/bytedance-note/nodejs-develop",
+      "title": "青训营 |「Node.js 与前端开发实战」",
+      "similarity": 0.697
+    },
+    {
+      "slug": "note/front-end/bytedance-note/responsive-system-and-react",
+      "title": "青训营 |「响应式系统与 React」",
+      "similarity": 0.691
+    },
+    {
+      "slug": "note/front-end/bytedance-note/mini-program-develop",
+      "title": "青训营 |「小程序技术全解」笔记",
+      "similarity": 0.673
+    },
+    {
+      "slug": "note/front-end/bytedance-note/typescript-introduction",
+      "title": "青训营 |「TypeScript入门」笔记",
+      "similarity": 0.651
+    }
+  ],
+  "note/front-end/bytedance-note/webgl-basics": [
+    {
+      "slug": "note/front-end/bytedance-note/mini-game-development",
+      "title": "青训营 |「小游戏开发」笔记",
+      "similarity": 0.701
+    },
+    {
+      "slug": "note/front-end/bytedance-note/javascript-learing",
+      "title": "青训营 |「跟着月影学 JavaScript」笔记",
+      "similarity": 0.664
+    },
+    {
+      "slug": "note/front-end/bytedance-note/animation-implement",
+      "title": "青训营 |「前端动画实现」",
+      "similarity": 0.656
+    },
+    {
+      "slug": "note/front-end/bytedance-note/design-pattern",
+      "title": "青训营 |「前端设计模式应用」笔记",
+      "similarity": 0.655
+    },
+    {
+      "slug": "dynamic-particle-system-tech-analysis",
+      "title": "从像素到粒子：p5.js 图像转动态粒子的设计与实现",
+      "similarity": 0.649
+    }
+  ],
+  "note/front-end/bytedance-note/web-standards-and-front-end-development": [
+    {
+      "slug": "fe-talk-1",
+      "title": "浅谈前端的变与不变",
+      "similarity": 0.736
+    },
+    {
+      "slug": "note/front-end/bytedance-note/mini-program-develop",
+      "title": "青训营 |「小程序技术全解」笔记",
+      "similarity": 0.735
+    },
+    {
+      "slug": "bytedance-review-2022-spring-frontend",
+      "title": "字节前端暑期实习一面凉经",
+      "similarity": 0.702
+    },
+    {
+      "slug": "note/front-end/bytedance-note/development-and-debugging",
+      "title": "青训营 |「前端必须知道的开发调试知识」",
+      "similarity": 0.686
+    },
+    {
+      "slug": "note/front-end/bytedance-note/design-pattern",
+      "title": "青训营 |「前端设计模式应用」笔记",
+      "similarity": 0.676
+    }
+  ],
+  "note/front-end/bytedance-note/web-safe-getting-started": [
+    {
+      "slug": "note/front-end/bytedance-note/http-utilization-guide",
+      "title": "青训营 |「HTTP实用指南」",
+      "similarity": 0.792
+    },
+    {
+      "slug": "secure-basics-1",
+      "title": "信息安全概论复习一（Chapter1、2、3）",
+      "similarity": 0.682
+    },
+    {
+      "slug": "secure-basics-4",
+      "title": "信息安全概论复习四 Chapte8、9、10",
+      "similarity": 0.673
+    },
+    {
+      "slug": "bytedance-review-2022-spring-frontend",
+      "title": "字节前端暑期实习一面凉经",
+      "similarity": 0.668
+    },
+    {
+      "slug": "note/front-end/bytedance-note/development-and-debugging",
+      "title": "青训营 |「前端必须知道的开发调试知识」",
+      "similarity": 0.661
+    }
+  ],
+  "note/front-end/bytedance-note/web-multimedia-introduction": [
+    {
+      "slug": "note/front-end/bytedance-note/http-utilization-guide",
+      "title": "青训营 |「HTTP实用指南」",
+      "similarity": 0.707
+    },
+    {
+      "slug": "计算机组成原理复习总结（七）外围设备",
+      "title": "计算机组成原理复习总结（七）外围设备",
+      "similarity": 0.704
+    },
+    {
+      "slug": "note/front-end/bytedance-note/javascript-learing",
+      "title": "青训营 |「跟着月影学 JavaScript」笔记",
+      "similarity": 0.693
+    },
+    {
+      "slug": "note/front-end/bytedance-note/mini-program-develop",
+      "title": "青训营 |「小程序技术全解」笔记",
+      "similarity": 0.675
+    },
+    {
+      "slug": "note/front-end/bytedance-note/animation-implement",
+      "title": "青训营 |「前端动画实现」",
+      "similarity": 0.672
+    }
+  ],
+  "note/front-end/bytedance-note/typescript-introduction": [
+    {
+      "slug": "js-learning-1",
+      "title": "深入JavaScript学习之路（一）对象、类与面向对象编程",
+      "similarity": 0.747
+    },
+    {
+      "slug": "js-learning-2",
+      "title": "深入JavaScript学习之路（二）JavaScript中的类",
+      "similarity": 0.743
+    },
+    {
+      "slug": "note/front-end/bytedance-note/javascript-learing",
+      "title": "青训营 |「跟着月影学 JavaScript」笔记",
+      "similarity": 0.739
+    },
+    {
+      "slug": "back-end/go_learning_1",
+      "title": "Go语言初上手(一) 环境配置与基础语法 | 青训营",
+      "similarity": 0.727
+    },
+    {
+      "slug": "note/front-end/bytedance-note/design-pattern",
+      "title": "青训营 |「前端设计模式应用」笔记",
+      "similarity": 0.723
+    }
+  ],
+  "note/front-end/bytedance-note/responsive-system-and-react": [
+    {
+      "slug": "redux-learning-1",
+      "title": "Redux学习之路（一）Redux三原则、createSore原理及实现",
+      "similarity": 0.8
+    },
+    {
+      "slug": "react-learning-1",
+      "title": "React学习小记",
+      "similarity": 0.791
+    },
+    {
+      "slug": "note/front-end/bytedance-note/design-pattern",
+      "title": "青训营 |「前端设计模式应用」笔记",
+      "similarity": 0.783
+    },
+    {
+      "slug": "note/front-end/bytedance-note/javascript-learing",
+      "title": "青训营 |「跟着月影学 JavaScript」笔记",
+      "similarity": 0.775
+    },
+    {
+      "slug": "floating-ui-experience-popover",
+      "title": "Floating UI 使用经验分享 - Popover",
+      "similarity": 0.718
+    }
+  ],
+  "note/front-end/bytedance-note/nodejs-develop": [
+    {
+      "slug": "campus-sns-develop",
+      "title": "Campus SNS 校园社区后端接口开发（附前端地址）",
+      "similarity": 0.769
+    },
+    {
+      "slug": "note/front-end/bytedance-note/javascript-learing",
+      "title": "青训营 |「跟着月影学 JavaScript」笔记",
+      "similarity": 0.725
+    },
+    {
+      "slug": "note/front-end/bytedance-note/responsive-system-and-react",
+      "title": "青训营 |「响应式系统与 React」",
+      "similarity": 0.712
+    },
+    {
+      "slug": "note/front-end/bytedance-note/design-pattern",
+      "title": "青训营 |「前端设计模式应用」笔记",
+      "similarity": 0.712
+    },
+    {
+      "slug": "note/front-end/bytedance-note/mini-program-develop",
+      "title": "青训营 |「小程序技术全解」笔记",
+      "similarity": 0.711
+    }
+  ],
+  "note/front-end/bytedance-note/mini-program-develop": [
+    {
+      "slug": "note/front-end/bytedance-note/javascript-learing",
+      "title": "青训营 |「跟着月影学 JavaScript」笔记",
+      "similarity": 0.761
+    },
+    {
+      "slug": "bytedance-review-2022-spring-frontend",
+      "title": "字节前端暑期实习一面凉经",
+      "similarity": 0.742
+    },
+    {
+      "slug": "metaapp-review-2022-spring-frontend",
+      "title": "MetaApp一二面面经（已OC）",
+      "similarity": 0.738
+    },
+    {
+      "slug": "note/front-end/bytedance-note/development-and-debugging",
+      "title": "青训营 |「前端必须知道的开发调试知识」",
+      "similarity": 0.736
+    },
+    {
+      "slug": "note/front-end/bytedance-note/web-standards-and-front-end-development",
+      "title": "青训营 |「Web 标准与前端开发」",
+      "similarity": 0.735
+    }
+  ],
+  "note/front-end/bytedance-note/mini-game-development": [
+    {
+      "slug": "note/front-end/bytedance-note/animation-implement",
+      "title": "青训营 |「前端动画实现」",
+      "similarity": 0.745
+    },
+    {
+      "slug": "note/front-end/bytedance-note/mini-program-develop",
+      "title": "青训营 |「小程序技术全解」笔记",
+      "similarity": 0.721
+    },
+    {
+      "slug": "dynamic-particle-system-tech-analysis",
+      "title": "从像素到粒子：p5.js 图像转动态粒子的设计与实现",
+      "similarity": 0.707
+    },
+    {
+      "slug": "note/front-end/bytedance-note/webgl-basics",
+      "title": "青训营 |「WebGL基础」",
+      "similarity": 0.701
+    },
+    {
+      "slug": "note/front-end/bytedance-note/javascript-learing",
+      "title": "青训营 |「跟着月影学 JavaScript」笔记",
+      "similarity": 0.688
+    }
+  ],
+  "note/front-end/bytedance-note/javascript-learing": [
+    {
+      "slug": "note/front-end/bytedance-note/design-pattern",
+      "title": "青训营 |「前端设计模式应用」笔记",
+      "similarity": 0.809
+    },
+    {
+      "slug": "note/front-end/bytedance-note/responsive-system-and-react",
+      "title": "青训营 |「响应式系统与 React」",
+      "similarity": 0.775
+    },
+    {
+      "slug": "note/front-end/bytedance-note/mini-program-develop",
+      "title": "青训营 |「小程序技术全解」笔记",
+      "similarity": 0.761
+    },
+    {
+      "slug": "redux-learning-1",
+      "title": "Redux学习之路（一）Redux三原则、createSore原理及实现",
+      "similarity": 0.756
+    },
+    {
+      "slug": "高级java复习笔记（期末不要挂啦）",
+      "title": "高级java复习笔记（期末不要挂啦）",
+      "similarity": 0.753
+    }
+  ],
+  "note/front-end/bytedance-note/http-utilization-guide": [
+    {
+      "slug": "note/front-end/bytedance-note/web-safe-getting-started",
+      "title": "青训营 |「Web开发的安全之旅」",
+      "similarity": 0.792
+    },
+    {
+      "slug": "note/front-end/bytedance-note/web-multimedia-introduction",
+      "title": "青训营 |「Web多媒体入门」笔记",
+      "similarity": 0.707
+    },
+    {
+      "slug": "note/front-end/bytedance-note/nodejs-develop",
+      "title": "青训营 |「Node.js 与前端开发实战」",
+      "similarity": 0.696
+    },
+    {
+      "slug": "bytedance-review-2022-spring-frontend",
+      "title": "字节前端暑期实习一面凉经",
+      "similarity": 0.691
+    },
+    {
+      "slug": "note/front-end/bytedance-note/web-standards-and-front-end-development",
+      "title": "青训营 |「Web 标准与前端开发」",
+      "similarity": 0.675
+    }
+  ],
+  "back-end/go_learning_3": [
+    {
+      "slug": "back-end/go_learning_1",
+      "title": "Go语言初上手(一) 环境配置与基础语法 | 青训营",
+      "similarity": 0.82
+    },
+    {
+      "slug": "back-end/go_learning_2",
+      "title": "Go语言初上手（二） 工程实践 | 青训营",
+      "similarity": 0.802
+    },
+    {
+      "slug": "note/front-end/bytedance-note/javascript-learing",
+      "title": "青训营 |「跟着月影学 JavaScript」笔记",
+      "similarity": 0.723
+    },
+    {
+      "slug": "note/front-end/bytedance-note/typescript-introduction",
+      "title": "青训营 |「TypeScript入门」笔记",
+      "similarity": 0.712
+    },
+    {
+      "slug": "note/front-end/bytedance-note/mini-program-develop",
+      "title": "青训营 |「小程序技术全解」笔记",
+      "similarity": 0.704
+    }
+  ],
+  "back-end/go_learning_2": [
+    {
+      "slug": "back-end/go_learning_3",
+      "title": "Go语言初上手（三）编码规范与性能优化 | 青训营",
+      "similarity": 0.802
+    },
+    {
+      "slug": "back-end/go_learning_1",
+      "title": "Go语言初上手(一) 环境配置与基础语法 | 青训营",
+      "similarity": 0.752
+    },
+    {
+      "slug": "note/front-end/bytedance-note/mini-program-develop",
+      "title": "青训营 |「小程序技术全解」笔记",
+      "similarity": 0.68
+    },
+    {
+      "slug": "note/front-end/bytedance-note/javascript-learing",
+      "title": "青训营 |「跟着月影学 JavaScript」笔记",
+      "similarity": 0.67
+    },
+    {
+      "slug": "高级java复习笔记（期末不要挂啦）",
+      "title": "高级java复习笔记（期末不要挂啦）",
+      "similarity": 0.662
+    }
+  ],
+  "back-end/go_learning_1": [
+    {
+      "slug": "back-end/go_learning_3",
+      "title": "Go语言初上手（三）编码规范与性能优化 | 青训营",
+      "similarity": 0.82
+    },
+    {
+      "slug": "optimizing-javascript-translate",
+      "title": "优化 JavaScript 的乐趣和好处【译文】",
+      "similarity": 0.789
+    },
+    {
+      "slug": "js-learning-1",
+      "title": "深入JavaScript学习之路（一）对象、类与面向对象编程",
+      "similarity": 0.786
+    },
+    {
+      "slug": "back-end/go_learning_2",
+      "title": "Go语言初上手（二） 工程实践 | 青训营",
+      "similarity": 0.752
+    },
+    {
+      "slug": "计算机组成原理复习总结（五）中央处理器",
+      "title": "计算机组成原理复习总结（五）中央处理器",
+      "similarity": 0.748
+    }
+  ],
+  "note/front-end/bytedance-note/development-and-debugging": [
+    {
+      "slug": "note/front-end/bytedance-note/mini-program-develop",
+      "title": "青训营 |「小程序技术全解」笔记",
+      "similarity": 0.736
+    },
+    {
+      "slug": "note/front-end/bytedance-note/javascript-learing",
+      "title": "青训营 |「跟着月影学 JavaScript」笔记",
+      "similarity": 0.724
+    },
+    {
+      "slug": "note/front-end/bytedance-note/web-standards-and-front-end-development",
+      "title": "青训营 |「Web 标准与前端开发」",
+      "similarity": 0.686
+    },
+    {
+      "slug": "bytedance-review-2022-spring-frontend",
+      "title": "字节前端暑期实习一面凉经",
+      "similarity": 0.685
+    },
+    {
+      "slug": "my-claude-code-record",
+      "title": "我的 Claude Code 使用小记",
+      "similarity": 0.674
+    }
+  ],
+  "note/front-end/bytedance-note/design-pattern": [
+    {
+      "slug": "note/front-end/bytedance-note/javascript-learing",
+      "title": "青训营 |「跟着月影学 JavaScript」笔记",
+      "similarity": 0.809
+    },
+    {
+      "slug": "note/front-end/bytedance-note/responsive-system-and-react",
+      "title": "青训营 |「响应式系统与 React」",
+      "similarity": 0.783
+    },
+    {
+      "slug": "高级java复习笔记（期末不要挂啦）",
+      "title": "高级java复习笔记（期末不要挂啦）",
+      "similarity": 0.748
+    },
+    {
+      "slug": "js-learning-2",
+      "title": "深入JavaScript学习之路（二）JavaScript中的类",
+      "similarity": 0.748
+    },
+    {
+      "slug": "redux-learning-1",
+      "title": "Redux学习之路（一）Redux三原则、createSore原理及实现",
+      "similarity": 0.746
+    }
+  ],
+  "note/front-end/bytedance-note/css-learning-layout": [
+    {
+      "slug": "note/front-end/bytedance-note/animation-implement",
+      "title": "青训营 |「前端动画实现」",
+      "similarity": 0.724
+    },
+    {
+      "slug": "note/front-end/bytedance-note/javascript-learing",
+      "title": "青训营 |「跟着月影学 JavaScript」笔记",
+      "similarity": 0.697
+    },
+    {
+      "slug": "back-end/go_learning_1",
+      "title": "Go语言初上手(一) 环境配置与基础语法 | 青训营",
+      "similarity": 0.684
+    },
+    {
+      "slug": "js-learning-1",
+      "title": "深入JavaScript学习之路（一）对象、类与面向对象编程",
+      "similarity": 0.673
+    },
+    {
+      "slug": "高级java复习笔记（期末不要挂啦）",
+      "title": "高级java复习笔记（期末不要挂啦）",
+      "similarity": 0.656
+    }
+  ],
+  "note/front-end/bytedance-note/animation-implement": [
+    {
+      "slug": "optimizing-javascript-translate",
+      "title": "优化 JavaScript 的乐趣和好处【译文】",
+      "similarity": 0.763
+    },
+    {
+      "slug": "note/front-end/bytedance-note/javascript-learing",
+      "title": "青训营 |「跟着月影学 JavaScript」笔记",
+      "similarity": 0.753
+    },
+    {
+      "slug": "note/front-end/bytedance-note/mini-game-development",
+      "title": "青训营 |「小游戏开发」笔记",
+      "similarity": 0.745
+    },
+    {
+      "slug": "back-end/go_learning_1",
+      "title": "Go语言初上手(一) 环境配置与基础语法 | 青训营",
+      "similarity": 0.729
+    },
+    {
+      "slug": "note/front-end/bytedance-note/css-learning-layout",
+      "title": "青训营 |「CSS布局」",
+      "similarity": 0.724
     }
   ],
   "链式前向星存图、二分图匹配之匈牙利算法 模板&分析（存用）": [
@@ -1511,708 +2726,6 @@
       "similarity": 0.781
     }
   ],
-  "软件工程期末小测": [
-    {
-      "slug": "metaapp-review-2022-spring-frontend",
-      "title": "MetaApp一二面面经（已OC）",
-      "similarity": 0.65
-    },
-    {
-      "slug": "fe-talk-1",
-      "title": "浅谈前端的变与不变",
-      "similarity": 0.635
-    },
-    {
-      "slug": "计算机组成原理复习总结（一）计算机系统概论",
-      "title": "计算机组成原理复习总结（一）计算机系统概论",
-      "similarity": 0.628
-    },
-    {
-      "slug": "计算机组成原理复习总结（五）中央处理器",
-      "title": "计算机组成原理复习总结（五）中央处理器",
-      "similarity": 0.623
-    },
-    {
-      "slug": "note/front-end/bytedance-note/javascript-learing",
-      "title": "青训营 |「跟着月影学 JavaScript」笔记",
-      "similarity": 0.623
-    }
-  ],
-  "计算机组成原理复习总结（四）指令系统": [
-    {
-      "slug": "计算机组成原理复习总结（一）计算机系统概论",
-      "title": "计算机组成原理复习总结（一）计算机系统概论",
-      "similarity": 0.853
-    },
-    {
-      "slug": "计算机组成原理复习总结（五）中央处理器",
-      "title": "计算机组成原理复习总结（五）中央处理器",
-      "similarity": 0.816
-    },
-    {
-      "slug": "计算机组成原理复习总结（七）外围设备",
-      "title": "计算机组成原理复习总结（七）外围设备",
-      "similarity": 0.772
-    },
-    {
-      "slug": "计算机组成原理复习总结（三）多层次的存储器",
-      "title": "计算机组成原理复习总结（三）多层次的存储器",
-      "similarity": 0.766
-    },
-    {
-      "slug": "计算机组成原理复习总结（六）总线系统",
-      "title": "计算机组成原理复习总结（六）总线系统",
-      "similarity": 0.751
-    }
-  ],
-  "计算机组成原理复习总结（六）总线系统": [
-    {
-      "slug": "计算机组成原理复习总结（一）计算机系统概论",
-      "title": "计算机组成原理复习总结（一）计算机系统概论",
-      "similarity": 0.788
-    },
-    {
-      "slug": "计算机组成原理复习总结（七）外围设备",
-      "title": "计算机组成原理复习总结（七）外围设备",
-      "similarity": 0.753
-    },
-    {
-      "slug": "计算机组成原理复习总结（四）指令系统",
-      "title": "计算机组成原理复习总结（四）指令系统",
-      "similarity": 0.751
-    },
-    {
-      "slug": "计算机组成原理复习总结（五）中央处理器",
-      "title": "计算机组成原理复习总结（五）中央处理器",
-      "similarity": 0.698
-    },
-    {
-      "slug": "PTA数据结构题目集 第二周——线性结构",
-      "title": "PTA数据结构题目集 第二周——线性结构",
-      "similarity": 0.664
-    }
-  ],
-  "计算机组成原理复习总结（五）中央处理器": [
-    {
-      "slug": "计算机组成原理复习总结（四）指令系统",
-      "title": "计算机组成原理复习总结（四）指令系统",
-      "similarity": 0.816
-    },
-    {
-      "slug": "计算机组成原理复习总结（一）计算机系统概论",
-      "title": "计算机组成原理复习总结（一）计算机系统概论",
-      "similarity": 0.81
-    },
-    {
-      "slug": "计算机组成原理复习总结（三）多层次的存储器",
-      "title": "计算机组成原理复习总结（三）多层次的存储器",
-      "similarity": 0.778
-    },
-    {
-      "slug": "高级java复习笔记（期末不要挂啦）",
-      "title": "高级java复习笔记（期末不要挂啦）",
-      "similarity": 0.766
-    },
-    {
-      "slug": "计算机组成原理复习总结（二）运算方法和运算器",
-      "title": "计算机组成原理复习总结（二）运算方法和运算器",
-      "similarity": 0.75
-    }
-  ],
-  "计算机组成原理复习总结（二）运算方法和运算器": [
-    {
-      "slug": "2021秋PAT乙级真题题解及赛后总结",
-      "title": "2021秋PAT乙级真题题解及赛后总结",
-      "similarity": 0.761
-    },
-    {
-      "slug": "计算机组成原理复习总结（五）中央处理器",
-      "title": "计算机组成原理复习总结（五）中央处理器",
-      "similarity": 0.75
-    },
-    {
-      "slug": "计算机组成原理复习总结（三）多层次的存储器",
-      "title": "计算机组成原理复习总结（三）多层次的存储器",
-      "similarity": 0.75
-    },
-    {
-      "slug": "back-end/go_learning_1",
-      "title": "Go语言初上手(一) 环境配置与基础语法 | 青训营",
-      "similarity": 0.744
-    },
-    {
-      "slug": "计算机组成原理复习总结（四）指令系统",
-      "title": "计算机组成原理复习总结（四）指令系统",
-      "similarity": 0.74
-    }
-  ],
-  "计算机组成原理复习总结（三）多层次的存储器": [
-    {
-      "slug": "计算机组成原理复习总结（五）中央处理器",
-      "title": "计算机组成原理复习总结（五）中央处理器",
-      "similarity": 0.778
-    },
-    {
-      "slug": "计算机组成原理复习总结（四）指令系统",
-      "title": "计算机组成原理复习总结（四）指令系统",
-      "similarity": 0.766
-    },
-    {
-      "slug": "计算机组成原理复习总结（二）运算方法和运算器",
-      "title": "计算机组成原理复习总结（二）运算方法和运算器",
-      "similarity": 0.75
-    },
-    {
-      "slug": "计算机组成原理复习总结（七）外围设备",
-      "title": "计算机组成原理复习总结（七）外围设备",
-      "similarity": 0.748
-    },
-    {
-      "slug": "数据结构学习笔记＜9＞ 散列查找",
-      "title": "数据结构学习笔记＜9＞ 散列查找",
-      "similarity": 0.726
-    }
-  ],
-  "计算机组成原理复习总结（七）外围设备": [
-    {
-      "slug": "计算机组成原理复习总结（一）计算机系统概论",
-      "title": "计算机组成原理复习总结（一）计算机系统概论",
-      "similarity": 0.803
-    },
-    {
-      "slug": "计算机组成原理复习总结（四）指令系统",
-      "title": "计算机组成原理复习总结（四）指令系统",
-      "similarity": 0.772
-    },
-    {
-      "slug": "计算机组成原理复习总结（六）总线系统",
-      "title": "计算机组成原理复习总结（六）总线系统",
-      "similarity": 0.753
-    },
-    {
-      "slug": "计算机组成原理复习总结（三）多层次的存储器",
-      "title": "计算机组成原理复习总结（三）多层次的存储器",
-      "similarity": 0.748
-    },
-    {
-      "slug": "计算机组成原理复习总结（五）中央处理器",
-      "title": "计算机组成原理复习总结（五）中央处理器",
-      "similarity": 0.712
-    }
-  ],
-  "计算机组成原理复习总结（一）计算机系统概论": [
-    {
-      "slug": "计算机组成原理复习总结（四）指令系统",
-      "title": "计算机组成原理复习总结（四）指令系统",
-      "similarity": 0.853
-    },
-    {
-      "slug": "计算机组成原理复习总结（五）中央处理器",
-      "title": "计算机组成原理复习总结（五）中央处理器",
-      "similarity": 0.81
-    },
-    {
-      "slug": "计算机组成原理复习总结（七）外围设备",
-      "title": "计算机组成原理复习总结（七）外围设备",
-      "similarity": 0.803
-    },
-    {
-      "slug": "计算机组成原理复习总结（六）总线系统",
-      "title": "计算机组成原理复习总结（六）总线系统",
-      "similarity": 0.788
-    },
-    {
-      "slug": "计算机组成原理复习总结（三）多层次的存储器",
-      "title": "计算机组成原理复习总结（三）多层次的存储器",
-      "similarity": 0.723
-    }
-  ],
-  "compile-learning-experiment_4": [
-    {
-      "slug": "compile-learning-experiment_2",
-      "title": "编译原理 实验二 LL(1)分析法程序",
-      "similarity": 0.935
-    },
-    {
-      "slug": "compile-learning-experiment_1",
-      "title": "编译原理 实验一 词法分析器设计",
-      "similarity": 0.835
-    },
-    {
-      "slug": "PTA数据结构题目集 第十一周——散列查找",
-      "title": "PTA数据结构题目集 第十一周——散列查找",
-      "similarity": 0.66
-    },
-    {
-      "slug": "PTA数据结构题目集 第五周——堆&哈夫曼树&并查集",
-      "title": "PTA数据结构题目集 第五周——堆&哈夫曼树&并查集",
-      "similarity": 0.65
-    },
-    {
-      "slug": "PTA数据结构题目集 第二周——线性结构",
-      "title": "PTA数据结构题目集 第二周——线性结构",
-      "similarity": 0.65
-    }
-  ],
-  "compile-learning-experiment_2": [
-    {
-      "slug": "compile-learning-experiment_4",
-      "title": "编译原理 实验四 LR(1)分析法程序",
-      "similarity": 0.935
-    },
-    {
-      "slug": "compile-learning-experiment_1",
-      "title": "编译原理 实验一 词法分析器设计",
-      "similarity": 0.844
-    },
-    {
-      "slug": "PTA数据结构题目集 第二周——线性结构",
-      "title": "PTA数据结构题目集 第二周——线性结构",
-      "similarity": 0.682
-    },
-    {
-      "slug": "动态规划学习笔记（1）",
-      "title": "动态规划学习笔记（1）",
-      "similarity": 0.682
-    },
-    {
-      "slug": "meituan-examination-2022-spring-frontend",
-      "title": "2022春美团笔试暑期实习笔试题复盘",
-      "similarity": 0.681
-    }
-  ],
-  "compile-learning-experiment_1": [
-    {
-      "slug": "compile-learning-experiment_2",
-      "title": "编译原理 实验二 LL(1)分析法程序",
-      "similarity": 0.844
-    },
-    {
-      "slug": "compile-learning-experiment_4",
-      "title": "编译原理 实验四 LR(1)分析法程序",
-      "similarity": 0.835
-    },
-    {
-      "slug": "coding-train/leetcode/bytedance/bytedance-day11",
-      "title": "冲刺春招-精选笔面试66题大通关day11",
-      "similarity": 0.73
-    },
-    {
-      "slug": "coding-train/leetcode/bytedance/bytedance-day8",
-      "title": "冲刺春招-精选笔面试66题大通关day8",
-      "similarity": 0.714
-    },
-    {
-      "slug": "动态规划学习笔记（1）",
-      "title": "动态规划学习笔记（1）",
-      "similarity": 0.712
-    }
-  ],
-  "操作系统编程实验——创建进程": [
-    {
-      "slug": "compile-learning-experiment_2",
-      "title": "编译原理 实验二 LL(1)分析法程序",
-      "similarity": 0.637
-    },
-    {
-      "slug": "compile-learning-experiment_4",
-      "title": "编译原理 实验四 LR(1)分析法程序",
-      "similarity": 0.597
-    },
-    {
-      "slug": "操作系统实验——动态分区分配方式的模拟",
-      "title": "操作系统实验——动态分区分配方式的模拟",
-      "similarity": 0.584
-    },
-    {
-      "slug": "高级java小测2——线程",
-      "title": "高级java小测2——线程",
-      "similarity": 0.57
-    },
-    {
-      "slug": "note/front-end/bytedance-note/javascript-learing",
-      "title": "青训营 |「跟着月影学 JavaScript」笔记",
-      "similarity": 0.567
-    }
-  ],
-  "操作系统实验——动态分区分配方式的模拟": [
-    {
-      "slug": "动态规划学习笔记（1）",
-      "title": "动态规划学习笔记（1）",
-      "similarity": 0.713
-    },
-    {
-      "slug": "数据结构学习笔记＜8＞ 排序",
-      "title": "数据结构学习笔记＜8＞ 排序",
-      "similarity": 0.702
-    },
-    {
-      "slug": "数据结构学习笔记＜9＞ 散列查找",
-      "title": "数据结构学习笔记＜9＞ 散列查找",
-      "similarity": 0.694
-    },
-    {
-      "slug": "RMQ问题——线段树",
-      "title": "RMQ问题——线段树",
-      "similarity": 0.667
-    },
-    {
-      "slug": "meituan-examination-2022-spring-frontend",
-      "title": "2022春美团笔试暑期实习笔试题复盘",
-      "similarity": 0.656
-    }
-  ],
-  "secure-basics-4": [
-    {
-      "slug": "secure-basics-1",
-      "title": "信息安全概论复习一（Chapter1、2、3）",
-      "similarity": 0.872
-    },
-    {
-      "slug": "secure-basics-3",
-      "title": "信息安全概论复习三 Chapter5、6、7",
-      "similarity": 0.809
-    },
-    {
-      "slug": "高级java复习笔记（期末不要挂啦）",
-      "title": "高级java复习笔记（期末不要挂啦）",
-      "similarity": 0.708
-    },
-    {
-      "slug": "计算机组成原理复习总结（五）中央处理器",
-      "title": "计算机组成原理复习总结（五）中央处理器",
-      "similarity": 0.697
-    },
-    {
-      "slug": "secure-basics-2",
-      "title": "信息安全概论复习二 Chapter4 对称密码技术",
-      "similarity": 0.684
-    }
-  ],
-  "secure-basics-3": [
-    {
-      "slug": "secure-basics-1",
-      "title": "信息安全概论复习一（Chapter1、2、3）",
-      "similarity": 0.857
-    },
-    {
-      "slug": "secure-basics-4",
-      "title": "信息安全概论复习四 Chapte8、9、10",
-      "similarity": 0.809
-    },
-    {
-      "slug": "secure-basics-2",
-      "title": "信息安全概论复习二 Chapter4 对称密码技术",
-      "similarity": 0.773
-    },
-    {
-      "slug": "高级java复习笔记（期末不要挂啦）",
-      "title": "高级java复习笔记（期末不要挂啦）",
-      "similarity": 0.668
-    },
-    {
-      "slug": "计算机组成原理复习总结（二）运算方法和运算器",
-      "title": "计算机组成原理复习总结（二）运算方法和运算器",
-      "similarity": 0.65
-    }
-  ],
-  "secure-basics-2": [
-    {
-      "slug": "secure-basics-3",
-      "title": "信息安全概论复习三 Chapter5、6、7",
-      "similarity": 0.773
-    },
-    {
-      "slug": "secure-basics-1",
-      "title": "信息安全概论复习一（Chapter1、2、3）",
-      "similarity": 0.762
-    },
-    {
-      "slug": "计算机组成原理复习总结（四）指令系统",
-      "title": "计算机组成原理复习总结（四）指令系统",
-      "similarity": 0.693
-    },
-    {
-      "slug": "PAT乙级刷题感想及踩坑总结",
-      "title": "PAT乙级刷题感想及踩坑总结",
-      "similarity": 0.692
-    },
-    {
-      "slug": "secure-basics-4",
-      "title": "信息安全概论复习四 Chapte8、9、10",
-      "similarity": 0.684
-    }
-  ],
-  "secure-basics-1": [
-    {
-      "slug": "secure-basics-4",
-      "title": "信息安全概论复习四 Chapte8、9、10",
-      "similarity": 0.872
-    },
-    {
-      "slug": "secure-basics-3",
-      "title": "信息安全概论复习三 Chapter5、6、7",
-      "similarity": 0.857
-    },
-    {
-      "slug": "secure-basics-2",
-      "title": "信息安全概论复习二 Chapter4 对称密码技术",
-      "similarity": 0.762
-    },
-    {
-      "slug": "高级java复习笔记（期末不要挂啦）",
-      "title": "高级java复习笔记（期末不要挂啦）",
-      "similarity": 0.696
-    },
-    {
-      "slug": "计算机组成原理复习总结（四）指令系统",
-      "title": "计算机组成原理复习总结（四）指令系统",
-      "similarity": 0.687
-    }
-  ],
-  "高级java小测2——线程": [
-    {
-      "slug": "coding-train/leetcode/bytedance/bytedance-day20",
-      "title": "冲刺春招-精选笔面试66题大通关day20",
-      "similarity": 0.648
-    },
-    {
-      "slug": "meituan-examination-2022-spring-frontend",
-      "title": "2022春美团笔试暑期实习笔试题复盘",
-      "similarity": 0.637
-    },
-    {
-      "slug": "coding-train/leetcode/bytedance/bytedance-day17",
-      "title": "冲刺春招-精选笔面试66题大通关17",
-      "similarity": 0.635
-    },
-    {
-      "slug": "coding-train/leetcode/bytedance/bytedance-day14",
-      "title": "冲刺春招-精选笔面试66题大通关day14",
-      "similarity": 0.629
-    },
-    {
-      "slug": "coding-train/leetcode/offer/day19",
-      "title": "剑指offer day19 搜索与回溯算法（中等）",
-      "similarity": 0.625
-    }
-  ],
-  "高级java复习笔记（期末不要挂啦）": [
-    {
-      "slug": "计算机组成原理复习总结（五）中央处理器",
-      "title": "计算机组成原理复习总结（五）中央处理器",
-      "similarity": 0.766
-    },
-    {
-      "slug": "js-learning-1",
-      "title": "深入JavaScript学习之路（一）对象、类与面向对象编程",
-      "similarity": 0.756
-    },
-    {
-      "slug": "note/front-end/bytedance-note/javascript-learing",
-      "title": "青训营 |「跟着月影学 JavaScript」笔记",
-      "similarity": 0.753
-    },
-    {
-      "slug": "note/front-end/bytedance-note/design-pattern",
-      "title": "青训营 |「前端设计模式应用」笔记",
-      "similarity": 0.748
-    },
-    {
-      "slug": "back-end/go_learning_1",
-      "title": "Go语言初上手(一) 环境配置与基础语法 | 青训营",
-      "similarity": 0.746
-    }
-  ],
-  "高级java作业(反射、Collection、正则、工厂设计模式和观察者模式)": [
-    {
-      "slug": "高级java复习笔记（期末不要挂啦）",
-      "title": "高级java复习笔记（期末不要挂啦）",
-      "similarity": 0.74
-    },
-    {
-      "slug": "note/front-end/bytedance-note/design-pattern",
-      "title": "青训营 |「前端设计模式应用」笔记",
-      "similarity": 0.734
-    },
-    {
-      "slug": "note/front-end/bytedance-note/javascript-learing",
-      "title": "青训营 |「跟着月影学 JavaScript」笔记",
-      "similarity": 0.722
-    },
-    {
-      "slug": "js-learning-2",
-      "title": "深入JavaScript学习之路（二）JavaScript中的类",
-      "similarity": 0.672
-    },
-    {
-      "slug": "note/front-end/bytedance-note/typescript-introduction",
-      "title": "青训营 |「TypeScript入门」笔记",
-      "similarity": 0.641
-    }
-  ],
-  "python网络爬虫学习笔记(一) 爬取简单静态网页": [
-    {
-      "slug": "note/front-end/bytedance-note/http-utilization-guide",
-      "title": "青训营 |「HTTP实用指南」",
-      "similarity": 0.657
-    },
-    {
-      "slug": "数据结构学习笔记＜9＞ 散列查找",
-      "title": "数据结构学习笔记＜9＞ 散列查找",
-      "similarity": 0.653
-    },
-    {
-      "slug": "note/front-end/bytedance-note/development-and-debugging",
-      "title": "青训营 |「前端必须知道的开发调试知识」",
-      "similarity": 0.653
-    },
-    {
-      "slug": "note/front-end/bytedance-note/mini-program-develop",
-      "title": "青训营 |「小程序技术全解」笔记",
-      "similarity": 0.646
-    },
-    {
-      "slug": "note/front-end/bytedance-note/web-safe-getting-started",
-      "title": "青训营 |「Web开发的安全之旅」",
-      "similarity": 0.638
-    }
-  ],
-  "nest-learn-project-1": [
-    {
-      "slug": "js-learning-1",
-      "title": "深入JavaScript学习之路（一）对象、类与面向对象编程",
-      "similarity": 0.709
-    },
-    {
-      "slug": "redux-learning-1",
-      "title": "Redux学习之路（一）Redux三原则、createSore原理及实现",
-      "similarity": 0.691
-    },
-    {
-      "slug": "note/front-end/bytedance-note/typescript-introduction",
-      "title": "青训营 |「TypeScript入门」笔记",
-      "similarity": 0.681
-    },
-    {
-      "slug": "note/front-end/bytedance-note/nodejs-develop",
-      "title": "青训营 |「Node.js 与前端开发实战」",
-      "similarity": 0.679
-    },
-    {
-      "slug": "optimizing-javascript-translate",
-      "title": "优化 JavaScript 的乐趣和好处【译文】",
-      "similarity": 0.678
-    }
-  ],
-  "163-yanxuan-review-2022-spring-frontend": [
-    {
-      "slug": "metaapp-review-2022-spring-frontend",
-      "title": "MetaApp一二面面经（已OC）",
-      "similarity": 0.837
-    },
-    {
-      "slug": "bytedance-review-2022-spring-frontend",
-      "title": "字节前端暑期实习一面凉经",
-      "similarity": 0.8
-    },
-    {
-      "slug": "shoplazza-review-2022-spring-frontend",
-      "title": "2022春暑期实习店匠前端一二面面经",
-      "similarity": 0.755
-    },
-    {
-      "slug": "note/front-end/bytedance-note/mini-program-develop",
-      "title": "青训营 |「小程序技术全解」笔记",
-      "similarity": 0.711
-    },
-    {
-      "slug": "fe-talk-1",
-      "title": "浅谈前端的变与不变",
-      "similarity": 0.687
-    }
-  ],
-  "shoplazza-review-2022-spring-frontend": [
-    {
-      "slug": "metaapp-review-2022-spring-frontend",
-      "title": "MetaApp一二面面经（已OC）",
-      "similarity": 0.757
-    },
-    {
-      "slug": "163-yanxuan-review-2022-spring-frontend",
-      "title": "2022春暑期实习网易严选前端一二HR面凉经",
-      "similarity": 0.755
-    },
-    {
-      "slug": "bytedance-review-2022-spring-frontend",
-      "title": "字节前端暑期实习一面凉经",
-      "similarity": 0.74
-    },
-    {
-      "slug": "note/front-end/bytedance-note/javascript-learing",
-      "title": "青训营 |「跟着月影学 JavaScript」笔记",
-      "similarity": 0.689
-    },
-    {
-      "slug": "note/front-end/bytedance-note/mini-program-develop",
-      "title": "青训营 |「小程序技术全解」笔记",
-      "similarity": 0.688
-    }
-  ],
-  "bytedance-review-2022-spring-frontend": [
-    {
-      "slug": "metaapp-review-2022-spring-frontend",
-      "title": "MetaApp一二面面经（已OC）",
-      "similarity": 0.835
-    },
-    {
-      "slug": "163-yanxuan-review-2022-spring-frontend",
-      "title": "2022春暑期实习网易严选前端一二HR面凉经",
-      "similarity": 0.8
-    },
-    {
-      "slug": "note/front-end/bytedance-note/mini-program-develop",
-      "title": "青训营 |「小程序技术全解」笔记",
-      "similarity": 0.742
-    },
-    {
-      "slug": "shoplazza-review-2022-spring-frontend",
-      "title": "2022春暑期实习店匠前端一二面面经",
-      "similarity": 0.74
-    },
-    {
-      "slug": "fe-talk-1",
-      "title": "浅谈前端的变与不变",
-      "similarity": 0.703
-    }
-  ],
-  "metaapp-review-2022-spring-frontend": [
-    {
-      "slug": "163-yanxuan-review-2022-spring-frontend",
-      "title": "2022春暑期实习网易严选前端一二HR面凉经",
-      "similarity": 0.837
-    },
-    {
-      "slug": "bytedance-review-2022-spring-frontend",
-      "title": "字节前端暑期实习一面凉经",
-      "similarity": 0.835
-    },
-    {
-      "slug": "shoplazza-review-2022-spring-frontend",
-      "title": "2022春暑期实习店匠前端一二面面经",
-      "similarity": 0.757
-    },
-    {
-      "slug": "note/front-end/bytedance-note/mini-program-develop",
-      "title": "青训营 |「小程序技术全解」笔记",
-      "similarity": 0.738
-    },
-    {
-      "slug": "fe-talk-1",
-      "title": "浅谈前端的变与不变",
-      "similarity": 0.734
-    }
-  ],
   "PAT乙级刷题感想及踩坑总结": [
     {
       "slug": "2021秋PAT乙级真题题解及赛后总结",
@@ -2292,6 +2805,141 @@
       "slug": "PTA数据结构题目集 第二周——线性结构",
       "title": "PTA数据结构题目集 第二周——线性结构",
       "similarity": 0.784
+    }
+  ],
+  "状压dp——模板&分析&例题（存用）": [
+    {
+      "slug": "160-yanxuan-examination-2022-spring-frontend",
+      "title": "2022春网易互联网前端暑期实习笔试",
+      "similarity": 0.753
+    },
+    {
+      "slug": "动态规划学习笔记（1）",
+      "title": "动态规划学习笔记（1）",
+      "similarity": 0.753
+    },
+    {
+      "slug": "coding-train/leetcode/bytedance/bytedance-day12",
+      "title": "冲刺春招-精选笔面试66题大通关day12",
+      "similarity": 0.738
+    },
+    {
+      "slug": "coding-train/leetcode/bytedance/bytedance-day18",
+      "title": "冲刺春招-精选笔面试66题大通关18",
+      "similarity": 0.717
+    },
+    {
+      "slug": "coding-train/leetcode/bytedance/bytedance-day11",
+      "title": "冲刺春招-精选笔面试66题大通关day11",
+      "similarity": 0.717
+    }
+  ],
+  "博弈论——模板&分析（存用）": [
+    {
+      "slug": "2021秋PAT乙级真题题解及赛后总结",
+      "title": "2021秋PAT乙级真题题解及赛后总结",
+      "similarity": 0.717
+    },
+    {
+      "slug": "meituan-examination-2022-spring-frontend",
+      "title": "2022春美团笔试暑期实习笔试题复盘",
+      "similarity": 0.716
+    },
+    {
+      "slug": "计算机组成原理复习总结（二）运算方法和运算器",
+      "title": "计算机组成原理复习总结（二）运算方法和运算器",
+      "similarity": 0.707
+    },
+    {
+      "slug": "数据结构学习笔记＜9＞ 散列查找",
+      "title": "数据结构学习笔记＜9＞ 散列查找",
+      "similarity": 0.707
+    },
+    {
+      "slug": "2020蓝桥杯省模拟赛题目记录",
+      "title": "2020蓝桥杯省模拟赛题目记录",
+      "similarity": 0.704
+    }
+  ],
+  "动态规划学习笔记（1）": [
+    {
+      "slug": "coding-train/leetcode/bytedance/bytedance-day12",
+      "title": "冲刺春招-精选笔面试66题大通关day12",
+      "similarity": 0.796
+    },
+    {
+      "slug": "coding-train/leetcode/bytedance/bytedance-day6",
+      "title": "冲刺春招-精选笔面试66题大通关day6",
+      "similarity": 0.793
+    },
+    {
+      "slug": "2021秋PAT乙级真题题解及赛后总结",
+      "title": "2021秋PAT乙级真题题解及赛后总结",
+      "similarity": 0.789
+    },
+    {
+      "slug": "coding-train/leetcode/bytedance/bytedance-day20",
+      "title": "冲刺春招-精选笔面试66题大通关day20",
+      "similarity": 0.778
+    },
+    {
+      "slug": "PTA数据结构题目集 第二周——线性结构",
+      "title": "PTA数据结构题目集 第二周——线性结构",
+      "similarity": 0.774
+    }
+  ],
+  "RMQ问题——线段树": [
+    {
+      "slug": "动态规划学习笔记（1）",
+      "title": "动态规划学习笔记（1）",
+      "similarity": 0.74
+    },
+    {
+      "slug": "数据结构学习笔记＜6＞ 堆与哈夫曼树与并查集",
+      "title": "数据结构学习笔记＜6＞ 堆与哈夫曼树与并查集",
+      "similarity": 0.733
+    },
+    {
+      "slug": "PTA数据结构题目集 第二周——线性结构",
+      "title": "PTA数据结构题目集 第二周——线性结构",
+      "similarity": 0.727
+    },
+    {
+      "slug": "coding-train/leetcode/bytedance/bytedance-day10",
+      "title": "冲刺春招-精选笔面试66题大通关day10",
+      "similarity": 0.726
+    },
+    {
+      "slug": "数据结构学习笔记＜4＞ 二叉树",
+      "title": "数据结构学习笔记＜4＞ 二叉树",
+      "similarity": 0.722
+    }
+  ],
+  "RMQ问题——ST表算法": [
+    {
+      "slug": "RMQ问题——线段树",
+      "title": "RMQ问题——线段树",
+      "similarity": 0.716
+    },
+    {
+      "slug": "数据结构学习笔记＜8＞ 排序",
+      "title": "数据结构学习笔记＜8＞ 排序",
+      "similarity": 0.66
+    },
+    {
+      "slug": "coding-train/leetcode/bytedance/bytedance-day12",
+      "title": "冲刺春招-精选笔面试66题大通关day12",
+      "similarity": 0.658
+    },
+    {
+      "slug": "数据结构学习笔记＜6＞ 堆与哈夫曼树与并查集",
+      "title": "数据结构学习笔记＜6＞ 堆与哈夫曼树与并查集",
+      "similarity": 0.654
+    },
+    {
+      "slug": "链式前向星存图、二分图匹配之匈牙利算法 模板&分析（存用）",
+      "title": "链式前向星存图、二分图匹配之匈牙利算法 模板&分析（存用）",
+      "similarity": 0.65
     }
   ],
   "coding-train/leetcode/offer/day9": [
@@ -3725,141 +4373,6 @@
       "similarity": 0.766
     }
   ],
-  "状压dp——模板&分析&例题（存用）": [
-    {
-      "slug": "160-yanxuan-examination-2022-spring-frontend",
-      "title": "2022春网易互联网前端暑期实习笔试",
-      "similarity": 0.753
-    },
-    {
-      "slug": "动态规划学习笔记（1）",
-      "title": "动态规划学习笔记（1）",
-      "similarity": 0.753
-    },
-    {
-      "slug": "coding-train/leetcode/bytedance/bytedance-day12",
-      "title": "冲刺春招-精选笔面试66题大通关day12",
-      "similarity": 0.738
-    },
-    {
-      "slug": "coding-train/leetcode/bytedance/bytedance-day18",
-      "title": "冲刺春招-精选笔面试66题大通关18",
-      "similarity": 0.717
-    },
-    {
-      "slug": "coding-train/leetcode/bytedance/bytedance-day11",
-      "title": "冲刺春招-精选笔面试66题大通关day11",
-      "similarity": 0.717
-    }
-  ],
-  "博弈论——模板&分析（存用）": [
-    {
-      "slug": "2021秋PAT乙级真题题解及赛后总结",
-      "title": "2021秋PAT乙级真题题解及赛后总结",
-      "similarity": 0.717
-    },
-    {
-      "slug": "meituan-examination-2022-spring-frontend",
-      "title": "2022春美团笔试暑期实习笔试题复盘",
-      "similarity": 0.716
-    },
-    {
-      "slug": "数据结构学习笔记＜9＞ 散列查找",
-      "title": "数据结构学习笔记＜9＞ 散列查找",
-      "similarity": 0.707
-    },
-    {
-      "slug": "计算机组成原理复习总结（二）运算方法和运算器",
-      "title": "计算机组成原理复习总结（二）运算方法和运算器",
-      "similarity": 0.707
-    },
-    {
-      "slug": "2020蓝桥杯省模拟赛题目记录",
-      "title": "2020蓝桥杯省模拟赛题目记录",
-      "similarity": 0.704
-    }
-  ],
-  "动态规划学习笔记（1）": [
-    {
-      "slug": "coding-train/leetcode/bytedance/bytedance-day12",
-      "title": "冲刺春招-精选笔面试66题大通关day12",
-      "similarity": 0.796
-    },
-    {
-      "slug": "coding-train/leetcode/bytedance/bytedance-day6",
-      "title": "冲刺春招-精选笔面试66题大通关day6",
-      "similarity": 0.793
-    },
-    {
-      "slug": "2021秋PAT乙级真题题解及赛后总结",
-      "title": "2021秋PAT乙级真题题解及赛后总结",
-      "similarity": 0.789
-    },
-    {
-      "slug": "coding-train/leetcode/bytedance/bytedance-day20",
-      "title": "冲刺春招-精选笔面试66题大通关day20",
-      "similarity": 0.778
-    },
-    {
-      "slug": "PTA数据结构题目集 第二周——线性结构",
-      "title": "PTA数据结构题目集 第二周——线性结构",
-      "similarity": 0.774
-    }
-  ],
-  "RMQ问题——线段树": [
-    {
-      "slug": "动态规划学习笔记（1）",
-      "title": "动态规划学习笔记（1）",
-      "similarity": 0.74
-    },
-    {
-      "slug": "数据结构学习笔记＜6＞ 堆与哈夫曼树与并查集",
-      "title": "数据结构学习笔记＜6＞ 堆与哈夫曼树与并查集",
-      "similarity": 0.733
-    },
-    {
-      "slug": "PTA数据结构题目集 第二周——线性结构",
-      "title": "PTA数据结构题目集 第二周——线性结构",
-      "similarity": 0.727
-    },
-    {
-      "slug": "coding-train/leetcode/bytedance/bytedance-day10",
-      "title": "冲刺春招-精选笔面试66题大通关day10",
-      "similarity": 0.726
-    },
-    {
-      "slug": "数据结构学习笔记＜4＞ 二叉树",
-      "title": "数据结构学习笔记＜4＞ 二叉树",
-      "similarity": 0.722
-    }
-  ],
-  "RMQ问题——ST表算法": [
-    {
-      "slug": "RMQ问题——线段树",
-      "title": "RMQ问题——线段树",
-      "similarity": 0.716
-    },
-    {
-      "slug": "数据结构学习笔记＜8＞ 排序",
-      "title": "数据结构学习笔记＜8＞ 排序",
-      "similarity": 0.66
-    },
-    {
-      "slug": "coding-train/leetcode/bytedance/bytedance-day12",
-      "title": "冲刺春招-精选笔面试66题大通关day12",
-      "similarity": 0.658
-    },
-    {
-      "slug": "数据结构学习笔记＜6＞ 堆与哈夫曼树与并查集",
-      "title": "数据结构学习笔记＜6＞ 堆与哈夫曼树与并查集",
-      "similarity": 0.654
-    },
-    {
-      "slug": "链式前向星存图、二分图匹配之匈牙利算法 模板&分析（存用）",
-      "title": "链式前向星存图、二分图匹配之匈牙利算法 模板&分析（存用）",
-      "similarity": 0.65
-    }
-  ],
   "redux-learning-1": [
     {
       "slug": "note/front-end/bytedance-note/responsive-system-and-react",
@@ -3912,519 +4425,6 @@
       "slug": "floating-ui-experience-dialog",
       "title": "Floating UI 使用经验分享 - Dialog",
       "similarity": 0.682
-    }
-  ],
-  "note/front-end/bytedance-note/webpack-knowledge-system": [
-    {
-      "slug": "note/front-end/bytedance-note/javascript-learing",
-      "title": "青训营 |「跟着月影学 JavaScript」笔记",
-      "similarity": 0.706
-    },
-    {
-      "slug": "note/front-end/bytedance-note/nodejs-develop",
-      "title": "青训营 |「Node.js 与前端开发实战」",
-      "similarity": 0.697
-    },
-    {
-      "slug": "note/front-end/bytedance-note/responsive-system-and-react",
-      "title": "青训营 |「响应式系统与 React」",
-      "similarity": 0.691
-    },
-    {
-      "slug": "note/front-end/bytedance-note/mini-program-develop",
-      "title": "青训营 |「小程序技术全解」笔记",
-      "similarity": 0.673
-    },
-    {
-      "slug": "note/front-end/bytedance-note/typescript-introduction",
-      "title": "青训营 |「TypeScript入门」笔记",
-      "similarity": 0.651
-    }
-  ],
-  "note/front-end/bytedance-note/webgl-basics": [
-    {
-      "slug": "note/front-end/bytedance-note/mini-game-development",
-      "title": "青训营 |「小游戏开发」笔记",
-      "similarity": 0.701
-    },
-    {
-      "slug": "note/front-end/bytedance-note/javascript-learing",
-      "title": "青训营 |「跟着月影学 JavaScript」笔记",
-      "similarity": 0.664
-    },
-    {
-      "slug": "note/front-end/bytedance-note/animation-implement",
-      "title": "青训营 |「前端动画实现」",
-      "similarity": 0.656
-    },
-    {
-      "slug": "note/front-end/bytedance-note/design-pattern",
-      "title": "青训营 |「前端设计模式应用」笔记",
-      "similarity": 0.655
-    },
-    {
-      "slug": "dynamic-particle-system-tech-analysis",
-      "title": "从像素到粒子：p5.js 图像转动态粒子的设计与实现",
-      "similarity": 0.649
-    }
-  ],
-  "note/front-end/bytedance-note/web-standards-and-front-end-development": [
-    {
-      "slug": "fe-talk-1",
-      "title": "浅谈前端的变与不变",
-      "similarity": 0.736
-    },
-    {
-      "slug": "note/front-end/bytedance-note/mini-program-develop",
-      "title": "青训营 |「小程序技术全解」笔记",
-      "similarity": 0.735
-    },
-    {
-      "slug": "bytedance-review-2022-spring-frontend",
-      "title": "字节前端暑期实习一面凉经",
-      "similarity": 0.702
-    },
-    {
-      "slug": "note/front-end/bytedance-note/development-and-debugging",
-      "title": "青训营 |「前端必须知道的开发调试知识」",
-      "similarity": 0.686
-    },
-    {
-      "slug": "note/front-end/bytedance-note/design-pattern",
-      "title": "青训营 |「前端设计模式应用」笔记",
-      "similarity": 0.676
-    }
-  ],
-  "note/front-end/bytedance-note/web-safe-getting-started": [
-    {
-      "slug": "note/front-end/bytedance-note/http-utilization-guide",
-      "title": "青训营 |「HTTP实用指南」",
-      "similarity": 0.792
-    },
-    {
-      "slug": "secure-basics-1",
-      "title": "信息安全概论复习一（Chapter1、2、3）",
-      "similarity": 0.682
-    },
-    {
-      "slug": "secure-basics-4",
-      "title": "信息安全概论复习四 Chapte8、9、10",
-      "similarity": 0.673
-    },
-    {
-      "slug": "bytedance-review-2022-spring-frontend",
-      "title": "字节前端暑期实习一面凉经",
-      "similarity": 0.668
-    },
-    {
-      "slug": "note/front-end/bytedance-note/development-and-debugging",
-      "title": "青训营 |「前端必须知道的开发调试知识」",
-      "similarity": 0.661
-    }
-  ],
-  "note/front-end/bytedance-note/web-multimedia-introduction": [
-    {
-      "slug": "note/front-end/bytedance-note/http-utilization-guide",
-      "title": "青训营 |「HTTP实用指南」",
-      "similarity": 0.707
-    },
-    {
-      "slug": "计算机组成原理复习总结（七）外围设备",
-      "title": "计算机组成原理复习总结（七）外围设备",
-      "similarity": 0.704
-    },
-    {
-      "slug": "note/front-end/bytedance-note/javascript-learing",
-      "title": "青训营 |「跟着月影学 JavaScript」笔记",
-      "similarity": 0.693
-    },
-    {
-      "slug": "note/front-end/bytedance-note/mini-program-develop",
-      "title": "青训营 |「小程序技术全解」笔记",
-      "similarity": 0.675
-    },
-    {
-      "slug": "note/front-end/bytedance-note/animation-implement",
-      "title": "青训营 |「前端动画实现」",
-      "similarity": 0.672
-    }
-  ],
-  "note/front-end/bytedance-note/typescript-introduction": [
-    {
-      "slug": "js-learning-1",
-      "title": "深入JavaScript学习之路（一）对象、类与面向对象编程",
-      "similarity": 0.747
-    },
-    {
-      "slug": "js-learning-2",
-      "title": "深入JavaScript学习之路（二）JavaScript中的类",
-      "similarity": 0.743
-    },
-    {
-      "slug": "note/front-end/bytedance-note/javascript-learing",
-      "title": "青训营 |「跟着月影学 JavaScript」笔记",
-      "similarity": 0.739
-    },
-    {
-      "slug": "back-end/go_learning_1",
-      "title": "Go语言初上手(一) 环境配置与基础语法 | 青训营",
-      "similarity": 0.727
-    },
-    {
-      "slug": "note/front-end/bytedance-note/design-pattern",
-      "title": "青训营 |「前端设计模式应用」笔记",
-      "similarity": 0.723
-    }
-  ],
-  "note/front-end/bytedance-note/responsive-system-and-react": [
-    {
-      "slug": "redux-learning-1",
-      "title": "Redux学习之路（一）Redux三原则、createSore原理及实现",
-      "similarity": 0.8
-    },
-    {
-      "slug": "react-learning-1",
-      "title": "React学习小记",
-      "similarity": 0.791
-    },
-    {
-      "slug": "note/front-end/bytedance-note/design-pattern",
-      "title": "青训营 |「前端设计模式应用」笔记",
-      "similarity": 0.783
-    },
-    {
-      "slug": "note/front-end/bytedance-note/javascript-learing",
-      "title": "青训营 |「跟着月影学 JavaScript」笔记",
-      "similarity": 0.775
-    },
-    {
-      "slug": "floating-ui-experience-popover",
-      "title": "Floating UI 使用经验分享 - Popover",
-      "similarity": 0.718
-    }
-  ],
-  "note/front-end/bytedance-note/nodejs-develop": [
-    {
-      "slug": "campus-sns-develop",
-      "title": "Campus SNS 校园社区后端接口开发（附前端地址）",
-      "similarity": 0.769
-    },
-    {
-      "slug": "note/front-end/bytedance-note/javascript-learing",
-      "title": "青训营 |「跟着月影学 JavaScript」笔记",
-      "similarity": 0.725
-    },
-    {
-      "slug": "note/front-end/bytedance-note/responsive-system-and-react",
-      "title": "青训营 |「响应式系统与 React」",
-      "similarity": 0.712
-    },
-    {
-      "slug": "note/front-end/bytedance-note/design-pattern",
-      "title": "青训营 |「前端设计模式应用」笔记",
-      "similarity": 0.712
-    },
-    {
-      "slug": "note/front-end/bytedance-note/mini-program-develop",
-      "title": "青训营 |「小程序技术全解」笔记",
-      "similarity": 0.711
-    }
-  ],
-  "note/front-end/bytedance-note/mini-program-develop": [
-    {
-      "slug": "note/front-end/bytedance-note/javascript-learing",
-      "title": "青训营 |「跟着月影学 JavaScript」笔记",
-      "similarity": 0.761
-    },
-    {
-      "slug": "bytedance-review-2022-spring-frontend",
-      "title": "字节前端暑期实习一面凉经",
-      "similarity": 0.742
-    },
-    {
-      "slug": "metaapp-review-2022-spring-frontend",
-      "title": "MetaApp一二面面经（已OC）",
-      "similarity": 0.738
-    },
-    {
-      "slug": "note/front-end/bytedance-note/development-and-debugging",
-      "title": "青训营 |「前端必须知道的开发调试知识」",
-      "similarity": 0.736
-    },
-    {
-      "slug": "note/front-end/bytedance-note/web-standards-and-front-end-development",
-      "title": "青训营 |「Web 标准与前端开发」",
-      "similarity": 0.735
-    }
-  ],
-  "note/front-end/bytedance-note/mini-game-development": [
-    {
-      "slug": "note/front-end/bytedance-note/animation-implement",
-      "title": "青训营 |「前端动画实现」",
-      "similarity": 0.745
-    },
-    {
-      "slug": "note/front-end/bytedance-note/mini-program-develop",
-      "title": "青训营 |「小程序技术全解」笔记",
-      "similarity": 0.721
-    },
-    {
-      "slug": "dynamic-particle-system-tech-analysis",
-      "title": "从像素到粒子：p5.js 图像转动态粒子的设计与实现",
-      "similarity": 0.707
-    },
-    {
-      "slug": "note/front-end/bytedance-note/webgl-basics",
-      "title": "青训营 |「WebGL基础」",
-      "similarity": 0.701
-    },
-    {
-      "slug": "note/front-end/bytedance-note/javascript-learing",
-      "title": "青训营 |「跟着月影学 JavaScript」笔记",
-      "similarity": 0.688
-    }
-  ],
-  "note/front-end/bytedance-note/javascript-learing": [
-    {
-      "slug": "note/front-end/bytedance-note/design-pattern",
-      "title": "青训营 |「前端设计模式应用」笔记",
-      "similarity": 0.809
-    },
-    {
-      "slug": "note/front-end/bytedance-note/responsive-system-and-react",
-      "title": "青训营 |「响应式系统与 React」",
-      "similarity": 0.775
-    },
-    {
-      "slug": "note/front-end/bytedance-note/mini-program-develop",
-      "title": "青训营 |「小程序技术全解」笔记",
-      "similarity": 0.761
-    },
-    {
-      "slug": "redux-learning-1",
-      "title": "Redux学习之路（一）Redux三原则、createSore原理及实现",
-      "similarity": 0.756
-    },
-    {
-      "slug": "高级java复习笔记（期末不要挂啦）",
-      "title": "高级java复习笔记（期末不要挂啦）",
-      "similarity": 0.753
-    }
-  ],
-  "note/front-end/bytedance-note/http-utilization-guide": [
-    {
-      "slug": "note/front-end/bytedance-note/web-safe-getting-started",
-      "title": "青训营 |「Web开发的安全之旅」",
-      "similarity": 0.792
-    },
-    {
-      "slug": "note/front-end/bytedance-note/web-multimedia-introduction",
-      "title": "青训营 |「Web多媒体入门」笔记",
-      "similarity": 0.707
-    },
-    {
-      "slug": "note/front-end/bytedance-note/nodejs-develop",
-      "title": "青训营 |「Node.js 与前端开发实战」",
-      "similarity": 0.696
-    },
-    {
-      "slug": "bytedance-review-2022-spring-frontend",
-      "title": "字节前端暑期实习一面凉经",
-      "similarity": 0.691
-    },
-    {
-      "slug": "note/front-end/bytedance-note/web-standards-and-front-end-development",
-      "title": "青训营 |「Web 标准与前端开发」",
-      "similarity": 0.675
-    }
-  ],
-  "back-end/go_learning_3": [
-    {
-      "slug": "back-end/go_learning_1",
-      "title": "Go语言初上手(一) 环境配置与基础语法 | 青训营",
-      "similarity": 0.82
-    },
-    {
-      "slug": "back-end/go_learning_2",
-      "title": "Go语言初上手（二） 工程实践 | 青训营",
-      "similarity": 0.802
-    },
-    {
-      "slug": "note/front-end/bytedance-note/javascript-learing",
-      "title": "青训营 |「跟着月影学 JavaScript」笔记",
-      "similarity": 0.723
-    },
-    {
-      "slug": "note/front-end/bytedance-note/typescript-introduction",
-      "title": "青训营 |「TypeScript入门」笔记",
-      "similarity": 0.712
-    },
-    {
-      "slug": "note/front-end/bytedance-note/mini-program-develop",
-      "title": "青训营 |「小程序技术全解」笔记",
-      "similarity": 0.704
-    }
-  ],
-  "back-end/go_learning_2": [
-    {
-      "slug": "back-end/go_learning_3",
-      "title": "Go语言初上手（三）编码规范与性能优化 | 青训营",
-      "similarity": 0.802
-    },
-    {
-      "slug": "back-end/go_learning_1",
-      "title": "Go语言初上手(一) 环境配置与基础语法 | 青训营",
-      "similarity": 0.752
-    },
-    {
-      "slug": "note/front-end/bytedance-note/mini-program-develop",
-      "title": "青训营 |「小程序技术全解」笔记",
-      "similarity": 0.68
-    },
-    {
-      "slug": "note/front-end/bytedance-note/javascript-learing",
-      "title": "青训营 |「跟着月影学 JavaScript」笔记",
-      "similarity": 0.67
-    },
-    {
-      "slug": "高级java复习笔记（期末不要挂啦）",
-      "title": "高级java复习笔记（期末不要挂啦）",
-      "similarity": 0.662
-    }
-  ],
-  "back-end/go_learning_1": [
-    {
-      "slug": "back-end/go_learning_3",
-      "title": "Go语言初上手（三）编码规范与性能优化 | 青训营",
-      "similarity": 0.82
-    },
-    {
-      "slug": "optimizing-javascript-translate",
-      "title": "优化 JavaScript 的乐趣和好处【译文】",
-      "similarity": 0.789
-    },
-    {
-      "slug": "js-learning-1",
-      "title": "深入JavaScript学习之路（一）对象、类与面向对象编程",
-      "similarity": 0.786
-    },
-    {
-      "slug": "back-end/go_learning_2",
-      "title": "Go语言初上手（二） 工程实践 | 青训营",
-      "similarity": 0.752
-    },
-    {
-      "slug": "计算机组成原理复习总结（五）中央处理器",
-      "title": "计算机组成原理复习总结（五）中央处理器",
-      "similarity": 0.748
-    }
-  ],
-  "note/front-end/bytedance-note/development-and-debugging": [
-    {
-      "slug": "note/front-end/bytedance-note/mini-program-develop",
-      "title": "青训营 |「小程序技术全解」笔记",
-      "similarity": 0.736
-    },
-    {
-      "slug": "note/front-end/bytedance-note/javascript-learing",
-      "title": "青训营 |「跟着月影学 JavaScript」笔记",
-      "similarity": 0.724
-    },
-    {
-      "slug": "note/front-end/bytedance-note/web-standards-and-front-end-development",
-      "title": "青训营 |「Web 标准与前端开发」",
-      "similarity": 0.686
-    },
-    {
-      "slug": "bytedance-review-2022-spring-frontend",
-      "title": "字节前端暑期实习一面凉经",
-      "similarity": 0.685
-    },
-    {
-      "slug": "my-claude-code-record",
-      "title": "我的 Claude Code 使用小记",
-      "similarity": 0.674
-    }
-  ],
-  "note/front-end/bytedance-note/design-pattern": [
-    {
-      "slug": "note/front-end/bytedance-note/javascript-learing",
-      "title": "青训营 |「跟着月影学 JavaScript」笔记",
-      "similarity": 0.809
-    },
-    {
-      "slug": "note/front-end/bytedance-note/responsive-system-and-react",
-      "title": "青训营 |「响应式系统与 React」",
-      "similarity": 0.783
-    },
-    {
-      "slug": "高级java复习笔记（期末不要挂啦）",
-      "title": "高级java复习笔记（期末不要挂啦）",
-      "similarity": 0.748
-    },
-    {
-      "slug": "js-learning-2",
-      "title": "深入JavaScript学习之路（二）JavaScript中的类",
-      "similarity": 0.748
-    },
-    {
-      "slug": "redux-learning-1",
-      "title": "Redux学习之路（一）Redux三原则、createSore原理及实现",
-      "similarity": 0.746
-    }
-  ],
-  "note/front-end/bytedance-note/css-learning-layout": [
-    {
-      "slug": "note/front-end/bytedance-note/animation-implement",
-      "title": "青训营 |「前端动画实现」",
-      "similarity": 0.724
-    },
-    {
-      "slug": "note/front-end/bytedance-note/javascript-learing",
-      "title": "青训营 |「跟着月影学 JavaScript」笔记",
-      "similarity": 0.697
-    },
-    {
-      "slug": "back-end/go_learning_1",
-      "title": "Go语言初上手(一) 环境配置与基础语法 | 青训营",
-      "similarity": 0.684
-    },
-    {
-      "slug": "js-learning-1",
-      "title": "深入JavaScript学习之路（一）对象、类与面向对象编程",
-      "similarity": 0.673
-    },
-    {
-      "slug": "高级java复习笔记（期末不要挂啦）",
-      "title": "高级java复习笔记（期末不要挂啦）",
-      "similarity": 0.656
-    }
-  ],
-  "note/front-end/bytedance-note/animation-implement": [
-    {
-      "slug": "optimizing-javascript-translate",
-      "title": "优化 JavaScript 的乐趣和好处【译文】",
-      "similarity": 0.763
-    },
-    {
-      "slug": "note/front-end/bytedance-note/javascript-learing",
-      "title": "青训营 |「跟着月影学 JavaScript」笔记",
-      "similarity": 0.753
-    },
-    {
-      "slug": "note/front-end/bytedance-note/mini-game-development",
-      "title": "青训营 |「小游戏开发」笔记",
-      "similarity": 0.745
-    },
-    {
-      "slug": "back-end/go_learning_1",
-      "title": "Go语言初上手(一) 环境配置与基础语法 | 青训营",
-      "similarity": 0.729
-    },
-    {
-      "slug": "note/front-end/bytedance-note/css-learning-layout",
-      "title": "青训营 |「CSS布局」",
-      "similarity": 0.724
     }
   ],
   "js-learning-2": [

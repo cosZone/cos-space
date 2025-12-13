@@ -484,6 +484,16 @@ const INCLUDE_BODY = true;
 - **包含正文**：相似度更精确，能识别内容层面的相关性，但生成速度较慢
 - **仅标题+描述**：生成速度快，适合描述写得比较详细的博客
 
+```bash
+# 使用 Snowflake/snowflake-arctic-embed-m-v2.0 计算 168 篇文章（标题+描述）的时间
+Done! Generated similarities for 168 posts in 4.1s
+
+# 使用 Snowflake/snowflake-arctic-embed-m-v2.0 计算 168 篇文章（标题+描述+正文）的时间
+Done! Generated similarities for 168 posts in 219.3s
+```
+
+这差别有点大，但是我个人很喜欢带正文的结果，效果显然会更好。
+
 **模型选择：**
 
 默认使用 `Snowflake/snowflake-arctic-embed-m-v2.0` 模型：
@@ -504,11 +514,11 @@ const MODEL_NAME = 'Snowflake/snowflake-arctic-embed-m-v2.0';
 
 **其他可选模型对比：**
 
-| 模型                                     | 大小   | 维度 | 优势           |
-| ---------------------------------------- | ------ | ---- | -------------- |
-| `Snowflake/snowflake-arctic-embed-m-v2.0` | ~90MB  | 768  | 质量高，中英文均衡 |
-| `sentence-transformers/all-MiniLM-L6-v2` | ~23MB  | 384  | 轻量快速       |
-| `BAAI/bge-small-zh-v1.5`                | ~95MB  | 512  | 中文专用       |
+| 模型                                      | 大小  | 维度 | 优势               |
+| ----------------------------------------- | ----- | ---- | ------------------ |
+| `Snowflake/snowflake-arctic-embed-m-v2.0` | ~90MB | 768  | 质量高，中英文均衡 |
+| `sentence-transformers/all-MiniLM-L6-v2`  | ~23MB | 384  | 轻量快速           |
+| `BAAI/bge-small-zh-v1.5`                  | ~95MB | 512  | 中文专用           |
 
 **注意事项：**
 
