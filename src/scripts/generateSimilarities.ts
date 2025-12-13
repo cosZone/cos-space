@@ -30,12 +30,12 @@ const MODEL_NAME = 'Snowflake/snowflake-arctic-embed-m-v2.0';
 // Whether to include body content in similarity calculation
 // true: uses title + description + body (more accurate, slower)
 // false: uses title + description only (faster, good for large codebases)
-const INCLUDE_BODY = true;
+const INCLUDE_BODY = false;
 
 // Whether to use AI-generated summaries instead of description
 // Requires running `pnpm generate:summaries` first
 // When enabled, uses AI summary for similarity calculation if available
-const USE_AI_SUMMARY = false;
+const USE_AI_SUMMARY = true;
 const SUMMARIES_FILE = 'src/assets/summaries.json';
 
 // Exclude patterns - posts matching these patterns won't be included in similarity calculations
