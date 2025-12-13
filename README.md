@@ -46,13 +46,14 @@ pnpm dev
 - 基于 Pagefind 的无后端全站搜索
 - 完整的 Markdown 增强功能（GFM、代码高亮、自动目录）
 - 灵活的多级分类与标签系统
-- 特色周刊/系列文章支持
+- [可开关] 特色周刊/系列文章支持
 - 响应式设计
 - 草稿与置顶功能
 - 阅读进度条与阅读时间估算
 - 友链系统与归档页面
 - RSS 订阅支持
-- 基于语义相似度的智能文章推荐系统，使用 [transformers.js](https://huggingface.co/docs/transformers.js) 在本地生成文章嵌入向量，计算文章间的语义相似度。
+- [可开关] 基于语义相似度的智能文章推荐系统，使用 [transformers.js](https://huggingface.co/docs/transformers.js) 在本地生成文章嵌入向量，计算文章间的语义相似度
+- [可开关] AI 自动摘要生成，自动生成摘要。
 
 **完整使用指南：** 可查看详细的[功能使用文档](./src/content/blog/tools/astro-koharu-使用指南.md)，了解所有功能的配置和使用方法。
 

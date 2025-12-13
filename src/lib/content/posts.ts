@@ -4,10 +4,14 @@
 
 import { getCollection, type CollectionEntry } from 'astro:content';
 
+import summaries from '@assets/summaries.json';
 import { siteConfig } from '@constants/site-config';
-import { extractTextFromMarkdown } from '@lib/sanitize';
 import type { BlogPost } from 'types/blog';
 import { buildCategoryPath } from './categories';
+import { extractTextFromMarkdown } from '../sanitize';
+
+/** AI 摘要数据类型 */
+type SummariesData = Record<string, { title: string; summary: string }>;
 
 /**
  * 获取文章描述
@@ -18,6 +22,28 @@ import { buildCategoryPath } from './categories';
  */
 export function getPostDescription(post: BlogPost, maxLength: number = 150): string {
   return post.data.description || extractTextFromMarkdown(post.body, maxLength);
+}
+
+/**
+ * 获取文章的 AI 摘要
+ * @param slug 文章 slug（通常是 post.data.link 或 post.slug）
+ * @returns AI 摘要文本，如果不存在则返回 null
+ */
+export function getPostSummary(slug: string): string | null {
+  const data = summaries as SummariesData;
+  return data[slug]?.summary ?? null;
+}
+
+/**
+ * 获取文章描述，带 AI 摘要 fallback
+ * 优先级：frontmatter description > AI 摘要 > markdown 提取
+ * @param post 文章对象
+ * @param maxLength 最大长度，默认 150 字符
+ * @returns 文章描述文本
+ */
+export function getPostDescriptionWithSummary(post: BlogPost, maxLength: number = 150): string {
+  const slug = post.data?.link ?? post.slug;
+  return post.data.description || getPostSummary(slug) || extractTextFromMarkdown(post.body, maxLength);
 }
 
 /**

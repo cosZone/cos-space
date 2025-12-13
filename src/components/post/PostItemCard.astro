@@ -4,7 +4,7 @@ import { Badge } from '@components/ui/badge';
 import { Button } from '@components/ui/button';
 import { Routes } from '@constants/router';
 import { defaultCoverList } from '@constants/site-config';
-import { buildCategoryPath, getCategoryArr, getPostDescription } from '@lib/content';
+import { buildCategoryPath, getCategoryArr, getPostDescriptionWithSummary } from '@lib/content';
 import { parseDate } from '@lib/datetime';
 import { routeBuilder } from '@lib/route';
 import { cn } from '@lib/utils';
@@ -45,8 +45,8 @@ const categoryArr = getCategoryArr(categories?.[0]);
 const categoryLink = await buildCategoryPath(categoryArr);
 const categoryStr = categoryArr?.length ? categoryArr[categoryArr.length - 1] : '';
 
-// 使用统一的工具函数获取文章描述
-const postDescription = getPostDescription(data);
+// 使用统一的工具函数获取文章描述（带 AI 摘要 fallback）
+const postDescription = getPostDescriptionWithSummary(data);
 ---
 
 <div

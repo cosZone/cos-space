@@ -32,6 +32,12 @@ const MODEL_NAME = 'Snowflake/snowflake-arctic-embed-m-v2.0';
 // false: uses title + description only (faster, good for large codebases)
 const INCLUDE_BODY = true;
 
+// Whether to use AI-generated summaries instead of description
+// Requires running `pnpm generate:summaries` first
+// When enabled, uses AI summary for similarity calculation if available
+const USE_AI_SUMMARY = false;
+const SUMMARIES_FILE = 'src/assets/summaries.json';
+
 // Exclude patterns - posts matching these patterns won't be included in similarity calculations
 // They can still show related posts, but won't be recommended to other posts
 const EXCLUDE_PATTERNS = [
@@ -57,6 +63,13 @@ interface SimilarPost {
 
 type SimilarityMap = Record<string, SimilarPost[]>;
 
+interface SummaryEntry {
+  title: string;
+  summary: string;
+}
+
+type SummariesMap = Record<string, SummaryEntry>;
+
 // --------- Utility Functions ---------
 
 /**
@@ -64,6 +77,21 @@ type SimilarityMap = Record<string, SimilarPost[]>;
  */
 function shouldExclude(slug: string): boolean {
   return EXCLUDE_PATTERNS.some((pattern) => slug.includes(pattern));
+}
+
+/**
+ * Load AI-generated summaries from file
+ */
+async function loadSummaries(): Promise<SummariesMap> {
+  if (!USE_AI_SUMMARY) return {};
+  try {
+    const data = await fs.readFile(SUMMARIES_FILE, 'utf-8');
+    return JSON.parse(data) as SummariesMap;
+  } catch {
+    console.log(chalk.yellow(`Warning: Could not load summaries from ${SUMMARIES_FILE}`));
+    console.log(chalk.gray('Run `pnpm generate:summaries` first to generate AI summaries\n'));
+    return {};
+  }
 }
 
 /**
@@ -130,7 +158,7 @@ function extractSlug(filePath: string, link?: string): string {
 /**
  * Process a single markdown file
  */
-async function processFile(filePath: string): Promise<PostData | null> {
+async function processFile(filePath: string, summaries: SummariesMap): Promise<PostData | null> {
   try {
     const content = await fs.readFile(filePath, 'utf-8');
     const { data: frontmatter, content: body } = matter(content);
@@ -151,8 +179,11 @@ async function processFile(filePath: string): Promise<PostData | null> {
       return null;
     }
 
-    // Combine title + description (+ optional body) for embedding
-    const description = (frontmatter.description as string) || '';
+    // Use AI summary if available, otherwise use description
+    const aiSummary = summaries[slug]?.summary;
+    const description = aiSummary || (frontmatter.description as string) || '';
+
+    // Combine title + description/summary (+ optional body) for embedding
     let fullText = `${frontmatter.title}. ${description}`;
 
     if (INCLUDE_BODY) {
@@ -176,12 +207,12 @@ async function processFile(filePath: string): Promise<PostData | null> {
 /**
  * Load and process all markdown files
  */
-async function loadPosts(files: string[]): Promise<PostData[]> {
+async function loadPosts(files: string[], summaries: SummariesMap): Promise<PostData[]> {
   console.log(chalk.blue('Processing markdown files...'));
   const posts: PostData[] = [];
   for (let i = 0; i < files.length; i++) {
     process.stdout.write(`\r  Processing ${i + 1}/${files.length}...`);
-    const post = await processFile(files[i]);
+    const post = await processFile(files[i], summaries);
     if (post) posts.push(post);
   }
   console.log('');
@@ -258,14 +289,21 @@ async function main() {
 
   try {
     console.log(chalk.cyan('=== Semantic Similarity Generator ===\n'));
-    console.log(chalk.gray(`Mode: ${INCLUDE_BODY ? 'title + description + body' : 'title + description only'}\n`));
+    console.log(chalk.gray(`Mode: ${INCLUDE_BODY ? 'title + description + body' : 'title + description only'}`));
+    console.log(chalk.gray(`AI Summary: ${USE_AI_SUMMARY ? 'enabled' : 'disabled'}\n`));
 
-    // 1. Load the embedding model
+    // 1. Load AI summaries if enabled
+    const summaries = await loadSummaries();
+    if (USE_AI_SUMMARY && Object.keys(summaries).length > 0) {
+      console.log(chalk.green(`Loaded ${Object.keys(summaries).length} AI summaries\n`));
+    }
+
+    // 2. Load the embedding model
     console.log(chalk.blue(`Loading model: ${MODEL_NAME}...`));
     const extractor = await pipeline('feature-extraction', MODEL_NAME);
     console.log(chalk.green('Model loaded!\n'));
 
-    // 2. Find all markdown files
+    // 3. Find all markdown files
     const files = await glob(CONTENT_GLOB);
     if (!files.length) {
       console.log(chalk.yellow('No content files found.'));
@@ -273,25 +311,25 @@ async function main() {
     }
     console.log(chalk.blue(`Found ${files.length} markdown files\n`));
 
-    // 3. Parse and process all files
-    const posts = await loadPosts(files);
+    // 4. Parse and process all files
+    const posts = await loadPosts(files, summaries);
     if (!posts.length) {
       console.log(chalk.red('No valid posts found.'));
       return;
     }
     console.log(chalk.green(`Loaded ${posts.length} posts\n`));
 
-    // 4. Generate embeddings (batch mode for performance)
+    // 5. Generate embeddings (batch mode for performance)
     const embeddings = await generateEmbeddings(posts, extractor);
     if (!embeddings.length) {
       console.log(chalk.red('No embeddings generated.'));
       return;
     }
 
-    // 5. Compute similarities
+    // 6. Compute similarities
     const similarities = computeSimilarities(posts, embeddings, TOP_N_SIMILAR);
 
-    // 6. Save results
+    // 7. Save results
     await saveResults(similarities, OUTPUT_FILE);
 
     const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);

@@ -1,14 +1,16 @@
 ---
+import { extractTextFromMarkdown } from '@/lib/sanitize';
 import CustomContent from '@components/common/CustomContent.astro';
 import Remark from '@components/common/Remark.astro';
 import HomeSider from '@components/layout/HomeSider.astro';
+import { SummaryPanel, type SummarySource } from '@components/post/SummaryPanel';
 import Cover from '@components/ui/cover/Cover.astro';
 import { HomeSiderType } from '@constants/enum';
 import { CONTENT_PADDING } from '@constants/layout';
 import { siteConfig } from '@constants/site-config';
 import Layout from '@layouts/Layout.astro';
 import TwoColumnLayout from '@layouts/TwoColumnLayout.astro';
-import { buildCategoryPath, getCategoryArr, getPostDescription, getSortedPosts } from '@lib/content';
+import { buildCategoryPath, getCategoryArr, getPostDescription, getPostSummary, getSortedPosts } from '@lib/content';
 import { parseDate } from '@lib/datetime';
 import { Icon } from 'astro-icon/components';
 
@@ -59,6 +61,28 @@ if (categoryArr?.length) {
     });
   }
 }
+
+// 确定显示的摘要内容和来源类型
+const postSlug = post.data?.link ?? post.slug;
+let summaryText: string | null = null;
+let summarySource: SummarySource | null = null;
+
+if (post.data.description) {
+  // 优先使用手写描述
+  summaryText = post.data.description;
+  summarySource = 'description';
+} else {
+  // 尝试获取 AI 摘要
+  const aiSummary = getPostSummary(postSlug);
+  if (aiSummary) {
+    summaryText = aiSummary;
+    summarySource = 'ai';
+  } else {
+    // 降级到自动提取
+    summaryText = extractTextFromMarkdown(post.body, 200);
+    summarySource = 'auto';
+  }
+}
 ---
 
 <Layout
@@ -97,6 +121,11 @@ if (categoryArr?.length) {
           ))
         }
       </nav>
+      {
+        summaryText && summarySource && (
+          <SummaryPanel client:visible summary={summaryText} source={summarySource} className="mt-2" />
+        )
+      }
       <article class="prose md:prose-sm dark:prose-invert">
         <CustomContent Content={Content} />
       </article>

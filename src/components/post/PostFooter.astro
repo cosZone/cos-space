@@ -19,12 +19,11 @@ const allPosts = hasData ? await getSortedPosts() : [];
 
 // Get random posts (always needed for left column)
 const randomPosts = await getRandomPosts(10);
-
 // Get related posts if current post is provided and similarity data exists
 const relatedPosts = hasData && post ? getRelatedPosts(post, allPosts, 5) : [];
 ---
 
 <div class="tablet:grid-cols-1 grid grid-cols-2 gap-4 px-10 md:px-6">
-  <RandomPostList posts={randomPosts} />
-  {hasData && <RelatedPostList posts={relatedPosts} fallbackPosts={randomPosts.slice(0, 5)} />}
+  <RandomPostList posts={randomPosts.slice(0, 5)} />
+  {hasData && <RelatedPostList posts={relatedPosts} fallbackPosts={randomPosts.slice(5)} />}
 </div>

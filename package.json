@@ -5,6 +5,8 @@
   "scripts": {
     "dev": "astro dev",
     "generate:similarities": "npx tsx src/scripts/generateSimilarities.ts",
+    "generate:summaries": "npx tsx src/scripts/generateSummaries.ts",
+    "generate:summaries:force": "npx tsx src/scripts/generateSummaries.ts --force",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
@@ -83,6 +85,7 @@
     "@types/sanitize-html": "^2.16.0",
     "@types/unist": "^3.0.3",
     "@typescript-eslint/parser": "^8.48.1",
+    "@xsai/generate-text": "0.4.0-beta.10",
     "chalk": "^5.6.2",
     "eslint": "^9.39.1",
     "eslint-plugin-astro": "^1.5.0",

@@ -198,6 +198,9 @@ importers:
       '@typescript-eslint/parser':
         specifier: ^8.48.1
         version: 8.48.1(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3)
+      '@xsai/generate-text':
+        specifier: 0.4.0-beta.10
+        version: 0.4.0-beta.10
       chalk:
         specifier: ^5.6.2
         version: 5.6.2
@@ -1997,6 +2000,15 @@ packages:
 
   '@vscode/l10n@0.0.18':
     resolution: {integrity: sha512-KYSIHVmslkaCDyw013pphY+d7x1qV8IZupYfeIfzNA+nsaWHbn5uPuQRvdRFsa9zFzGeudPuoGoZ1Op4jrJXIQ==}
+
+  '@xsai/generate-text@0.4.0-beta.10':
+    resolution: {integrity: sha512-NWZQPCfsSFSU11l4iun6KYQZtZoOtRGP7s08Ug81tKVM+beLYhJWAgJUCaKzlV8aTcmRrljaIHUedJ/XwTg4yg==}
+
+  '@xsai/shared-chat@0.4.0-beta.10':
+    resolution: {integrity: sha512-M/Y7QeMDKL2O8UZTr7IEPlI4kt232BDKGEQDyp8ZqRztwdw24EbuuPO8DY8VGy36qR8niLUcHil9nkJInjzEfg==}
+
+  '@xsai/shared@0.4.0-beta.10':
+    resolution: {integrity: sha512-PWqktpzSQGQwqn4JsUpAmkNrP48/uL4pjNR9sjLugmw71hHpXcAeppGKLokiPusl2BnDvAW2kDSJRzNPBHSejw==}
 
   '@yeskunall/astro-umami@0.0.4':
     resolution: {integrity: sha512-FZxJt2EScmaqT2fOf+I1fbpWxk2cVzON4EgCh4F10nh7jDAlxOQsKKEEkyM24HdexZQn3wYI3VKXDZtYidvevA==}
@@ -7249,6 +7261,17 @@ snapshots:
       vscode-uri: 3.1.0
 
   '@vscode/l10n@0.0.18': {}
+
+  '@xsai/generate-text@0.4.0-beta.10':
+    dependencies:
+      '@xsai/shared': 0.4.0-beta.10
+      '@xsai/shared-chat': 0.4.0-beta.10
+
+  '@xsai/shared-chat@0.4.0-beta.10':
+    dependencies:
+      '@xsai/shared': 0.4.0-beta.10
+
+  '@xsai/shared@0.4.0-beta.10': {}
 
   '@yeskunall/astro-umami@0.0.4(astro@5.16.4(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.53.3)(terser@5.37.0)(tsx@4.21.0)(typescript@5.9.3)(yaml@2.8.2))':
     dependencies:
