@@ -11,12 +11,10 @@
 
 'use client';
 
-import { useEffect } from 'react';
 import type { Variants } from 'motion/react';
-import { motion, useAnimation } from 'motion/react';
+import { motion } from 'motion/react';
 import { useStore } from '@nanostores/react';
 import { cn } from '@lib/utils';
-import { useIsMounted } from '@hooks/index';
 import { drawerOpen, toggleDrawer } from '@store/ui';
 import { animation } from '@constants/design-tokens';
 
@@ -25,6 +23,7 @@ const lineVariants: Variants = {
     rotate: 0,
     y: 0,
     opacity: 1,
+    transition: animation.spring.menu,
   },
   opened: (lineIndex: number) => {
     switch (lineIndex) {
@@ -47,24 +46,15 @@ interface MenuIconProps {
 
 const MenuIcon = ({ className, id }: MenuIconProps) => {
   const isOpen = useStore(drawerOpen);
-  const controls = useAnimation();
-  const isMounted = useIsMounted();
-
-  // Sync animation with drawer state
-  useEffect(() => {
-    controls.start(isOpen ? 'opened' : 'closed');
-  }, [isOpen, controls]);
 
   const handleToggle = () => {
     toggleDrawer();
   };
 
-  if (!isMounted) return null;
-
   return (
-    <div className={cn('flex-center', className)} id={id}>
+    <div className={cn('flex-center', className)} id={id} style={{ viewTransitionName: 'home-menu-icon' }}>
       <button
-        className="flex-center text-shoka size-10 cursor-pointer rounded-full bg-white/20 backdrop-blur select-none"
+        className="flex-center text-shoka size-10 cursor-pointer rounded-full bg-white/20 select-none"
         onClick={handleToggle}
         aria-label={isOpen ? '关闭菜单' : '打开菜单'}
         aria-expanded={isOpen}
@@ -83,13 +73,31 @@ const MenuIcon = ({ className, id }: MenuIconProps) => {
           strokeLinecap="round"
           strokeLinejoin="round"
         >
-          <motion.g variants={lineVariants} animate={controls} custom={1} style={{ originX: 0.5, originY: 0.5 }}>
+          <motion.g
+            variants={lineVariants}
+            initial={false}
+            animate={isOpen ? 'opened' : 'closed'}
+            custom={1}
+            style={{ originX: 0.5, originY: 0.25 }}
+          >
             <line x1="3" y1="6" x2="21" y2="6" />
           </motion.g>
-          <motion.g variants={lineVariants} animate={controls} custom={2} style={{ originX: 0.5, originY: 0.5 }}>
+          <motion.g
+            variants={lineVariants}
+            initial={false}
+            animate={isOpen ? 'opened' : 'closed'}
+            custom={2}
+            style={{ originX: 0.5, originY: 0.5 }}
+          >
             <line x1="3" y1="12" x2="21" y2="12" />
           </motion.g>
-          <motion.g variants={lineVariants} animate={controls} custom={3} style={{ originX: 0.5, originY: 0.5 }}>
+          <motion.g
+            variants={lineVariants}
+            initial={false}
+            animate={isOpen ? 'opened' : 'closed'}
+            custom={3}
+            style={{ originX: 0.5, originY: 0.75 }}
+          >
             <line x1="3" y1="18" x2="21" y2="18" />
           </motion.g>
         </svg>
