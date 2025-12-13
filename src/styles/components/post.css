@@ -43,3 +43,29 @@
 .toc-item:hover::before {
   width: 100%;
 }
+
+.typewriter-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  margin-left: 1px;
+  background-color: hsl(var(--primary));
+  vertical-align: text-bottom;
+  animation: cursor-blink 0.6s step-end infinite;
+}
+
+@keyframes cursor-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .typewriter-cursor {
+    animation: none;
+  }
+}
