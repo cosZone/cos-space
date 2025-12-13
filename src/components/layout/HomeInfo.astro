@@ -25,9 +25,10 @@ const allTags = Object.entries(tags).map(([tag, count]) => ({ tag, count }));
 
 // 生成唯一 ID 前缀
 const uniqueId = `home-info-${Math.random().toString(36).substring(2, 11)}`;
+const { className } = Astro.props;
 ---
 
-<div class="flex flex-col items-center" data-home-info-container={uniqueId}>
+<div class={cn('flex flex-col items-center', className)} data-home-info-container={uniqueId}>
   <img
     transition:persist="page-home-sider-avatar"
     src={siteConfig.avatar}
@@ -69,7 +70,7 @@ const uniqueId = `home-info-${Math.random().toString(36).substring(2, 11)}`;
               data-collapsible
             >
               <button
-                class="flex-center hover:bg-foreground/5 h-12 w-full cursor-pointer rounded-t-xl transition-colors"
+                class="flex-center hover:bg-foreground/5 h-12 w-full cursor-pointer rounded-xl transition-colors"
                 data-collapse-trigger={collapseId}
                 aria-expanded="false"
                 aria-label={`${name}菜单`}
@@ -83,20 +84,17 @@ const uniqueId = `home-info-${Math.random().toString(36).substring(2, 11)}`;
                   data-collapse-icon={collapseId}
                 />
               </button>
-              <div class="transition-all duration-300" data-collapse-content={collapseId} style="max-height: 0; opacity: 0;">
-                <div class="flex flex-col items-center gap-2.5 pb-2.5">
+              <div class="collapse-hidden" data-collapse-content={collapseId}>
+                <div class="flex flex-col items-center">
                   {children.map(({ name, path, icon }) => (
                     <ButtonLink
                       url={path}
                       label={name}
                       variant="gradient-shoka"
-                      className={cn(
-                        'shoka-button-shadow h-12 w-40 rounded-xl text-base tracking-wider transition-all duration-300',
-                        {
-                          'text-muted-foreground/80 hover:bg-muted-foreground/10 bg-none shadow-none hover:shadow-none':
-                            path !== Astro.url.pathname,
-                        },
-                      )}
+                      className={cn('shoka-button-shadow h-12 w-40 rounded-xl text-base tracking-wider', {
+                        'text-muted-foreground/80 hover:bg-muted-foreground/10 bg-none shadow-none hover:shadow-none':
+                          path !== Astro.url.pathname,
+                      })}
                     >
                       {icon && <Icon name={icon} class="mr-1.5" />}
                       {name}
@@ -129,6 +127,29 @@ const uniqueId = `home-info-${Math.random().toString(36).substring(2, 11)}`;
   </div>
 </div>
 
+<style>
+  /* 折叠动画使用 CSS Grid 技巧实现平滑的高度过渡 */
+  [data-collapse-content] {
+    display: grid;
+    grid-template-rows: 1fr;
+  }
+
+  [data-collapse-content] > div {
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  [data-collapse-content].collapse-hidden {
+    grid-template-rows: 0fr;
+  }
+
+  /* 只在用户未设置 reduce-motion 时应用动画 */
+  @media (prefers-reduced-motion: no-preference) {
+    [data-collapse-content] {
+      transition: grid-template-rows 0.3s ease;
+    }
+  }
+</style>
 <script>
   function initCollapsible() {
     // 找到所有 HomeInfo 容器
@@ -159,14 +180,12 @@ const uniqueId = `home-info-${Math.random().toString(36).substring(2, 11)}`;
 
           if (isExpanded) {
             // 折叠
-            content.style.maxHeight = '0';
-            content.style.opacity = '0';
+            content.classList.add('collapse-hidden');
             icon.style.transform = 'rotate(0deg)';
             trigger.setAttribute('aria-expanded', 'false');
           } else {
             // 展开
-            content.style.maxHeight = '500px';
-            content.style.opacity = '1';
+            content.classList.remove('collapse-hidden');
             icon.style.transform = 'rotate(180deg)';
             trigger.setAttribute('aria-expanded', 'true');
           }

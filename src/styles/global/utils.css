@@ -45,3 +45,12 @@
 @utility clip-path-none {
   clip-path: none;
 }
+
+@utility clip-hidden {
+  position: absolute;
+  clip: rect(0 0 0 0);
+}
+
+@utility scroll-gutter-stable {
+  scrollbar-gutter: stable;
+}

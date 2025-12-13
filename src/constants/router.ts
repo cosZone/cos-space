@@ -32,6 +32,4 @@ export const routers: Router[] = [
   },
   { name: '友链', path: Routes.Friends, icon: 'ri:links-line' },
   { name: '关于', path: Routes.About, icon: 'fa6-regular:circle-user' },
-  // { name: '展示柜', path: Routes.Gallery },
-  // { name: '仪表盘', path: Routes.Dashboard, needOwner: true },
 ];

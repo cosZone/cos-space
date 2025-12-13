@@ -682,6 +682,7 @@ body {
 
   .feed-actions {
     justify-content: center; /* Center on mobile */
+    align-items: center;
     width: 100%;
   }
 

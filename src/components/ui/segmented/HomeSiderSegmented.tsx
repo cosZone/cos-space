@@ -4,6 +4,7 @@ import { homeSiderSegmentType } from '@store/app';
 import { Segmented, type OptionType } from '@components/ui/segmented';
 import React from 'react';
 import { RiDashboard3Line, RiListOrdered2, RiArticleLine } from 'react-icons/ri';
+import { cn } from '@/lib/utils';
 
 type HomeSiderSegmentedProps = {
   defaultValue?: HomeSiderSegmentType; // 默认值
@@ -14,7 +15,7 @@ type HomeSiderSegmentedProps = {
   value?: HomeSiderSegmentType; // 受控
 };
 
-export const HomeSiderSegmented = (props: HomeSiderSegmentedProps) => {
+export const HomeSiderSegmented = ({ className, ...props }: HomeSiderSegmentedProps) => {
   const options: OptionType<HomeSiderSegmentType>[] = [
     {
       label: '站点概览',
@@ -37,10 +38,10 @@ export const HomeSiderSegmented = (props: HomeSiderSegmentedProps) => {
     <Segmented<HomeSiderSegmentType>
       {...props}
       options={options}
-      className={
-        props.className ??
-        'flex w-fit cursor-pointer rounded-sm bg-black/[0.08] p-1 text-xs font-semibold backdrop-blur-lg select-none'
-      }
+      className={cn(
+        'flex w-fit cursor-pointer rounded-sm bg-black/8 p-1 text-xs font-semibold backdrop-blur-lg select-none',
+        className,
+      )}
       onChange={(value) => homeSiderSegmentType.set(value)}
     />
   );
