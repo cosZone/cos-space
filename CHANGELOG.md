@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 ---
+## [1.1.0](https://github.com/cosZone/astro-koharu/compare/v1.0.1..v1.1.0) - 2025-12-13
+
+### Bug Fixes
+
+- textRef type - ([e7b3004](https://github.com/cosZone/astro-koharu/commit/e7b30045efb7257875444e3276e540f42ef1476e)) - yusixian
+- mobile menu icon - ([0f50dc4](https://github.com/cosZone/astro-koharu/commit/0f50dc4a8eaa6fca09a7cc5219d3f15fbfd8a2bf)) - yusixian
+- exclude headings inside .link-preview-block for TOC - ([689d77e](https://github.com/cosZone/astro-koharu/commit/689d77ed643b6f322313574e5c2e0ed3e430c095)) - yusixian
+
+### Documentation
+
+- add AI summarization feature - ([270c11d](https://github.com/cosZone/astro-koharu/commit/270c11da01933be2fb2ad19bce8cc73b43d12ccf)) - yusixian
+
+### Features
+
+- add AI summary generation and enhance post description handling - ([0b93114](https://github.com/cosZone/astro-koharu/commit/0b931145639eb2a7d61708a386935a983d8e0e3e)) - yusixian
+- implement semantic article recommendation system using transformers.js - ([72cf50d](https://github.com/cosZone/astro-koharu/commit/72cf50dec4475fe60c8554c6c5e5472c9491aafa)) - yusixian
+- optimize home sider ui - ([d65b5ca](https://github.com/cosZone/astro-koharu/commit/d65b5cad13fe3128520993ba4830cf0ea1358997)) - yusixian
+- add new RSS feed layout with profile settings - ([61c0a9c](https://github.com/cosZone/astro-koharu/commit/61c0a9c7da78ae241918eea2595aba48289734ed)) - yusixian
+- enhance post description handling - ([044d278](https://github.com/cosZone/astro-koharu/commit/044d2781c8cea43deb5b4e2b85ae5bb2ae9bc4a7)) - yusixian
+
+---
 ## [1.0.1](https://github.com/cosZone/astro-koharu/compare/v1.0.0..v1.0.1) - 2025-12-06
 
 ### Documentation

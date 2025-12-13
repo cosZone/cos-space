@@ -1,7 +1,7 @@
 {
   "name": "astro-koharu",
   "type": "module",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "scripts": {
     "dev": "astro dev",
     "generate:similarities": "npx tsx src/scripts/generateSimilarities.ts",
@@ -15,7 +15,7 @@
     "lint-md": "lint-md ./src/content/**/*.{md,mdx}",
     "lint-md:fix": "lint-md ./src/content/**/*.{md,mdx} --fix",
     "lint-staged": "lint-staged",
-    "change": "git cliff -o CHANGELOG.md",
+    "change": "git cliff --bump -o CHANGELOG.md",
     "prepare": "husky",
     "knip": "knip"
   },
