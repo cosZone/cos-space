@@ -1,12 +1,30 @@
 ---
-import LatestComments from '@components/comment/LatestComments.astro';
-import { getRandomPosts } from '@lib/content';
+import { getRandomPosts, getSortedPosts } from '@lib/content';
+import { getRelatedPosts, hasSimilarityData } from '@lib/content/similarities';
+import type { BlogPost } from 'types/blog';
 import RandomPostList from './RandomPostList.astro';
+import RelatedPostList from './RelatedPostList.astro';
 
+interface Props {
+  post?: BlogPost;
+}
+
+const { post } = Astro.props;
+
+// Check if similarity data is available
+const hasData = hasSimilarityData();
+
+// Get all posts for mapping related posts (only if we have similarity data)
+const allPosts = hasData ? await getSortedPosts() : [];
+
+// Get random posts (always needed for left column)
 const randomPosts = await getRandomPosts(10);
+
+// Get related posts if current post is provided and similarity data exists
+const relatedPosts = hasData && post ? getRelatedPosts(post, allPosts, 5) : [];
 ---
 
 <div class="tablet:grid-cols-1 grid grid-cols-2 gap-4 px-10 md:px-6">
   <RandomPostList posts={randomPosts} />
-  <LatestComments />
+  {hasData && <RelatedPostList posts={relatedPosts} fallbackPosts={randomPosts.slice(0, 5)} />}
 </div>

@@ -52,6 +52,7 @@ pnpm dev
 - 阅读进度条与阅读时间估算
 - 友链系统与归档页面
 - RSS 订阅支持
+- 基于语义相似度的智能文章推荐系统，使用 [transformers.js](https://huggingface.co/docs/transformers.js) 在本地生成文章嵌入向量，计算文章间的语义相似度。
 
 **完整使用指南：** 可查看详细的[功能使用文档](./src/content/blog/tools/astro-koharu-使用指南.md)，了解所有功能的配置和使用方法。
 

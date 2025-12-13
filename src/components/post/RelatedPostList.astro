@@ -1,0 +1,40 @@
+---
+import { getPostLastCategory } from '@lib/content';
+import type { BlogPost } from 'types/blog';
+
+interface Props {
+  posts: BlogPost[];
+  fallbackPosts?: BlogPost[];
+}
+
+const { posts, fallbackPosts = [] } = Astro.props;
+
+// Use related posts if available, otherwise fallback to random
+const displayPosts = posts.length > 0 ? posts : fallbackPosts;
+const title = posts.length > 0 ? '相关文章' : '随机推荐';
+---
+
+<div class="flex flex-col gap-4">
+  <h2 class="text-foreground/80 text-2xl font-semibold">{title}</h2>
+  {
+    displayPosts && displayPosts.length > 0 && (
+      <div class="flex flex-col gap-2">
+        {displayPosts.map((post, index) => {
+          const category = getPostLastCategory(post);
+          return (
+            <a
+              href={`/post/${post.data?.link ?? post.slug}`}
+              class="group hover:text-primary hover:bg-foreground/5 flex gap-3 rounded-md p-2 text-sm transition-colors duration-300"
+            >
+              <span class="text-foreground/30 shrink-0 font-mono">{index + 1}</span>
+              <div class="flex min-w-0 flex-col gap-0.5">
+                {category.name && <div class="text-foreground/50 truncate text-xs">{category.name}</div>}
+                <div class="text-foreground/80 group-hover:text-primary line-clamp-2 transition-colors">{post.data.title}</div>
+              </div>
+            </a>
+          );
+        })}
+      </div>
+    )
+  }
+</div>

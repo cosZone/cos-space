@@ -439,6 +439,84 @@ categories:
 - 友链申请表单（可自定义）
 - 支持头像、名称、描述、链接
 
+### 相关文章推荐
+
+参考 [No Server, No Database: Smarter Related Posts in Astro with `transformers.js`](https://alexop.dev/posts/semantic-related-posts-astro-transformersjs/)
+
+基于语义相似度的智能文章推荐系统，使用 [transformers.js](https://huggingface.co/docs/transformers.js) 在本地生成文章嵌入向量，计算文章间的语义相似度。
+
+**特性：**
+
+- 🧠 基于 AI 嵌入模型（Snowflake Arctic Embed）的语义理解
+- 📊 自动计算文章间的相似度，推荐最相关的 5 篇文章
+- 🚀 构建时预计算，运行时零开销
+- 🔧 支持排除特定文章（如周刊）
+
+**使用方式：**
+
+```bash
+# 生成相似度数据（本地运行，会自动下载模型，约需 3-5 分钟）
+pnpm generate:similarities
+
+# 生成的文件会提交到 git，Vercel 等平台直接使用
+```
+
+**配置排除规则：**
+
+编辑 `src/scripts/generateSimilarities.ts` 中的 `EXCLUDE_PATTERNS`：
+
+```typescript
+const EXCLUDE_PATTERNS = [
+  'weekly-', // 排除周刊文章
+];
+```
+
+**配置计算内容：**
+
+可以选择是否将文章正文纳入相似度计算：
+
+```typescript
+// true: 使用 标题 + 描述 + 正文（更准确，速度较慢）
+// false: 仅使用 标题 + 描述（更快，适合文章数量较多的情况）
+const INCLUDE_BODY = true;
+```
+
+- **包含正文**：相似度更精确，能识别内容层面的相关性，但生成速度较慢
+- **仅标题+描述**：生成速度快，适合描述写得比较详细的博客
+
+**模型选择：**
+
+默认使用 `Snowflake/snowflake-arctic-embed-m-v2.0` 模型：
+
+- **模型大小**：约 90MB（首次运行会自动下载到 `.cache/transformers` 目录）
+- **向量维度**：768 维
+- **性能**：平衡了质量和速度，适合中文和英文内容
+- **生成时间**：约 3-5 分钟（169 篇文章）
+
+如需更换模型，编辑 `src/scripts/generateSimilarities.ts` 中的 `MODEL_NAME`：
+
+```typescript
+const MODEL_NAME = 'Snowflake/snowflake-arctic-embed-m-v2.0';
+// 可选替代方案：
+// const MODEL_NAME = 'sentence-transformers/all-MiniLM-L6-v2'; // 更小更快（约 23MB），384 维
+// const MODEL_NAME = 'BAAI/bge-small-zh-v1.5';  // 针对中文优化
+```
+
+**其他可选模型对比：**
+
+| 模型                                     | 大小   | 维度 | 优势           |
+| ---------------------------------------- | ------ | ---- | -------------- |
+| `Snowflake/snowflake-arctic-embed-m-v2.0` | ~90MB  | 768  | 质量高，中英文均衡 |
+| `sentence-transformers/all-MiniLM-L6-v2` | ~23MB  | 384  | 轻量快速       |
+| `BAAI/bge-small-zh-v1.5`                | ~95MB  | 512  | 中文专用       |
+
+**注意事项：**
+
+- 需要本地运行生成脚本（Vercel 等平台无法运行模型）
+- 生成的 `src/assets/similarities.json` 需要提交到 git
+- 如果没有生成相似度文件，相关文章模块不会显示
+- 模型文件会缓存在 `.cache/transformers` 目录（已添加到 `.gitignore`）
+
 ### Markdown 增强
 
 **语法支持：**
